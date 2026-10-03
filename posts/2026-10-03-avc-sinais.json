@@ -1,0 +1,29 @@
+{
+ "id": "2026-10-03-avc-sinais",
+ "formato": "carrossel de 8 slides, capa creme com a linha do pulso",
+ "serie": "Sinais do corpo",
+ "titulo": "Você reconheceria um AVC?",
+ "papel": "lote de teste de 03/10/2026: criado para ele avaliar, não publicado",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais/08.jpg"
+ ],
+ "testa": [
+  "Capa em fundo creme",
+  "Texto apoiado na linha",
+  "Slide de teste rápido (3 perguntas)",
+  "Fecha mandando ligar 192"
+ ],
+ "fontes": [
+  "Ministério da Saúde. Acidente vascular cerebral (lista de sinais; ligar 192 ou 193 ou levar ao hospital; quanto mais rápido o atendimento, maiores as chances de recuperação) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc",
+  "Sociedade Brasileira de AVC. Página para pacientes (início súbito dos sintomas; teste do sorriso, do abraço e da frase; ligar 192) - https://avc.org.br/pacientes/acidente-vascular-cerebral/"
+ ],
+ "conferido_em": "2026-10-03",
+ "legenda": "Você reconheceria um AVC? Os sinais aparecem de repente:\n\n• Fraqueza ou formigamento em um lado do corpo (rosto, braço ou perna)\n• Fala enrolada ou dificuldade para entender\n• Confusão mental\n• Alteração na visão, em um olho ou nos dois\n• Tontura, perda de equilíbrio ou dificuldade para andar\n• Dor de cabeça forte e repentina, sem causa aparente\n\nNa dúvida, peça três coisas: um sorriso (a boca fica torta?), um abraço (um dos braços cai?) e uma frase (a fala sai enrolada?).\n\nViu um sinal? Ligue 192 na hora (o 193 também atende) ou leve a pessoa direto ao hospital. Quanto mais rápido o atendimento, maior a chance de recuperação.\n\nEnvie para a sua família.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de AVC.\n\n#avc #derrame #sinaisdeavc #samu192 #saude"
+}

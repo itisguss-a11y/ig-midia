@@ -1,0 +1,316 @@
+<title>Lote de 3 de outubro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: folha de provas em uma coluna. No topo, a grade do perfil como ficaria; depois um cartão por post, com o retorno embaixo de cada um. */
+:root{
+  --papel:#F4EDDF; --cartao:#FBF8F1; --tinta:#17402C; --suave:#566B5E; --fio:rgba(23,64,44,.17); --fio-forte:rgba(23,64,44,.42);
+  --ouro:#946810; --sim:#1D6B45; --meio:#85600C; --nao:#A2452F; --sobre:#F9F4E8;
+  --serif:'Instrument Serif','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --sans:'Instrument Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+    --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+  --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin-inline:auto;padding-inline:16px;padding-block:30px 72px;display:flex;flex-direction:column;gap:46px}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+button{font-family:var(--sans)}
+p{margin:0}
+
+.eyebrow,.lab{font:600 .72rem/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0;display:block}
+h1{font:400 clamp(2.6rem,11vw,4.1rem)/.94 var(--serif);letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+h1 i{color:var(--ouro)}
+.lede{font-size:1.06rem;max-width:33em;margin-top:18px}
+.prog{display:flex;align-items:center;gap:12px;margin-top:22px;font:500 .92rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.barra{flex:1;max-width:220px;height:4px;border-radius:2px;background:var(--fio);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.pulso{display:block;width:100%;height:34px;margin-top:22px;color:var(--ouro)}
+
+.bloco h2{font:400 1.95rem/1.05 var(--serif);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sub{color:var(--suave);margin-top:8px;max-width:35em}
+
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:440px;margin-top:18px}
+.tile{position:relative;display:block;aspect-ratio:3/4;max-width:100%;padding:0;border:0;background:var(--cartao);overflow:hidden;cursor:pointer}
+.tile img{display:block;width:100%;height:100%;object-fit:cover}
+.tile.ar{cursor:default}
+.tile .n,.tile .ico,.tile .tag{position:absolute;background:var(--papel);color:var(--tinta);font:600 .74rem/1 var(--sans);box-shadow:0 0 0 1px var(--fio)}
+.tile .n{left:6px;top:6px;min-width:1.7em;padding:.38em .4em;border-radius:1em;text-align:center;font-variant-numeric:tabular-nums}
+.tile .ico{right:6px;top:6px;padding:.4em .5em;border-radius:1em;font-size:.6rem}
+.tile .tag{left:6px;bottom:6px;padding:.4em .55em;border-radius:3px;font-weight:500;letter-spacing:.03em}
+
+.posts{display:flex;flex-direction:column;gap:58px}
+.post{display:flex;flex-direction:column;gap:18px;padding-top:26px;border-top:1.5px solid var(--fio-forte);scroll-margin-top:12px}
+.ph{display:flex;align-items:flex-start;gap:14px}
+.num{font:italic 400 3.5rem/.82 var(--serif);color:var(--ouro);min-width:.62em}
+.pt{flex:1;min-width:0}
+h3{font:400 1.8rem/1.04 var(--serif);letter-spacing:-.01em;margin:7px 0 0;text-wrap:balance}
+.selo{font:600 .7rem/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;padding:.55em .7em;margin-top:2px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2.5deg)}
+.selo[data-voto="gostei"]{color:var(--sim)} .selo[data-voto="meio"]{color:var(--meio)} .selo[data-voto="nao"]{color:var(--nao)}
+
+.midia{position:relative;width:100%;max-width:500px}
+.trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.trilho::-webkit-scrollbar{display:none}
+.trilho img{flex:0 0 100%;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;display:block;scroll-snap-align:center}
+.nav{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:38px;height:38px;padding:0 0 3px;border:0;border-radius:50%;background:var(--papel);color:var(--tinta);font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:0 1px 7px rgba(0,0,0,.28)}
+.nav.ant{left:8px} .nav.prox{right:8px}
+.pos{position:absolute;right:10px;top:10px;padding:.42em .62em;border-radius:1em;background:var(--papel);color:var(--tinta);font:500 .78rem/1 var(--sans);font-variant-numeric:tabular-nums;box-shadow:0 0 0 1px var(--fio)}
+.pos b{font-weight:500}
+.dots{display:flex;justify-content:center;gap:6px;max-width:500px;margin-top:-6px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--fio-forte)} .dots i.on{background:var(--ouro)}
+.reel{max-width:290px}
+.reel video{display:block;width:100%;max-width:100%;aspect-ratio:9/16;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+
+.testa .lab{margin-bottom:9px}
+.testa ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px 8px}
+.testa li{font-size:.88rem;line-height:1.2;padding:.42em .78em;border:1px solid var(--fio-forte);border-radius:2em}
+
+.dobras{display:flex;flex-direction:column}
+.dobra{border-top:1px solid var(--fio);padding-block:12px}
+.dobra:last-child{border-bottom:1px solid var(--fio)}
+.dobra summary{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;list-style:none;font-weight:500}
+.dobra summary::-webkit-details-marker{display:none}
+.dobra summary::after{content:'+';font-size:1.3rem;line-height:1;color:var(--suave)}
+.dobra[open] summary::after{content:'\2013'}
+.legenda{white-space:pre-line;font-size:.96rem;max-width:35em;margin-top:12px;overflow-wrap:anywhere}
+.fontes{display:flex;flex-direction:column;gap:9px;margin:12px 0 0;padding-left:1.1em;font-size:.9rem;overflow-wrap:anywhere}
+.fontes a{color:var(--ouro);font-weight:500;white-space:nowrap}
+
+.retorno{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:6px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.votos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.votos button{padding:.82em .3em;border:1.5px solid var(--fio-forte);border-radius:4px;background:transparent;color:var(--tinta);font-weight:500;font-size:.95rem;line-height:1.15;cursor:pointer}
+.votos button[aria-pressed="true"]{color:var(--sobre);border-color:transparent}
+.votos button[data-v="gostei"][aria-pressed="true"]{background:var(--sim)}
+.votos button[data-v="meio"][aria-pressed="true"]{background:var(--meio)}
+.votos button[data-v="nao"][aria-pressed="true"]{background:var(--nao)}
+.votos.capa{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,2fr);margin-top:16px}
+.votos.capa button[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
+.votos button:disabled,.marca:disabled{opacity:.5;cursor:default}
+.linha-marca{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.linha-marca:empty{display:none}
+.marca{padding:.5em .85em;border:1px dashed var(--fio-forte);border-radius:2em;background:transparent;color:var(--tinta);font-weight:500;font-size:.85rem;cursor:pointer}
+.marca[aria-pressed="true"]{border-style:solid;border-color:var(--ouro);color:var(--ouro)}
+.marcados{font-size:.85rem;color:var(--suave)}
+textarea{display:block;width:100%;min-height:4.3em;padding:.7em .8em;border:1.5px solid var(--fio-forte);border-radius:4px;background:var(--papel);color:var(--tinta);font:400 1rem/1.4 var(--sans);resize:vertical}
+textarea::placeholder{color:var(--suave)}
+.st{min-height:1.25em;font-size:.82rem;color:var(--suave)}
+.st[data-tom="erro"]{color:var(--nao)}
+
+.opcoes{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:16px;padding-bottom:8px}
+.opcoes figure{flex:0 0 min(80%,300px);margin:0;scroll-snap-align:start}
+.opcoes img{display:block;width:100%;max-width:100%;height:auto;border-radius:4px;box-shadow:0 0 0 1px var(--fio)}
+.opcoes figcaption{margin-top:8px;font-size:.88rem} .opcoes figcaption span{color:var(--suave)}
+#capas .st{margin-top:10px}
+#geral textarea{margin-top:16px} #geral .st{margin-top:8px}
+.fim{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:18px}
+#copiar{padding:.8em 1.2em;border:0;border-radius:4px;background:var(--tinta);color:var(--papel);font-weight:600;font-size:.95rem;cursor:pointer}
+#resumo{margin-top:12px;font-size:.9rem}
+footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid var(--fio);padding-top:18px}
+@media (prefers-reduced-motion: reduce){.barra i{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Lote de teste · 3 de outubro de 2026</p>
+  <h1>Oito posts para você <i>avaliar</i></h1>
+  <p class="lede">Nada daqui foi publicado. Passe pelos posts, toque em gostei ou não gostei e escreva o que mudar. O retorno fica gravado nesta página e eu leio depois.</p>
+  <div class="prog"><span><span id="prog-n">0</span> de %%TOTAL%% avaliados</span><span class="barra" aria-hidden="true"><i></i></span></div>
+  <svg class="pulso" viewBox="0 0 720 34" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 18 C 120 16, 250 20, 372 18 L 418 18 L 436 3 L 458 32 L 478 18 C 560 18, 640 20, 720 18" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+</header>
+
+<section class="bloco" id="grade">
+  <h2>Como ficaria o perfil</h2>
+  <p class="sub">Os oito de cima são os novos. Os quatro de baixo já estão no ar. Toque em um número para ir direto ao post.</p>
+  <div class="grade">%%GRADE%%</div>
+</section>
+
+<section class="posts" aria-label="Os oito posts do lote">%%POSTS%%
+</section>
+%%CAPAS%%
+<section class="bloco" id="geral" data-id="geral">
+  <h2>Comentário geral</h2>
+  <p class="sub">O que vale para o lote inteiro, ou o que não coube nos posts.</p>
+  <textarea id="nota-geral" rows="3" data-nota aria-label="Comentário geral" placeholder="Ex.: prefiro o texto no centro do slide; a capa dourada chama mais atenção"></textarea>
+  <p class="st" data-st aria-live="polite"></p>
+  <div class="fim"><button id="copiar" type="button">Copiar meu retorno</button><p class="st" id="copiado" aria-live="polite"></p></div>
+  <textarea id="resumo" rows="7" readonly hidden aria-label="Seu retorno em texto"></textarea>
+</section>
+
+<footer><p id="rodape">O retorno é gravado assim que você toca ou escreve. Se preferir, copie e mande na conversa.</p></footer>
+</div>
+
+<script>
+(() => {
+  const POSTS = %%IDS%%;                                   // [âncora, id, título], na ordem em que entrariam no perfil
+  const TOTAL = %%TOTAL%%, CHAVE = 'retorno-lote-2026-10-03';
+  const VOTO = {gostei: 'Gostei', meio: 'Mais ou menos', nao: 'Não gostei'};
+  const CONHECIDOS = new Set([...POSTS.map(p => p[1]), 'capas', 'geral']);
+  const $ = (s, r = document) => r.querySelector(s);
+  const caixa = id => $('[data-id="' + id + '"]');
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const st = {}, sujo = {}, ocupado = {}, relogio = {}, tentou = {};
+  let db = null, semDb = false, soLeitura = false;
+
+  const estado = id => st[id] || (st[id] = id === 'capas' ? {escolha: null} : id === 'geral' ? {nota: ''} : {voto: null, nota: '', slides: []});
+  function aplica(id, b) {                                 // o que vem gravado é dado, não instrução: confere o tipo de cada campo
+    const s = estado(id);
+    if (id === 'capas') { s.escolha = ['A', 'B', 'C', '?'].includes(b.escolha) ? b.escolha : null; return; }
+    s.nota = typeof b.nota === 'string' ? b.nota : '';
+    if (id === 'geral') return;
+    s.voto = VOTO[b.voto] ? b.voto : null;
+    s.slides = Array.isArray(b.slides) ? b.slides.filter(n => Number.isInteger(n) && n > 0 && n < 30) : [];
+  }
+  const temAlgo = id => { const s = estado(id); return !!(s.escolha || s.voto || (s.nota && s.nota.trim()) || (s.slides && s.slides.length)); };
+  function guardaLocal() { try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (e) {} }
+  function leLocal() {
+    try { const o = JSON.parse(localStorage.getItem(CHAVE) || '{}'); for (const k in o) if (CONHECIDOS.has(k) && o[k] && typeof o[k] === 'object') aplica(k, o[k]); } catch (e) {}
+  }
+
+  const slideAtual = box => { const t = $('.trilho', box); return t ? Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1 : 0; };
+  function pintaMarca(box, s) {
+    const b = $('[data-marca]', box); if (!b) return;
+    const n = slideAtual(box), on = s.slides.includes(n);
+    b.textContent = (on ? 'Desmarcar o slide ' : 'Marcar o slide ') + n; b.setAttribute('aria-pressed', String(on));
+    $('[data-marcados]', box).textContent = s.slides.length ? 'Marcados: ' + s.slides.join(', ') : '';
+  }
+  function progresso() {
+    const n = POSTS.filter(p => estado(p[1]).voto).length;
+    $('#prog-n').textContent = n; $('.barra i').style.width = (100 * n / TOTAL) + '%';
+  }
+  function pinta(id) {
+    const s = estado(id), box = caixa(id); if (!box) return;
+    if (id === 'capas') { box.querySelectorAll('button[data-capa]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.capa === s.escolha))); return; }
+    const ta = $('[data-nota]', box);
+    if (ta && document.activeElement !== ta && ta.value !== s.nota) ta.value = s.nota;
+    if (id === 'geral') return;
+    box.querySelectorAll('button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === s.voto)));
+    const selo = $('[data-selo]', box);
+    selo.hidden = !s.voto; if (s.voto) { selo.textContent = VOTO[s.voto]; selo.dataset.voto = s.voto; }
+    pintaMarca(box, s); progresso();
+  }
+  function aviso(id, txt, tom) { const e = $('[data-st]', caixa(id)); if (e) { e.textContent = txt; e.dataset.tom = tom || ''; } }
+  function trava() {
+    document.querySelectorAll('.votos button, .marca').forEach(b => b.disabled = true);
+    document.querySelectorAll('[data-nota]').forEach(t => t.readOnly = true);
+    $('#rodape').textContent = 'Só quem é dono desta página grava o retorno.';
+  }
+
+  function corpo(id) {
+    const s = estado(id), em = new Date().toISOString();
+    if (id === 'capas') return {escolha: s.escolha, em};
+    if (id === 'geral') return {nota: s.nota, em};
+    const p = POSTS.find(p => p[1] === id);
+    return {post: p ? p[2] : id, voto: s.voto, nota: s.nota, slides: s.slides.slice(), em};
+  }
+  async function grava(id) {                                // uma gravação por vez em cada documento
+    if (!db) { if (semDb) aviso(id, 'Não gravou aqui. Use Copiar meu retorno, no fim da página.', 'erro'); return; }
+    if (ocupado[id]) return;
+    ocupado[id] = true;
+    while (sujo[id]) {
+      sujo[id] = false;
+      try { await db.doc('retorno/' + id).set(corpo(id)); tentou[id] = 0; aviso(id, 'Gravado.'); }
+      catch (e) {
+        const c = e && e.code;
+        if (c === 'unavailable' && !tentou[id]) { tentou[id] = 1; sujo[id] = true; await new Promise(r => setTimeout(r, 500 + Math.random() * 900)); continue; }
+        if (c === 'invalid_argument') { soLeitura = true; trava(); aviso(id, 'Só quem é dono desta página grava o retorno.', 'erro'); }
+        else aviso(id, 'Não gravou. Use Copiar meu retorno, no fim da página.', 'erro');
+        break;
+      }
+    }
+    ocupado[id] = false;
+  }
+  function muda(id, agora) {
+    pinta(id); guardaLocal();
+    if (soLeitura) return;
+    sujo[id] = true; if (db) aviso(id, 'Gravando…');
+    clearTimeout(relogio[id]); relogio[id] = setTimeout(() => grava(id), agora ? 0 : 900);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.ir) { const alvo = document.getElementById(b.dataset.ir); if (alvo) alvo.scrollIntoView({behavior: reduz ? 'auto' : 'smooth', block: 'start'}); return; }
+    const box = b.closest('[data-id]'); if (!box || soLeitura) return;
+    const id = box.dataset.id, s = estado(id);
+    if (b.dataset.v) { s.voto = s.voto === b.dataset.v ? null : b.dataset.v; muda(id, true); }
+    else if (b.dataset.capa) { s.escolha = s.escolha === b.dataset.capa ? null : b.dataset.capa; muda(id, true); }
+    else if ('marca' in b.dataset) {
+      const n = slideAtual(box), i = s.slides.indexOf(n);
+      if (i < 0) { s.slides.push(n); s.slides.sort((x, y) => x - y); } else s.slides.splice(i, 1);
+      muda(id, true);
+    }
+  });
+  document.addEventListener('input', e => {
+    const ta = e.target.closest('[data-nota]'); if (!ta || soLeitura) return;
+    const id = ta.closest('[data-id]').dataset.id; estado(id).nota = ta.value; muda(id, false);
+  });
+
+  document.querySelectorAll('.midia.car').forEach(car => {
+    const t = $('.trilho', car), box = car.closest('.post'), total = +car.dataset.total;
+    const ant = $('.ant', car), prox = $('.prox', car), pos = $('.pos b', car), dots = [...box.querySelectorAll('.dots i')];
+    let raf = 0, cur = 0;
+    const acerta = () => {
+      raf = 0;
+      const n = Math.min(total, Math.max(1, Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1));
+      if (n === cur) return; cur = n;
+      pos.textContent = n; ant.hidden = n === 1; prox.hidden = n === total;
+      dots.forEach((d, i) => d.classList.toggle('on', i === n - 1));
+      pintaMarca(box, estado(box.dataset.id));
+    };
+    t.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(acerta); }, {passive: true});
+    const vai = d => t.scrollBy({left: d * t.clientWidth, behavior: reduz ? 'auto' : 'smooth'});
+    ant.addEventListener('click', () => vai(-1)); prox.addEventListener('click', () => vai(1));
+    acerta();
+  });
+
+  function resumo() {
+    const L = ['Retorno do lote de 3 de outubro'];
+    POSTS.forEach((p, i) => {
+      const s = estado(p[1]); let t = (i + 1) + '. ' + p[2] + ': ' + (s.voto ? VOTO[s.voto] : 'sem voto');
+      if (s.slides.length) t += ' (slides marcados: ' + s.slides.join(', ') + ')';
+      if (s.nota.trim()) t += '. ' + s.nota.trim();
+      L.push(t);
+    });
+    const c = estado('capas').escolha; if (c) L.push('Capas: ' + (c === '?' ? 'ainda não sei' : 'opção ' + c));
+    const g = estado('geral').nota.trim(); if (g) L.push('Geral: ' + g);
+    return L.join('\n');
+  }
+  $('#copiar').addEventListener('click', async () => {
+    const txt = resumo(), out = $('#copiado'), area = $('#resumo');
+    try { await navigator.clipboard.writeText(txt); out.textContent = 'Copiado. Cole na conversa.'; }
+    catch (e) { area.hidden = false; area.value = txt; area.focus(); area.select(); out.textContent = 'Selecionei o texto. Copie e cole na conversa.'; }
+  });
+
+  leLocal(); CONHECIDOS.forEach(pinta); progresso();
+
+  (async () => {
+    let user = null;
+    try { if (window.claude && window.claude.use) [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch (e) { db = null; }
+    if (!db) { semDb = true; $('#rodape').textContent = 'Aqui não deu para gravar o retorno. Use Copiar meu retorno e cole na conversa.'; return; }
+    if (user && (await user.can('data.write')) === false) { soLeitura = true; trava(); }
+    let primeira = true, religou = false;
+    const assina = () => db.collection('retorno').onSnapshot(snap => {
+      const vistos = new Set();
+      snap.docs.forEach(d => {
+        vistos.add(d.id);
+        if (!CONHECIDOS.has(d.id) || sujo[d.id] || ocupado[d.id]) return;
+        aplica(d.id, d.data() || {}); pinta(d.id);
+      });
+      guardaLocal();
+      if (primeira) {                                       // uma vez só: sobe o que ficou só neste aparelho em uma visita sem gravação
+        primeira = false;
+        const falta = [...CONHECIDOS].filter(id => !vistos.has(id) && temAlgo(id));
+        if (falta.length && !soLeitura) setTimeout(() => falta.forEach(id => { sujo[id] = true; grava(id); }), 0);
+        Object.keys(sujo).filter(id => sujo[id]).forEach(grava);
+      }
+    }, err => {
+      if (err && err.code === 'unavailable' && !religou) { religou = true; setTimeout(assina, 1500); return; }
+      db = null; semDb = true; $('#rodape').textContent = 'A gravação parou. Use Copiar meu retorno e cole na conversa.';
+    });
+    assina();
+  })();
+})();
+</script>

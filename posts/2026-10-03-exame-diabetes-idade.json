@@ -1,0 +1,26 @@
+{
+ "id": "2026-10-03-exame-diabetes-idade",
+ "formato": "carrossel de 7 slides, capa de laudo",
+ "serie": "Entenda seu exame",
+ "titulo": "Nunca fez exame de diabetes?",
+ "papel": "lote de teste de 03/10/2026: criado para ele avaliar, não publicado",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exame-diabetes-idade/07.jpg"
+ ],
+ "testa": [
+  "Capa de laudo (papel de exame)",
+  "Texto no centro do slide",
+  "Explica o termo difícil (fator de risco) em um slide"
+ ],
+ "fontes": [
+  "Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) - https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/"
+ ],
+ "conferido_em": "2026-10-03",
+ "legenda": "Nunca fez exame de diabetes? A partir dos 35 anos, ele é indicado para todo mundo, mesmo sem nenhum sintoma.\n\nAntes dos 35, o exame entra quando há excesso de peso e pelo menos mais um fator de risco, como pressão alta, sedentarismo ou diabetes em pais ou irmãos.\n\nE depois?\n• Deu normal: repita em 3 anos (em 1 ano, se você tem três ou mais fatores de risco)\n• Deu pré-diabetes: repita em 1 ano\n\nO exame é de sangue: glicemia de jejum ou hemoglobina glicada.\n\nEnvie para quem já passou dos 35.\n\nConteúdo educativo, não substitui consulta.\nFonte: Diretriz da Sociedade Brasileira de Diabetes.\n\n#diabetes #glicemia #exames #prediabetes #saude"
+}

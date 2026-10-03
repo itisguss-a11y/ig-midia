@@ -1,0 +1,594 @@
+<title>Lote de 3 de outubro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: folha de provas em uma coluna. No topo, a grade do perfil como ficaria; depois um cartão por post, com o retorno embaixo de cada um. */
+:root{
+  --papel:#F4EDDF; --cartao:#FBF8F1; --tinta:#17402C; --suave:#566B5E; --fio:rgba(23,64,44,.17); --fio-forte:rgba(23,64,44,.42);
+  --ouro:#946810; --sim:#1D6B45; --meio:#85600C; --nao:#A2452F; --sobre:#F9F4E8;
+  --serif:'Instrument Serif','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --sans:'Instrument Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+    --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+  --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin-inline:auto;padding-inline:16px;padding-block:30px 72px;display:flex;flex-direction:column;gap:46px}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+button{font-family:var(--sans)}
+p{margin:0}
+
+.eyebrow,.lab{font:600 .72rem/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0;display:block}
+h1{font:400 clamp(2.6rem,11vw,4.1rem)/.94 var(--serif);letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+h1 i{color:var(--ouro)}
+.lede{font-size:1.06rem;max-width:33em;margin-top:18px}
+.prog{display:flex;align-items:center;gap:12px;margin-top:22px;font:500 .92rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.barra{flex:1;max-width:220px;height:4px;border-radius:2px;background:var(--fio);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.pulso{display:block;width:100%;height:34px;margin-top:22px;color:var(--ouro)}
+
+.bloco h2{font:400 1.95rem/1.05 var(--serif);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sub{color:var(--suave);margin-top:8px;max-width:35em}
+
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:440px;margin-top:18px}
+.tile{position:relative;display:block;aspect-ratio:3/4;max-width:100%;padding:0;border:0;background:var(--cartao);overflow:hidden;cursor:pointer}
+.tile img{display:block;width:100%;height:100%;object-fit:cover}
+.tile.ar{cursor:default}
+.tile .n,.tile .ico,.tile .tag{position:absolute;background:var(--papel);color:var(--tinta);font:600 .74rem/1 var(--sans);box-shadow:0 0 0 1px var(--fio)}
+.tile .n{left:6px;top:6px;min-width:1.7em;padding:.38em .4em;border-radius:1em;text-align:center;font-variant-numeric:tabular-nums}
+.tile .ico{right:6px;top:6px;padding:.4em .5em;border-radius:1em;font-size:.6rem}
+.tile .tag{left:6px;bottom:6px;padding:.4em .55em;border-radius:3px;font-weight:500;letter-spacing:.03em}
+
+.posts{display:flex;flex-direction:column;gap:58px}
+.post{display:flex;flex-direction:column;gap:18px;padding-top:26px;border-top:1.5px solid var(--fio-forte);scroll-margin-top:12px}
+.ph{display:flex;align-items:flex-start;gap:14px}
+.num{font:italic 400 3.5rem/.82 var(--serif);color:var(--ouro);min-width:.62em}
+.pt{flex:1;min-width:0}
+h3{font:400 1.8rem/1.04 var(--serif);letter-spacing:-.01em;margin:7px 0 0;text-wrap:balance}
+.selo{font:600 .7rem/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;padding:.55em .7em;margin-top:2px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2.5deg)}
+.selo[data-voto="gostei"]{color:var(--sim)} .selo[data-voto="meio"]{color:var(--meio)} .selo[data-voto="nao"]{color:var(--nao)}
+
+.midia{position:relative;width:100%;max-width:500px}
+.trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.trilho::-webkit-scrollbar{display:none}
+.trilho img{flex:0 0 100%;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;display:block;scroll-snap-align:center}
+.nav{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:38px;height:38px;padding:0 0 3px;border:0;border-radius:50%;background:var(--papel);color:var(--tinta);font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:0 1px 7px rgba(0,0,0,.28)}
+.nav.ant{left:8px} .nav.prox{right:8px}
+.pos{position:absolute;right:10px;top:10px;padding:.42em .62em;border-radius:1em;background:var(--papel);color:var(--tinta);font:500 .78rem/1 var(--sans);font-variant-numeric:tabular-nums;box-shadow:0 0 0 1px var(--fio)}
+.pos b{font-weight:500}
+.dots{display:flex;justify-content:center;gap:6px;max-width:500px;margin-top:-6px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--fio-forte)} .dots i.on{background:var(--ouro)}
+.reel{max-width:290px}
+.reel video{display:block;width:100%;max-width:100%;aspect-ratio:9/16;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+
+.testa .lab{margin-bottom:9px}
+.testa ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px 8px}
+.testa li{font-size:.88rem;line-height:1.2;padding:.42em .78em;border:1px solid var(--fio-forte);border-radius:2em}
+
+.dobras{display:flex;flex-direction:column}
+.dobra{border-top:1px solid var(--fio);padding-block:12px}
+.dobra:last-child{border-bottom:1px solid var(--fio)}
+.dobra summary{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;list-style:none;font-weight:500}
+.dobra summary::-webkit-details-marker{display:none}
+.dobra summary::after{content:'+';font-size:1.3rem;line-height:1;color:var(--suave)}
+.dobra[open] summary::after{content:'\2013'}
+.legenda{white-space:pre-line;font-size:.96rem;max-width:35em;margin-top:12px;overflow-wrap:anywhere}
+.fontes{display:flex;flex-direction:column;gap:9px;margin:12px 0 0;padding-left:1.1em;font-size:.9rem;overflow-wrap:anywhere}
+.fontes a{color:var(--ouro);font-weight:500;white-space:nowrap}
+
+.retorno{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:6px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.votos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.votos button{padding:.82em .3em;border:1.5px solid var(--fio-forte);border-radius:4px;background:transparent;color:var(--tinta);font-weight:500;font-size:.95rem;line-height:1.15;cursor:pointer}
+.votos button[aria-pressed="true"]{color:var(--sobre);border-color:transparent}
+.votos button[data-v="gostei"][aria-pressed="true"]{background:var(--sim)}
+.votos button[data-v="meio"][aria-pressed="true"]{background:var(--meio)}
+.votos button[data-v="nao"][aria-pressed="true"]{background:var(--nao)}
+.votos.capa{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,2fr);margin-top:16px}
+.votos.capa button[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
+.votos button:disabled,.marca:disabled{opacity:.5;cursor:default}
+.linha-marca{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.linha-marca:empty{display:none}
+.marca{padding:.5em .85em;border:1px dashed var(--fio-forte);border-radius:2em;background:transparent;color:var(--tinta);font-weight:500;font-size:.85rem;cursor:pointer}
+.marca[aria-pressed="true"]{border-style:solid;border-color:var(--ouro);color:var(--ouro)}
+.marcados{font-size:.85rem;color:var(--suave)}
+textarea{display:block;width:100%;min-height:4.3em;padding:.7em .8em;border:1.5px solid var(--fio-forte);border-radius:4px;background:var(--papel);color:var(--tinta);font:400 1rem/1.4 var(--sans);resize:vertical}
+textarea::placeholder{color:var(--suave)}
+.st{min-height:1.25em;font-size:.82rem;color:var(--suave)}
+.st[data-tom="erro"]{color:var(--nao)}
+
+.opcoes{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:16px;padding-bottom:8px}
+.opcoes figure{flex:0 0 min(80%,300px);margin:0;scroll-snap-align:start}
+.opcoes img{display:block;width:100%;max-width:100%;height:auto;border-radius:4px;box-shadow:0 0 0 1px var(--fio)}
+.opcoes figcaption{margin-top:8px;font-size:.88rem} .opcoes figcaption span{color:var(--suave)}
+#capas .st{margin-top:10px}
+#geral textarea{margin-top:16px} #geral .st{margin-top:8px}
+.fim{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:18px}
+#copiar{padding:.8em 1.2em;border:0;border-radius:4px;background:var(--tinta);color:var(--papel);font-weight:600;font-size:.95rem;cursor:pointer}
+#resumo{margin-top:12px;font-size:.9rem}
+footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid var(--fio);padding-top:18px}
+@media (prefers-reduced-motion: reduce){.barra i{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Lote de teste · 3 de outubro de 2026</p>
+  <h1>Oito posts para você <i>avaliar</i></h1>
+  <p class="lede">Nada daqui foi publicado. Passe pelos posts, toque em gostei ou não gostei e escreva o que mudar. O retorno fica gravado nesta página e eu leio depois.</p>
+  <div class="prog"><span><span id="prog-n">0</span> de 8 avaliados</span><span class="barra" aria-hidden="true"><i></i></span></div>
+  <svg class="pulso" viewBox="0 0 720 34" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 18 C 120 16, 250 20, 372 18 L 418 18 L 436 3 L 458 32 L 478 18 C 560 18, 640 20, 720 18" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+</header>
+
+<section class="bloco" id="grade">
+  <h2>Como ficaria o perfil</h2>
+  <p class="sub">Os oito de cima são os novos. Os quatro de baixo já estão no ar. Toque em um número para ir direto ao post.</p>
+  <div class="grade"><button class='tile' type='button' data-ir='p8' aria-label='Ir para o post 8: Dor no peito. É infarto?'><img src='revisao/grade/08.jpg' width='540' height='720' alt=''><span class='n'>8</span><span class='ico' aria-hidden='true'>&#9654;</span></button><button class='tile' type='button' data-ir='p7' aria-label='Ir para o post 7: A febre baixou. E agora?'><img src='revisao/grade/07.jpg' width='540' height='720' alt=''><span class='n'>7</span><span class='ico' aria-hidden='true'>&#9654;</span></button><button class='tile' type='button' data-ir='p6' aria-label='Ir para o post 6: Nunca fez exame de diabetes?'><img src='revisao/grade/06.jpg' width='540' height='720' alt=''><span class='n'>6</span></button><button class='tile' type='button' data-ir='p5' aria-label='Ir para o post 5: Sede que não passa?'><img src='revisao/grade/05.jpg' width='540' height='720' alt=''><span class='n'>5</span></button><button class='tile' type='button' data-ir='p4' aria-label='Ir para o post 4: Quanto exercício por semana? 150 min'><img src='revisao/grade/04.jpg' width='540' height='720' alt=''><span class='n'>4</span></button><button class='tile' type='button' data-ir='p3' aria-label='Ir para o post 3: Você mede a pressão do jeito certo?'><img src='revisao/grade/03.jpg' width='540' height='720' alt=''><span class='n'>3</span></button><button class='tile' type='button' data-ir='p2' aria-label='Ir para o post 2: Você reconheceria um AVC?'><img src='revisao/grade/02.jpg' width='540' height='720' alt=''><span class='n'>2</span></button><button class='tile' type='button' data-ir='p1' aria-label='Ir para o post 1: Quanto sal por dia? 5 g'><img src='revisao/grade/01.jpg' width='540' height='720' alt=''><span class='n'>1</span></button><div class='tile ar'><img src='revisao/grade/ar1.jpg' width='540' height='720' alt='Reel: Antibiótico cura gripe? (segunda versão)'><span class='tag'>no ar</span></div><div class='tile ar'><img src='revisao/grade/ar2.jpg' width='540' height='720' alt='Carrossel: 99 é normal. E 100?'><span class='tag'>no ar</span></div><div class='tile ar'><img src='revisao/grade/ar3.jpg' width='540' height='720' alt='Carrossel: Sua pressão é 12 por 8?'><span class='tag'>no ar</span></div><div class='tile ar'><img src='revisao/grade/ar4.jpg' width='540' height='720' alt='Reel: Antibiótico cura gripe? (primeira versão)'><span class='tag'>no ar</span></div></div>
+</section>
+
+<section class="posts" aria-label="Os oito posts do lote">
+<article class="post" id="p1" data-id="2026-10-03-sal-por-dia" data-titulo="Quanto sal por dia? 5 g">
+  <header class="ph"><span class="num" aria-hidden="true">1</span>
+    <div class="pt"><p class="eyebrow">Para salvar · Carrossel · 6 slides</p><h3>Quanto sal por dia? 5 g</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='6'><div class='trilho' id='t1' tabindex='0' role='group' aria-label='Slides do post 1. Arraste ou use as setas.'><img src='midia/2026-10-03-sal-por-dia/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 6: Quanto sal por dia? 5 g. Menos de uma colher de chá, contando o sal que você não vê.'><img src='midia/2026-10-03-sal-por-dia/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 6: O limite é 5 gramas por dia. Menos de uma colher de chá. E conta todo o sal do dia, não só o do saleiro.'><img src='midia/2026-10-03-sal-por-dia/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 6: A média no mundo é de 11 gramas. Mais que o dobro do limite.'><img src='midia/2026-10-03-sal-por-dia/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 6: Sal demais sobe a pressão. E pressão alta aumenta o risco de doenças do coração.'><img src='midia/2026-10-03-sal-por-dia/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 6: Boa parte do sal não vem do saleiro. Vem de pão, embutidos, salgadinhos e molhos prontos.'><img src='midia/2026-10-03-sal-por-dia/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 6: Como reduzir Tire o saleiro da mesa. Cozinhe com pouco sal. Use ervas e temperos naturais. Prefira comida fresca, pouco processada. Envie para quem cozinha na sua casa.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/6</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa dourada</li><li>Número gigante na capa</li><li>Texto no centro do slide</li><li>Pergunta na legenda para puxar comentário</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Quanto sal por dia? Menos de 5 gramas, o que dá menos de uma colher de chá. E essa conta inclui todo o sal do dia, não só o do saleiro.
+
+No mundo, a média é de 11 gramas por dia: mais que o dobro do limite.
+
+Por que isso importa: sal demais sobe a pressão, e pressão alta aumenta o risco de doenças do coração.
+
+Boa parte do sal vem de alimentos processados: pão, embutidos, salgadinhos e molhos prontos.
+
+Como reduzir:
+• Tire o saleiro da mesa
+• Cozinhe com pouco sal e use ervas e temperos naturais
+• Prefira comida fresca, pouco processada
+
+Qual desses é o mais difícil para você? Conte nos comentários.
+
+Envie para quem cozinha na sua casa.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Organização Mundial da Saúde.
+
+#sal #pressaoalta #alimentacaosaudavel #coracao #saude</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Organização Mundial da Saúde. Sodium reduction (menos de 5 g de sal por dia, pouco menos de uma colher de chá; média mundial de 11 g em 2021, mais que o dobro; eleva a pressão; fontes em alimentos processados; dicas para reduzir) <a href='https://www.who.int/news-room/fact-sheets/detail/sodium-reduction' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 1">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-1">O que mudar?</label>
+    <textarea id="nota-1" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p2" data-id="2026-10-03-avc-sinais" data-titulo="Você reconheceria um AVC?">
+  <header class="ph"><span class="num" aria-hidden="true">2</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Carrossel · 8 slides</p><h3>Você reconheceria um AVC?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='8'><div class='trilho' id='t2' tabindex='0' role='group' aria-label='Slides do post 2. Arraste ou use as setas.'><img src='midia/2026-10-03-avc-sinais/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 8: Você reconheceria um AVC? Os sinais aparecem de repente e pedem socorro na hora.'><img src='midia/2026-10-03-avc-sinais/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 8: Um lado do corpo fraco ou formigando. No rosto, no braço ou na perna.'><img src='midia/2026-10-03-avc-sinais/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 8: A fala enrola. Ou a pessoa fica confusa e não entende o que você diz.'><img src='midia/2026-10-03-avc-sinais/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 8: A visão muda de repente. Em um olho ou nos dois.'><img src='midia/2026-10-03-avc-sinais/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 8: Tontura e perda de equilíbrio. Dificuldade para andar ou para coordenar os movimentos.'><img src='midia/2026-10-03-avc-sinais/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 8: Dor de cabeça forte, do nada. Intensa e sem causa aparente.'><img src='midia/2026-10-03-avc-sinais/07.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 7 de 8: Na dúvida, peça três coisas: Sorriso: A boca fica torta?; Abraço: Um dos braços cai?; Frase: A fala sai enrolada?'><img src='midia/2026-10-03-avc-sinais/08.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 8 de 8: Viu um sinal? Ligue 192. É o SAMU. O 193, dos Bombeiros, também atende. Ou leve a pessoa direto ao hospital. Quanto mais rápido o atendimento, maior a chance de recuperação. Envie para a sua família.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/8</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa em fundo creme</li><li>Texto apoiado na linha</li><li>Slide de teste rápido (3 perguntas)</li><li>Fecha mandando ligar 192</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Você reconheceria um AVC? Os sinais aparecem de repente:
+
+• Fraqueza ou formigamento em um lado do corpo (rosto, braço ou perna)
+• Fala enrolada ou dificuldade para entender
+• Confusão mental
+• Alteração na visão, em um olho ou nos dois
+• Tontura, perda de equilíbrio ou dificuldade para andar
+• Dor de cabeça forte e repentina, sem causa aparente
+
+Na dúvida, peça três coisas: um sorriso (a boca fica torta?), um abraço (um dos braços cai?) e uma frase (a fala sai enrolada?).
+
+Viu um sinal? Ligue 192 na hora (o 193 também atende) ou leve a pessoa direto ao hospital. Quanto mais rápido o atendimento, maior a chance de recuperação.
+
+Envie para a sua família.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Ministério da Saúde; Sociedade Brasileira de AVC.
+
+#avc #derrame #sinaisdeavc #samu192 #saude</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Ministério da Saúde. Acidente vascular cerebral (lista de sinais; ligar 192 ou 193 ou levar ao hospital; quanto mais rápido o atendimento, maiores as chances de recuperação) <a href='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc' target='_blank' rel='noopener'>Abrir a fonte</a></li><li>Sociedade Brasileira de AVC. Página para pacientes (início súbito dos sintomas; teste do sorriso, do abraço e da frase; ligar 192) <a href='https://avc.org.br/pacientes/acidente-vascular-cerebral/' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 2">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-2">O que mudar?</label>
+    <textarea id="nota-2" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p3" data-id="2026-10-03-medir-pressao" data-titulo="Você mede a pressão do jeito certo?">
+  <header class="ph"><span class="num" aria-hidden="true">3</span>
+    <div class="pt"><p class="eyebrow">Para salvar · Carrossel · 7 slides</p><h3>Você mede a pressão do jeito certo?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='7'><div class='trilho' id='t3' tabindex='0' role='group' aria-label='Slides do post 3. Arraste ou use as setas.'><img src='midia/2026-10-03-medir-pressao/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 7: Você mede a pressão do jeito certo? Cinco cuidados antes de apertar o botão.'><img src='midia/2026-10-03-medir-pressao/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 7: Passo 1: Nada de café, álcool, cigarro ou exercício antes. Fumou? Espere 30 minutos. Fez exercício? Espere 1 hora.'><img src='midia/2026-10-03-medir-pressao/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 7: Passo 2: Esvazie a bexiga.'><img src='midia/2026-10-03-medir-pressao/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 7: Passo 3: Sente e descanse 5 minutos. Em um lugar calmo.'><img src='midia/2026-10-03-medir-pressao/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 7: Passo 4: Costas apoiadas, pernas descruzadas, pés no chão.'><img src='midia/2026-10-03-medir-pressao/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 7: Passo 5: Braço apoiado, na altura do coração. E não converse durante a medida.'><img src='midia/2026-10-03-medir-pressao/07.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 7 de 7: Para guardar Antes: sem café, álcool, cigarro ou exercício. Bexiga vazia e 5 minutos de descanso, sentado. Costas e braço apoiados, pés no chão, sem conversar. Envie para quem mede a pressão em casa.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/7</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa dourada com desenho</li><li>Passo a passo com número grande</li><li>Último slide como resumo para salvar</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Você mede a pressão do jeito certo? Cinco cuidados antes de apertar o botão:
+
+1. Nada de café, álcool, cigarro ou exercício antes. Fumou? Espere 30 minutos. Fez exercício? Espere 1 hora. Evite também medir logo depois de comer.
+2. Esvazie a bexiga.
+3. Sente e descanse 5 minutos, em um lugar calmo.
+4. Costas apoiadas, pernas descruzadas, pés no chão.
+5. Braço apoiado, com o aparelho na altura do coração. E não converse durante a medida.
+
+Salve para consultar na próxima medida.
+
+Envie para quem mede a pressão em casa.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: diretrizes brasileiras de hipertensão arterial e de medida da pressão arterial.
+
+#pressaoalta #hipertensao #medirpressao #coracao #saude</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Diretrizes brasileiras de hipertensão 2020: consulta rápida. Revista Hipertensão, v. 24, n. 1, 2022, Quadro 2 (bexiga vazia; sem exercício há 60 min; sem álcool, café ou alimentos; sem fumar nos 30 min anteriores; 5 min sentado em ambiente silencioso; costas e antebraço apoiados, pernas descruzadas, pés no chão; manguito ao nível do coração; não conversar) <a href='https://www.sbh.org.br/wp-content/uploads/2022/06/Revista-Hipertensao-Vol-24-Num-1-Artigo-5.pdf' target='_blank' rel='noopener'>Abrir a fonte</a></li><li>Diretrizes Brasileiras de Medidas da Pressão Arterial Dentro e Fora do Consultório 2023. Arq Bras Cardiol. 2024;121(4) <a href='https://www.scielo.br/j/abc/a/bCSMjJJ39tB9ZKHpsS7j7sz/?lang=pt' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 3">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-3">O que mudar?</label>
+    <textarea id="nota-3" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p4" data-id="2026-10-03-exercicio-por-semana" data-titulo="Quanto exercício por semana? 150 min">
+  <header class="ph"><span class="num" aria-hidden="true">4</span>
+    <div class="pt"><p class="eyebrow">Para salvar · Carrossel · 6 slides</p><h3>Quanto exercício por semana? 150 min</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='6'><div class='trilho' id='t4' tabindex='0' role='group' aria-label='Slides do post 4. Arraste ou use as setas.'><img src='midia/2026-10-03-exercicio-por-semana/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 6: Quanto exercício por semana? 150 min. É menos do que parece.'><img src='midia/2026-10-03-exercicio-por-semana/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 6: Pelo menos 150 minutos por semana. De atividade moderada. É a recomendação para adultos.'><img src='midia/2026-10-03-exercicio-por-semana/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 6: Dá 30 minutos, 5 dias por semana. Ou pouco mais de 20 minutos por dia.'><img src='midia/2026-10-03-exercicio-por-semana/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 6: Todo movimento conta. Caminhar, pedalar, praticar um esporte, brincar.'><img src='midia/2026-10-03-exercicio-por-semana/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 6: Não chega a 150? Faça o que der. Qualquer quantidade é melhor do que nenhuma.'><img src='midia/2026-10-03-exercicio-por-semana/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 6: O que você ganha Menos risco de pressão alta e de diabetes tipo 2. Menos risco de morrer de doença do coração. Sono e saúde mental melhores. Envie para quem começa na segunda.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/6</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa creme com número gigante</li><li>Texto apoiado na linha</li><li>Conta pronta (30 min, 5 dias)</li><li>Pergunta na legenda para puxar comentário</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Quanto exercício por semana? Pelo menos 150 minutos de atividade moderada. É a recomendação para adultos.
+
+Parece muito, mas dá 30 minutos em 5 dias da semana. Ou pouco mais de 20 minutos por dia.
+
+E todo movimento conta: caminhar, pedalar, praticar um esporte, brincar.
+
+Não chega a 150? Faça o que der. Qualquer quantidade é melhor do que nenhuma.
+
+O que você ganha:
+• Menos risco de pressão alta e de diabetes tipo 2
+• Menos risco de morrer de doença do coração
+• Sono e saúde mental melhores
+
+Quantos minutos você fez esta semana? Conte nos comentários.
+
+Envie para quem começa na segunda.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Organização Mundial da Saúde.
+
+#atividadefisica #exercicio #caminhada #saude #prevencao</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) <a href='https://www.who.int/news-room/fact-sheets/detail/physical-activity' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 4">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-4">O que mudar?</label>
+    <textarea id="nota-4" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p5" data-id="2026-10-03-diabetes-sinais" data-titulo="Sede que não passa?">
+  <header class="ph"><span class="num" aria-hidden="true">5</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Carrossel · 6 slides</p><h3>Sede que não passa?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='6'><div class='trilho' id='t5' tabindex='0' role='group' aria-label='Slides do post 5. Arraste ou use as setas.'><img src='midia/2026-10-03-diabetes-sinais/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 6: Sede que não passa? Pode ser um dos sinais do diabetes.'><img src='midia/2026-10-03-diabetes-sinais/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 6: Muita sede e vontade de urinar toda hora. Fome frequente também entra na lista.'><img src='midia/2026-10-03-diabetes-sinais/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 6: Formigamento nos pés e nas mãos.'><img src='midia/2026-10-03-diabetes-sinais/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 6: Feridas que demoram a cicatrizar. E infecções frequentes: na bexiga, nos rins ou na pele.'><img src='midia/2026-10-03-diabetes-sinais/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 6: Visão embaçada.'><img src='midia/2026-10-03-diabetes-sinais/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 6: Reconheceu algum? Um exame de sangue mostra como está o açúcar. Procure a unidade de saúde e peça a avaliação. Exercício e alimentação saudável ajudam a prevenir. Envie para quem vive com sede.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/6</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa verde (a que já está em uso)</li><li>Texto no centro do slide</li><li>Slides com uma frase só</li><li>Fecha mandando procurar a unidade de saúde</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Sede que não passa? Pode ser um dos sinais do diabetes tipo 2. Os outros:
+
+• Vontade de urinar várias vezes
+• Fome frequente
+• Formigamento nos pés e nas mãos
+• Feridas que demoram a cicatrizar
+• Infecções frequentes (bexiga, rins, pele)
+• Visão embaçada
+
+Reconheceu algum? Um exame de sangue mostra como está o açúcar. Procure a unidade de saúde e peça a avaliação.
+
+Para prevenir: atividade física regular e alimentação saudável.
+
+Envie para quem vive com sede.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Ministério da Saúde; Sociedade Brasileira de Diabetes.
+
+#diabetes #sintomasdediabetes #glicemia #saude #prevencao</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) <a href='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes' target='_blank' rel='noopener'>Abrir a fonte</a></li><li>Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) <a href='https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 5">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-5">O que mudar?</label>
+    <textarea id="nota-5" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p6" data-id="2026-10-03-exame-diabetes-idade" data-titulo="Nunca fez exame de diabetes?">
+  <header class="ph"><span class="num" aria-hidden="true">6</span>
+    <div class="pt"><p class="eyebrow">Entenda seu exame · Carrossel · 7 slides</p><h3>Nunca fez exame de diabetes?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia car' data-total='7'><div class='trilho' id='t6' tabindex='0' role='group' aria-label='Slides do post 6. Arraste ou use as setas.'><img src='midia/2026-10-03-exame-diabetes-idade/01.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 1 de 7: Nunca fez exame de diabetes? Veja a partir de que idade ele é indicado.'><img src='midia/2026-10-03-exame-diabetes-idade/02.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 2 de 7: A partir dos 35 anos, é para todo mundo. Mesmo sem nenhum sintoma.'><img src='midia/2026-10-03-exame-diabetes-idade/03.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 3 de 7: Antes dos 35, em alguns casos. Quando há excesso de peso e mais um fator de risco.'><img src='midia/2026-10-03-exame-diabetes-idade/04.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 4 de 7: O que é fator de risco? Pressão alta, sedentarismo ou diabetes em pais ou irmãos, por exemplo.'><img src='midia/2026-10-03-exame-diabetes-idade/05.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 5 de 7: Deu normal? Repita em 3 anos. Com três ou mais fatores de risco, repita em 1 ano.'><img src='midia/2026-10-03-exame-diabetes-idade/06.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 6 de 7: Pré-diabetes? Repita em 1 ano.'><img src='midia/2026-10-03-exame-diabetes-idade/07.jpg' width='1080' height='1350' loading='lazy' decoding='async' alt='Slide 7 de 7: Para guardar A partir dos 35 anos: exame para todos. Antes disso: excesso de peso e mais um fator de risco. O exame é de sangue: glicemia de jejum ou hemoglobina glicada. Envie para quem já passou dos 35.'></div><button class='nav ant' type='button' aria-label='Slide anterior' hidden>&#8249;</button><button class='nav prox' type='button' aria-label='Próximo slide'>&#8250;</button><span class='pos'><b>1</b>/7</span></div><div class='dots' aria-hidden='true'><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Capa de laudo (papel de exame)</li><li>Texto no centro do slide</li><li>Explica o termo difícil (fator de risco) em um slide</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Nunca fez exame de diabetes? A partir dos 35 anos, ele é indicado para todo mundo, mesmo sem nenhum sintoma.
+
+Antes dos 35, o exame entra quando há excesso de peso e pelo menos mais um fator de risco, como pressão alta, sedentarismo ou diabetes em pais ou irmãos.
+
+E depois?
+• Deu normal: repita em 3 anos (em 1 ano, se você tem três ou mais fatores de risco)
+• Deu pré-diabetes: repita em 1 ano
+
+O exame é de sangue: glicemia de jejum ou hemoglobina glicada.
+
+Envie para quem já passou dos 35.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Diretriz da Sociedade Brasileira de Diabetes.
+
+#diabetes #glicemia #exames #prediabetes #saude</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) <a href='https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 6">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"><button class='marca' type='button' data-marca>Marcar o slide 1</button><span class='marcados' data-marcados></span></div>
+    <label class="lab" for="nota-6">O que mudar?</label>
+    <textarea id="nota-6" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p7" data-id="2026-10-03-dengue-febre-baixou" data-titulo="A febre baixou. E agora?">
+  <header class="ph"><span class="num" aria-hidden="true">7</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Reel · 31 s</p><h3>A febre baixou. E agora?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia reel'><video id='v7' controls playsinline preload='metadata' poster='midia/2026-10-03-dengue-febre-baixou/capa.jpg' src='midia/2026-10-03-dengue-febre-baixou/reel.mp4' aria-label='Reel: A febre baixou. E agora?'></video></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Lista que vai se formando na tela</li><li>Desenho em movimento (a curva da febre)</li><li>Tempo de leitura ajustado cena por cena</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">A febre da dengue baixou. E agora? É nessa fase, entre o 3º e o 7º dia de doença, que os sinais de alarme podem aparecer:
+
+• Dor forte na barriga
+• Vômitos frequentes
+• Tontura ou sensação de desmaio
+• Dificuldade de respirar
+• Sangramento no nariz, na gengiva ou nas fezes
+• Cansaço ou irritabilidade
+
+Apareceu um deles? Vá na hora ao serviço de urgência. E não tome remédio por conta própria.
+
+Envie para quem está com dengue.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Ministério da Saúde.
+
+#dengue #sinaisdealarme #febre #saude #prevencao</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Ministério da Saúde. Dengue (sinais de alarme; aparecem com o declínio da febre, entre o 3º e o 7º dia; não se automedicar e procurar imediatamente o serviço de urgência; febre de 39 a 40 °C no início) <a href='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 7">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"></div>
+    <label class="lab" for="nota-7">O que mudar?</label>
+    <textarea id="nota-7" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+<article class="post" id="p8" data-id="2026-10-03-infarto-dor-no-peito" data-titulo="Dor no peito. É infarto?">
+  <header class="ph"><span class="num" aria-hidden="true">8</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Reel · 31 s</p><h3>Dor no peito. É infarto?</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class='midia reel'><video id='v8' controls playsinline preload='metadata' poster='midia/2026-10-03-infarto-dor-no-peito/capa.jpg' src='midia/2026-10-03-infarto-dor-no-peito/reel.mp4' aria-label='Reel: Dor no peito. É infarto?'></video></div>
+  <div class="testa"><p class="lab">O que este post testa</p><ul><li>Reel em fundo creme</li><li>Uma frase por cena</li><li>Desenho em movimento (o coração batendo)</li><li>Tempo de leitura ajustado cena por cena</li></ul></div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Dor no peito. É infarto? Desconfie quando a dor é forte, não passa e vem com sensação de peso ou aperto no peito.
+
+Ela pode se espalhar para as costas, o rosto ou o braço esquerdo. Junto, podem vir suor frio, palidez, falta de ar e sensação de desmaio.
+
+Em idosos, o principal sinal pode ser a falta de ar. E em idosos e em quem tem diabetes, o infarto pode vir sem os sinais típicos: fique atento a qualquer mal-estar repentino.
+
+Sentiu isso? Ligue 192 ou vá à emergência mais próxima.
+
+Envie para a sua família.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Ministério da Saúde.
+
+#infarto #dornopeito #coracao #saude #prevencao</p></details>
+  <details class="dobra"><summary>Fontes conferidas</summary><ul class="fontes"><li>Ministério da Saúde. Infarto (dor ou desconforto no peito que pode irradiar para costas, rosto e braço esquerdo; intensa e prolongada, com peso ou aperto; suor frio, palidez, falta de ar; em idosos e diabéticos pode vir sem sinais específicos; ligar 192 ou procurar emergência) <a href='https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/infarto' target='_blank' rel='noopener'>Abrir a fonte</a></li></ul></details></div>
+  <div class="retorno">
+    <div class="votos" role="group" aria-label="Seu retorno para o post 8">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <div class="linha-marca"></div>
+    <label class="lab" for="nota-8">O que mudar?</label>
+    <textarea id="nota-8" rows="2" data-nota placeholder="Escreva o que quiser: capa, texto, cor, tempo de leitura…"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+</article>
+</section>
+
+<section class="bloco" id="capas" data-id="capas">
+  <h2>Uma decisão que ainda falta</h2>
+  <p class="sub">O esquema das capas, para o perfil não virar uma parede verde. Arraste para ver as três opções.</p>
+  <div class="opcoes" tabindex="0" role="group" aria-label="Três opções de grade"><figure><img src='revisao/capas/a.jpg' loading='lazy' alt='Simulação do perfil com a opção A: Xadrez: verde e creme'><figcaption><b>A.</b> Xadrez: verde e creme. <span>Duas cores alternadas. O mais simples de manter.</span></figcaption></figure><figure><img src='revisao/capas/b.jpg' loading='lazy' alt='Simulação do perfil com a opção B: Três fundos em rodízio'><figcaption><b>B.</b> Três fundos em rodízio. <span>Verde, creme e dourado. É o que a grade lá em cima usa.</span></figcaption></figure><figure><img src='revisao/capas/c.jpg' loading='lazy' alt='Simulação do perfil com a opção C: Uma capa por série'><figcaption><b>C.</b> Uma capa por série. <span>Cada série com a sua cara: laudo, número, foto, pergunta.</span></figcaption></figure></div>
+  <div class="votos capa" role="group" aria-label="Escolha o esquema das capas"><button type='button' data-capa='A' aria-pressed='false'>A</button><button type='button' data-capa='B' aria-pressed='false'>B</button><button type='button' data-capa='C' aria-pressed='false'>C</button><button type="button" data-capa="?" aria-pressed="false">Ainda não sei</button></div>
+  <p class="st" data-st aria-live="polite"></p>
+</section>
+<section class="bloco" id="geral" data-id="geral">
+  <h2>Comentário geral</h2>
+  <p class="sub">O que vale para o lote inteiro, ou o que não coube nos posts.</p>
+  <textarea id="nota-geral" rows="3" data-nota aria-label="Comentário geral" placeholder="Ex.: prefiro o texto no centro do slide; a capa dourada chama mais atenção"></textarea>
+  <p class="st" data-st aria-live="polite"></p>
+  <div class="fim"><button id="copiar" type="button">Copiar meu retorno</button><p class="st" id="copiado" aria-live="polite"></p></div>
+  <textarea id="resumo" rows="7" readonly hidden aria-label="Seu retorno em texto"></textarea>
+</section>
+
+<footer><p id="rodape">O retorno é gravado assim que você toca ou escreve. Se preferir, copie e mande na conversa.</p></footer>
+</div>
+
+<script>
+(() => {
+  const POSTS = [["p1", "2026-10-03-sal-por-dia", "Quanto sal por dia? 5 g"], ["p2", "2026-10-03-avc-sinais", "Você reconheceria um AVC?"], ["p3", "2026-10-03-medir-pressao", "Você mede a pressão do jeito certo?"], ["p4", "2026-10-03-exercicio-por-semana", "Quanto exercício por semana? 150 min"], ["p5", "2026-10-03-diabetes-sinais", "Sede que não passa?"], ["p6", "2026-10-03-exame-diabetes-idade", "Nunca fez exame de diabetes?"], ["p7", "2026-10-03-dengue-febre-baixou", "A febre baixou. E agora?"], ["p8", "2026-10-03-infarto-dor-no-peito", "Dor no peito. É infarto?"]];                                   // [âncora, id, título], na ordem em que entrariam no perfil
+  const TOTAL = 8, CHAVE = 'retorno-lote-2026-10-03';
+  const VOTO = {gostei: 'Gostei', meio: 'Mais ou menos', nao: 'Não gostei'};
+  const CONHECIDOS = new Set([...POSTS.map(p => p[1]), 'capas', 'geral']);
+  const $ = (s, r = document) => r.querySelector(s);
+  const caixa = id => $('[data-id="' + id + '"]');
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const st = {}, sujo = {}, ocupado = {}, relogio = {}, tentou = {};
+  let db = null, semDb = false, soLeitura = false;
+
+  const estado = id => st[id] || (st[id] = id === 'capas' ? {escolha: null} : id === 'geral' ? {nota: ''} : {voto: null, nota: '', slides: []});
+  function aplica(id, b) {                                 // o que vem gravado é dado, não instrução: confere o tipo de cada campo
+    const s = estado(id);
+    if (id === 'capas') { s.escolha = ['A', 'B', 'C', '?'].includes(b.escolha) ? b.escolha : null; return; }
+    s.nota = typeof b.nota === 'string' ? b.nota : '';
+    if (id === 'geral') return;
+    s.voto = VOTO[b.voto] ? b.voto : null;
+    s.slides = Array.isArray(b.slides) ? b.slides.filter(n => Number.isInteger(n) && n > 0 && n < 30) : [];
+  }
+  const temAlgo = id => { const s = estado(id); return !!(s.escolha || s.voto || (s.nota && s.nota.trim()) || (s.slides && s.slides.length)); };
+  function guardaLocal() { try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (e) {} }
+  function leLocal() {
+    try { const o = JSON.parse(localStorage.getItem(CHAVE) || '{}'); for (const k in o) if (CONHECIDOS.has(k) && o[k] && typeof o[k] === 'object') aplica(k, o[k]); } catch (e) {}
+  }
+
+  const slideAtual = box => { const t = $('.trilho', box); return t ? Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1 : 0; };
+  function pintaMarca(box, s) {
+    const b = $('[data-marca]', box); if (!b) return;
+    const n = slideAtual(box), on = s.slides.includes(n);
+    b.textContent = (on ? 'Desmarcar o slide ' : 'Marcar o slide ') + n; b.setAttribute('aria-pressed', String(on));
+    $('[data-marcados]', box).textContent = s.slides.length ? 'Marcados: ' + s.slides.join(', ') : '';
+  }
+  function progresso() {
+    const n = POSTS.filter(p => estado(p[1]).voto).length;
+    $('#prog-n').textContent = n; $('.barra i').style.width = (100 * n / TOTAL) + '%';
+  }
+  function pinta(id) {
+    const s = estado(id), box = caixa(id); if (!box) return;
+    if (id === 'capas') { box.querySelectorAll('button[data-capa]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.capa === s.escolha))); return; }
+    const ta = $('[data-nota]', box);
+    if (ta && document.activeElement !== ta && ta.value !== s.nota) ta.value = s.nota;
+    if (id === 'geral') return;
+    box.querySelectorAll('button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === s.voto)));
+    const selo = $('[data-selo]', box);
+    selo.hidden = !s.voto; if (s.voto) { selo.textContent = VOTO[s.voto]; selo.dataset.voto = s.voto; }
+    pintaMarca(box, s); progresso();
+  }
+  function aviso(id, txt, tom) { const e = $('[data-st]', caixa(id)); if (e) { e.textContent = txt; e.dataset.tom = tom || ''; } }
+  function trava() {
+    document.querySelectorAll('.votos button, .marca').forEach(b => b.disabled = true);
+    document.querySelectorAll('[data-nota]').forEach(t => t.readOnly = true);
+    $('#rodape').textContent = 'Só quem é dono desta página grava o retorno.';
+  }
+
+  function corpo(id) {
+    const s = estado(id), em = new Date().toISOString();
+    if (id === 'capas') return {escolha: s.escolha, em};
+    if (id === 'geral') return {nota: s.nota, em};
+    const p = POSTS.find(p => p[1] === id);
+    return {post: p ? p[2] : id, voto: s.voto, nota: s.nota, slides: s.slides.slice(), em};
+  }
+  async function grava(id) {                                // uma gravação por vez em cada documento
+    if (!db) { if (semDb) aviso(id, 'Não gravou aqui. Use Copiar meu retorno, no fim da página.', 'erro'); return; }
+    if (ocupado[id]) return;
+    ocupado[id] = true;
+    while (sujo[id]) {
+      sujo[id] = false;
+      try { await db.doc('retorno/' + id).set(corpo(id)); tentou[id] = 0; aviso(id, 'Gravado.'); }
+      catch (e) {
+        const c = e && e.code;
+        if (c === 'unavailable' && !tentou[id]) { tentou[id] = 1; sujo[id] = true; await new Promise(r => setTimeout(r, 500 + Math.random() * 900)); continue; }
+        if (c === 'invalid_argument') { soLeitura = true; trava(); aviso(id, 'Só quem é dono desta página grava o retorno.', 'erro'); }
+        else aviso(id, 'Não gravou. Use Copiar meu retorno, no fim da página.', 'erro');
+        break;
+      }
+    }
+    ocupado[id] = false;
+  }
+  function muda(id, agora) {
+    pinta(id); guardaLocal();
+    if (soLeitura) return;
+    sujo[id] = true; if (db) aviso(id, 'Gravando…');
+    clearTimeout(relogio[id]); relogio[id] = setTimeout(() => grava(id), agora ? 0 : 900);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.ir) { const alvo = document.getElementById(b.dataset.ir); if (alvo) alvo.scrollIntoView({behavior: reduz ? 'auto' : 'smooth', block: 'start'}); return; }
+    const box = b.closest('[data-id]'); if (!box || soLeitura) return;
+    const id = box.dataset.id, s = estado(id);
+    if (b.dataset.v) { s.voto = s.voto === b.dataset.v ? null : b.dataset.v; muda(id, true); }
+    else if (b.dataset.capa) { s.escolha = s.escolha === b.dataset.capa ? null : b.dataset.capa; muda(id, true); }
+    else if ('marca' in b.dataset) {
+      const n = slideAtual(box), i = s.slides.indexOf(n);
+      if (i < 0) { s.slides.push(n); s.slides.sort((x, y) => x - y); } else s.slides.splice(i, 1);
+      muda(id, true);
+    }
+  });
+  document.addEventListener('input', e => {
+    const ta = e.target.closest('[data-nota]'); if (!ta || soLeitura) return;
+    const id = ta.closest('[data-id]').dataset.id; estado(id).nota = ta.value; muda(id, false);
+  });
+
+  document.querySelectorAll('.midia.car').forEach(car => {
+    const t = $('.trilho', car), box = car.closest('.post'), total = +car.dataset.total;
+    const ant = $('.ant', car), prox = $('.prox', car), pos = $('.pos b', car), dots = [...box.querySelectorAll('.dots i')];
+    let raf = 0, cur = 0;
+    const acerta = () => {
+      raf = 0;
+      const n = Math.min(total, Math.max(1, Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1));
+      if (n === cur) return; cur = n;
+      pos.textContent = n; ant.hidden = n === 1; prox.hidden = n === total;
+      dots.forEach((d, i) => d.classList.toggle('on', i === n - 1));
+      pintaMarca(box, estado(box.dataset.id));
+    };
+    t.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(acerta); }, {passive: true});
+    const vai = d => t.scrollBy({left: d * t.clientWidth, behavior: reduz ? 'auto' : 'smooth'});
+    ant.addEventListener('click', () => vai(-1)); prox.addEventListener('click', () => vai(1));
+    acerta();
+  });
+
+  function resumo() {
+    const L = ['Retorno do lote de 3 de outubro'];
+    POSTS.forEach((p, i) => {
+      const s = estado(p[1]); let t = (i + 1) + '. ' + p[2] + ': ' + (s.voto ? VOTO[s.voto] : 'sem voto');
+      if (s.slides.length) t += ' (slides marcados: ' + s.slides.join(', ') + ')';
+      if (s.nota.trim()) t += '. ' + s.nota.trim();
+      L.push(t);
+    });
+    const c = estado('capas').escolha; if (c) L.push('Capas: ' + (c === '?' ? 'ainda não sei' : 'opção ' + c));
+    const g = estado('geral').nota.trim(); if (g) L.push('Geral: ' + g);
+    return L.join('\n');
+  }
+  $('#copiar').addEventListener('click', async () => {
+    const txt = resumo(), out = $('#copiado'), area = $('#resumo');
+    try { await navigator.clipboard.writeText(txt); out.textContent = 'Copiado. Cole na conversa.'; }
+    catch (e) { area.hidden = false; area.value = txt; area.focus(); area.select(); out.textContent = 'Selecionei o texto. Copie e cole na conversa.'; }
+  });
+
+  leLocal(); CONHECIDOS.forEach(pinta); progresso();
+
+  (async () => {
+    let user = null;
+    try { if (window.claude && window.claude.use) [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch (e) { db = null; }
+    if (!db) { semDb = true; $('#rodape').textContent = 'Aqui não deu para gravar o retorno. Use Copiar meu retorno e cole na conversa.'; return; }
+    if (user && (await user.can('data.write')) === false) { soLeitura = true; trava(); }
+    let primeira = true, religou = false;
+    const assina = () => db.collection('retorno').onSnapshot(snap => {
+      const vistos = new Set();
+      snap.docs.forEach(d => {
+        vistos.add(d.id);
+        if (!CONHECIDOS.has(d.id) || sujo[d.id] || ocupado[d.id]) return;
+        aplica(d.id, d.data() || {}); pinta(d.id);
+      });
+      guardaLocal();
+      if (primeira) {                                       // uma vez só: sobe o que ficou só neste aparelho em uma visita sem gravação
+        primeira = false;
+        const falta = [...CONHECIDOS].filter(id => !vistos.has(id) && temAlgo(id));
+        if (falta.length && !soLeitura) setTimeout(() => falta.forEach(id => { sujo[id] = true; grava(id); }), 0);
+        Object.keys(sujo).filter(id => sujo[id]).forEach(grava);
+      }
+    }, err => {
+      if (err && err.code === 'unavailable' && !religou) { religou = true; setTimeout(assina, 1500); return; }
+      db = null; semDb = true; $('#rodape').textContent = 'A gravação parou. Use Copiar meu retorno e cole na conversa.';
+    });
+    assina();
+  })();
+})();
+</script>

@@ -1,0 +1,27 @@
+{
+ "id": "2026-10-03-diabetes-sinais",
+ "formato": "carrossel de 6 slides, capa verde com a gota",
+ "serie": "Sinais do corpo",
+ "titulo": "Sede que não passa?",
+ "papel": "lote de teste de 03/10/2026: criado para ele avaliar, não publicado",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-sinais/06.jpg"
+ ],
+ "testa": [
+  "Capa verde (a que já está em uso)",
+  "Texto no centro do slide",
+  "Slides com uma frase só",
+  "Fecha mandando procurar a unidade de saúde"
+ ],
+ "fontes": [
+  "Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes",
+  "Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) - https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/"
+ ],
+ "conferido_em": "2026-10-03",
+ "legenda": "Sede que não passa? Pode ser um dos sinais do diabetes tipo 2. Os outros:\n\n• Vontade de urinar várias vezes\n• Fome frequente\n• Formigamento nos pés e nas mãos\n• Feridas que demoram a cicatrizar\n• Infecções frequentes (bexiga, rins, pele)\n• Visão embaçada\n\nReconheceu algum? Um exame de sangue mostra como está o açúcar. Procure a unidade de saúde e peça a avaliação.\n\nPara prevenir: atividade física regular e alimentação saudável.\n\nEnvie para quem vive com sede.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de Diabetes.\n\n#diabetes #sintomasdediabetes #glicemia #saude #prevencao"
+}

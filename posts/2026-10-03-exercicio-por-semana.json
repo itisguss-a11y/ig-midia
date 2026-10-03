@@ -1,0 +1,26 @@
+{
+ "id": "2026-10-03-exercicio-por-semana",
+ "formato": "carrossel de 6 slides, capa creme com número gigante",
+ "serie": "Para salvar",
+ "titulo": "Quanto exercício por semana? 150 min",
+ "papel": "lote de teste de 03/10/2026: criado para ele avaliar, não publicado",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-por-semana/06.jpg"
+ ],
+ "testa": [
+  "Capa creme com número gigante",
+  "Texto apoiado na linha",
+  "Conta pronta (30 min, 5 dias)",
+  "Pergunta na legenda para puxar comentário"
+ ],
+ "fontes": [
+  "Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) - https://www.who.int/news-room/fact-sheets/detail/physical-activity"
+ ],
+ "conferido_em": "2026-10-03",
+ "legenda": "Quanto exercício por semana? Pelo menos 150 minutos de atividade moderada. É a recomendação para adultos.\n\nParece muito, mas dá 30 minutos em 5 dias da semana. Ou pouco mais de 20 minutos por dia.\n\nE todo movimento conta: caminhar, pedalar, praticar um esporte, brincar.\n\nNão chega a 150? Faça o que der. Qualquer quantidade é melhor do que nenhuma.\n\nO que você ganha:\n• Menos risco de pressão alta e de diabetes tipo 2\n• Menos risco de morrer de doença do coração\n• Sono e saúde mental melhores\n\nQuantos minutos você fez esta semana? Conte nos comentários.\n\nEnvie para quem começa na segunda.\n\nConteúdo educativo, não substitui consulta.\nFonte: Organização Mundial da Saúde.\n\n#atividadefisica #exercicio #caminhada #saude #prevencao"
+}

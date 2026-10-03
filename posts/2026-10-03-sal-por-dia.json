@@ -1,0 +1,26 @@
+{
+ "id": "2026-10-03-sal-por-dia",
+ "formato": "carrossel de 6 slides, capa dourada com número gigante",
+ "serie": "Para salvar",
+ "titulo": "Quanto sal por dia? 5 g",
+ "papel": "lote de teste de 03/10/2026: criado para ele avaliar, não publicado",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-por-dia/06.jpg"
+ ],
+ "testa": [
+  "Capa dourada",
+  "Número gigante na capa",
+  "Texto no centro do slide",
+  "Pergunta na legenda para puxar comentário"
+ ],
+ "fontes": [
+  "Organização Mundial da Saúde. Sodium reduction (menos de 5 g de sal por dia, pouco menos de uma colher de chá; média mundial de 11 g em 2021, mais que o dobro; eleva a pressão; fontes em alimentos processados; dicas para reduzir) - https://www.who.int/news-room/fact-sheets/detail/sodium-reduction"
+ ],
+ "conferido_em": "2026-10-03",
+ "legenda": "Quanto sal por dia? Menos de 5 gramas, o que dá menos de uma colher de chá. E essa conta inclui todo o sal do dia, não só o do saleiro.\n\nNo mundo, a média é de 11 gramas por dia: mais que o dobro do limite.\n\nPor que isso importa: sal demais sobe a pressão, e pressão alta aumenta o risco de doenças do coração.\n\nBoa parte do sal vem de alimentos processados: pão, embutidos, salgadinhos e molhos prontos.\n\nComo reduzir:\n• Tire o saleiro da mesa\n• Cozinhe com pouco sal e use ervas e temperos naturais\n• Prefira comida fresca, pouco processada\n\nQual desses é o mais difícil para você? Conte nos comentários.\n\nEnvie para quem cozinha na sua casa.\n\nConteúdo educativo, não substitui consulta.\nFonte: Organização Mundial da Saúde.\n\n#sal #pressaoalta #alimentacaosaudavel #coracao #saude"
+}
