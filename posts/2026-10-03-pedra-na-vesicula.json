@@ -1,0 +1,31 @@
+{
+ "id": "2026-10-03-pedra-na-vesicula",
+ "formato": "carrossel de 8 slides, capa com desenho em cima e título embaixo",
+ "serie": "Sinais do corpo",
+ "titulo": "Dor do lado direito depois de comer gordura.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/08.jpg"
+ ],
+ "antes": null,
+ "seu_retorno": "Pediu temas que mais atingem o seu público. Este também faz a ponte com a cirurgia, a área que você pretende seguir.",
+ "mudou": [
+  "Tema novo: pedra na vesícula é mais comum em mulheres, depois dos 40",
+  "Capa com a cena: a dor do lado direito depois de comer gordura",
+  "O desenho do corpo mostra onde dói",
+  "Faz a ponte com a cirurgia sem oferecer consulta nem procedimento"
+ ],
+ "quem_manda": "Quem convive com alguém que vive com “má digestão” depois de comer gordura.",
+ "fontes": [
+  "Arquivos Brasileiros de Cirurgia Digestiva (ABCD). Revisão sobre colelitíase - http://www.scielo.br/j/abcd/a/yp8jRmJGgy3DZnkpyg8cTbk/?lang=en"
+ ],
+ "legenda": "Pedra na vesícula: muita gente tem e nem sabe. O problema começa quando ela dói.\n\nQuem tem pedra e nunca sentiu nada, em geral, só acompanha. Quando a dor aparece, ela tende a voltar, e aí a conversa costuma ser a cirurgia: a retirada da vesícula, quase sempre por vídeo, com cortes pequenos.\n\nDá para viver sem vesícula? Dá. O fígado continua produzindo a bile; ela só deixa de ficar guardada.\n\nEnquanto a consulta não chega, refeições menores e com menos gordura costumam diminuir as crises. Chá e “limpeza de vesícula” não dissolvem pedra.\n\nCom febre, pele amarelada ou dor que não passa, o caminho é o pronto-socorro.\n\nEnvie para quem vive com “má digestão”.\n\nConteúdo educativo, não substitui consulta.\nFonte: revisão brasileira de cirurgia digestiva (ABCD, 2019).\n\n#pedranavesicula #vesicula #dornabarriga #cirurgia #saudedamulher"
+}

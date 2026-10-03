@@ -1,0 +1,35 @@
+{
+ "id": "2026-10-03-avc-sinais-v2",
+ "formato": "carrossel de 10 slides, capa com desenho em cima e título embaixo",
+ "serie": "Sinais do corpo",
+ "titulo": "A boca entortou. A fala enrolou.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/08.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/09.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/10.jpg"
+ ],
+ "antes": "2026-10-03-avc-sinais",
+ "seu_retorno": "Gostou de tudo, mas sentiu falta de imagens para mostrar como é na prática.",
+ "mudou": [
+  "Cada sinal ganhou um desenho que mostra como ele aparece (o braço que cai, a fala que enrola)",
+  "A capa virou uma cena (a boca entortou, a fala enrolou) no lugar da pergunta",
+  "Entrou o porquê da pressa: o remédio que desfaz o coágulo só pode ser dado nas primeiras 4 horas e meia",
+  "A legenda traz o que não está nos slides: o AVC passageiro e o que não fazer enquanto espera"
+ ],
+ "quem_manda": "Quem mora com os pais ou os avós manda para o grupo da família.",
+ "fontes": [
+  "Ministério da Saúde. Acidente vascular cerebral (lista de sinais; ligar 192 ou 193 ou levar ao hospital; quanto mais rápido o atendimento, maiores as chances de recuperação) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc",
+  "Sociedade Brasileira de AVC. Página para pacientes (início súbito dos sintomas; teste do sorriso, do abraço e da frase; ligar 192) - https://avc.org.br/pacientes/acidente-vascular-cerebral/",
+  "Ministério da Saúde. Protocolo do AVC isquêmico agudo (trombólise até 4 horas e meia) - https://www.gov.br/saude/pt-br/assuntos/pcdt/a/acidente-vascular-cerebral-isquemico-agudo/@@download/file"
+ ],
+ "legenda": "AVC é corrida contra o relógio: quanto antes o atendimento, mais cérebro é salvo.\n\nDuas coisas que quase ninguém sabe:\n\n1. Se os sinais sumirem sozinhos em poucos minutos, vá ao hospital do mesmo jeito. Pode ter sido um AVC passageiro, que é um aviso de que outro maior pode vir.\n\n2. Não dê remédio, comida nem água enquanto espera. A pessoa pode engasgar, e alguns remédios pioram certos tipos de AVC.\n\nAnote a hora em que os sinais começaram: é a primeira coisa que a equipe vai perguntar.\n\nEnvie para a sua família.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de AVC.\n\n#avc #derrame #sinaisdeavc #samu192 #primeirossocorros"
+}

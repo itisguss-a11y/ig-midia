@@ -1,0 +1,35 @@
+{
+ "id": "2026-10-03-sal-no-rotulo",
+ "formato": "carrossel de 8 slides, capa dourada só com letra",
+ "serie": "Mito ou verdade",
+ "titulo": "“Quase não uso sal.” O rótulo diz outra coisa.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/08.jpg"
+ ],
+ "antes": "2026-10-03-sal-por-dia",
+ "seu_retorno": "Gancho fraco e sem contexto; faltou explicar por que o sal faz mal e como age; faltou a ligação com o sódio da tabela nutricional; slide e legenda diziam a mesma coisa.",
+ "mudou": [
+  "Capa com uma frase que a pessoa diz (“quase não uso sal”) e a promessa: achar o sal escondido em 10 segundos",
+  "Saiu a estatística do mundo; entrou o porquê: o sódio puxa água para dentro dos vasos",
+  "Entrou o rótulo: a linha do sódio, o %VD e a lupa de “alto em sódio”",
+  "A legenda agora traz o que não está nos slides: a conta sódio x 2,5 e o cuidado com o sal light"
+ ],
+ "quem_manda": "Quem cozinha em casa manda para o pai, a mãe ou o marido que tem pressão alta e diz que “quase não usa sal”.",
+ "fontes": [
+  "Organização Mundial da Saúde. Sodium reduction (menos de 5 g de sal por dia, pouco menos de uma colher de chá; média mundial de 11 g em 2021, mais que o dobro; eleva a pressão; fontes em alimentos processados; dicas para reduzir) - https://www.who.int/news-room/fact-sheets/detail/sodium-reduction",
+  "American Heart Association. Sodium and salt (o sódio em excesso puxa água para dentro dos vasos; a comparação com a mangueira) - https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt",
+  "ANVISA. Instrução Normativa nº 75/2020 (valor diário de referência do sódio: 2.000 mg; lupa de alto em sódio a partir de 600 mg por 100 g) - https://bvsms.saude.gov.br/bvs/saudelegis/anvisa//2020/IN%2075_2020_.pdf",
+  "ANVISA. Rotulagem nutricional: novas regras (valores por 100 g e por porção; %VD) - https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2022/rotulagem-nutricional-novas-regras-entram-em-vigor-em-120-dias",
+  "British Heart Foundation. Salt (sódio x 2,5 = sal) - https://www.bhf.org.uk/informationsupport/support/healthy-living/healthy-eating/salt"
+ ],
+ "legenda": "Pressão alta e sal: a conta não fecha só no saleiro.\n\nNo Brasil, mais da metade do sódio ainda vem do sal que a gente põe na comida. O resto já chega pronto, dentro do pão, do embutido, do tempero e do salgadinho. Por isso valem as duas frentes: menos sal na panela e olho no rótulo.\n\nUm truque para o mercado: multiplique o sódio por 2,5 e você tem o sal. 400 mg de sódio é 1 grama de sal, um quinto do limite do dia.\n\nAtenção ao sal light: ele troca parte do sódio por potássio. Quem tem doença nos rins ou usa remédio para pressão precisa perguntar ao médico antes de usar.\n\nEnvie para quem diz que “quase não usa sal”.\n\nConteúdo educativo, não substitui consulta.\nFontes: OMS; ANVISA; American Heart Association.\n\n#pressaoalta #hipertensao #sodio #rotulodealimentos #alimentacaosaudavel"
+}

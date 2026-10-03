@@ -1,0 +1,30 @@
+{
+ "id": "2026-10-03-exercicio-150-v2",
+ "formato": "carrossel de 7 slides, capa verde com letra e desenho; letra de teste: Fraunces",
+ "serie": "Para salvar",
+ "titulo": "Você não precisa de 1 hora de academia por dia.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/07.jpg"
+ ],
+ "antes": "2026-10-03-exercicio-por-semana",
+ "seu_retorno": "Gostou. Sentiu falta de imagens e pediu para testar outros tipos de letra.",
+ "mudou": [
+  "Letra de teste: Fraunces (a atual é a Instrument Serif)",
+  "Desenhos novos: a semana com os 5 dias marcados, o teste da conversa, as formas de se mexer",
+  "A capa tira um peso da pessoa (não precisa de 1 hora por dia) no lugar de dar um número solto",
+  "A legenda traz o que não está nos slides: como começar depois de muito tempo parada"
+ ],
+ "quem_manda": "Uma amiga manda para a outra, como convite para caminhar junto.",
+ "fontes": [
+  "Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) - https://www.who.int/news-room/fact-sheets/detail/physical-activity"
+ ],
+ "legenda": "150 minutos de exercício por semana parece muito até você dividir: dá pouco mais de 20 minutos por dia.\n\nO que conta como moderado? Qualquer atividade que acelera o coração e a respiração, mas ainda deixa você conversar: caminhar rápido, dançar, pedalar, varrer o quintal com vontade.\n\nPara quem está parada há muito tempo:\n\n• Comece com 10 minutos por dia e aumente aos poucos.\n• Prenda o exercício em algo que já existe na rotina: depois do almoço, na volta do trabalho, enquanto o filho está no treino.\n• Duas vezes por semana, inclua força: subir escada, agachar, carregar peso.\n\nTem doença do coração, ou sente dor no peito ou falta de ar ao esforço? Converse com o médico antes de começar.\n\nEnvie para a amiga que topa caminhar com você.\n\nConteúdo educativo, não substitui consulta.\nFonte: Organização Mundial da Saúde.\n\n#atividadefisica #caminhada #sedentarismo #saudedocoracao #rotinasaudavel"
+}

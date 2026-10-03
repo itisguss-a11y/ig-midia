@@ -1,0 +1,35 @@
+{
+ "id": "2026-10-03-diabetes-5-sinais",
+ "formato": "carrossel de 9 slides, capa com desenho em cima e título embaixo",
+ "serie": "Sinais do corpo",
+ "titulo": "Sede o dia todo. Xixi a noite inteira.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/08.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/09.jpg"
+ ],
+ "antes": "2026-10-03-diabetes-sinais",
+ "seu_retorno": "Gancho fraco: devia ser algo em que a pessoa se reconhece, ou reconhece em alguém, como a sede que não passa. Não explicava do que se tratava. Slide com uma frase só não explica nada.",
+ "mudou": [
+  "Capa com a cena: sede o dia todo, xixi a noite inteira, em você ou na sua mãe",
+  "Cada sinal ganhou o porquê e um desenho que mostra o que acontece",
+  "O slide 2 diz o assunto de novo (o Instagram mostra o carrossel outra vez a partir dele)",
+  "A legenda trata do exame: quem deve fazer, a partir de que idade e de quanto em quanto tempo"
+ ],
+ "quem_manda": "A filha manda para a mãe ou para o pai que vive com sede e levanta à noite para ir ao banheiro.",
+ "fontes": [
+  "Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes",
+  "Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) - https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/",
+  "NIDDK. Symptoms and causes of diabetes - https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes",
+  "Mayo Clinic. Diabetes symptoms: when diabetes symptoms are a concern (por que cada sinal acontece) - https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248"
+ ],
+ "legenda": "Diabetes tipo 2 costuma chegar em silêncio, e os primeiros sinais são fáceis de culpar: o calor, a idade, o cansaço da semana.\n\nO que resolve a dúvida é o exame, não o sintoma. Ele é de sangue e é simples: glicemia de jejum ou hemoglobina glicada. A recomendação é fazer a partir dos 35 anos, mesmo sem sentir nada. Antes disso, vale para quem está acima do peso e tem mais algum fator de risco, como pressão alta ou pai, mãe ou irmão com diabetes.\n\nResultado normal e poucos fatores de risco? Repete em 3 anos. Deu pré-diabetes? O controle passa a ser todo ano, e é a fase em que mudar a rotina mais funciona.\n\nPensou em alguém lendo isso? Envie para essa pessoa.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de Diabetes; NIDDK; Mayo Clinic.\n\n#diabetes #diabetestipo2 #prediabetes #glicemia #sinaisdocorpo"
+}

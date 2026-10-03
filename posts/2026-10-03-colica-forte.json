@@ -1,0 +1,33 @@
+{
+ "id": "2026-10-03-colica-forte",
+ "formato": "carrossel de 9 slides, capa creme com letra e desenho; letra de teste: Playfair Display",
+ "serie": "Isso é normal?",
+ "titulo": "Cólica que faz você faltar ao trabalho não é normal.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/01.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/02.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/03.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/04.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/05.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/06.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/07.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/08.jpg",
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/09.jpg"
+ ],
+ "antes": null,
+ "seu_retorno": "Pediu temas que mais atingem o seu público e que a pessoa se reconheça no post.",
+ "mudou": [
+  "Tema novo, do seu público: mulheres de 25 anos ou mais",
+  "Letra de teste: Playfair Display",
+  "Capa com uma situação que ela reconhece: faltar ao trabalho por causa da cólica",
+  "Termo difícil (endometriose) explicado em um slide só dele, como você aprovou no post do exame"
+ ],
+ "quem_manda": "A amiga manda para a amiga que sofre todo mês. A mãe manda para a filha.",
+ "fontes": [
+  "FEBRASGO. Endometriose afeta uma em cada dez mulheres em idade fértil no Brasil (dor intensa no ciclo menstrual não é normal) - https://www.febrasgo.org.br/pt/noticias/item/2046-endometriose-doenca-afeta-uma-em-cada-dez-mulheres-em-idade-fertil-no-brasil",
+  "Organização Mundial da Saúde. Endometriosis (o que é; sintomas; demora no diagnóstico) - https://www.who.int/news-room/fact-sheets/detail/endometriosis"
+ ],
+ "legenda": "Cólica forte todo mês não é frescura, e “é assim mesmo” não é diagnóstico.\n\nA endometriose costuma levar anos para ser descoberta, justamente porque a dor da mulher é tratada como normal.\n\nO que faz a consulta render:\n\n• Um diário de 2 ou 3 ciclos: os dias de dor, a nota de 0 a 10 e o que você deixou de fazer.\n• Os remédios que tomou e se funcionaram.\n• Se a dor aparece também fora da menstruação, na relação, ao evacuar ou ao urinar.\n\nNem toda cólica forte é endometriose: mioma e outras causas entram na investigação. O ponto é o mesmo: dor que tira você da rotina merece ser investigada.\n\nEnvie para a amiga que sofre todo mês.\n\nConteúdo educativo, não substitui consulta.\nFontes: FEBRASGO; Organização Mundial da Saúde.\n\n#colica #endometriose #saudedamulher #dorpelvica #ginecologia"
+}

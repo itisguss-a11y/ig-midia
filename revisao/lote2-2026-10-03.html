@@ -1,0 +1,729 @@
+<title>Lote 2 refeito</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: folha de provas em uma coluna. Cada post é um cartão: antes e agora, o post, a folha de slides para marcar com um toque, o retorno. */
+:root{
+  --papel:#F4EDDF; --cartao:#FBF8F1; --tinta:#17402C; --suave:#566B5E; --fio:rgba(23,64,44,.17); --fio-forte:rgba(23,64,44,.42);
+  --ouro:#946810; --sim:#1D6B45; --meio:#85600C; --nao:#A2452F; --sobre:#F9F4E8; --marca:#B4411F;
+  --serif:'Instrument Serif','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --sans:'Instrument Sans','Segoe UI',system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+    --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; --marca:#FF9A7A; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --papel:#0E2419; --cartao:#17402C; --tinta:#F4EDDF; --suave:#AEC0B2; --fio:rgba(244,237,223,.16); --fio-forte:rgba(244,237,223,.44);
+  --ouro:#D9B56D; --sim:#86D6A8; --meio:#E4C272; --nao:#F2A08B; --sobre:#0E2419; --marca:#FF9A7A; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin-inline:auto;padding-inline:16px;padding-block:30px 72px;display:flex;flex-direction:column;gap:46px}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+button{font-family:var(--sans)}
+p,figure{margin:0}
+
+.eyebrow,.lab{font:600 .72rem/1.25 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0;display:block}
+h1{font:400 clamp(2.6rem,11vw,4.1rem)/.94 var(--serif);letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+h1 i{color:var(--ouro)}
+.lede{font-size:1.06rem;max-width:33em;margin-top:18px}
+.resumo{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:9px;max-width:36em}
+.resumo li{display:grid;grid-template-columns:7.2em 1fr;gap:12px;padding-top:9px;border-top:1px solid var(--fio);font-size:.95rem}
+.resumo b{font:600 .72rem/1.6 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ouro)}
+.prog{display:flex;align-items:center;gap:12px;margin-top:22px;font:500 .92rem/1 var(--sans);font-variant-numeric:tabular-nums}
+.barra{flex:1;max-width:220px;height:4px;border-radius:2px;background:var(--fio);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.pulso{display:block;width:100%;height:34px;margin-top:22px;color:var(--ouro)}
+
+.bloco h2{font:400 1.95rem/1.05 var(--serif);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.sub{color:var(--suave);margin-top:8px;max-width:35em}
+
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:440px;margin-top:18px}
+.tile{position:relative;display:block;aspect-ratio:3/4;max-width:100%;padding:0;border:0;background:var(--cartao);overflow:hidden;cursor:pointer}
+.tile img{display:block;width:100%;height:100%;object-fit:cover}
+.tile.ar{cursor:default}
+.tile .n,.tile .ico,.tile .tag{position:absolute;background:var(--papel);color:var(--tinta);font:600 .74rem/1 var(--sans);box-shadow:0 0 0 1px var(--fio)}
+.tile .n{left:6px;top:6px;min-width:1.7em;padding:.38em .4em;border-radius:1em;text-align:center;font-variant-numeric:tabular-nums}
+.tile .ico{right:6px;top:6px;padding:.4em .5em;border-radius:1em;font-size:.6rem}
+.tile .tag{left:6px;bottom:6px;padding:.4em .55em;border-radius:3px;font-weight:500;letter-spacing:.03em}
+
+.posts{display:flex;flex-direction:column;gap:58px}
+.post{display:flex;flex-direction:column;gap:18px;padding-top:26px;border-top:1.5px solid var(--fio-forte);scroll-margin-top:12px}
+.ph{display:flex;align-items:flex-start;gap:14px}
+.num{font:italic 400 3.5rem/.82 var(--serif);color:var(--ouro);min-width:.62em}
+.pt{flex:1;min-width:0}
+h3{font:400 1.8rem/1.04 var(--serif);letter-spacing:-.01em;margin:7px 0 0;text-wrap:balance}
+.selo{font:600 .7rem/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;padding:.55em .7em;margin-top:2px;border:1.5px solid currentColor;border-radius:3px;transform:rotate(-2.5deg)}
+.selo[data-voto="gostei"]{color:var(--sim)} .selo[data-voto="meio"]{color:var(--meio)} .selo[data-voto="nao"]{color:var(--nao)}
+
+/* antes e agora, com o que ele disse e o que mudou */
+.porque{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px 18px;align-items:start}
+.ad{display:flex;align-items:center;gap:8px}
+.ad figure{width:74px} .ad img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px var(--fio)}
+.ad figcaption{font:600 .64rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--suave);margin-top:6px;text-align:center}
+.ad .vai{color:var(--suave);font-size:1.1rem;padding-bottom:16px}
+.disse{font-size:.95rem;min-width:0} .disse .lab{margin-bottom:5px}
+.disse q{quotes:none;font-style:italic}
+.mudou{grid-column:1 / -1;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+.mudou li{display:grid;grid-template-columns:1.2em 1fr;gap:4px} .mudou li::before{content:'\2713';color:var(--ouro);font-weight:600}
+@media (max-width:420px){ .porque{grid-template-columns:minmax(0,1fr)} }
+
+.midia{position:relative;width:100%;max-width:500px}
+.trilho{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.trilho::-webkit-scrollbar{display:none}
+.trilho img{flex:0 0 100%;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;display:block;scroll-snap-align:center}
+.nav{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:38px;height:38px;padding:0 0 3px;border:0;border-radius:50%;background:var(--papel);color:var(--tinta);font-size:1.5rem;line-height:1;cursor:pointer;box-shadow:0 1px 7px rgba(0,0,0,.28)}
+.nav.ant{left:8px} .nav.prox{right:8px}
+.pos{position:absolute;right:10px;top:10px;padding:.42em .62em;border-radius:1em;background:var(--papel);color:var(--tinta);font:500 .78rem/1 var(--sans);font-variant-numeric:tabular-nums;box-shadow:0 0 0 1px var(--fio)}
+.pos b{font-weight:500}
+.marca{position:absolute;left:10px;bottom:10px;padding:.62em .95em;border:0;border-radius:2em;background:var(--papel);color:var(--tinta);font-weight:600;font-size:.86rem;line-height:1;cursor:pointer;box-shadow:0 1px 7px rgba(0,0,0,.3)}
+.marca[aria-pressed="true"]{background:var(--marca);color:var(--papel)}
+.reel{max-width:290px}
+.reel video{display:block;width:100%;max-width:100%;aspect-ratio:9/16;border-radius:4px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+
+/* folha de slides: um toque marca o slide que precisa mudar */
+.folha-w{display:flex;flex-direction:column;gap:9px;max-width:500px}
+.folha{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.mini{position:relative;display:block;padding:0;border:0;border-radius:3px;background:var(--cartao);cursor:pointer;overflow:hidden;box-shadow:0 0 0 1px var(--fio)}
+.mini img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.mini span{position:absolute;left:4px;top:4px;min-width:1.55em;padding:.3em .3em;border-radius:1em;background:var(--papel);color:var(--tinta);font:600 .68rem/1 var(--sans);text-align:center;font-variant-numeric:tabular-nums}
+.mini[aria-pressed="true"]{box-shadow:0 0 0 3px var(--marca)}
+.mini[aria-pressed="true"] span{background:var(--marca);color:var(--papel)}
+.mini[aria-pressed="true"]::after{content:'mudar';position:absolute;inset:auto 0 0 0;padding:.34em 0;background:var(--marca);color:var(--papel);font:600 .62rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;text-align:center}
+.marcados{font-size:.85rem;color:var(--suave);min-height:1.3em}
+
+.retorno{display:flex;flex-direction:column;gap:14px;padding:16px;border-radius:6px;background:var(--cartao);box-shadow:0 0 0 1px var(--fio)}
+.chips{display:flex;flex-direction:column;gap:7px}
+.chips div{display:flex;flex-wrap:wrap;gap:7px}
+.chips button{padding:.5em .85em;border:1px solid var(--fio-forte);border-radius:2em;background:transparent;color:var(--tinta);font-weight:500;font-size:.86rem;line-height:1.1;cursor:pointer}
+.chips button[data-bom][aria-pressed="true"]{background:var(--sim);border-color:transparent;color:var(--sobre)}
+.chips button[data-ruim][aria-pressed="true"]{background:var(--nao);border-color:transparent;color:var(--sobre)}
+.votos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.votos button{padding:.82em .3em;border:1.5px solid var(--fio-forte);border-radius:4px;background:transparent;color:var(--tinta);font-weight:500;font-size:.95rem;line-height:1.15;cursor:pointer}
+.votos button[aria-pressed="true"]{color:var(--sobre);border-color:transparent}
+.votos button[data-v="gostei"][aria-pressed="true"]{background:var(--sim)}
+.votos button[data-v="meio"][aria-pressed="true"]{background:var(--meio)}
+.votos button[data-v="nao"][aria-pressed="true"]{background:var(--nao)}
+.escolhas{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.escolhas button{padding:.72em 1em;border:1.5px solid var(--fio-forte);border-radius:4px;background:transparent;color:var(--tinta);font-weight:500;font-size:.93rem;line-height:1.15;cursor:pointer}
+.escolhas button[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:transparent}
+button:disabled{opacity:.5;cursor:default}
+textarea{display:block;width:100%;min-height:4.3em;padding:.7em .8em;border:1.5px solid var(--fio-forte);border-radius:4px;background:var(--papel);color:var(--tinta);font:400 1rem/1.4 var(--sans);resize:vertical}
+textarea::placeholder{color:var(--suave)}
+.st{min-height:1.25em;font-size:.82rem;color:var(--suave)}
+.st[data-tom="erro"]{color:var(--nao)}
+
+.dobras{display:flex;flex-direction:column}
+.dobra{border-top:1px solid var(--fio);padding-block:12px}
+.dobra:last-child{border-bottom:1px solid var(--fio)}
+.dobra summary{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;list-style:none;font-weight:500}
+.dobra summary::-webkit-details-marker{display:none}
+.dobra summary::after{content:'+';font-size:1.3rem;line-height:1;color:var(--suave)}
+.dobra[open] summary::after{content:'\2013'}
+.legenda{white-space:pre-line;font-size:.96rem;max-width:35em;margin-top:12px;overflow-wrap:anywhere}
+.quem{font-size:.96rem;max-width:35em;margin-top:12px}
+.fontes{display:flex;flex-direction:column;gap:9px;margin:12px 0 0;padding-left:1.1em;font-size:.9rem;overflow-wrap:anywhere}
+.fontes a{color:var(--ouro);font-weight:500;white-space:nowrap}
+.nota-teste{font-size:.86rem;color:var(--suave);margin-top:10px}
+
+.letras{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:16px;padding-bottom:8px}
+.letras figure{flex:0 0 min(62%,250px);scroll-snap-align:start}
+.letras img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;border-radius:4px;box-shadow:0 0 0 1px var(--fio)}
+.letras figcaption{margin-top:8px;font-size:.88rem} .letras figcaption span{color:var(--suave)}
+.bloco .st{margin-top:10px}
+#geral textarea{margin-top:16px}
+.fim{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:18px}
+#copiar{padding:.8em 1.2em;border:0;border-radius:4px;background:var(--tinta);color:var(--papel);font-weight:600;font-size:.95rem;cursor:pointer}
+#resumo{margin-top:12px;font-size:.9rem}
+footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid var(--fio);padding-top:18px}
+@media (prefers-reduced-motion: reduce){.barra i{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Segundo lote de teste · 3 de outubro de 2026</p>
+  <h1>Refeito com o <i>seu retorno</i></h1>
+  <p class="lede">Nada daqui foi publicado. São 10 posts: os que você avaliou, refeitos, e três temas novos do seu público. Marcar ficou rápido: toque no slide que quer mudar, toque no que incomodou e dê o voto.</p>
+  <ul class="resumo">
+    <li><b>Gancho</b><span>A capa diz o assunto e traz uma cena em que a pessoa se reconhece, nela ou em alguém da família.</span></li>
+    <li><b>Explicação</b><span>Cada slide traz o porquê e o que fazer. Saíram a estatística solta e o slide de uma frase só.</span></li>
+    <li><b>Desenho</b><span>Em todo slide que pede, com legenda, e variado: aparelho de pressão, rótulo, corpo, vesícula.</span></li>
+    <li><b>Legenda</b><span>Conta o que o slide não conta: o caso, a exceção, quando procurar ajuda.</span></li>
+    <li><b>Público</b><span>Temas e exemplos para mulheres de 25 anos ou mais.</span></li>
+  </ul>
+  <div class="prog"><span><span id="prog-n">0</span> de 10 avaliados</span><span class="barra" aria-hidden="true"><i></i></span></div>
+  <svg class="pulso" viewBox="0 0 720 34" preserveAspectRatio="none" fill="none" aria-hidden="true"><path d="M0 18 C 120 16, 250 20, 372 18 L 418 18 L 436 3 L 458 32 L 478 18 C 560 18, 640 20, 720 18" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+</header>
+
+<section class="bloco" id="grade">
+  <h2>Como ficaria o perfil</h2>
+  <p class="sub">Uma capa por série, como você escolheu. Os de cima são os novos; os quatro de baixo já estão no ar. Toque em um número para ir direto ao post.</p>
+  <div class="grade"><button class="tile" type="button" data-ir="p10" aria-label="Ir para o post 10: Dor do lado direito depois de comer gordura."><img src="revisao2/grade/10.jpg" width="540" height="720" alt=""><span class="n">10</span></button><button class="tile" type="button" data-ir="p9" aria-label="Ir para o post 9: Infarto em mulher nem sempre é dor forte no peito."><img src="revisao2/grade/09.jpg" width="540" height="720" alt=""><span class="n">9</span><span class="ico" aria-hidden="true">&#9654;</span></button><button class="tile" type="button" data-ir="p8" aria-label="Ir para o post 8: Você não precisa de 1 hora de academia por dia."><img src="revisao2/grade/08.jpg" width="540" height="720" alt=""><span class="n">8</span></button><button class="tile" type="button" data-ir="p7" aria-label="Ir para o post 7: A mamografia já pode começar aos 40"><img src="revisao2/grade/07.jpg" width="540" height="720" alt=""><span class="n">7</span></button><button class="tile" type="button" data-ir="p6" aria-label="Ir para o post 6: A boca entortou. A fala enrolou."><img src="revisao2/grade/06.jpg" width="540" height="720" alt=""><span class="n">6</span></button><button class="tile" type="button" data-ir="p5" aria-label="Ir para o post 5: “Quase não uso sal.” O rótulo diz outra coisa."><img src="revisao2/grade/05.jpg" width="540" height="720" alt=""><span class="n">5</span></button><button class="tile" type="button" data-ir="p4" aria-label="Ir para o post 4: A febre da dengue baixou? É agora que você precisa ficar de olho."><img src="revisao2/grade/04.jpg" width="540" height="720" alt=""><span class="n">4</span><span class="ico" aria-hidden="true">&#9654;</span></button><button class="tile" type="button" data-ir="p3" aria-label="Ir para o post 3: Cólica que faz você faltar ao trabalho não é normal."><img src="revisao2/grade/03.jpg" width="540" height="720" alt=""><span class="n">3</span></button><button class="tile" type="button" data-ir="p2" aria-label="Ir para o post 2: Se você mede a pressão assim que chega em casa, o número sai errado."><img src="revisao2/grade/02.jpg" width="540" height="720" alt=""><span class="n">2</span></button><button class="tile" type="button" data-ir="p1" aria-label="Ir para o post 1: Sede o dia todo. Xixi a noite inteira."><img src="revisao2/grade/01.jpg" width="540" height="720" alt=""><span class="n">1</span></button><div class="tile ar"><img src="revisao2/grade/ar1.jpg" width="540" height="720" alt="Reel: Antibiótico cura gripe? (segunda versão)"><span class="tag">no ar</span></div><div class="tile ar"><img src="revisao2/grade/ar2.jpg" width="540" height="720" alt="Carrossel: 99 é normal. E 100?"><span class="tag">no ar</span></div><div class="tile ar"><img src="revisao2/grade/ar3.jpg" width="540" height="720" alt="Carrossel: Sua pressão é 12 por 8?"><span class="tag">no ar</span></div><div class="tile ar"><img src="revisao2/grade/ar4.jpg" width="540" height="720" alt="Reel: Antibiótico cura gripe? (primeira versão)"><span class="tag">no ar</span></div></div>
+</section>
+
+<section class="posts" aria-label="Os posts do lote">
+<article class="post" id="p1" data-id="2026-10-03-diabetes-5-sinais" data-titulo="Sede o dia todo. Xixi a noite inteira.">
+  <header class="ph"><span class="num" aria-hidden="true">1</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Carrossel · 9 slides</p><h3>Sede o dia todo. Xixi a noite inteira.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-diabetes-5-sinais-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-diabetes-5-sinais-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gancho fraco: devia ser algo em que a pessoa se reconhece, ou reconhece em alguém, como a sede que não passa. Não explicava do que se tratava. Slide com uma frase só não explica nada.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Capa com a cena: sede o dia todo, xixi a noite inteira, em você ou na sua mãe</span></li><li><span>Cada sinal ganhou o porquê e um desenho que mostra o que acontece</span></li><li><span>O slide 2 diz o assunto de novo (o Instagram mostra o carrossel outra vez a partir dele)</span></li><li><span>A legenda trata do exame: quem deve fazer, a partir de que idade e de quanto em quanto tempo</span></li></ul></div>
+  <div class="midia car" data-total="9"><div class="trilho" id="t1" tabindex="0" role="group" aria-label="Slides do post 1. Arraste ou use as setas."><img src="midia/2026-10-03-diabetes-5-sinais/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 9: Sede o dia todo. Xixi a noite inteira. Em você ou na sua mãe: 5 sinais de diabetes que parecem “coisa da idade”."><img src="midia/2026-10-03-diabetes-5-sinais/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 9: Diabetes tipo 2: os 5 sinais que passam batido. E por que cada um acontece. Em você ou em alguém da sua família."><img src="midia/2026-10-03-diabetes-5-sinais/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 9: Sinal 1: Sede e xixi toda hora O açúcar que sobra no sangue sai pela urina e leva água junto. Aí o corpo pede mais água."><img src="midia/2026-10-03-diabetes-5-sinais/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 9: Sinal 2: Cansaço e fome fora do normal O açúcar fica no sangue e não entra direito nas células. Falta energia, e o corpo pede comida."><img src="midia/2026-10-03-diabetes-5-sinais/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 9: Sinal 3: Visão embaçada O açúcar alto muda o líquido das lentes dos olhos. Costuma melhorar quando ele baixa."><img src="midia/2026-10-03-diabetes-5-sinais/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 9: Sinal 4: Feridas que demoram e infecções que voltam O açúcar alto atrapalha a circulação e a defesa do corpo. Na mulher, entram candidíase e infecção urinária de repetição."><img src="midia/2026-10-03-diabetes-5-sinais/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 9: Sinal 5: Formigamento nos pés e nas mãos Com o tempo, o açúcar alto machuca os nervos."><img src="midia/2026-10-03-diabetes-5-sinais/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 9: E o mais comum: nenhum sinal. Na maioria das pessoas, o diabetes tipo 2 fica anos sem dar sintoma. Por isso o exame de sangue é indicado para todo mundo a partir dos 35 anos."><img src="midia/2026-10-03-diabetes-5-sinais/09.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 9 de 9: Lembrou de alguém? O exame é de sangue: glicemia de jejum ou hemoglobina glicada. Reconheceu os sinais em você? Peça o exame na próxima consulta. Tem 35 anos ou mais e nunca fez? Vale pedir, mesmo sem sintoma. Envie para a pessoa em quem você pensou."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/9</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button><button class="mini" type="button" data-slide="9" aria-pressed="false" aria-label="Marcar o slide 9 para mudar"><img src="revisao2/mini/2026-10-03-diabetes-5-sinais/09.jpg" width="216" height="270" loading="lazy" alt=""><span>9</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 1">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-1">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-1" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Diabetes tipo 2 costuma chegar em silêncio, e os primeiros sinais são fáceis de culpar: o calor, a idade, o cansaço da semana.
+
+O que resolve a dúvida é o exame, não o sintoma. Ele é de sangue e é simples: glicemia de jejum ou hemoglobina glicada. A recomendação é fazer a partir dos 35 anos, mesmo sem sentir nada. Antes disso, vale para quem está acima do peso e tem mais algum fator de risco, como pressão alta ou pai, mãe ou irmão com diabetes.
+
+Resultado normal e poucos fatores de risco? Repete em 3 anos. Deu pré-diabetes? O controle passa a ser todo ano, e é a fase em que mudar a rotina mais funciona.
+
+Pensou em alguém lendo isso? Envie para essa pessoa.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Ministério da Saúde; Sociedade Brasileira de Diabetes; NIDDK; Mayo Clinic.
+
+#diabetes #diabetestipo2 #prediabetes #glicemia #sinaisdocorpo</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">A filha manda para a mãe ou para o pai que vive com sede e levanta à noite para ir ao banheiro.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) <a href="https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/" target="_blank" rel="noopener">Abrir a fonte</a></li><li>NIDDK. Symptoms and causes of diabetes <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Mayo Clinic. Diabetes symptoms: when diabetes symptoms are a concern (por que cada sinal acontece) <a href="https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p2" data-id="2026-10-03-medir-pressao-v2" data-titulo="Se você mede a pressão assim que chega em casa, o número sai errado.">
+  <header class="ph"><span class="num" aria-hidden="true">2</span>
+    <div class="pt"><p class="eyebrow">Para salvar · Carrossel · 9 slides</p><h3>Se você mede a pressão assim que chega em casa, o número sai errado.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-medir-pressao-v2-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-medir-pressao-v2-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gostou. Só via desenho de coração e gota: pediu para variar os desenhos e sentiu falta de imagens.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Desenhos novos e de saúde: o aparelho, a postura certa na cadeira, o que evitar antes</span></li><li><span>A capa aponta o erro que muita gente comete, no lugar de um título neutro</span></li><li><span>Entrou o número: em casa, alta é 130 por 80 ou mais</span></li><li><span>A legenda traz o que não está nos slides: que aparelho usar, quando medir e o que levar ao médico</span></li></ul></div>
+  <div class="midia car" data-total="9"><div class="trilho" id="t2" tabindex="0" role="group" aria-label="Slides do post 2. Arraste ou use as setas."><img src="midia/2026-10-03-medir-pressao-v2/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 9: Se você mede a pressão assim que chega em casa, o número sai errado. O jeito certo, em 5 passos."><img src="midia/2026-10-03-medir-pressao-v2/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 9: Como medir a pressão em casa sem errar o número 5 cuidados antes de apertar o botão. Sem eles, o aparelho mostra mais do que você tem."><img src="midia/2026-10-03-medir-pressao-v2/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 9: Passo 1: Sem café, cigarro, álcool ou exercício antes Tudo isso sobe o número por um tempo. Fumou? Espere 30 minutos. Fez exercício? Espere 1 hora."><img src="midia/2026-10-03-medir-pressao-v2/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 9: Passo 2: Esvazie a bexiga Bexiga cheia também empurra o número para cima. Vá ao banheiro antes de medir"><img src="midia/2026-10-03-medir-pressao-v2/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 9: Passo 3: Sente e descanse 5 minutos Em um lugar calmo. O corpo precisa sair do ritmo da rua."><img src="midia/2026-10-03-medir-pressao-v2/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 9: Passo 4: Costas e pés apoiados Pernas descruzadas. Sem apoio, o corpo faz força e o número sobe. 1 costas apoiadas · 2 pés no chão"><img src="midia/2026-10-03-medir-pressao-v2/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 9: Passo 5: Braço apoiado, na altura do coração E sem conversar durante a medida. A braçadeira fica na linha do coração"><img src="midia/2026-10-03-medir-pressao-v2/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 9: E o número?: Em casa, alta é 130 por 80 ou mais. Vale a média de vários dias, não uma medida só. Anote e leve ao médico."><img src="midia/2026-10-03-medir-pressao-v2/09.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 9 de 9: Para guardar Antes: sem café, cigarro, álcool ou exercício. Bexiga vazia e 5 minutos de descanso, sentada. Costas e braço apoiados, pés no chão, sem conversar. Envie para quem mede a pressão em casa."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/9</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button><button class="mini" type="button" data-slide="9" aria-pressed="false" aria-label="Marcar o slide 9 para mudar"><img src="revisao2/mini/2026-10-03-medir-pressao-v2/09.jpg" width="216" height="270" loading="lazy" alt=""><span>9</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 2">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-2">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-2" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Medir a pressão em casa só ajuda se o número for confiável. E o erro mais comum é medir com pressa.
+
+Três coisas que o carrossel não mostrou:
+
+• Aparelho: prefira o de braço, automático e validado. Os de pulso erram mais.
+• Quando medir: de manhã, antes do café e dos remédios, e à noite, antes do jantar. Duas medidas de cada vez, com 1 minuto entre elas.
+• O que levar ao médico: as anotações de pelo menos 5 dias, com data e hora.
+
+Pressão muito alta junto com dor no peito, falta de ar, fraqueza de um lado do corpo ou dor de cabeça forte não é para esperar: é emergência.
+
+Envie para quem mede a pressão em casa.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Diretrizes Brasileiras de Hipertensão; Ministério da Saúde.
+
+#pressaoalta #hipertensao #medirpressao #pressaoarterial #saudedocoracao</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Quem cuida dos pais manda para o pai ou a mãe que mede a pressão em casa.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Diretrizes brasileiras de hipertensão 2020: consulta rápida. Revista Hipertensão, v. 24, n. 1, 2022, Quadro 2 (bexiga vazia; sem exercício há 60 min; sem álcool, café ou alimentos; sem fumar nos 30 min anteriores; 5 min sentado em ambiente silencioso; costas e antebraço apoiados, pernas descruzadas, pés no chão; manguito ao nível do coração; não conversar) <a href="https://www.sbh.org.br/wp-content/uploads/2022/06/Revista-Hipertensao-Vol-24-Num-1-Artigo-5.pdf" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras de Hipertensão Arterial 2020 <a href="https://www.scielo.br/j/abc/a/Z6m5gGNQCvrW3WLV7csqbqh/?lang=pt" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Ministério da Saúde. Protocolo de hipertensão arterial sistêmica, 2025 (em casa, alta é média de 130 por 80 ou mais) <a href="https://www.gov.br/saude/pt-br/assuntos/pcdt/h/hipertensao-arterial-sistemica.pdf" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p3" data-id="2026-10-03-colica-forte" data-titulo="Cólica que faz você faltar ao trabalho não é normal.">
+  <header class="ph"><span class="num" aria-hidden="true">3</span>
+    <div class="pt"><p class="eyebrow">Isso é normal? · Carrossel · 9 slides</p><h3>Cólica que faz você faltar ao trabalho não é normal.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><span class="selo" style="transform:none">Tema novo</span></div><div class="disse"><p class="lab">Por que este tema</p><p>Pediu temas que mais atingem o seu público e que a pessoa se reconheça no post.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Tema novo, do seu público: mulheres de 25 anos ou mais</span></li><li><span>Letra de teste: Playfair Display</span></li><li><span>Capa com uma situação que ela reconhece: faltar ao trabalho por causa da cólica</span></li><li><span>Termo difícil (endometriose) explicado em um slide só dele, como você aprovou no post do exame</span></li></ul></div>
+  <div class="midia car" data-total="9"><div class="trilho" id="t3" tabindex="0" role="group" aria-label="Slides do post 3. Arraste ou use as setas."><img src="midia/2026-10-03-colica-forte/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 9: Cólica que faz você faltar ao trabalho não é normal. 5 sinais de que a sua cólica merece investigação."><img src="midia/2026-10-03-colica-forte/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 9: Cólica forte não é “coisa de mulher” 1 em cada 10 mulheres em idade fértil tem endometriose. Muitas passam anos ouvindo que é normal."><img src="midia/2026-10-03-colica-forte/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 9: Sinal 1: A dor tira você da rotina Faltar ao trabalho, cancelar planos ou ficar de cama por causa da cólica é sinal de alerta. De 0 a 10, a sua cólica passa de 7?"><img src="midia/2026-10-03-colica-forte/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 9: Sinal 2: O remédio comum não resolve Ou você precisa de doses cada vez maiores para aguentar."><img src="midia/2026-10-03-colica-forte/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 9: Sinal 3: Dor na relação sexual Principalmente uma dor profunda, que se repete."><img src="midia/2026-10-03-colica-forte/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 9: Sinal 4: Dor para evacuar ou urinar na menstruação O intestino e a bexiga também podem ser atingidos."><img src="midia/2026-10-03-colica-forte/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 9: Sinal 5: Dificuldade para engravidar A endometriose pode dificultar a gravidez."><img src="midia/2026-10-03-colica-forte/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 9: O que pode ser: Endometriose É quando um tecido parecido com o de dentro do útero cresce fora dele e inflama a cada ciclo. Os pontos mostram o tecido fora do útero"><img src="midia/2026-10-03-colica-forte/09.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 9 de 9: O que fazer Anote por 2 ou 3 ciclos os dias de dor e a nota de 0 a 10. Anote também o que você deixou de fazer. Leve as anotações ao ginecologista. Envie para a amiga que sofre todo mês."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/9</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button><button class="mini" type="button" data-slide="9" aria-pressed="false" aria-label="Marcar o slide 9 para mudar"><img src="revisao2/mini/2026-10-03-colica-forte/09.jpg" width="216" height="270" loading="lazy" alt=""><span>9</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 3">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-3">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-3" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Cólica forte todo mês não é frescura, e “é assim mesmo” não é diagnóstico.
+
+A endometriose costuma levar anos para ser descoberta, justamente porque a dor da mulher é tratada como normal.
+
+O que faz a consulta render:
+
+• Um diário de 2 ou 3 ciclos: os dias de dor, a nota de 0 a 10 e o que você deixou de fazer.
+• Os remédios que tomou e se funcionaram.
+• Se a dor aparece também fora da menstruação, na relação, ao evacuar ou ao urinar.
+
+Nem toda cólica forte é endometriose: mioma e outras causas entram na investigação. O ponto é o mesmo: dor que tira você da rotina merece ser investigada.
+
+Envie para a amiga que sofre todo mês.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: FEBRASGO; Organização Mundial da Saúde.
+
+#colica #endometriose #saudedamulher #dorpelvica #ginecologia</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">A amiga manda para a amiga que sofre todo mês. A mãe manda para a filha.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>FEBRASGO. Endometriose afeta uma em cada dez mulheres em idade fértil no Brasil (dor intensa no ciclo menstrual não é normal) <a href="https://www.febrasgo.org.br/pt/noticias/item/2046-endometriose-doenca-afeta-uma-em-cada-dez-mulheres-em-idade-fertil-no-brasil" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Organização Mundial da Saúde. Endometriosis (o que é; sintomas; demora no diagnóstico) <a href="https://www.who.int/news-room/fact-sheets/detail/endometriosis" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p4" data-id="2026-10-03-dengue-febre-baixou-v2" data-titulo="A febre da dengue baixou? É agora que você precisa ficar de olho.">
+  <header class="ph"><span class="num" aria-hidden="true">4</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Reel · 31 s</p><h3>A febre da dengue baixou? É agora que você precisa ficar de olho.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-dengue-febre-baixou-v2-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-dengue-febre-baixou-v2-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gostou. O desenho em movimento (a curva da febre) podia ser mais explorado.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>O gráfico virou o centro do vídeo: a curva se desenha, a fase de alerta acende e ele fica na tela enquanto os sinais entram</span></li><li><span>O gancho inteiro já aparece no primeiro quadro (antes, a segunda parte entrava 1 segundo depois)</span></li><li><span>Entrou o que fazer em casa: beber líquido e não tomar AAS nem anti-inflamatório</span></li></ul></div>
+  <div class="midia reel"><video id="v4" controls playsinline preload="metadata" poster="midia/2026-10-03-dengue-febre-baixou-v2/capa.jpg" src="midia/2026-10-03-dengue-febre-baixou-v2/reel.mp4" aria-label="Reel: A febre da dengue baixou? É agora que você precisa ficar de olho."></video></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="ritmo" aria-pressed="false">Ritmo</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="rapido" aria-pressed="false">Rápido demais</button><button type="button" data-ruim="lento" aria-pressed="false">Lento demais</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="musica" aria-pressed="false">Música ruim</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 4">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-4">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-4" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Dengue: a febre baixar não é sinal de alta.
+
+A fase mais delicada costuma ser entre o 3º e o 7º dia, justamente quando a febre cai. É nela que aparecem os sinais de alerta do vídeo.
+
+Em casa, o tratamento é líquido e repouso: água, soro caseiro, água de coco, suco. Para dor e febre, só o que o serviço de saúde orientar. AAS, ibuprofeno, diclofenaco e outros anti-inflamatórios aumentam o risco de sangramento.
+
+Grávidas, crianças pequenas, idosos e quem tem doença crônica devem ser avaliados logo no começo, mesmo sem sinal de alerta.
+
+Envie para quem está com dengue em casa.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Ministério da Saúde.
+
+#dengue #sinaisdealerta #dengueemcasa #hidratacao #saudepublica</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Quem tem alguém com dengue em casa manda para quem está cuidando.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Ministério da Saúde. Dengue (sinais de alarme; aparecem com o declínio da febre, entre o 3º e o 7º dia; não se automedicar e procurar imediatamente o serviço de urgência; febre de 39 a 40 °C no início) <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Ministério da Saúde. Dengue: diagnóstico e manejo clínico (sem AAS e sem anti-inflamatório; hidratação) <a href="https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/dengue/dengue-diagnostico-e-manejo-clinico-adulto-e-crianca" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p5" data-id="2026-10-03-sal-no-rotulo" data-titulo="“Quase não uso sal.” O rótulo diz outra coisa.">
+  <header class="ph"><span class="num" aria-hidden="true">5</span>
+    <div class="pt"><p class="eyebrow">Mito ou verdade · Carrossel · 8 slides</p><h3>“Quase não uso sal.” O rótulo diz outra coisa.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-sal-no-rotulo-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-sal-no-rotulo-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gancho fraco e sem contexto; faltou explicar por que o sal faz mal e como age; faltou a ligação com o sódio da tabela nutricional; slide e legenda diziam a mesma coisa.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Capa com uma frase que a pessoa diz (“quase não uso sal”) e a promessa: achar o sal escondido em 10 segundos</span></li><li><span>Saiu a estatística do mundo; entrou o porquê: o sódio puxa água para dentro dos vasos</span></li><li><span>Entrou o rótulo: a linha do sódio, o %VD e a lupa de “alto em sódio”</span></li><li><span>A legenda agora traz o que não está nos slides: a conta sódio x 2,5 e o cuidado com o sal light</span></li></ul></div>
+  <div class="midia car" data-total="8"><div class="trilho" id="t5" tabindex="0" role="group" aria-label="Slides do post 5. Arraste ou use as setas."><img src="midia/2026-10-03-sal-no-rotulo/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 8: “Quase não uso sal.” O rótulo diz outra coisa. Pressão alta: como achar o sal escondido em 10 segundos."><img src="midia/2026-10-03-sal-no-rotulo/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 8: Pressão alta e sal: o saleiro é só parte da conta. Boa parte do sódio já vem dentro da comida pronta. E ele está escrito no rótulo."><img src="midia/2026-10-03-sal-no-rotulo/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 8: Por que o sal sobe a pressão: O sódio puxa água para dentro dos vasos. Mais líquido no mesmo cano, mais pressão na parede. É como abrir mais a torneira de uma mangueira."><img src="midia/2026-10-03-sal-no-rotulo/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 8: O limite do dia inteiro cabe em 1 colher de chá. Contando o sal que já vem dentro da comida pronta. 1 colher de chá rasa = 5 g de sal 5 g de sal = 2.000 mg de sódio"><img src="midia/2026-10-03-sal-no-rotulo/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 8: Onde ele se esconde: Pão de forma e biscoitos; Macarrão instantâneo e sopa pronta; Presunto, salsicha e linguiça; Tempero pronto, caldo e molhos; Queijos e salgadinhos"><img src="midia/2026-10-03-sal-no-rotulo/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 8: No rótulo, procure a linha sódio. O %VD mostra quanto do limite do dia aquela porção já gastou."><img src="midia/2026-10-03-sal-no-rotulo/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 8: Viu esta lupa na frente da embalagem? Ela é obrigatória quando o produto tem 600 mg de sódio ou mais a cada 100 g. Compare com o da prateleira ao lado."><img src="midia/2026-10-03-sal-no-rotulo/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 8: Três trocas que valem mais Prove antes de salgar. E tire o saleiro da mesa. Entre duas marcas, leve a de menor sódio. Troque tempero pronto por alho, cebola, ervas e limão. Envie para quem diz que “quase não usa sal”."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/8</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-sal-no-rotulo/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 5">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-5">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-5" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Pressão alta e sal: a conta não fecha só no saleiro.
+
+No Brasil, mais da metade do sódio ainda vem do sal que a gente põe na comida. O resto já chega pronto, dentro do pão, do embutido, do tempero e do salgadinho. Por isso valem as duas frentes: menos sal na panela e olho no rótulo.
+
+Um truque para o mercado: multiplique o sódio por 2,5 e você tem o sal. 400 mg de sódio é 1 grama de sal, um quinto do limite do dia.
+
+Atenção ao sal light: ele troca parte do sódio por potássio. Quem tem doença nos rins ou usa remédio para pressão precisa perguntar ao médico antes de usar.
+
+Envie para quem diz que “quase não usa sal”.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: OMS; ANVISA; American Heart Association.
+
+#pressaoalta #hipertensao #sodio #rotulodealimentos #alimentacaosaudavel</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Quem cozinha em casa manda para o pai, a mãe ou o marido que tem pressão alta e diz que “quase não usa sal”.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Organização Mundial da Saúde. Sodium reduction (menos de 5 g de sal por dia, pouco menos de uma colher de chá; média mundial de 11 g em 2021, mais que o dobro; eleva a pressão; fontes em alimentos processados; dicas para reduzir) <a href="https://www.who.int/news-room/fact-sheets/detail/sodium-reduction" target="_blank" rel="noopener">Abrir a fonte</a></li><li>American Heart Association. Sodium and salt (o sódio em excesso puxa água para dentro dos vasos; a comparação com a mangueira) <a href="https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt" target="_blank" rel="noopener">Abrir a fonte</a></li><li>ANVISA. Instrução Normativa nº 75/2020 (valor diário de referência do sódio: 2.000 mg; lupa de alto em sódio a partir de 600 mg por 100 g) <a href="https://bvsms.saude.gov.br/bvs/saudelegis/anvisa//2020/IN%2075_2020_.pdf" target="_blank" rel="noopener">Abrir a fonte</a></li><li>ANVISA. Rotulagem nutricional: novas regras (valores por 100 g e por porção; %VD) <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2022/rotulagem-nutricional-novas-regras-entram-em-vigor-em-120-dias" target="_blank" rel="noopener">Abrir a fonte</a></li><li>British Heart Foundation. Salt (sódio x 2,5 = sal) <a href="https://www.bhf.org.uk/informationsupport/support/healthy-living/healthy-eating/salt" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p6" data-id="2026-10-03-avc-sinais-v2" data-titulo="A boca entortou. A fala enrolou.">
+  <header class="ph"><span class="num" aria-hidden="true">6</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Carrossel · 10 slides</p><h3>A boca entortou. A fala enrolou.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-avc-sinais-v2-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-avc-sinais-v2-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gostou de tudo, mas sentiu falta de imagens para mostrar como é na prática.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Cada sinal ganhou um desenho que mostra como ele aparece (o braço que cai, a fala que enrola)</span></li><li><span>A capa virou uma cena (a boca entortou, a fala enrolou) no lugar da pergunta</span></li><li><span>Entrou o porquê da pressa: o remédio que desfaz o coágulo só pode ser dado nas primeiras 4 horas e meia</span></li><li><span>A legenda traz o que não está nos slides: o AVC passageiro e o que não fazer enquanto espera</span></li></ul></div>
+  <div class="midia car" data-total="10"><div class="trilho" id="t6" tabindex="0" role="group" aria-label="Slides do post 6. Arraste ou use as setas."><img src="midia/2026-10-03-avc-sinais-v2/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 10: A boca entortou. A fala enrolou. Pode ser AVC. 5 sinais que aparecem de repente e um teste de 1 minuto para fazer na hora."><img src="midia/2026-10-03-avc-sinais-v2/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 10: AVC: os sinais aparecem de repente Quanto mais cedo o socorro, maior a chance de recuperar. Veja os 5 sinais e o teste de 1 minuto."><img src="midia/2026-10-03-avc-sinais-v2/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 10: Sinal 1: Um lado do corpo fraco ou formigando No rosto, no braço ou na perna. Sempre de um lado só. Um dos braços não sustenta"><img src="midia/2026-10-03-avc-sinais-v2/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 10: Sinal 2: A fala enrola Ou a pessoa fica confusa e não entende o que você diz."><img src="midia/2026-10-03-avc-sinais-v2/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 10: Sinal 3: A visão muda de repente Em um olho ou nos dois: embaça, escurece ou fica dobrada."><img src="midia/2026-10-03-avc-sinais-v2/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 10: Sinal 4: Tontura e perda de equilíbrio Dificuldade para andar ou para coordenar os movimentos."><img src="midia/2026-10-03-avc-sinais-v2/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 10: Sinal 5: Dor de cabeça forte, do nada Intensa e sem causa aparente."><img src="midia/2026-10-03-avc-sinais-v2/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 10: Na dúvida, peça três coisas"><img src="midia/2026-10-03-avc-sinais-v2/09.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 9 de 10: Por que correr: O remédio que desfaz o coágulo tem hora para ser dado Só nas primeiras 4 horas e meia. Anote a hora em que tudo começou."><img src="midia/2026-10-03-avc-sinais-v2/10.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 10 de 10: Viu um sinal? Ligue 192. É o SAMU. O 193, dos Bombeiros, também atende. Ou leve a pessoa direto ao hospital. Não espere melhorar. Envie para a sua família."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/10</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button><button class="mini" type="button" data-slide="9" aria-pressed="false" aria-label="Marcar o slide 9 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/09.jpg" width="216" height="270" loading="lazy" alt=""><span>9</span></button><button class="mini" type="button" data-slide="10" aria-pressed="false" aria-label="Marcar o slide 10 para mudar"><img src="revisao2/mini/2026-10-03-avc-sinais-v2/10.jpg" width="216" height="270" loading="lazy" alt=""><span>10</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 6">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-6">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-6" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">AVC é corrida contra o relógio: quanto antes o atendimento, mais cérebro é salvo.
+
+Duas coisas que quase ninguém sabe:
+
+1. Se os sinais sumirem sozinhos em poucos minutos, vá ao hospital do mesmo jeito. Pode ter sido um AVC passageiro, que é um aviso de que outro maior pode vir.
+
+2. Não dê remédio, comida nem água enquanto espera. A pessoa pode engasgar, e alguns remédios pioram certos tipos de AVC.
+
+Anote a hora em que os sinais começaram: é a primeira coisa que a equipe vai perguntar.
+
+Envie para a sua família.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Ministério da Saúde; Sociedade Brasileira de AVC.
+
+#avc #derrame #sinaisdeavc #samu192 #primeirossocorros</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Quem mora com os pais ou os avós manda para o grupo da família.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Ministério da Saúde. Acidente vascular cerebral (lista de sinais; ligar 192 ou 193 ou levar ao hospital; quanto mais rápido o atendimento, maiores as chances de recuperação) <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Sociedade Brasileira de AVC. Página para pacientes (início súbito dos sintomas; teste do sorriso, do abraço e da frase; ligar 192) <a href="https://avc.org.br/pacientes/acidente-vascular-cerebral/" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Ministério da Saúde. Protocolo do AVC isquêmico agudo (trombólise até 4 horas e meia) <a href="https://www.gov.br/saude/pt-br/assuntos/pcdt/a/acidente-vascular-cerebral-isquemico-agudo/@@download/file" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p7" data-id="2026-10-03-mamografia-40" data-titulo="A mamografia já pode começar aos 40">
+  <header class="ph"><span class="num" aria-hidden="true">7</span>
+    <div class="pt"><p class="eyebrow">Entenda seu exame · Carrossel · 7 slides</p><h3>A mamografia já pode começar aos 40</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><span class="selo" style="transform:none">Tema novo</span></div><div class="disse"><p class="lab">Por que este tema</p><p>Pediu temas que mais atingem o seu público. E outubro é o mês do Outubro Rosa.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Tema novo, do seu público, e do mês (Outubro Rosa)</span></li><li><span>Letra de teste: DM Serif Display</span></li><li><span>Capa de número (a série dos exames usa número ou laudo na capa)</span></li><li><span>Um quadro com o que vale para cada idade, e 1 em cada 4 casos mostrado com desenho</span></li></ul></div>
+  <div class="midia car" data-total="7"><div class="trilho" id="t7" tabindex="0" role="group" aria-label="Slides do post 7. Arraste ou use as setas."><img src="midia/2026-10-03-mamografia-40/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 7: A mamografia já pode começar aos 40. O que mudou no SUS em 2025 e o que vale para cada idade."><img src="midia/2026-10-03-mamografia-40/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 7: Mamografia: o que mudou em 2025 Desde setembro, o SUS oferece o exame a partir dos 40 anos para quem quiser fazer."><img src="midia/2026-10-03-mamografia-40/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 7: O que vale para cada idade"><img src="midia/2026-10-03-mamografia-40/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 7: Por que olhar antes dos 50 Quase 1 em cada 4 casos de câncer de mama aparece entre os 40 e os 49 anos."><img src="midia/2026-10-03-mamografia-40/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 7: Em qualquer idade. Não espere o exame se notar: Caroço na mama ou na axila; Pele repuxada ou avermelhada; Bico do peito que mudou ou solta líquido"><img src="midia/2026-10-03-mamografia-40/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 7: Mãe ou irmã com câncer de mama? Fale com o médico: o seu acompanhamento pode começar mais cedo."><img src="midia/2026-10-03-mamografia-40/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 7: Para guardar 40 a 49 anos: pode fazer, depois de conversar com o profissional de saúde. 50 a 74 anos: a cada 2 anos, mesmo sem sintoma. Sinal na mama: procure avaliação em qualquer idade. Envie para a amiga que fez 40."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/7</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-mamografia-40/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 7">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-7">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-7" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Mamografia aos 40: desde setembro de 2025, o SUS garante o exame a partir dessa idade para quem quiser fazer.
+
+O que muda na prática:
+
+• 40 a 49 anos: não é convocação. Você conversa com o profissional de saúde sobre os prós e os contras e decide.
+• 50 a 74 anos: o exame é recomendado a cada 2 anos, mesmo sem sintoma.
+
+Por que existe conversa antes dos 50? Nessa faixa, a mama costuma ser mais densa e o exame dá mais alarme falso, com biópsia que não precisava. Para muitas mulheres ainda vale a pena. A decisão é sua, com informação.
+
+Quem tem mãe, irmã ou filha com câncer de mama ou de ovário entra em outra regra: o acompanhamento começa mais cedo e é definido pelo médico.
+
+Envie para a amiga que fez 40.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Ministério da Saúde; INCA.
+
+#mamografia #cancerdemama #outubrorosa #saudedamulher #prevencao</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">A amiga manda para a amiga que fez 40. A filha manda para a mãe.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Agência Brasil. Ministério da Saúde passa a recomendar mamografia a partir dos 40 anos (setembro de 2025) <a href="https://agenciabrasil.ebc.com.br/saude/noticia/2025-09/ministerio-da-saude-passa-recomendar-mamografia-partir-dos-40-anos" target="_blank" rel="noopener">Abrir a fonte</a></li><li>INCA. Dados e números sobre câncer de mama <a href="https://www.inca.gov.br/sites/ufu.sti.inca.local/files/media/document/relatorio_dados-e-numeros-ca-mama-2023.pdf" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p8" data-id="2026-10-03-exercicio-150-v2" data-titulo="Você não precisa de 1 hora de academia por dia.">
+  <header class="ph"><span class="num" aria-hidden="true">8</span>
+    <div class="pt"><p class="eyebrow">Para salvar · Carrossel · 7 slides</p><h3>Você não precisa de 1 hora de academia por dia.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-exercicio-150-v2-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-exercicio-150-v2-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Gostou. Sentiu falta de imagens e pediu para testar outros tipos de letra.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Letra de teste: Fraunces (a atual é a Instrument Serif)</span></li><li><span>Desenhos novos: a semana com os 5 dias marcados, o teste da conversa, as formas de se mexer</span></li><li><span>A capa tira um peso da pessoa (não precisa de 1 hora por dia) no lugar de dar um número solto</span></li><li><span>A legenda traz o que não está nos slides: como começar depois de muito tempo parada</span></li></ul></div>
+  <div class="midia car" data-total="7"><div class="trilho" id="t8" tabindex="0" role="group" aria-label="Slides do post 8. Arraste ou use as setas."><img src="midia/2026-10-03-exercicio-150-v2/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 7: Você não precisa de 1 hora de academia por dia. 150 minutos por semana já protegem o coração. Veja como encaixar na rotina."><img src="midia/2026-10-03-exercicio-150-v2/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 7: O mínimo que faz efeito: 150 minutos por semana De atividade moderada. É menos do que parece."><img src="midia/2026-10-03-exercicio-150-v2/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 7: 30 minutos, 5 dias na semana Não precisa ser de uma vez: 3 blocos de 10 minutos ao longo do dia também contam."><img src="midia/2026-10-03-exercicio-150-v2/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 7: O que é “moderada”? É a atividade em que você consegue conversar, mas não cantar. Caminhada rápida, bicicleta, dança. Dá para conversar. Não dá para cantar."><img src="midia/2026-10-03-exercicio-150-v2/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 7: Todo movimento conta Descer um ponto antes, subir de escada, ir a pé à padaria."><img src="midia/2026-10-03-exercicio-150-v2/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 7: O que você ganha: Menos risco de pressão alta e de diabetes tipo 2; Menos risco de morrer de doença do coração; Sono e humor melhores"><img src="midia/2026-10-03-exercicio-150-v2/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 7: Não chega a 150? Faça o que der. Qualquer quantidade é melhor do que nenhuma. Comece com 10 minutos hoje. Marque com alguém: fica mais difícil desistir. Envie para a amiga que topa caminhar com você."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/7</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-exercicio-150-v2/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 8">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-8">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-8" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">150 minutos de exercício por semana parece muito até você dividir: dá pouco mais de 20 minutos por dia.
+
+O que conta como moderado? Qualquer atividade que acelera o coração e a respiração, mas ainda deixa você conversar: caminhar rápido, dançar, pedalar, varrer o quintal com vontade.
+
+Para quem está parada há muito tempo:
+
+• Comece com 10 minutos por dia e aumente aos poucos.
+• Prenda o exercício em algo que já existe na rotina: depois do almoço, na volta do trabalho, enquanto o filho está no treino.
+• Duas vezes por semana, inclua força: subir escada, agachar, carregar peso.
+
+Tem doença do coração, ou sente dor no peito ou falta de ar ao esforço? Converse com o médico antes de começar.
+
+Envie para a amiga que topa caminhar com você.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: Organização Mundial da Saúde.
+
+#atividadefisica #caminhada #sedentarismo #saudedocoracao #rotinasaudavel</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Uma amiga manda para a outra, como convite para caminhar junto.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) <a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p9" data-id="2026-10-03-infarto-na-mulher" data-titulo="Infarto em mulher nem sempre é dor forte no peito.">
+  <header class="ph"><span class="num" aria-hidden="true">9</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Reel · 33 s</p><h3>Infarto em mulher nem sempre é dor forte no peito.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><figure><img src="revisao2/antes/2026-10-03-infarto-na-mulher-antes.jpg" width="222" height="278" loading="lazy" alt="Capa da primeira versão"><figcaption>Antes</figcaption></figure><span class="vai" aria-hidden="true">&#8594;</span><figure><img src="revisao2/antes/2026-10-03-infarto-na-mulher-agora.jpg" width="222" height="278" loading="lazy" alt="Capa da nova versão"><figcaption>Agora</figcaption></figure></div><div class="disse"><p class="lab">Você disse</p><p>Mais ou menos: de novo, problema de gancho.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Gancho novo e voltado ao seu público: infarto em mulher nem sempre é dor forte no peito</span></li><li><span>O gancho inteiro, com a promessa (4 sinais), já está no primeiro quadro</span></li><li><span>Desenho em movimento: o traçado do coração corre na tela e o corpo acende onde cada sinal aparece</span></li><li><span>O pedido final tem destinatário: a sua mãe, a sua irmã, a sua amiga</span></li></ul></div>
+  <div class="midia reel"><video id="v9" controls playsinline preload="metadata" poster="midia/2026-10-03-infarto-na-mulher/capa.jpg" src="midia/2026-10-03-infarto-na-mulher/reel.mp4" aria-label="Reel: Infarto em mulher nem sempre é dor forte no peito."></video></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="ritmo" aria-pressed="false">Ritmo</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="rapido" aria-pressed="false">Rápido demais</button><button type="button" data-ruim="lento" aria-pressed="false">Lento demais</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="musica" aria-pressed="false">Música ruim</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 9">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-9">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-9" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Infarto em mulher: os sinais podem não parecer “de coração”.
+
+A dor no peito continua sendo o sinal mais comum. Mas, na mulher, é mais frequente ela vir junto com falta de ar, enjoo, dor nas costas ou na mandíbula e um cansaço que não combina com o dia que você teve.
+
+O risco sobe depois da menopausa e com pressão alta, diabetes, colesterol alto, cigarro e casos na família.
+
+Na dúvida, não espere para ver se passa e não vá dirigindo: ligue 192.
+
+Envie para a sua mãe, a sua irmã, a sua amiga.
+
+Conteúdo educativo, não substitui consulta.
+Fontes: Sociedade Brasileira de Cardiologia; Ministério da Saúde.
+
+#infarto #saudedamulher #coracao #sinaisdeinfarto #samu192</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">A mulher manda para a mãe, a irmã e a amiga.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Sociedade Brasileira de Cardiologia. Posicionamento sobre Doença Isquêmica do Coração: a Mulher no Centro do Cuidado, 2023 <a href="https://www.scielo.br/j/abc/a/NHTpGXKFCz7NKht5CYLDZZF/?lang=pt" target="_blank" rel="noopener">Abrir a fonte</a></li><li>American Heart Association. Heart attack symptoms in women <a href="https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack/heart-attack-symptoms-in-women" target="_blank" rel="noopener">Abrir a fonte</a></li><li>Ministério da Saúde. Infarto (dor ou desconforto no peito que pode irradiar para costas, rosto e braço esquerdo; intensa e prolongada, com peso ou aperto; suor frio, palidez, falta de ar; em idosos e diabéticos pode vir sem sinais específicos; ligar 192 ou procurar emergência) <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/infarto" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+<article class="post" id="p10" data-id="2026-10-03-pedra-na-vesicula" data-titulo="Dor do lado direito depois de comer gordura.">
+  <header class="ph"><span class="num" aria-hidden="true">10</span>
+    <div class="pt"><p class="eyebrow">Sinais do corpo · Carrossel · 8 slides</p><h3>Dor do lado direito depois de comer gordura.</h3></div>
+    <span class="selo" data-selo hidden></span></header>
+  <div class="porque"><div class="ad"><span class="selo" style="transform:none">Tema novo</span></div><div class="disse"><p class="lab">Por que este tema</p><p>Pediu temas que mais atingem o seu público. Este também faz a ponte com a cirurgia, a área que você pretende seguir.</p></div><ul class="mudou" aria-label="O que mudou"><li><span>Tema novo: pedra na vesícula é mais comum em mulheres, depois dos 40</span></li><li><span>Capa com a cena: a dor do lado direito depois de comer gordura</span></li><li><span>O desenho do corpo mostra onde dói</span></li><li><span>Faz a ponte com a cirurgia sem oferecer consulta nem procedimento</span></li></ul></div>
+  <div class="midia car" data-total="8"><div class="trilho" id="t10" tabindex="0" role="group" aria-label="Slides do post 10. Arraste ou use as setas."><img src="midia/2026-10-03-pedra-na-vesicula/01.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 1 de 8: Dor do lado direito depois de comer gordura. Pode ser pedra na vesícula. 4 sinais de que não é “só má digestão”."><img src="midia/2026-10-03-pedra-na-vesicula/02.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 2 de 8: Pedra na vesícula: a dor que avisa Cerca de 1 em cada 10 adultos tem. É mais comum em mulheres, depois dos 40."><img src="midia/2026-10-03-pedra-na-vesicula/03.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 3 de 8: Onde dói: Em cima, do lado direito da barriga Ou na “boca do estômago”. Pode ir para as costas ou para o ombro direito. Lado direito de quem sente a dor"><img src="midia/2026-10-03-pedra-na-vesicula/04.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 4 de 8: Quando dói: Depois de comida gordurosa Costuma durar de 30 minutos a algumas horas e depois passa."><img src="midia/2026-10-03-pedra-na-vesicula/05.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 5 de 8: Por que dói: A vesícula guarda a bile, que digere a gordura Com pedra no caminho, ela aperta para esvaziar e dói. A vesícula é uma “bolsa” embaixo do fígado"><img src="midia/2026-10-03-pedra-na-vesicula/06.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 6 de 8: Sinais de urgência. Vá ao pronto-socorro se tiver: Febre; Pele ou olhos amarelados; Urina escura; Dor que não passa"><img src="midia/2026-10-03-pedra-na-vesicula/07.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 7 de 8: Como se descobre: Com um ultrassom de abdome É um exame simples e sem dor. Quem pede e avalia é o médico."><img src="midia/2026-10-03-pedra-na-vesicula/08.jpg" width="1080" height="1350" loading="lazy" decoding="async" alt="Slide 8 de 8: Quem tem mais chance Mulheres, principalmente depois dos 40. Quem está acima do peso. Quem emagreceu muito rápido. Envie para quem vive com “má digestão”."></div><button class="nav ant" type="button" aria-label="Slide anterior" hidden>&#8249;</button><button class="nav prox" type="button" aria-label="Próximo slide">&#8250;</button><span class="pos"><b>1</b>/8</span><button class="marca" type="button" data-marca aria-pressed="false">Marcar este slide</button></div><div class="folha-w"><div class="folha" role="group" aria-label="Toque nos slides que você quer mudar"><button class="mini" type="button" data-slide="1" aria-pressed="false" aria-label="Marcar o slide 1 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/01.jpg" width="216" height="270" loading="lazy" alt=""><span>1</span></button><button class="mini" type="button" data-slide="2" aria-pressed="false" aria-label="Marcar o slide 2 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/02.jpg" width="216" height="270" loading="lazy" alt=""><span>2</span></button><button class="mini" type="button" data-slide="3" aria-pressed="false" aria-label="Marcar o slide 3 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/03.jpg" width="216" height="270" loading="lazy" alt=""><span>3</span></button><button class="mini" type="button" data-slide="4" aria-pressed="false" aria-label="Marcar o slide 4 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/04.jpg" width="216" height="270" loading="lazy" alt=""><span>4</span></button><button class="mini" type="button" data-slide="5" aria-pressed="false" aria-label="Marcar o slide 5 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/05.jpg" width="216" height="270" loading="lazy" alt=""><span>5</span></button><button class="mini" type="button" data-slide="6" aria-pressed="false" aria-label="Marcar o slide 6 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/06.jpg" width="216" height="270" loading="lazy" alt=""><span>6</span></button><button class="mini" type="button" data-slide="7" aria-pressed="false" aria-label="Marcar o slide 7 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/07.jpg" width="216" height="270" loading="lazy" alt=""><span>7</span></button><button class="mini" type="button" data-slide="8" aria-pressed="false" aria-label="Marcar o slide 8 para mudar"><img src="revisao2/mini/2026-10-03-pedra-na-vesicula/08.jpg" width="216" height="270" loading="lazy" alt=""><span>8</span></button></div><p class="marcados" data-marcados aria-live="polite">Toque nos slides que você quer mudar.</p></div>
+  <div class="retorno">
+    <div class="chips"><p class="lab">Funcionou</p><div role="group" aria-label="O que funcionou"><button type="button" data-bom="gancho" aria-pressed="false">Gancho</button><button type="button" data-bom="desenho" aria-pressed="false">Desenho</button><button type="button" data-bom="explicacao" aria-pressed="false">Explicação</button><button type="button" data-bom="letra" aria-pressed="false">Letra</button><button type="button" data-bom="legenda" aria-pressed="false">Legenda</button></div><p class="lab" style="margin-top:6px">Incomodou</p><div role="group" aria-label="O que incomodou"><button type="button" data-ruim="gancho" aria-pressed="false">Gancho fraco</button><button type="button" data-ruim="imagem" aria-pressed="false">Faltou imagem</button><button type="button" data-ruim="desenho" aria-pressed="false">Desenho ruim</button><button type="button" data-ruim="explica" aria-pressed="false">Explica pouco</button><button type="button" data-ruim="texto" aria-pressed="false">Texto demais</button><button type="button" data-ruim="letra" aria-pressed="false">Letra ruim</button><button type="button" data-ruim="legenda" aria-pressed="false">Legenda repete</button></div></div>
+    <div class="votos" role="group" aria-label="Seu voto para o post 10">
+      <button type="button" data-v="gostei" aria-pressed="false">Gostei</button><button type="button" data-v="meio" aria-pressed="false">Mais ou menos</button><button type="button" data-v="nao" aria-pressed="false">Não gostei</button></div>
+    <label class="lab" for="nota-10">Quer escrever algo? (opcional)</label>
+    <textarea id="nota-10" rows="2" data-nota placeholder="Só se os toques acima não disserem tudo"></textarea>
+    <p class="st" data-st aria-live="polite"></p>
+  </div>
+  <div class="dobras"><details class="dobra"><summary>Legenda</summary><p class="legenda">Pedra na vesícula: muita gente tem e nem sabe. O problema começa quando ela dói.
+
+Quem tem pedra e nunca sentiu nada, em geral, só acompanha. Quando a dor aparece, ela tende a voltar, e aí a conversa costuma ser a cirurgia: a retirada da vesícula, quase sempre por vídeo, com cortes pequenos.
+
+Dá para viver sem vesícula? Dá. O fígado continua produzindo a bile; ela só deixa de ficar guardada.
+
+Enquanto a consulta não chega, refeições menores e com menos gordura costumam diminuir as crises. Chá e “limpeza de vesícula” não dissolvem pedra.
+
+Com febre, pele amarelada ou dor que não passa, o caminho é o pronto-socorro.
+
+Envie para quem vive com “má digestão”.
+
+Conteúdo educativo, não substitui consulta.
+Fonte: revisão brasileira de cirurgia digestiva (ABCD, 2019).
+
+#pedranavesicula #vesicula #dornabarriga #cirurgia #saudedamulher</p></details>
+  <details class="dobra"><summary>Quem manda para quem</summary><p class="quem">Quem convive com alguém que vive com “má digestão” depois de comer gordura.</p></details>
+  <details class="dobra"><summary>De onde vem a informação</summary><ul class="fontes"><li>Arquivos Brasileiros de Cirurgia Digestiva (ABCD). Revisão sobre colelitíase <a href="http://www.scielo.br/j/abcd/a/yp8jRmJGgy3DZnkpyg8cTbk/?lang=en" target="_blank" rel="noopener">Abrir a fonte</a></li></ul>
+  <p class="nota-teste">Post de teste: antes de publicar para valer, cada afirmação é conferida na fonte.</p></details></div>
+</article>
+</section>
+
+<section class="bloco" id="letra" data-id="letra">
+  <h2>Qual letra fica?</h2>
+  <p class="sub">Você pediu para testar outras letras. A mesma capa nas quatro. Arraste para o lado e escolha.</p>
+  <div class="letras" tabindex="0" role="group" aria-label="A mesma capa em quatro letras"><figure><img src="revisao2/letras/instrument.jpg" width="720" height="900" loading="lazy" alt="A capa do post da pressão na letra Instrument Serif"><figcaption><b>A.</b> Instrument Serif. <span>A atual.</span></figcaption></figure><figure><img src="revisao2/letras/fraunces.jpg" width="720" height="900" loading="lazy" alt="A capa do post da pressão na letra Fraunces"><figcaption><b>B.</b> Fraunces. <span>Mais cheia e macia.</span></figcaption></figure><figure><img src="revisao2/letras/playfair.jpg" width="720" height="900" loading="lazy" alt="A capa do post da pressão na letra Playfair Display"><figcaption><b>C.</b> Playfair Display. <span>Mais clássica, com contraste alto.</span></figcaption></figure><figure><img src="revisao2/letras/dmserif.jpg" width="720" height="900" loading="lazy" alt="A capa do post da pressão na letra DM Serif Display"><figcaption><b>D.</b> DM Serif Display. <span>A mais pesada.</span></figcaption></figure></div>
+  <div class="escolhas" role="group" aria-label="Escolha a letra"><button type="button" data-esc="instrument" aria-pressed="false">A · Instrument Serif</button><button type="button" data-esc="fraunces" aria-pressed="false">B · Fraunces</button><button type="button" data-esc="playfair" aria-pressed="false">C · Playfair Display</button><button type="button" data-esc="dmserif" aria-pressed="false">D · DM Serif Display</button><button type="button" data-esc="?" aria-pressed="false">Ainda não sei</button></div>
+  <p class="st" data-st aria-live="polite"></p>
+</section>
+
+<section class="bloco" id="fotos" data-id="fotos">
+  <h2>Fotos de verdade</h2>
+  <p class="sub">Você sentiu falta de imagens reais. Os sites de foto gratuita (Pexels, Unsplash, Pixabay) estão bloqueados para mim, então este lote usa desenho. Como seguimos?</p>
+  <div class="escolhas" role="group" aria-label="Como seguir com as fotos">
+    <button type="button" data-esc="sites" aria-pressed="false">Libero os sites de foto</button>
+    <button type="button" data-esc="minhas" aria-pressed="false">Mando fotos minhas</button>
+    <button type="button" data-esc="desenho" aria-pressed="false">Segue só com desenho</button>
+    <button type="button" data-esc="?" aria-pressed="false">Ainda não sei</button>
+  </div>
+  <p class="st" data-st aria-live="polite"></p>
+</section>
+
+<section class="bloco" id="geral" data-id="geral">
+  <h2>Comentário geral</h2>
+  <p class="sub">O que vale para o lote inteiro, ou o que não coube nos posts.</p>
+  <textarea id="nota-geral" rows="3" data-nota aria-label="Comentário geral" placeholder="Ex.: os desenhos estão bons, mas quero o texto maior"></textarea>
+  <p class="st" data-st aria-live="polite"></p>
+  <div class="fim"><button id="copiar" type="button">Copiar meu retorno</button><p class="st" id="copiado" aria-live="polite"></p></div>
+  <textarea id="resumo" rows="7" readonly hidden aria-label="Seu retorno em texto"></textarea>
+</section>
+
+<footer><p id="rodape">O retorno é gravado assim que você toca ou escreve. Se preferir, copie e mande na conversa.</p></footer>
+</div>
+
+<script>
+(() => {
+  const POSTS = [["p1", "2026-10-03-diabetes-5-sinais", "Sede o dia todo. Xixi a noite inteira.", "carrossel"], ["p2", "2026-10-03-medir-pressao-v2", "Se você mede a pressão assim que chega em casa, o número sai errado.", "carrossel"], ["p3", "2026-10-03-colica-forte", "Cólica que faz você faltar ao trabalho não é normal.", "carrossel"], ["p4", "2026-10-03-dengue-febre-baixou-v2", "A febre da dengue baixou? É agora que você precisa ficar de olho.", "reel"], ["p5", "2026-10-03-sal-no-rotulo", "“Quase não uso sal.” O rótulo diz outra coisa.", "carrossel"], ["p6", "2026-10-03-avc-sinais-v2", "A boca entortou. A fala enrolou.", "carrossel"], ["p7", "2026-10-03-mamografia-40", "A mamografia já pode começar aos 40", "carrossel"], ["p8", "2026-10-03-exercicio-150-v2", "Você não precisa de 1 hora de academia por dia.", "carrossel"], ["p9", "2026-10-03-infarto-na-mulher", "Infarto em mulher nem sempre é dor forte no peito.", "reel"], ["p10", "2026-10-03-pedra-na-vesicula", "Dor do lado direito depois de comer gordura.", "carrossel"]];                                   // [âncora, id, título, tipo], na ordem em que entrariam no perfil
+  const TOTAL = 10, CHAVE = 'retorno-lote2-2026-10-03', COLECAO = 'retorno2';
+  const VOTO = {gostei: 'Gostei', meio: 'Mais ou menos', nao: 'Não gostei'};
+  const BOM = {"gancho": "Gancho", "desenho": "Desenho", "explicacao": "Explicação", "letra": "Letra", "legenda": "Legenda", "ritmo": "Ritmo"}, RUIM = {"gancho": "Gancho fraco", "imagem": "Faltou imagem", "desenho": "Desenho ruim", "explica": "Explica pouco", "texto": "Texto demais", "letra": "Letra ruim", "legenda": "Legenda repete", "rapido": "Rápido demais", "lento": "Lento demais", "musica": "Música ruim"};                    // etiquetas de um toque: {id: nome}
+  const ESC = {letra: {"instrument": "Instrument Serif", "fraunces": "Fraunces", "playfair": "Playfair Display", "dmserif": "DM Serif Display", "?": "ainda não sei"}, fotos: {sites: 'libero os sites de foto', minhas: 'mando fotos minhas', desenho: 'segue só com desenho', '?': 'ainda não sei'}};
+  const DECISOES = ['letra', 'fotos'];
+  const CONHECIDOS = new Set([...POSTS.map(p => p[1]), ...DECISOES, 'geral']);
+  const $ = (s, r = document) => r.querySelector(s);
+  const caixa = id => $('[data-id="' + id + '"]');
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const st = {}, sujo = {}, ocupado = {}, relogio = {}, tentou = {}, tocado = {};
+  let db = null, semDb = false, soLeitura = false, pronto = false;   // pronto: já chegou o que estava gravado (ou não há onde gravar)
+
+  const estado = id => st[id] || (st[id] = DECISOES.includes(id) ? {escolha: null} : id === 'geral' ? {nota: ''} : {voto: null, nota: '', slides: [], bom: [], ruim: []});
+  const lista = (v, mapa) => Array.isArray(v) ? [...new Set(v.filter(x => typeof x === 'string' && Object.prototype.hasOwnProperty.call(mapa, x)))] : [];
+  function aplica(id, b) {                                 // o que vem gravado é dado, não instrução: confere o tipo de cada campo
+    const s = estado(id);
+    if (DECISOES.includes(id)) { s.escolha = typeof b.escolha === 'string' && Object.prototype.hasOwnProperty.call(ESC[id], b.escolha) ? b.escolha : null; return; }
+    s.nota = typeof b.nota === 'string' ? b.nota : '';
+    if (id === 'geral') return;
+    s.voto = VOTO[b.voto] ? b.voto : null;
+    s.slides = Array.isArray(b.slides) ? [...new Set(b.slides.filter(n => Number.isInteger(n) && n > 0 && n < 30))].sort((x, y) => x - y) : [];
+    s.bom = lista(b.bom, BOM); s.ruim = lista(b.ruim, RUIM);
+  }
+  const temAlgo = id => { const s = estado(id); return !!(s.escolha || s.voto || (s.nota && s.nota.trim()) || (s.slides && s.slides.length) || (s.bom && s.bom.length) || (s.ruim && s.ruim.length)); };
+  function guardaLocal() { try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (e) {} }
+  function leLocal() {
+    try { const o = JSON.parse(localStorage.getItem(CHAVE) || '{}'); for (const k in o) if (CONHECIDOS.has(k) && o[k] && typeof o[k] === 'object') aplica(k, o[k]); } catch (e) {}
+  }
+
+  const slideAtual = box => { const t = $('.trilho', box); return t ? Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1 : 0; };
+  function pintaSlides(box, s) {
+    box.querySelectorAll('.mini').forEach(b => b.setAttribute('aria-pressed', String(s.slides.includes(+b.dataset.slide))));
+    const b = $('[data-marca]', box);
+    if (b) { const on = s.slides.includes(slideAtual(box)); b.textContent = on ? 'Marcado para mudar' : 'Marcar este slide'; b.setAttribute('aria-pressed', String(on)); }
+    const m = $('[data-marcados]', box);
+    if (m) m.textContent = s.slides.length ? 'Para mudar: ' + (s.slides.length === 1 ? 'slide ' : 'slides ') + s.slides.join(', ') : 'Toque nos slides que você quer mudar.';
+  }
+  function progresso() {
+    const n = POSTS.filter(p => estado(p[1]).voto).length;
+    $('#prog-n').textContent = n; $('.barra i').style.width = (100 * n / TOTAL) + '%';
+  }
+  function pinta(id) {
+    const s = estado(id), box = caixa(id); if (!box) return;
+    if (DECISOES.includes(id)) { box.querySelectorAll('button[data-esc]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.esc === s.escolha))); return; }
+    const ta = $('[data-nota]', box);
+    if (ta && document.activeElement !== ta && ta.value !== s.nota) ta.value = s.nota;
+    if (id === 'geral') return;
+    box.querySelectorAll('button[data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === s.voto)));
+    box.querySelectorAll('button[data-bom]').forEach(b => b.setAttribute('aria-pressed', String(s.bom.includes(b.dataset.bom))));
+    box.querySelectorAll('button[data-ruim]').forEach(b => b.setAttribute('aria-pressed', String(s.ruim.includes(b.dataset.ruim))));
+    const selo = $('[data-selo]', box);
+    selo.hidden = !s.voto; if (s.voto) { selo.textContent = VOTO[s.voto]; selo.dataset.voto = s.voto; }
+    pintaSlides(box, s); progresso();
+  }
+  function aviso(id, txt, tom) { const e = $('[data-st]', caixa(id)); if (e) { e.textContent = txt; e.dataset.tom = tom || ''; } }
+  function trava() {
+    document.querySelectorAll('.votos button, .chips button, .escolhas button, .mini, .marca').forEach(b => b.disabled = true);
+    document.querySelectorAll('[data-nota]').forEach(t => t.readOnly = true);
+    $('#rodape').textContent = 'Só quem é dono desta página grava o retorno.';
+  }
+
+  function corpo(id) {
+    const s = estado(id), em = new Date().toISOString();
+    if (DECISOES.includes(id)) return {escolha: s.escolha, em};
+    if (id === 'geral') return {nota: s.nota, em};
+    const p = POSTS.find(p => p[1] === id);
+    return {post: p ? p[2] : id, voto: s.voto, nota: s.nota, slides: s.slides.slice(), bom: s.bom.slice(), ruim: s.ruim.slice(), em};
+  }
+  async function grava(id) {                                // uma gravação por vez em cada documento
+    if (!db) { if (semDb) aviso(id, 'Não gravou aqui. Use Copiar meu retorno, no fim da página.', 'erro'); return; }
+    if (ocupado[id]) return;
+    ocupado[id] = true;
+    while (sujo[id]) {
+      sujo[id] = false;
+      try { await db.doc(COLECAO + '/' + id).set(corpo(id)); tentou[id] = 0; aviso(id, 'Gravado.'); }
+      catch (e) {
+        const c = e && e.code;
+        if (c === 'unavailable' && !tentou[id]) { tentou[id] = 1; sujo[id] = true; await new Promise(r => setTimeout(r, 500 + Math.random() * 900)); continue; }
+        if (c === 'invalid_argument') { soLeitura = true; trava(); aviso(id, 'Só quem é dono desta página grava o retorno.', 'erro'); }
+        else aviso(id, 'Não gravou. Use Copiar meu retorno, no fim da página.', 'erro');
+        break;
+      }
+    }
+    ocupado[id] = false;
+  }
+  function muda(id, campo, agora) {
+    pinta(id); guardaLocal();
+    if (soLeitura) return;
+    sujo[id] = true;
+    if (!pronto) { (tocado[id] || (tocado[id] = new Set())).add(campo); return; }   // o gravado ainda está chegando: junta os dois antes de gravar
+    if (db) aviso(id, 'Gravando…');
+    clearTimeout(relogio[id]); relogio[id] = setTimeout(() => grava(id), agora ? 0 : 900);
+  }
+  const troca = (arr, v) => { const i = arr.indexOf(v); if (i < 0) arr.push(v); else arr.splice(i, 1); return i < 0; };
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.ir) { const alvo = document.getElementById(b.dataset.ir); if (alvo) alvo.scrollIntoView({behavior: reduz ? 'auto' : 'smooth', block: 'start'}); return; }
+    const box = b.closest('[data-id]'); if (!box || soLeitura) return;
+    const id = box.dataset.id, s = estado(id);
+    if (b.dataset.v) { s.voto = s.voto === b.dataset.v ? null : b.dataset.v; muda(id, 'voto', true); }
+    else if (b.dataset.esc) { s.escolha = s.escolha === b.dataset.esc ? null : b.dataset.esc; muda(id, 'escolha', true); }
+    else if (b.dataset.bom) { troca(s.bom, b.dataset.bom); muda(id, 'bom', true); }
+    else if (b.dataset.ruim) { troca(s.ruim, b.dataset.ruim); muda(id, 'ruim', true); }
+    else if (b.dataset.slide || 'marca' in b.dataset) {     // um toque marca o slide: na folha de miniaturas ou em cima do slide aberto
+      const n = b.dataset.slide ? +b.dataset.slide : slideAtual(box);
+      const entrou = troca(s.slides, n); s.slides.sort((x, y) => x - y);
+      if (entrou && b.dataset.slide) { const t = $('.trilho', box); if (t) t.scrollTo({left: (n - 1) * t.clientWidth, behavior: reduz ? 'auto' : 'smooth'}); }
+      muda(id, 'slides', true);
+    }
+  });
+  document.addEventListener('input', e => {
+    const ta = e.target.closest('[data-nota]'); if (!ta || soLeitura) return;
+    const id = ta.closest('[data-id]').dataset.id; estado(id).nota = ta.value; muda(id, 'nota', false);
+  });
+
+  document.querySelectorAll('.midia.car').forEach(car => {
+    const t = $('.trilho', car), box = car.closest('.post'), total = +car.dataset.total;
+    const ant = $('.ant', car), prox = $('.prox', car), pos = $('.pos b', car);
+    let raf = 0, cur = 0;
+    const acerta = () => {
+      raf = 0;
+      const n = Math.min(total, Math.max(1, Math.round(t.scrollLeft / (t.clientWidth || 1)) + 1));
+      if (n === cur) return; cur = n;
+      pos.textContent = n; ant.hidden = n === 1; prox.hidden = n === total;
+      pintaSlides(box, estado(box.dataset.id));
+    };
+    t.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(acerta); }, {passive: true});
+    const vai = d => t.scrollBy({left: d * t.clientWidth, behavior: reduz ? 'auto' : 'smooth'});
+    ant.addEventListener('click', () => vai(-1)); prox.addEventListener('click', () => vai(1));
+    acerta();
+  });
+
+  function resumo() {
+    const L = ['Retorno do segundo lote de 3 de outubro'];
+    POSTS.forEach((p, i) => {
+      const s = estado(p[1]); let t = (i + 1) + '. ' + p[2].replace(/[.?!]+$/, '') + ': ' + (s.voto ? VOTO[s.voto] : 'sem voto');
+      if (s.slides.length) t += '. Slides para mudar: ' + s.slides.join(', ');
+      if (s.bom.length) t += '. Funcionou: ' + s.bom.map(k => BOM[k]).join(', ');
+      if (s.ruim.length) t += '. Incomodou: ' + s.ruim.map(k => RUIM[k]).join(', ');
+      if (s.nota.trim()) t += '. ' + s.nota.trim();
+      L.push(t);
+    });
+    const l = estado('letra').escolha; if (l) L.push('Letra: ' + ESC.letra[l]);
+    const f = estado('fotos').escolha; if (f) L.push('Fotos: ' + ESC.fotos[f]);
+    const g = estado('geral').nota.trim(); if (g) L.push('Geral: ' + g);
+    return L.join('\n');
+  }
+  $('#copiar').addEventListener('click', async () => {
+    const txt = resumo(), out = $('#copiado'), area = $('#resumo');
+    try { await navigator.clipboard.writeText(txt); out.textContent = 'Copiado. Cole na conversa.'; }
+    catch (e) { area.hidden = false; area.value = txt; area.focus(); area.select(); out.textContent = 'Selecionei o texto. Copie e cole na conversa.'; }
+  });
+
+  leLocal(); CONHECIDOS.forEach(pinta); progresso();
+
+  function semGravacao(txt) {                               // segue só neste aparelho: o botão Copiar leva o retorno para a conversa
+    db = null; semDb = true; pronto = true; $('#rodape').textContent = txt;
+    Object.keys(sujo).filter(id => sujo[id]).forEach(id => aviso(id, 'Não gravou aqui. Use Copiar meu retorno, no fim da página.', 'erro'));
+  }
+  (async () => {
+    let user = null;
+    try { if (window.claude && window.claude.use) [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch (e) { db = null; }
+    if (!db) { semGravacao('Aqui não deu para gravar o retorno. Use Copiar meu retorno e cole na conversa.'); return; }
+    if (user && (await user.can('data.write')) === false) { soLeitura = true; trava(); }
+    let religou = false;
+    const assina = () => db.collection(COLECAO).onSnapshot(snap => {
+      const vistos = new Set();
+      snap.docs.forEach(d => {
+        const id = d.id; vistos.add(id);
+        if (!CONHECIDOS.has(id)) return;
+        const b = d.data() || {};
+        if (!pronto && tocado[id]) {                        // ele mexeu antes de o gravado chegar: fica o que ele mexeu, o resto vem do gravado
+          const meu = Object.assign({}, estado(id)); aplica(id, b);
+          tocado[id].forEach(c => { estado(id)[c] = meu[c]; }); pinta(id); return;
+        }
+        if (sujo[id] || ocupado[id]) return;
+        aplica(id, b); pinta(id);
+      });
+      guardaLocal();
+      if (!pronto) {                                        // uma vez só, fora desta chamada: grava o que ele mexeu enquanto carregava e o que ficou só neste aparelho
+        pronto = true;
+        if (soLeitura) return;
+        CONHECIDOS.forEach(id => { if (!vistos.has(id) && temAlgo(id)) sujo[id] = true; });
+        setTimeout(() => Object.keys(sujo).filter(id => sujo[id]).forEach(grava), 0);
+      }
+    }, err => {
+      if (err && err.code === 'unavailable' && !religou) { religou = true; setTimeout(assina, 1500); return; }
+      semGravacao('A gravação parou. Use Copiar meu retorno e cole na conversa.');
+    });
+    assina();
+  })();
+})();
+</script>

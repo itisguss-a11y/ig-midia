@@ -1,0 +1,26 @@
+{
+ "id": "2026-10-03-dengue-febre-baixou-v2",
+ "formato": "reel de 31 s, fundo verde, texto animado com o gráfico da febre em movimento",
+ "serie": "Sinais do corpo",
+ "titulo": "A febre da dengue baixou? É agora que você precisa ficar de olho.",
+ "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
+ "estado": "teste: conferir as afirmações antes de publicar",
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-dengue-febre-baixou-v2/reel.mp4"
+ ],
+ "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-dengue-febre-baixou-v2/capa.jpg",
+ "duracao": "31 s",
+ "antes": "2026-10-03-dengue-febre-baixou",
+ "seu_retorno": "Gostou. O desenho em movimento (a curva da febre) podia ser mais explorado.",
+ "mudou": [
+  "O gráfico virou o centro do vídeo: a curva se desenha, a fase de alerta acende e ele fica na tela enquanto os sinais entram",
+  "O gancho inteiro já aparece no primeiro quadro (antes, a segunda parte entrava 1 segundo depois)",
+  "Entrou o que fazer em casa: beber líquido e não tomar AAS nem anti-inflamatório"
+ ],
+ "quem_manda": "Quem tem alguém com dengue em casa manda para quem está cuidando.",
+ "fontes": [
+  "Ministério da Saúde. Dengue (sinais de alarme; aparecem com o declínio da febre, entre o 3º e o 7º dia; não se automedicar e procurar imediatamente o serviço de urgência; febre de 39 a 40 °C no início) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue",
+  "Ministério da Saúde. Dengue: diagnóstico e manejo clínico (sem AAS e sem anti-inflamatório; hidratação) - https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/dengue/dengue-diagnostico-e-manejo-clinico-adulto-e-crianca"
+ ],
+ "legenda": "Dengue: a febre baixar não é sinal de alta.\n\nA fase mais delicada costuma ser entre o 3º e o 7º dia, justamente quando a febre cai. É nela que aparecem os sinais de alerta do vídeo.\n\nEm casa, o tratamento é líquido e repouso: água, soro caseiro, água de coco, suco. Para dor e febre, só o que o serviço de saúde orientar. AAS, ibuprofeno, diclofenaco e outros anti-inflamatórios aumentam o risco de sangramento.\n\nGrávidas, crianças pequenas, idosos e quem tem doença crônica devem ser avaliados logo no começo, mesmo sem sinal de alerta.\n\nEnvie para quem está com dengue em casa.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde.\n\n#dengue #sinaisdealerta #dengueemcasa #hidratacao #saudepublica"
+}
