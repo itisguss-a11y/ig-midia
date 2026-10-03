@@ -1,10 +1,10 @@
 {
  "id": "2026-10-03-antibiotico-gripe",
- "formato": "reel de texto animado (19 s, sem voz, fundo musical simples)",
+ "formato": "reel de texto animado (41 s, sem voz, fundo musical simples)",
  "serie": "Mito ou verdade",
  "papel": "teste de classificação (3 de 3)",
  "midia": [
-  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-antibiotico-gripe/reel.mp4"
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-antibiotico-gripe/reel-v2.mp4"
  ],
  "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-antibiotico-gripe/capa.jpg",
  "fontes": [
@@ -12,5 +12,9 @@
   "Ministério da Saúde. Gripe (influenza): causada pelo vírus influenza; vacina é a forma mais eficaz de prevenção; antiviral para casos graves e de risco - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gripe-influenza"
  ],
  "conferido_em": "2026-10-03",
- "legenda": "Antibiótico cura gripe? Mito. A gripe é causada por vírus, e antibiótico só age contra bactéria.\n\nO Ministério da Saúde é direto: antibióticos não devem ser usados para tratar infecções virais, como gripes ou resfriados. E o uso exagerado acelera a resistência das bactérias, o que pode fazer o remédio falhar quando ele for realmente necessário.\n\nO que protege contra a gripe é a vacina: segundo o Ministério, é a forma mais eficaz de prevenção. Para casos graves e pessoas com fatores de risco, existe antiviral, indicado pelo médico.\n\nNunca tome antibiótico sem receita.\n\nMande para quem pede antibiótico a cada resfriado.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde (Resistência aos antimicrobianos; Gripe).\n\n#antibiotico #gripe #saude #mitoouverdade #vacina"
+ "legenda": "Antibiótico cura gripe? Mito. A gripe é causada por vírus, e antibiótico só age contra bactéria.\n\nPor isso ele não deve ser usado para tratar infecções virais, como gripes e resfriados. E o uso exagerado acelera a resistência das bactérias, o que pode fazer o remédio falhar quando ele for realmente necessário.\n\nO que protege contra a gripe é a vacina, a forma mais eficaz de prevenção. Para casos graves e pessoas com fatores de risco, existe antiviral, indicado pelo médico.\n\nNunca tome antibiótico sem receita.\n\nMande para quem pede antibiótico a cada resfriado.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde.\n\n#antibiotico #gripe #saude #mitoouverdade #vacina",
+ "versoes": [
+  "reel.mp4: 19 s, publicado em 03/10 00h22; ele achou o tempo de leitura curto",
+  "reel-v2.mp4: 41 s, no máximo 13 caracteres por segundo, uma frase por cena, fonte citada uma vez"
+ ]
 }

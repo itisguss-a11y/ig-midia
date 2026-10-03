@@ -10,7 +10,7 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "midia" / "2026-10-03-antibiotico-gripe"; OUT.mkdir(parents=True, exist_ok=True)
 F = (HERE / "fonts").as_uri()
-FPS, DUR = 30, 19.0
+FPS, DUR = 30, 41.0   # tempo de leitura: no máximo 13 caracteres por segundo, contados depois que o texto entra
 GREEN = "#17402C"
 
 LINE = ("M -40 1470 C 200 1448, 380 1500, 560 1470 C 700 1446, 800 1430, 860 1380 C 912 1336, 882 1268, 822 1284 "
@@ -43,11 +43,13 @@ path{{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.2s .5s cubic-bezie
 </style></head><body>
 <div class='who'>Mito ou verdade</div>
 <svg width='1080' height='1920' viewBox='0 0 1080 1920' fill='none'><path pathLength='1' d='{LINE}' stroke='#D0AB62' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/></svg>
-{scene(0, 3.4, ln("Antibiótico", .1, "h") + ln("cura", .28, "h") + ln("gripe?", .46, "h i"))}
-{scene(3.4, 6.8, ln("Resposta curta:", 3.5, "s") + ln("Mito.", 3.8, "x") + ln("Gripe é vírus.", 4.6, "m"))}
-{scene(6.8, 10.8, ln("Antibiótico só age contra bactéria.", 6.9, "m") + ln("Em gripe e resfriado, ele não faz efeito.", 7.9, "s"))}
-{scene(10.8, 14.8, ln("Usar sem precisar deixa as bactérias mais resistentes.", 10.9, "m") + ln("E o remédio pode falhar quando você precisar de verdade.", 12.0, "s"))}
-{scene(14.8, 99, ln("Antibiótico, só com receita.", 14.9, "m") + ln("Envie para quem pede antibiótico a cada resfriado.", 15.9, "s") + ln("Fonte: Ministério da Saúde.", 16.5, "fonte"))}
+{scene(0, 3.6, ln("Antibiótico", .1, "h") + ln("cura", .28, "h") + ln("gripe?", .46, "h i"))}
+{scene(3.6, 8.9, ln("Resposta curta:", 3.7, "s") + ln("Mito.", 4.0, "x") + ln("Gripe é vírus.", 4.8, "m"))}
+{scene(8.9, 13.4, ln("Antibiótico só age contra bactéria.", 9.0, "m"))}
+{scene(13.4, 18.4, ln("Em gripe e resfriado, ele não faz efeito.", 13.5, "m"))}
+{scene(18.4, 24.4, ln("Usar sem precisar deixa as bactérias mais resistentes.", 18.5, "m"))}
+{scene(24.4, 30.6, ln("E o remédio pode falhar quando você precisar de verdade.", 24.5, "m"))}
+{scene(30.6, 99, ln("Antibiótico, só com receita.", 30.7, "m") + ln("Envie para quem pede antibiótico a cada resfriado.", 31.9, "s") + ln("Fonte: Ministério da Saúde.", 32.7, "fonte"))}
 </body></html>"""
 
 # ---- trilha: quatro acordes longos, timbre suave, volume baixo
@@ -66,9 +68,11 @@ N = {"C3": 130.81, "E3": 164.81, "F3": 174.61, "G3": 196.0, "A3": 220.0, "B3": 2
 CH = [("C2", "C3", "G3", "E4", "B3"), ("A2", "A3", "E3", "C4", "G4"), ("F2", "F3", "A3", "C4", "E4"), ("G2", "G3", "D4", "B3", "E4")]
 seg, ov = 5.6, 1.3
 total = np.zeros(int(SR * (DUR + 1)))
-for i, ch in enumerate(CH):
+for i, ch in enumerate(CH * 3):
     p = pad([N[n] for n in ch], seg)
-    s = int(SR * i * (seg - ov)); e = min(len(total), s + len(p)); total[s:e] += p[:e - s]
+    s = int(SR * i * (seg - ov))
+    if s >= len(total): break
+    e = min(len(total), s + len(p)); total[s:e] += p[:e - s]
 total = total[:int(SR * DUR)]
 fade = int(SR * 1.5); total[-fade:] *= np.linspace(1, 0, fade); total[:int(SR * .6)] *= np.linspace(0, 1, int(SR * .6))
 total = total / np.max(np.abs(total)) * 0.22
@@ -87,13 +91,13 @@ with sync_playwright() as pw:
         pg.screenshot(path=str(frames / f"{n:04d}.jpg"), type="jpeg", quality=92)
     b.close()
 f.unlink()
-out = OUT / "reel.mp4"
+out = OUT / "reel-v2.mp4"
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", str(frames / "%04d.jpg"), "-i", str(wav), "-shortest",
                 "-af", "lowpass=f=2400,aecho=0.8:0.7:90|160:0.25|0.18", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18",
                 "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", str(out)], check=True)
 Image.open(frames / "0075.jpg").save(OUT / "capa.jpg", quality=93)
-sh = Image.new("RGB", (540 * 5 + 20 * 6, 960 + 40), (232, 230, 226))
-for i, n in enumerate((75, 185, 300, 420, 545)):
+sh = Image.new("RGB", (540 * 7 + 20 * 8, 960 + 40), (232, 230, 226))
+for i, n in enumerate((75, 240, 370, 520, 700, 880, 1180)):
     sh.paste(Image.open(frames / f"{n:04d}.jpg").resize((540, 960), Image.LANCZOS), (20 + i * 560, 20))
 sh.save(HERE / "_folha-reel.jpg", quality=88)
 shutil.rmtree(frames); wav.unlink()
