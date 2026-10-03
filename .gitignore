@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+perfil/out/
+cut-*.png
+_*.html

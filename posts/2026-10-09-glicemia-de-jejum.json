@@ -1,0 +1,98 @@
+{
+ "id": "2026-10-09-glicemia-de-jejum",
+ "title": "Glicemia de jejum: 99 é normal. E 100?",
+ "series": "exame",
+ "date": "2026-10-09T18:00:00",
+ "sources": [
+  {
+   "name": "Rodacki M, Cobas RA, Zajdenverg L, et al. Diagnóstico de diabetes mellitus. Diretriz Oficial da Sociedade Brasileira de Diabetes (2024). DOI 10.29327/5412848.2024-1",
+   "url": "https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/"
+  }
+ ],
+ "caption": "Glicemia de jejum: 99 é normal. E 100? Pelos critérios da Sociedade Brasileira de Diabetes, a partir de 100 mg/dL o resultado já entra na faixa de pré-diabetes.\n\nAs três faixas da glicemia de jejum:\n• Normal: abaixo de 100\n• Pré-diabetes: de 100 a 125\n• Diabetes: 126 ou mais\n\nUm exame alterado sozinho não fecha diagnóstico: ele precisa ser repetido para confirmar. E jejum, para este exame, é ficar de 8 a 12 horas sem nada que tenha caloria (água pode).\n\nQuem deve fazer: todo mundo a partir dos 35 anos e adultos mais jovens com excesso de peso e mais um fator de risco, como pressão alta, sedentarismo ou diabetes na família.\n\nDeu pré-diabetes? É um aviso, não uma sentença. Cuidar da alimentação, do peso e da atividade física diminui a chance de virar diabetes.\n\nMande para quem pegou o exame e ficou na dúvida.\n\nConteúdo educativo, não substitui consulta.\nFonte: Diretriz Oficial da Sociedade Brasileira de Diabetes (2024).\n\n#glicemia #diabetes #prediabetes #exames #saude",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Glicemia de jejum: 99 é normal. E 100?",
+   "deck": "O que o número do seu exame quer dizer.",
+   "hero": "100"
+  },
+  {
+   "type": "scale",
+   "heading": "As três faixas",
+   "zones": [
+    {
+     "tone": "green",
+     "label": "Normal",
+     "value": "Abaixo de 100"
+    },
+    {
+     "tone": "amber",
+     "label": "Pré-diabetes",
+     "value": "De 100 a 125"
+    },
+    {
+     "tone": "red",
+     "label": "Diabetes",
+     "value": "126 ou mais"
+    }
+   ],
+   "note": "Glicemia de jejum, em mg/dL. Critérios da Sociedade Brasileira de Diabetes."
+  },
+  {
+   "type": "text",
+   "heading": "Um exame alterado não fecha diagnóstico",
+   "body": "Se só um exame veio alterado, ele precisa ser ==repetido para confirmar.==\n\nO diagnóstico também fecha quando a glicemia de jejum (126 ou mais) e a hemoglobina glicada (6,5% ou mais) vêm alteradas ao mesmo tempo."
+  },
+  {
+   "type": "fact",
+   "big": "Jejum de ==8 a 12 horas.==",
+   "text": "Para este exame, é o tempo sem nada que tenha caloria. Água pode."
+  },
+  {
+   "type": "scale",
+   "heading": "Hemoglobina glicada",
+   "intro": "Mostra a média do açúcar no sangue nos últimos 3 meses, aproximadamente.",
+   "zones": [
+    {
+     "tone": "green",
+     "label": "Normal",
+     "value": "Abaixo de 5,7%"
+    },
+    {
+     "tone": "amber",
+     "label": "Pré-diabetes",
+     "value": "De 5,7% a 6,4%"
+    },
+    {
+     "tone": "red",
+     "label": "Diabetes",
+     "value": "6,5% ou mais"
+    }
+   ],
+   "note": "No laudo, ela aparece como HbA1c."
+  },
+  {
+   "type": "list",
+   "heading": "Quem deve fazer o exame",
+   "items": [
+    "Todo mundo a partir dos ==35 anos==",
+    "Adultos mais jovens com excesso de peso e mais um fator de risco, como pressão alta, sedentarismo ou diabetes na família"
+   ],
+   "outro": "Resultado normal e poucos fatores de risco: repetir a cada 3 anos."
+  },
+  {
+   "type": "text",
+   "heading": "Deu pré-diabetes?",
+   "body": "É um ==aviso,== não uma sentença. Cuidar da alimentação, do peso e da atividade física diminui a chance de virar diabetes.\n\nA recomendação é repetir os exames todo ano e acompanhar com um médico."
+  },
+  {
+   "type": "end",
+   "cta": "Mande para quem pegou o exame e ==ficou na dúvida.==",
+   "sub": "O número é o começo da conversa. Quem interpreta o seu caso é o médico.",
+   "sources": [
+    "Rodacki M, Cobas RA, Zajdenverg L, et al. Diagnóstico de diabetes mellitus. Diretriz Oficial da Sociedade Brasileira de Diabetes (2024). DOI 10.29327/5412848.2024-1"
+   ]
+  }
+ ]
+}

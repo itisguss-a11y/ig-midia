@@ -1,0 +1,103 @@
+{
+ "id": "2026-10-07-avc-sinais",
+ "title": "AVC: aprenda os sinais antes de precisar",
+ "series": "alerta",
+ "date": "2026-10-07T18:00:00",
+ "sources": [
+  {
+   "name": "Ministério da Saúde. Acidente vascular cerebral (AVC)",
+   "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc"
+  },
+  {
+   "name": "Sociedade Brasileira de AVC. Acidente vascular cerebral",
+   "url": "https://avc.org.br/pacientes/acidente-vascular-cerebral/"
+  },
+  {
+   "name": "Rede Brasil AVC. Manual do AVC, 2021",
+   "url": "https://avc.org.br/wp-content/uploads/2021/10/Manual-AVC2021-Ebook.pdf"
+  }
+ ],
+ "caption": "AVC: saber reconhecer os sinais pode mudar o resultado. Eles aparecem de repente: fraqueza ou formigamento em um lado do corpo, fala enrolada, alteração na visão, tontura ou desequilíbrio, dor de cabeça súbita e muito forte, confusão mental.\n\nTeste rápido, SAMU:\nS: peça um sorriso. A boca fica torta?\nA: peça um abraço. Um dos braços cai?\nM: peça para repetir uma frase ou cantar uma música. A fala sai enrolada?\nU: urgente. Ligue 192.\n\nAnote a hora exata em que os sintomas começaram: o remédio que desfaz o coágulo só pode ser usado até 4 horas e meia depois do início. Não espere melhorar.\n\nSalve este post e mande para a sua família.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de AVC; Rede Brasil AVC.\n\n#avc #samu192 #saude #sinaisdealerta #primeirossocorros",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "AVC: aprenda os sinais antes de precisar.",
+   "deck": "Quem reconhece rápido muda o resultado.",
+   "hero": "192"
+  },
+  {
+   "type": "list",
+   "heading": "Sinais que aparecem de repente",
+   "items": [
+    "Fraqueza ou formigamento em ==um lado do corpo== (rosto, braço ou perna)",
+    "Fala enrolada ou dificuldade para entender",
+    "Alteração na visão, em um ou nos dois olhos",
+    "Tontura, desequilíbrio ou dificuldade para andar",
+    "Dor de cabeça súbita e muito forte, sem causa aparente",
+    "Confusão mental"
+   ]
+  },
+  {
+   "type": "steps",
+   "heading": "Teste rápido: SAMU",
+   "steps": [
+    {
+     "key": "S",
+     "title": "Sorria",
+     "text": "A boca fica torta?"
+    },
+    {
+     "key": "A",
+     "title": "Abrace",
+     "text": "Um dos braços cai?"
+    },
+    {
+     "key": "M",
+     "title": "Música",
+     "text": "Peça para repetir uma frase. A fala sai enrolada?"
+    },
+    {
+     "key": "U",
+     "title": "Urgente",
+     "text": "Um sinal já basta: ligue 192."
+    }
+   ]
+  },
+  {
+   "type": "fact",
+   "big": "Ligue ==192.==",
+   "text": "O SAMU é gratuito e funciona 24 horas. Se não conseguir contato, leve a pessoa imediatamente a um hospital."
+  },
+  {
+   "type": "text",
+   "heading": "Anote a hora",
+   "body": "Marque o ==horário exato== em que os sintomas começaram e conte à equipe.\n\nO remédio que desfaz o coágulo só pode ser usado até 4 horas e meia depois do início. Por isso, não espere melhorar."
+  },
+  {
+   "type": "text",
+   "heading": "Por que tanta pressa",
+   "body": "A maioria dos AVCs (85%) acontece quando uma artéria do cérebro entope.\n\nQuanto mais rápido o diagnóstico e o tratamento, ==maiores as chances de recuperação completa.=="
+  },
+  {
+   "type": "list",
+   "heading": "Dá para diminuir o risco",
+   "items": [
+    "Manter a pressão sob controle",
+    "Manter a glicose sob controle",
+    "Não fumar",
+    "Praticar atividade física regularmente",
+    "Manter alimentação saudável e o peso adequado"
+   ]
+  },
+  {
+   "type": "end",
+   "cta": "Salve e mande para a ==sua família.==",
+   "sub": "Quase sempre, quem percebe o AVC é quem está por perto.",
+   "sources": [
+    "Ministério da Saúde. Acidente vascular cerebral (AVC). gov.br/saude",
+    "Sociedade Brasileira de AVC. Acidente vascular cerebral. avc.org.br",
+    "Rede Brasil AVC. Manual do AVC, 2021."
+   ]
+  }
+ ]
+}

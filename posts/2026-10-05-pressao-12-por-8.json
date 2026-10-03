@@ -1,0 +1,90 @@
+{
+ "id": "2026-10-05-pressao-12-por-8",
+ "title": "12 por 8 ainda é pressão normal?",
+ "series": "exame",
+ "date": "2026-10-05T18:00:00",
+ "sources": [
+  {
+   "name": "Diretriz Brasileira de Hipertensão Arterial 2025. Arq Bras Cardiol. 2025;122(9):e20250624",
+   "url": "https://www.scielo.br/j/abc/a/BXT7Vk4B9VKQnJFsJhgJ4Hn/?lang=pt"
+  },
+  {
+   "name": "Ministério da Saúde. Hipertensão (pressão alta)",
+   "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hipertensao"
+  }
+ ],
+ "caption": "12 por 8 ainda é pressão normal? Pela Diretriz Brasileira de Hipertensão Arterial de 2025, não é mais: a partir de 12 por 8 (120/80 mmHg) a classificação passou a ser pré-hipertensão.\n\nO que mudou, em resumo:\n• Normal: abaixo de 12 por 8\n• Pré-hipertensão: de 12 por 8 até quase 14 por 9\n• Hipertensão: 14 por 9 ou mais, em pelo menos duas ocasiões\n\nPré-hipertensão não é doença. É um aviso para cuidar dos hábitos agora: peso, sal, atividade física, sono, álcool e cigarro. Remédio fica para situações específicas, decididas em consulta.\n\nE como pressão alta quase nunca dá sintoma, o Ministério da Saúde recomenda medir pelo menos uma vez por ano a partir dos 20 anos.\n\nMande para quem ainda acha que 12 por 8 é pressão perfeita.\n\nConteúdo educativo, não substitui consulta.\nFontes: Diretriz Brasileira de Hipertensão Arterial 2025 (SBC, SBH e SBN); Ministério da Saúde.\n\n#pressaoalta #hipertensao #saude #coracao #prevencao",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "12 por 8 ainda é pressão normal?",
+   "deck": "A diretriz brasileira mudou em 2025.",
+   "hero": "12×8"
+  },
+  {
+   "type": "fact",
+   "big": "Não é mais.",
+   "text": "Pela Diretriz Brasileira de Hipertensão Arterial de 2025, 12 por 8 passou a ser ==pré-hipertensão.=="
+  },
+  {
+   "type": "scale",
+   "heading": "A nova classificação",
+   "zones": [
+    {
+     "tone": "green",
+     "label": "Normal",
+     "value": "Abaixo de 12 por 8",
+     "sub": "menos de 120/80 mmHg"
+    },
+    {
+     "tone": "amber",
+     "label": "Pré-hipertensão",
+     "value": "De 12 por 8 até quase 14 por 9",
+     "sub": "120 a 139 / 80 a 89 mmHg"
+    },
+    {
+     "tone": "red",
+     "label": "Hipertensão",
+     "value": "14 por 9 ou mais",
+     "sub": "140/90 mmHg ou mais"
+    }
+   ],
+   "note": "Se os dois números caírem em faixas diferentes, vale a mais alta."
+  },
+  {
+   "type": "text",
+   "heading": "Pré-hipertensão não é doença",
+   "body": "É um ==aviso para agir cedo.== A diretriz recomenda mudança de hábitos para todo mundo com 12 por 8 ou mais.\n\nRemédio fica para situações específicas, como risco alto para o coração, e quem decide é o médico."
+  },
+  {
+   "type": "list",
+   "heading": "O que fazer se a sua está nessa faixa",
+   "items": [
+    "Manter o peso adequado",
+    "Diminuir o sal da comida",
+    "Fazer atividade física regular",
+    "Dormir bem e cuidar do estresse",
+    "Moderar o álcool e não fumar"
+   ]
+  },
+  {
+   "type": "text",
+   "heading": "Uma medida só não fecha diagnóstico",
+   "body": "Hipertensão é pressão de 14 por 9 ou mais, medida do jeito certo, em ==pelo menos duas ocasiões.==\n\nDeu alta uma vez? Meça de novo em outro dia. O médico pode pedir medidas em casa ou o exame de 24 horas (MAPA) para confirmar."
+  },
+  {
+   "type": "text",
+   "heading": "Pressão alta quase nunca avisa",
+   "body": "Os sintomas costumam aparecer só quando ela sobe muito: dor de cabeça, tontura, dor no peito, visão embaçada.\n\nPor isso o Ministério da Saúde recomenda ==medir pelo menos uma vez por ano== a partir dos 20 anos. Com pressão alta na família, duas vezes."
+  },
+  {
+   "type": "end",
+   "cta": "Mande para quem ainda acha que 12 por 8 é ==pressão perfeita.==",
+   "sub": "Nas capitais brasileiras, quase 3 em cada 10 adultos têm diagnóstico de hipertensão (Vigitel 2023).",
+   "sources": [
+    "Diretriz Brasileira de Hipertensão Arterial 2025. Arq Bras Cardiol. 2025;122(9):e20250624 (SBC, SBH e SBN).",
+    "Ministério da Saúde. Hipertensão (pressão alta). gov.br/saude"
+   ]
+  }
+ ]
+}

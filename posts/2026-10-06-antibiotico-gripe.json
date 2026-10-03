@@ -1,0 +1,94 @@
+{
+ "id": "2026-10-06-antibiotico-gripe",
+ "title": "Antibiótico cura gripe?",
+ "series": "mito",
+ "date": "2026-10-06T18:00:00",
+ "sources": [
+  {
+   "name": "Ministério da Saúde. Resistência aos antimicrobianos",
+   "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/r/ram"
+  },
+  {
+   "name": "Ministério da Saúde. Guia de manejo e tratamento de influenza, 2023",
+   "url": "https://bvsms.saude.gov.br/bvs/publicacoes/guia_manejo_tratamento_influenza_2023.pdf"
+  },
+  {
+   "name": "Ministério da Saúde. Gripe (influenza)",
+   "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gripe-influenza"
+  },
+  {
+   "name": "OMS. Antimicrobial resistance (ficha informativa)",
+   "url": "https://www.who.int/news-room/fact-sheets/detail/antimicrobial-resistance"
+  },
+  {
+   "name": "OPAS. Resistência antimicrobiana",
+   "url": "https://www.paho.org/pt/topicos/resistencia-antimicrobiana"
+  }
+ ],
+ "caption": "Antibiótico cura gripe? Mito. Gripe e resfriado são causados por vírus, e antibiótico só age contra bactéria.\n\nO Ministério da Saúde é direto: antibióticos não devem ser usados para tratar infecções virais, como gripes ou resfriados. O médico só receita quando há suspeita de infecção por bactéria junto, como em algumas pneumonias.\n\nTomar sem precisar tem custo: efeito colateral sem benefício e bactérias cada vez mais resistentes. Em 2021, a resistência bacteriana esteve associada a mais de 4,7 milhões de mortes no mundo (OMS).\n\nO que ajuda na gripe: descanso, líquido, remédio para febre e dor e, para casos graves ou pessoas de risco, antiviral com receita. A vacina anual é a forma mais eficaz de prevenir.\n\nProcure atendimento se tiver falta de ar, febre por mais de 3 dias, confusão, pouca urina ou piora de uma doença que você já tem.\n\nMande para quem pede antibiótico a cada resfriado.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; OMS; OPAS.\n\n#antibiotico #gripe #saude #mitoouverdade #resistenciabacteriana",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Antibiótico cura gripe?",
+   "deck": "A resposta curta e o porquê.",
+   "hero": "?"
+  },
+  {
+   "type": "fact",
+   "big": "Mito.",
+   "text": "Gripe e resfriado são causados por ==vírus.== Antibiótico só age contra ==bactéria.=="
+  },
+  {
+   "type": "text",
+   "heading": "O que diz o Ministério da Saúde",
+   "quote": "“Antibióticos não devem ser usados para tratar infecções virais, como gripes ou resfriados.”",
+   "body": "O guia de influenza do Ministério diz que não há evidência de benefício em dar antibiótico a quem está com gripe, a não ser quando há forte suspeita de infecção por bactéria junto."
+  },
+  {
+   "type": "text",
+   "heading": "Por que às vezes o médico receita?",
+   "body": "Porque a gripe pode vir acompanhada de uma ==infecção por bactéria,== como algumas pneumonias. Aí o antibiótico trata a bactéria, não a gripe.\n\nQuem decide isso é o médico, depois de examinar."
+  },
+  {
+   "type": "list",
+   "heading": "Tomar sem precisar tem custo",
+   "items": [
+    "Você fica com os efeitos colaterais e nenhum benefício.",
+    "As bactérias vão ficando ==resistentes== e o remédio pode falhar quando você precisar de verdade.",
+    "Em 2021, a resistência bacteriana esteve associada a mais de 4,7 milhões de mortes no mundo (OMS)."
+   ]
+  },
+  {
+   "type": "list",
+   "heading": "O que ajuda na gripe",
+   "items": [
+    "Descanso e bastante líquido",
+    "Remédio para febre e dor, se precisar",
+    "Antiviral (oseltamivir) para casos graves e pessoas de risco: só com receita, de preferência nas primeiras 48 horas",
+    "Vacina todo ano: é a forma mais eficaz de prevenir"
+   ]
+  },
+  {
+   "type": "list",
+   "heading": "Procure atendimento se aparecer",
+   "items": [
+    "Falta de ar ou respiração acelerada",
+    "Febre por mais de 3 dias, ou que volta depois de 2 dias sem febre",
+    "Confusão ou sonolência fora do normal",
+    "Pouca urina ou sinais de desidratação",
+    "Piora de uma doença que você já tem"
+   ]
+  },
+  {
+   "type": "end",
+   "cta": "Antibiótico só com receita, do jeito que foi ==orientado.==",
+   "sub": "Sobra de tratamento antigo ou remédio de outra pessoa é automedicação.",
+   "sources": [
+    "Ministério da Saúde. Resistência aos antimicrobianos. gov.br/saude",
+    "Ministério da Saúde. Guia de manejo e tratamento de influenza, 2023.",
+    "Organização Mundial da Saúde. Antimicrobial resistance (ficha informativa).",
+    "OPAS. Resistência antimicrobiana. paho.org"
+   ]
+  }
+ ]
+}

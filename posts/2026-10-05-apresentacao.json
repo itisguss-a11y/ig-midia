@@ -1,0 +1,45 @@
+{
+ "id": "2026-10-05-apresentacao",
+ "title": "Apresentação da página",
+ "series": "sobre",
+ "date": "2026-10-05T11:00:00",
+ "sources": [],
+ "caption": "Saúde explicada sem complicar: é para isso que esta página existe.\n\nEu sou o Gustavo Calado, acadêmico de medicina na Universidade Federal de Roraima (UFRR), em Boa Vista. Ainda não sou médico. Por isso, aqui você encontra informação de saúde, e não consulta.\n\nO que vem por aí:\n• Entenda seu exame: o que os números querem dizer\n• Mito ou verdade: o que a ciência diz\n• Sinais de alerta: quando procurar atendimento sem esperar\n• Isso é normal? Dúvidas comuns do dia a dia\n\nToda informação vem com a fonte no último slide: Ministério da Saúde e sociedades médicas.\n\nDúvida sobre o seu caso é assunto para consulta com médico. Conteúdo educativo, não substitui consulta.\n\n#saude #educacaoemsaude #medicina #roraima #boavistarr",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Saúde explicada sem complicar.",
+   "deck": "Quem escreve e o que você vai encontrar aqui.",
+   "hero": "oi."
+  },
+  {
+   "type": "text",
+   "heading": "Quem escreve",
+   "body": "Sou o Gustavo Calado, ==acadêmico de medicina== na Universidade Federal de Roraima, em Boa Vista.\n\nAinda não sou médico. Por isso, aqui você encontra informação, e não consulta."
+  },
+  {
+   "type": "list",
+   "heading": "O que você encontra",
+   "items": [
+    "**Entenda seu exame:** o que os números querem dizer",
+    "**Mito ou verdade:** o que a ciência diz",
+    "**Sinais de alerta:** quando procurar atendimento sem esperar",
+    "**Isso é normal?** Dúvidas comuns do dia a dia"
+   ]
+  },
+  {
+   "type": "list",
+   "heading": "Como eu trabalho",
+   "items": [
+    "Toda informação tem ==fonte no último slide==: Ministério da Saúde e sociedades médicas.",
+    "Sem promessa milagrosa e sem alarmismo.",
+    "Quando a ciência ainda não tem resposta, eu digo que não tem."
+   ]
+  },
+  {
+   "type": "end",
+   "cta": "Siga para entender melhor a ==sua saúde.==",
+   "sub": "Dúvida sobre o seu caso é assunto para consulta com médico."
+  }
+ ]
+}

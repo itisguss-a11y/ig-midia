@@ -1,0 +1,95 @@
+{
+ "id": "2026-10-08-dengue-sinais-de-alarme",
+ "title": "Dengue: o perigo começa quando a febre baixa",
+ "series": "alerta",
+ "date": "2026-10-08T11:00:00",
+ "sources": [
+  {
+   "name": "Ministério da Saúde. Dengue: diagnóstico e manejo clínico: adulto e criança. 6ª ed., 2024",
+   "url": "https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/dengue/dengue-diagnostico-e-manejo-clinico-adulto-e-crianca"
+  },
+  {
+   "name": "Ministério da Saúde. Dengue",
+   "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue"
+  }
+ ],
+ "caption": "Na dengue, o perigo começa quando a febre baixa. Entre o 3º e o 7º dia de doença começa a fase crítica, e é nela que os sinais de alarme aparecem.\n\nSinais de alarme da dengue (Ministério da Saúde):\n• Dor forte na barriga\n• Vômitos frequentes\n• Tontura ou sensação de desmaio\n• Sangramento no nariz, na gengiva ou nas fezes\n• Dificuldade de respirar\n• Muito cansaço, sonolência ou irritabilidade\n\nApareceu um deles? Procure o serviço de urgência imediatamente.\n\nPara febre e dor: paracetamol ou dipirona, na dose orientada. Não tome AAS, anti-inflamatórios (ibuprofeno, diclofenaco, nimesulida) nem corticoides.\n\nE beba bastante líquido: para adultos, a orientação é de 60 mL por quilo de peso por dia, um terço em soro de reidratação oral.\n\nSalve para a época de dengue e mande para a família.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde. Dengue: diagnóstico e manejo clínico, 6ª edição, 2024.\n\n#dengue #sinaisdealarme #saude #prevencao #sus",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Na dengue, o perigo começa quando a febre baixa.",
+   "deck": "Entre o 3º e o 7º dia, os casos graves dão sinal.",
+   "hero": "3º ao 7º dia"
+  },
+  {
+   "type": "list",
+   "heading": "Os sintomas comuns",
+   "items": [
+    "Febre alta",
+    "Dor de cabeça e atrás dos olhos",
+    "Dor nas articulações e moleza",
+    "Enjoo",
+    "Manchas vermelhas no corpo"
+   ]
+  },
+  {
+   "type": "text",
+   "heading": "A fase crítica",
+   "body": "Quando a febre cai, ==entre o 3º e o 7º dia== de doença, começa a fase em que a dengue pode se agravar.\n\nNem todo mundo passa por ela. Mas é nela que os sinais de alarme aparecem, e quem tem um deles precisa de atendimento rápido."
+  },
+  {
+   "type": "list",
+   "heading": "Sinais de alarme",
+   "items": [
+    "Dor forte na barriga",
+    "Vômitos frequentes",
+    "Tontura ou sensação de desmaio",
+    "Sangramento no nariz, na gengiva ou nas fezes",
+    "Dificuldade de respirar",
+    "Muito cansaço, sonolência ou irritabilidade"
+   ]
+  },
+  {
+   "type": "fact",
+   "big": "Apareceu um? ==Vá para a urgência.==",
+   "text": "Não espere a consulta marcada. A orientação do Ministério da Saúde é procurar o serviço de urgência imediatamente."
+  },
+  {
+   "type": "twocol",
+   "heading": "Remédio para febre e dor",
+   "blocks": [
+    {
+     "tone": "green",
+     "title": "Pode",
+     "items": [
+      "Paracetamol ou dipirona, na dose orientada"
+     ]
+    },
+    {
+     "tone": "red",
+     "title": "Não tome",
+     "items": [
+      "AAS (aspirina)",
+      "Anti-inflamatórios, como ibuprofeno, diclofenaco e nimesulida",
+      "Corticoides"
+     ]
+    }
+   ],
+   "note": "AAS e anti-inflamatórios aumentam o risco de sangramento."
+  },
+  {
+   "type": "text",
+   "heading": "Líquido é o tratamento",
+   "body": "Para adultos, o Ministério orienta ==60 mL por quilo de peso por dia,== um terço disso em soro de reidratação oral.\n\nNa prática: quem pesa 70 kg precisa de cerca de 4,2 litros por dia, sendo 1,4 litro de soro. Quem tem doença do coração ou dos rins deve seguir o volume passado pelo médico."
+  },
+  {
+   "type": "end",
+   "cta": "Salve para a época de dengue e ==mande para a família.==",
+   "sub": "Suspeita de dengue? Procure a unidade de saúde e não se automedique.",
+   "sources": [
+    "Ministério da Saúde. Dengue: diagnóstico e manejo clínico: adulto e criança. 6ª ed., 2024.",
+    "Ministério da Saúde. Dengue. gov.br/saude"
+   ]
+  }
+ ]
+}
