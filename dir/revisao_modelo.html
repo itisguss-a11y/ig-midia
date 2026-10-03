@@ -152,8 +152,8 @@ footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid v
   const $ = (s, r = document) => r.querySelector(s);
   const caixa = id => $('[data-id="' + id + '"]');
   const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const st = {}, sujo = {}, ocupado = {}, relogio = {}, tentou = {};
-  let db = null, semDb = false, soLeitura = false;
+  const st = {}, sujo = {}, ocupado = {}, relogio = {}, tentou = {}, tocado = {};
+  let db = null, semDb = false, soLeitura = false, pronto = false;   // pronto: já chegou o que estava gravado (ou não há onde gravar)
 
   const estado = id => st[id] || (st[id] = id === 'capas' ? {escolha: null} : id === 'geral' ? {nota: ''} : {voto: null, nota: '', slides: []});
   function aplica(id, b) {                                 // o que vem gravado é dado, não instrução: confere o tipo de cada campo
@@ -223,10 +223,12 @@ footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid v
     }
     ocupado[id] = false;
   }
-  function muda(id, agora) {
+  function muda(id, campo, agora) {
     pinta(id); guardaLocal();
     if (soLeitura) return;
-    sujo[id] = true; if (db) aviso(id, 'Gravando…');
+    sujo[id] = true;
+    if (!pronto) { (tocado[id] || (tocado[id] = new Set())).add(campo); return; }   // o gravado ainda está chegando: junta os dois antes de gravar
+    if (db) aviso(id, 'Gravando…');
     clearTimeout(relogio[id]); relogio[id] = setTimeout(() => grava(id), agora ? 0 : 900);
   }
 
@@ -235,17 +237,17 @@ footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid v
     if (b.dataset.ir) { const alvo = document.getElementById(b.dataset.ir); if (alvo) alvo.scrollIntoView({behavior: reduz ? 'auto' : 'smooth', block: 'start'}); return; }
     const box = b.closest('[data-id]'); if (!box || soLeitura) return;
     const id = box.dataset.id, s = estado(id);
-    if (b.dataset.v) { s.voto = s.voto === b.dataset.v ? null : b.dataset.v; muda(id, true); }
-    else if (b.dataset.capa) { s.escolha = s.escolha === b.dataset.capa ? null : b.dataset.capa; muda(id, true); }
+    if (b.dataset.v) { s.voto = s.voto === b.dataset.v ? null : b.dataset.v; muda(id, 'voto', true); }
+    else if (b.dataset.capa) { s.escolha = s.escolha === b.dataset.capa ? null : b.dataset.capa; muda(id, 'escolha', true); }
     else if ('marca' in b.dataset) {
       const n = slideAtual(box), i = s.slides.indexOf(n);
       if (i < 0) { s.slides.push(n); s.slides.sort((x, y) => x - y); } else s.slides.splice(i, 1);
-      muda(id, true);
+      muda(id, 'slides', true);
     }
   });
   document.addEventListener('input', e => {
     const ta = e.target.closest('[data-nota]'); if (!ta || soLeitura) return;
-    const id = ta.closest('[data-id]').dataset.id; estado(id).nota = ta.value; muda(id, false);
+    const id = ta.closest('[data-id]').dataset.id; estado(id).nota = ta.value; muda(id, 'nota', false);
   });
 
   document.querySelectorAll('.midia.car').forEach(car => {
@@ -286,29 +288,39 @@ footer{font-size:.86rem;color:var(--suave);max-width:36em;border-top:1px solid v
 
   leLocal(); CONHECIDOS.forEach(pinta); progresso();
 
+  function semGravacao(txt) {                               // segue só neste aparelho: o botão Copiar leva o retorno para a conversa
+    db = null; semDb = true; pronto = true; $('#rodape').textContent = txt;
+    Object.keys(sujo).filter(id => sujo[id]).forEach(id => aviso(id, 'Não gravou aqui. Use Copiar meu retorno, no fim da página.', 'erro'));
+  }
   (async () => {
     let user = null;
     try { if (window.claude && window.claude.use) [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); } catch (e) { db = null; }
-    if (!db) { semDb = true; $('#rodape').textContent = 'Aqui não deu para gravar o retorno. Use Copiar meu retorno e cole na conversa.'; return; }
+    if (!db) { semGravacao('Aqui não deu para gravar o retorno. Use Copiar meu retorno e cole na conversa.'); return; }
     if (user && (await user.can('data.write')) === false) { soLeitura = true; trava(); }
-    let primeira = true, religou = false;
+    let religou = false;
     const assina = () => db.collection('retorno').onSnapshot(snap => {
       const vistos = new Set();
       snap.docs.forEach(d => {
-        vistos.add(d.id);
-        if (!CONHECIDOS.has(d.id) || sujo[d.id] || ocupado[d.id]) return;
-        aplica(d.id, d.data() || {}); pinta(d.id);
+        const id = d.id; vistos.add(id);
+        if (!CONHECIDOS.has(id)) return;
+        const b = d.data() || {};
+        if (!pronto && tocado[id]) {                        // ele mexeu antes de o gravado chegar: fica o que ele mexeu, o resto vem do gravado
+          const meu = Object.assign({}, estado(id)); aplica(id, b);
+          tocado[id].forEach(c => { estado(id)[c] = meu[c]; }); pinta(id); return;
+        }
+        if (sujo[id] || ocupado[id]) return;
+        aplica(id, b); pinta(id);
       });
       guardaLocal();
-      if (primeira) {                                       // uma vez só: sobe o que ficou só neste aparelho em uma visita sem gravação
-        primeira = false;
-        const falta = [...CONHECIDOS].filter(id => !vistos.has(id) && temAlgo(id));
-        if (falta.length && !soLeitura) setTimeout(() => falta.forEach(id => { sujo[id] = true; grava(id); }), 0);
-        Object.keys(sujo).filter(id => sujo[id]).forEach(grava);
+      if (!pronto) {                                        // uma vez só, fora desta chamada: grava o que ele mexeu enquanto carregava e o que ficou só neste aparelho
+        pronto = true;
+        if (soLeitura) return;
+        CONHECIDOS.forEach(id => { if (!vistos.has(id) && temAlgo(id)) sujo[id] = true; });
+        setTimeout(() => Object.keys(sujo).filter(id => sujo[id]).forEach(grava), 0);
       }
     }, err => {
       if (err && err.code === 'unavailable' && !religou) { religou = true; setTimeout(assina, 1500); return; }
-      db = null; semDb = true; $('#rodape').textContent = 'A gravação parou. Use Copiar meu retorno e cole na conversa.';
+      semGravacao('A gravação parou. Use Copiar meu retorno e cole na conversa.');
     });
     assina();
   })();
