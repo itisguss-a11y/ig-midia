@@ -3,3 +3,5 @@ __pycache__/
 perfil/out/
 cut-*.png
 _*.html
+dir/_folha-*
+dir/_frames/
