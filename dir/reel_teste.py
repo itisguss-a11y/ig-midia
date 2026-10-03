@@ -10,7 +10,7 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "midia" / "2026-10-03-antibiotico-gripe"; OUT.mkdir(parents=True, exist_ok=True)
 F = (HERE / "fonts").as_uri()
-FPS, DUR = 30, 41.0   # tempo de leitura: no máximo 13 caracteres por segundo, contados depois que o texto entra
+FPS, DUR = 30, 41.0   # esta versão (41 s) ficou lenta demais para ele; nos próximos: 3 a 4 s por cena de uma frase, menos se o texto for simples
 GREEN = "#17402C"
 
 LINE = ("M -40 1470 C 200 1448, 380 1500, 560 1470 C 700 1446, 800 1430, 860 1380 C 912 1336, 882 1268, 822 1284 "
