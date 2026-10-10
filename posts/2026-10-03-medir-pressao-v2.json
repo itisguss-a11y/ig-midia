@@ -4,7 +4,14 @@
  "serie": "Para salvar",
  "titulo": "Se você mede a pressão assim que chega em casa, o número sai errado.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-15 19h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "Exercício: o post mandava esperar 1 hora (número da diretriz de 2020); a diretriz de medida de 2023 pede 1 hora e meia. Café, álcool, comida e cigarro: 30 minutos",
+  "“O número sai errado” e “o aparelho mostra mais do que você tem” eram absolutos: viraram “pode sair errado” e “costuma sair mais alto”",
+  "“Tudo isso sobe o número”: o álcool pode baixar; virou “altera o número”",
+  "130 por 80: entrou que basta um dos dois números passar",
+  "Legenda: duas ou três medidas de cada vez; anotações de 5 a 7 dias; o que fazer com 18 por 12; sintomas de emergência valem com qualquer número; aviso para grávidas"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-medir-pressao-v2/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-medir-pressao-v2/02.jpg",
@@ -26,9 +33,11 @@
  ],
  "quem_manda": "Quem cuida dos pais manda para o pai ou a mãe que mede a pressão em casa.",
  "fontes": [
-  "Diretrizes brasileiras de hipertensão 2020: consulta rápida. Revista Hipertensão, v. 24, n. 1, 2022, Quadro 2 (bexiga vazia; sem exercício há 60 min; sem álcool, café ou alimentos; sem fumar nos 30 min anteriores; 5 min sentado em ambiente silencioso; costas e antebraço apoiados, pernas descruzadas, pés no chão; manguito ao nível do coração; não conversar) - https://www.sbh.org.br/wp-content/uploads/2022/06/Revista-Hipertensao-Vol-24-Num-1-Artigo-5.pdf",
-  "Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras de Hipertensão Arterial 2020 - https://www.scielo.br/j/abc/a/Z6m5gGNQCvrW3WLV7csqbqh/?lang=pt",
-  "Ministério da Saúde. Protocolo de hipertensão arterial sistêmica, 2025 (em casa, alta é média de 130 por 80 ou mais) - https://www.gov.br/saude/pt-br/assuntos/pcdt/h/hipertensao-arterial-sistemica.pdf"
+  "SBC/SBH/SBN. Diretrizes Brasileiras de Medidas da Pressão Arterial Dentro e Fora do Consultório, 2023, Quadro 4 e Tabela 1 (30 minutos sem álcool, café, alimentos ou cigarro; 90 minutos sem exercício; bexiga vazia; 5 minutos de repouso; costas apoiadas, pernas descruzadas, pés no chão, braço na altura do coração, sem falar; MRPA anormal: média de 130 e/ou 80 ou mais; monitores de punho erram mais) - https://sbh.org.br/wp-content/uploads/2025/01/2023-Diretrizes-Brasileiras-HA.pdf",
+  "SBC/SBH/SBN. Diretriz Brasileira de Hipertensão Arterial, 2025, kit de slides oficial, Quadro 3.4 (MRPA: 130 e/ou 80 ou mais) - https://sbn.org.br/conteudos/Diretriz-Brasileira-Hipertensao-Arterial/Diretriz-Brasileira-Hipertensao-Arterial-2025_KitSlide.pdf",
+  "Ministério da Saúde/Conitec. PCDT da Hipertensão Arterial Sistêmica, 2025 (MRPA: média de 130 por 80 ou mais, em cinco dias seguidos; crise hipertensiva: 180 e/ou 120 ou mais) - https://www.gov.br/conitec/pt-br/midias/relatorios/2025/rr-pcdt-has.pdf/@@download/file",
+  "SBH. Highlights das diretrizes brasileiras de medida da pressão arterial, Revista Hipertensão, 2024;26(1) (MRPA: 3 medidas de manhã e 3 à noite, por 4 a 6 dias) - https://www.sbh.org.br/wp-content/uploads/2024/07/revista-hipertensao-v26-n1-artigo-4.pdf",
+  "American Heart Association. Home Blood Pressure Monitoring, revisada em 14/08/2025 (aparelho de braço, automático; duas medidas com 1 minuto de intervalo; acima de 180/120, repetir e procurar ajuda) - https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/monitoring-your-blood-pressure-at-home"
  ],
- "legenda": "Medir a pressão em casa só ajuda se o número for confiável. E o erro mais comum é medir com pressa.\n\nTrês coisas que o carrossel não mostrou:\n\n• Aparelho: prefira o de braço, automático e validado. Os de pulso erram mais.\n• Quando medir: de manhã, antes do café e dos remédios, e à noite, antes do jantar. Duas medidas de cada vez, com 1 minuto entre elas.\n• O que levar ao médico: as anotações de pelo menos 5 dias, com data e hora.\n\nPressão muito alta junto com dor no peito, falta de ar, fraqueza de um lado do corpo ou dor de cabeça forte não é para esperar: é emergência.\n\nEnvie para quem mede a pressão em casa.\n\nConteúdo educativo, não substitui consulta.\nFontes: Diretrizes Brasileiras de Hipertensão; Ministério da Saúde.\n\n#pressaoalta #hipertensao #medirpressao #pressaoarterial #saudedocoracao"
+ "legenda": "Medir a pressão em casa só ajuda se o número for confiável. E um erro muito comum é medir com pressa.\n\nTrês coisas que o carrossel não mostrou:\n\n• Aparelho: prefira o de braço, automático e validado. Os de pulso erram mais.\n• Quando medir: de manhã e à noite, antes de comer. Duas ou três medidas de cada vez, com 1 minuto entre elas.\n• O que levar ao médico: as anotações de 5 a 7 dias seguidos, com data e hora.\n\nMediu do jeito certo e deu alto? Não ignore: repita nos outros dias e leve ao médico. Deu 18 por 12 ou mais? Meça de novo depois de 1 minuto. Continuou? Procure um serviço de saúde na hora, mesmo sem sentir nada.\n\nDor no peito, falta de ar, fraqueza de um lado do corpo ou fala enrolada é emergência com qualquer número no aparelho: ligue 192.\n\nGrávida? Siga a orientação do pré-natal.\n\nEnvie para quem mede a pressão em casa.\n\nConteúdo educativo, não substitui consulta.\nFontes: Diretrizes Brasileiras de Medidas da Pressão Arterial (2023) e de Hipertensão (2025); Ministério da Saúde.\n\n#pressaoalta #hipertensao #medirpressao #pressaoarterial #saudedocoracao"
 }

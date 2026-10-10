@@ -1,15 +1,21 @@
 {
  "id": "2026-10-03-dengue-febre-baixou-v2",
- "formato": "reel de 31 s, fundo verde, texto animado com o gráfico da febre em movimento",
+ "formato": "reel de 33 s, fundo verde, texto animado com o gráfico da febre em movimento",
  "serie": "Sinais do corpo",
  "titulo": "A febre da dengue baixou? É agora que você precisa ficar de olho.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-17 20h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "A lista oficial tem seis sinais de alarme e o vídeo mostrava cinco: entrou “dificuldade para respirar”, e o vídeo ganhou 1,6 segundo para dar tempo de ler",
+  "Legenda: quem tem suspeita de dengue deve ir à unidade de saúde logo no início, e não só os grupos de risco; e voltar no dia em que a febre baixar",
+  "Legenda: quem toma AAS todo dia por causa do coração não deve parar por conta própria",
+  "Legenda: entrou o soro de reidratação oral; a atenção continua por 2 dias depois que a febre baixa; “não é sinal de alta” era ambíguo e virou “não quer dizer que passou”"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-dengue-febre-baixou-v2/reel.mp4"
  ],
  "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-dengue-febre-baixou-v2/capa.jpg",
- "duracao": "31 s",
+ "duracao": "33 s",
  "antes": "2026-10-03-dengue-febre-baixou",
  "seu_retorno": "Gostou. O desenho em movimento (a curva da febre) podia ser mais explorado.",
  "mudou": [
@@ -19,8 +25,10 @@
  ],
  "quem_manda": "Quem tem alguém com dengue em casa manda para quem está cuidando.",
  "fontes": [
-  "Ministério da Saúde. Dengue (sinais de alarme; aparecem com o declínio da febre, entre o 3º e o 7º dia; não se automedicar e procurar imediatamente o serviço de urgência; febre de 39 a 40 °C no início) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue",
-  "Ministério da Saúde. Dengue: diagnóstico e manejo clínico (sem AAS e sem anti-inflamatório; hidratação) - https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/dengue/dengue-diagnostico-e-manejo-clinico-adulto-e-crianca"
+  "Ministério da Saúde. Saúde de A a Z, Dengue (os seis sinais de alarme, entre eles dificuldade de respirar; surgem com o declínio da febre, entre o 3º e o 7º dia; com suspeita, procurar imediatamente um serviço de saúde) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/dengue",
+  "Ministério da Saúde. Dengue: diagnóstico e manejo clínico: adulto e criança, 6ª edição, 2024 (fase crítica na queda da febre; hidratação com soro de reidratação oral e líquidos caseiros; sem salicilatos nem anti-inflamatórios; retorno no dia em que a febre melhora ou no 5º dia) - https://portaldeboaspraticas.iff.fiocruz.br/wp-content/uploads/2024/02/dengue-manejo-clinico.pdf",
+  "Ministério da Saúde. Dengue: manual de enfermagem, 3ª edição, 2026 (grupos de risco acompanhados até 48 horas depois de a febre passar) - https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/guias-e-manuais/2026/dengue-manual-de-enfermagem.pdf",
+  "OMS. Dengue and severe dengue, ficha de 21/08/2025 (evitar ibuprofeno e aspirina) - https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
  ],
- "legenda": "Dengue: a febre baixar não é sinal de alta.\n\nA fase mais delicada costuma ser entre o 3º e o 7º dia, justamente quando a febre cai. É nela que aparecem os sinais de alerta do vídeo.\n\nEm casa, o tratamento é líquido e repouso: água, soro caseiro, água de coco, suco. Para dor e febre, só o que o serviço de saúde orientar. AAS, ibuprofeno, diclofenaco e outros anti-inflamatórios aumentam o risco de sangramento.\n\nGrávidas, crianças pequenas, idosos e quem tem doença crônica devem ser avaliados logo no começo, mesmo sem sinal de alerta.\n\nEnvie para quem está com dengue em casa.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde.\n\n#dengue #sinaisdealerta #dengueemcasa #hidratacao #saudepublica"
+ "legenda": "Dengue: a febre baixar não quer dizer que passou.\n\nA fase mais delicada costuma ser entre o 3º e o 7º dia, justamente quando a febre cai, e a atenção continua por 2 dias depois disso. É nela que podem aparecer os sinais de alerta do vídeo.\n\nSuspeita de dengue? Vá à unidade de saúde logo no início, mesmo sem sinal de alerta, e volte no dia em que a febre baixar (ou no 5º dia, se ela não baixar).\n\nEm casa, o tratamento é líquido e repouso: soro de reidratação oral (o do posto), água, soro caseiro, água de coco, suco. Para dor e febre, só o que o serviço de saúde orientar. AAS, ibuprofeno, diclofenaco e outros anti-inflamatórios aumentam o risco de sangramento. Usa AAS todo dia por causa do coração? Não pare por conta própria: pergunte no serviço de saúde.\n\nGrávidas, crianças pequenas, idosos e quem tem doença crônica precisam de acompanhamento mais de perto desde o começo.\n\nEnvie para quem está com dengue em casa.\n\nConteúdo educativo, não substitui consulta.\nFonte: Ministério da Saúde.\n\n#dengue #sinaisdealerta #dengueemcasa #hidratacao #saudepublica"
 }

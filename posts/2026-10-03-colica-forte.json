@@ -4,7 +4,15 @@
  "serie": "Isso é normal?",
  "titulo": "Cólica que faz você faltar ao trabalho não é normal.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-14 12h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "“A sua cólica passa de 7?”: nenhuma fonte usa nota de corte, e quem dá nota 6 e falta ao trabalho podia achar que está tudo bem; virou “que nota você dá para a sua cólica?”",
+  "“Doses cada vez maiores” não tinha fonte e podia normalizar aumentar a dose: virou “a dor vem piorando com os meses; não aumente a dose por conta própria”",
+  "“Anote por 2 ou 3 ciclos” podia ser lido como esperar 3 meses: virou marcar a consulta já (no SUS, pelo posto de saúde) e anotar até lá",
+  "“Inflama a cada ciclo”: a inflamação é contínua; virou “causa inflamação e dor”",
+  "“1 em cada 10” virou “cerca de 1 em cada 10” (é estimativa)",
+  "Legenda: entrou quando procurar atendimento no mesmo dia"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-colica-forte/02.jpg",
@@ -26,8 +34,13 @@
  ],
  "quem_manda": "A amiga manda para a amiga que sofre todo mês. A mãe manda para a filha.",
  "fontes": [
+  "Organização Mundial da Saúde. Endometriosis (o que é; sintomas; demora no diagnóstico) - https://www.who.int/news-room/fact-sheets/detail/endometriosis",
+  "Ministério da Saúde/Conitec. PCDT da Endometriose, Portaria Conjunta nº 54, de 02/06/2026 (tecido semelhante ao endométrio fora do útero, com reação inflamatória crônica; dor na relação; pode atingir bexiga e intestino) - https://www.gov.br/conitec/pt-br/midias/protocolos/portaria-conjunta-n-54-endometriose.pdf/@@display-file/file",
+  "Ministério da Saúde. Saúde de A a Z, Endometriose (a porta de entrada é a atenção primária; em média sete anos até o diagnóstico) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/e/endometriose",
   "FEBRASGO. Endometriose afeta uma em cada dez mulheres em idade fértil no Brasil (dor intensa no ciclo menstrual não é normal) - https://www.febrasgo.org.br/pt/noticias/item/2046-endometriose-doenca-afeta-uma-em-cada-dez-mulheres-em-idade-fertil-no-brasil",
-  "Organização Mundial da Saúde. Endometriosis (o que é; sintomas; demora no diagnóstico) - https://www.who.int/news-room/fact-sheets/detail/endometriosis"
+  "FEBRASGO, 17/10/2024. Sentir dor abdominal intensa durante o período menstrual não é normal (se a dor compromete a rotina, deve ser investigada) - https://febrasgo.org.br/pt/noticias/item/1965-sentir-dor-abdominal-intensa-durante-o-periodo-menstrual-nao-e-normal",
+  "NICE. Endometriosis: diagnosis and management (NG73, 2017, emendada em 2024): sinais que levam a suspeitar e diário de dor - https://www.nice.org.uk/guidance/ng73/chapter/Recommendations",
+  "NHS. Pelvic pain, revisada em 24/11/2025 (quando procurar atendimento urgente) - https://www.nhs.uk/conditions/pelvic-pain/"
  ],
- "legenda": "Cólica forte todo mês não é frescura, e “é assim mesmo” não é diagnóstico.\n\nA endometriose costuma levar anos para ser descoberta, justamente porque a dor da mulher é tratada como normal.\n\nO que faz a consulta render:\n\n• Um diário de 2 ou 3 ciclos: os dias de dor, a nota de 0 a 10 e o que você deixou de fazer.\n• Os remédios que tomou e se funcionaram.\n• Se a dor aparece também fora da menstruação, na relação, ao evacuar ou ao urinar.\n\nNem toda cólica forte é endometriose: mioma e outras causas entram na investigação. O ponto é o mesmo: dor que tira você da rotina merece ser investigada.\n\nEnvie para a amiga que sofre todo mês.\n\nConteúdo educativo, não substitui consulta.\nFontes: FEBRASGO; Organização Mundial da Saúde.\n\n#colica #endometriose #saudedamulher #dorpelvica #ginecologia"
+ "legenda": "Cólica forte todo mês não é frescura, e “é assim mesmo” não é diagnóstico.\n\nA endometriose costuma levar anos para ser descoberta, em parte porque a dor da mulher é tratada como normal.\n\nO que faz a consulta render:\n\n• Um diário da dor: os dias, a nota de 0 a 10 e o que você deixou de fazer.\n• Os remédios que tomou e se funcionaram.\n• Se a dor aparece também fora da menstruação, na relação, ao evacuar ou ao urinar.\n\nNem toda cólica forte é endometriose: mioma e outras causas entram na investigação. O ponto é o mesmo: dor que tira você da rotina merece ser investigada.\n\nNão espere a consulta se a dor for muito forte e só piorar, ou vier com febre, desmaio, sangramento muito intenso ou chance de gravidez: procure atendimento no mesmo dia.\n\nEnvie para a amiga que sofre todo mês.\n\nConteúdo educativo, não substitui consulta.\nFontes: OMS; Ministério da Saúde; FEBRASGO; NICE; NHS.\n\n#colica #endometriose #saudedamulher #dorpelvica #ginecologia"
 }

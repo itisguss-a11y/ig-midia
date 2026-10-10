@@ -4,7 +4,13 @@
  "serie": "Mito ou verdade",
  "titulo": "“Quase não uso sal.” O rótulo diz outra coisa.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-13 19h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "A colher de chá rasa tem cerca de 6 g de sal: o limite de 5 g virou “pouco menos de 1 colher de chá”",
+  "Lupa de alto em sódio: entrou o corte dos líquidos (300 mg em 100 ml) e o aviso de que produto sem lupa também pode ter muito sódio",
+  "Último slide: entrou “cozinhe com menos sal”, que é de onde vem a maior parte do sódio no Brasil; saiu o “valem mais”, que não tinha fonte",
+  "Legenda: o dado brasileiro ganhou a origem (IBGE); o sal light passou a ser apresentado como ajuda, com o aviso para rins e remédios; entrou que cortar sal não substitui remédio"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-sal-no-rotulo/02.jpg",
@@ -25,11 +31,13 @@
  ],
  "quem_manda": "Quem cozinha em casa manda para o pai, a mãe ou o marido que tem pressão alta e diz que “quase não usa sal”.",
  "fontes": [
-  "Organização Mundial da Saúde. Sodium reduction (menos de 5 g de sal por dia, pouco menos de uma colher de chá; média mundial de 11 g em 2021, mais que o dobro; eleva a pressão; fontes em alimentos processados; dicas para reduzir) - https://www.who.int/news-room/fact-sheets/detail/sodium-reduction",
+  "OMS. Sodium reduction, ficha atualizada em 11/05/2026 (menos de 2.000 mg de sódio por dia, o que dá menos de 5 g de sal, pouco menos de 1 colher de chá; cozinhar com menos sal; tirar o saleiro da mesa; ervas e temperos) - https://www.who.int/news-room/fact-sheets/detail/sodium-reduction",
   "American Heart Association. Sodium and salt (o sódio em excesso puxa água para dentro dos vasos; a comparação com a mangueira) - https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/sodium-and-salt",
-  "ANVISA. Instrução Normativa nº 75/2020 (valor diário de referência do sódio: 2.000 mg; lupa de alto em sódio a partir de 600 mg por 100 g) - https://bvsms.saude.gov.br/bvs/saudelegis/anvisa//2020/IN%2075_2020_.pdf",
+  "American Heart Association. Shaking the Salt Habit, revisada em 14/08/2025 (1 colher de chá de sal tem 2.300 mg de sódio; provar antes de salgar) - https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/shaking-the-salt-habit-to-lower-high-blood-pressure",
+  "ANVISA. Instrução Normativa nº 75/2020, Anexos II, XV e XVI (valor diário de referência do sódio: 2.000 mg; lupa de alto em sódio a partir de 600 mg por 100 g em sólidos e 300 mg por 100 ml em líquidos; queijos, carnes embaladas e sal não levam lupa) - https://visa.jundiai.sp.gov.br/wp-content/uploads/2024/08/IN_75_2020-requisitos-para-rotulagem-nutricional.pdf",
   "ANVISA. Rotulagem nutricional: novas regras (valores por 100 g e por porção; %VD) - https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2022/rotulagem-nutricional-novas-regras-entram-em-vigor-em-120-dias",
-  "British Heart Foundation. Salt (sódio x 2,5 = sal) - https://www.bhf.org.uk/informationsupport/support/healthy-living/healthy-eating/salt"
+  "Cadernos de Saúde Pública, 2024. Sodium intake according to NOVA food classification in Brazil: trends from 2002 to 2018 (POF/IBGE 2017-2018: sal de cozinha e condimentos à base de sal somam 55% do sódio disponível nos domicílios; processados e ultraprocessados, cerca de 39%) - https://www.scielo.br/j/csp/a/jjk9FBWrPShYg8nrBCHVyDp",
+  "American Heart Association. How Potassium Can Help Control High Blood Pressure, revisada em 14/08/2025 (substituto do sal com potássio: perguntar ao profissional de saúde, sobretudo com doença nos rins ou remédios que mexem no potássio) - https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/how-potassium-can-help-control-high-blood-pressure"
  ],
- "legenda": "Pressão alta e sal: a conta não fecha só no saleiro.\n\nNo Brasil, mais da metade do sódio ainda vem do sal que a gente põe na comida. O resto já chega pronto, dentro do pão, do embutido, do tempero e do salgadinho. Por isso valem as duas frentes: menos sal na panela e olho no rótulo.\n\nUm truque para o mercado: multiplique o sódio por 2,5 e você tem o sal. 400 mg de sódio é 1 grama de sal, um quinto do limite do dia.\n\nAtenção ao sal light: ele troca parte do sódio por potássio. Quem tem doença nos rins ou usa remédio para pressão precisa perguntar ao médico antes de usar.\n\nEnvie para quem diz que “quase não usa sal”.\n\nConteúdo educativo, não substitui consulta.\nFontes: OMS; ANVISA; American Heart Association.\n\n#pressaoalta #hipertensao #sodio #rotulodealimentos #alimentacaosaudavel"
+ "legenda": "Pressão alta e sal: a conta não fecha só no saleiro.\n\nNo Brasil, mais da metade do sódio ainda vem do sal que a gente põe na comida, segundo a última pesquisa do IBGE. Quase todo o resto já chega pronto, dentro do pão, do embutido, do tempero e do salgadinho. Por isso valem as duas frentes: menos sal na panela e olho no rótulo.\n\nUm truque para o mercado: multiplique o sódio por 2,5 e você tem o sal. 400 mg de sódio é 1 grama de sal, um quinto do limite do dia.\n\nSal light ajuda: ele troca parte do sódio por potássio. Mas quem tem doença nos rins ou usa remédio para pressão precisa perguntar ao médico antes de usar.\n\nCortar sal ajuda a controlar a pressão, mas não substitui o remédio nem o acompanhamento.\n\nEnvie para quem diz que “quase não usa sal”.\n\nConteúdo educativo, não substitui consulta.\nFontes: OMS; ANVISA; IBGE; American Heart Association.\n\n#pressaoalta #hipertensao #sodio #rotulodealimentos #alimentacaosaudavel"
 }

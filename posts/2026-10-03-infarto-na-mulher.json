@@ -4,7 +4,14 @@
  "serie": "Sinais do corpo",
  "titulo": "Infarto em mulher nem sempre é dor forte no peito.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-12 19h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "A cena da lista dizia “na mulher, desconfie de”, o que podia passar a ideia de que infarto em mulher não dá dor no peito: virou “além da dor no peito, desconfie de”",
+  "“É por isso que muita mulher demora” virou “é um dos motivos”: o atraso também vem do atendimento",
+  "Legenda: os sinais podem vir com ou sem a dor no peito, começar aos poucos ou ir e voltar; entraram suor frio, tontura, dor no braço e queimação no estômago",
+  "Legenda: “não vá dirigindo” virou “não dirija você mesma”, com a saída para quem não tem SAMU na cidade",
+  "Fontes na tela: entrou a American Heart Association, de onde vêm a mandíbula e a comparação com má digestão"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-infarto-na-mulher/reel.mp4"
  ],
@@ -21,8 +28,10 @@
  "quem_manda": "A mulher manda para a mãe, a irmã e a amiga.",
  "fontes": [
   "Sociedade Brasileira de Cardiologia. Posicionamento sobre Doença Isquêmica do Coração: a Mulher no Centro do Cuidado, 2023 - https://www.scielo.br/j/abc/a/NHTpGXKFCz7NKht5CYLDZZF/?lang=pt",
+  "Ministério da Saúde. Saúde de A a Z, Infarto (ligue 192; atenção a qualquer mal-estar súbito) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/infarto",
   "American Heart Association. Heart attack symptoms in women - https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack/heart-attack-symptoms-in-women",
-  "Ministério da Saúde. Infarto (dor ou desconforto no peito que pode irradiar para costas, rosto e braço esquerdo; intensa e prolongada, com peso ou aperto; suor frio, palidez, falta de ar; em idosos e diabéticos pode vir sem sinais específicos; ligar 192 ou procurar emergência) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/i/infarto"
+  "American Heart Association. Warning Signs of a Heart Attack, revisada em 12/12/2024 (alguns infartos começam aos poucos, com dor leve) - https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack",
+  "Mayo Clinic. Heart disease in women, 25/10/2024 (pode haver infarto sem dor no peito; não dirigir até o hospital) - https://www.mayoclinic.org/diseases-conditions/heart-disease/in-depth/heart-disease/art-20046167"
  ],
- "legenda": "Infarto em mulher: os sinais podem não parecer “de coração”.\n\nA dor no peito continua sendo o sinal mais comum. Mas, na mulher, é mais frequente ela vir junto com falta de ar, enjoo, dor nas costas ou na mandíbula e um cansaço que não combina com o dia que você teve.\n\nO risco sobe depois da menopausa e com pressão alta, diabetes, colesterol alto, cigarro e casos na família.\n\nNa dúvida, não espere para ver se passa e não vá dirigindo: ligue 192.\n\nEnvie para a sua mãe, a sua irmã, a sua amiga.\n\nConteúdo educativo, não substitui consulta.\nFontes: Sociedade Brasileira de Cardiologia; Ministério da Saúde.\n\n#infarto #saudedamulher #coracao #sinaisdeinfarto #samu192"
+ "legenda": "Infarto em mulher: os sinais podem não parecer “de coração”.\n\nA dor no peito continua sendo o sinal mais comum. Mas, na mulher, é mais frequente aparecerem também, com ou sem essa dor, falta de ar, enjoo, dor nas costas ou na mandíbula e um cansaço que não combina com o dia que você teve.\n\nSuor frio, tontura, dor no braço ou queimação no estômago também são sinais de alerta. E eles podem começar aos poucos ou ir e voltar.\n\nO risco sobe depois da menopausa e com pressão alta, diabetes, colesterol alto, cigarro e casos na família.\n\nNa dúvida, não espere para ver se passa e não dirija você mesma: ligue 192. Sem SAMU na sua cidade, peça para alguém levar você ao pronto-socorro.\n\nEnvie para a sua mãe, a sua irmã, a sua amiga.\n\nConteúdo educativo, não substitui consulta.\nFontes: Sociedade Brasileira de Cardiologia; Ministério da Saúde; American Heart Association.\n\n#infarto #saudedamulher #coracao #sinaisdeinfarto #samu192"
 }

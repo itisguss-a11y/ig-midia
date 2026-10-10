@@ -4,7 +4,14 @@
  "serie": "Sinais do corpo",
  "titulo": "Sede o dia todo. Xixi a noite inteira.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-16 19h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "“O mais comum: nenhum sinal” e “na maioria das pessoas” não tinham fonte: viraram “muitas vezes” e “em muita gente”",
+  "Quem reconhece os sinais não deve esperar a próxima consulta: virou “marque uma consulta e peça o exame”",
+  "Visão embaçada: entrou que precisa ser avaliada, mesmo melhorando",
+  "“Os 5 sinais” virou “5 sinais”, porque falta a perda de peso sem explicação, que entrou na legenda",
+  "Confirmado: em fevereiro de 2026 o Ministério da Saúde baixou o rastreamento no SUS de 45 para 35 anos, igual à Sociedade Brasileira de Diabetes"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-diabetes-5-sinais/02.jpg",
@@ -26,10 +33,12 @@
  ],
  "quem_manda": "A filha manda para a mãe ou para o pai que vive com sede e levanta à noite para ir ao banheiro.",
  "fontes": [
-  "Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes",
+  "Ministério da Saúde/Conitec. PCDT do Diabete Melito Tipo 2, Portaria SCTIE/MS nº 13, de 21/02/2026 (rastreamento em todos a partir dos 35 anos, com glicemia de jejum; a cada 3 anos; pré-diabetes reavaliado todo ano; sintomas clássicos incluem perda de peso sem querer) - https://www.gov.br/conitec/pt-br/midias/protocolos/2026/pcdt-diabete-melito-tipo-2/@@download/file",
   "Diretriz da Sociedade Brasileira de Diabetes. Diagnóstico de diabetes mellitus (R6: rastrear todos a partir dos 35 anos e adultos com sobrepeso ou obesidade e mais um fator de risco; R7: glicemia de jejum e/ou hemoglobina glicada; R11: normal e menos de 3 fatores, reavaliar em 3 anos; R12: 3 ou mais fatores, em 12 meses; R13: pré-diabetes, em 12 meses; Quadro 2: fatores de risco) - https://diretriz.diabetes.org.br/diagnostico-de-diabetes-mellitus/",
+  "Ministério da Saúde. Diabetes (sintomas do tipo 2; prevenção com atividade física e alimentação saudável) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/diabetes",
   "NIDDK. Symptoms and causes of diabetes - https://www.niddk.nih.gov/health-information/diabetes/overview/symptoms-causes",
-  "Mayo Clinic. Diabetes symptoms: when diabetes symptoms are a concern (por que cada sinal acontece) - https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248"
+  "Mayo Clinic. Diabetes symptoms: when diabetes symptoms are a concern (por que cada sinal acontece) - https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-symptoms/art-20044248",
+  "NIDDK. Diabetic Eye Disease (a visão embaçada pela glicose alta é temporária, mas o diabetes sem tratamento lesa a retina) - https://www.niddk.nih.gov/health-information/diabetes/overview/preventing-problems/diabetic-eye-disease"
  ],
- "legenda": "Diabetes tipo 2 costuma chegar em silêncio, e os primeiros sinais são fáceis de culpar: o calor, a idade, o cansaço da semana.\n\nO que resolve a dúvida é o exame, não o sintoma. Ele é de sangue e é simples: glicemia de jejum ou hemoglobina glicada. A recomendação é fazer a partir dos 35 anos, mesmo sem sentir nada. Antes disso, vale para quem está acima do peso e tem mais algum fator de risco, como pressão alta ou pai, mãe ou irmão com diabetes.\n\nResultado normal e poucos fatores de risco? Repete em 3 anos. Deu pré-diabetes? O controle passa a ser todo ano, e é a fase em que mudar a rotina mais funciona.\n\nPensou em alguém lendo isso? Envie para essa pessoa.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de Diabetes; NIDDK; Mayo Clinic.\n\n#diabetes #diabetestipo2 #prediabetes #glicemia #sinaisdocorpo"
+ "legenda": "Diabetes tipo 2 costuma chegar em silêncio, e os primeiros sinais são fáceis de culpar: o calor, a idade, o cansaço da semana. Emagrecer sem fazer dieta também é sinal de alerta.\n\nO que resolve a dúvida é o exame, não o sintoma. Ele é de sangue e é simples: glicemia de jejum ou hemoglobina glicada. A recomendação é fazer a partir dos 35 anos, mesmo sem sentir nada. Antes disso, vale para quem está acima do peso e tem mais algum fator de risco, como pressão alta ou pai, mãe ou irmão com diabetes.\n\nResultado normal e poucos fatores de risco? Repete em 3 anos, ou antes se aparecer algum sinal. Deu pré-diabetes? O controle passa a ser todo ano, e é a fase em que mudar a rotina pode evitar ou adiar o diabetes.\n\nSede intensa, vômito e emagrecimento que pioram em poucos dias não são para esperar consulta: procure um serviço de saúde logo.\n\nPensou em alguém lendo isso? Envie para essa pessoa.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de Diabetes; NIDDK; Mayo Clinic.\n\n#diabetes #diabetestipo2 #prediabetes #glicemia #sinaisdocorpo"
 }

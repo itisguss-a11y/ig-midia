@@ -4,7 +4,15 @@
  "serie": "Sinais do corpo",
  "titulo": "A boca entortou. A fala enrolou.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-11 20h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "“Só nas primeiras 4 horas e meia” podia fazer a pessoa desistir de ir depois desse prazo: virou “em geral, até 4 horas e meia” e “passou disso? vá do mesmo jeito: ainda há tratamento”",
+  "“Sempre de um lado só” era absoluto demais: virou “quase sempre”",
+  "193: os Bombeiros não atendem emergência clínica em todos os estados; virou plano B (“não conseguiu? ligue 193”)",
+  "Hospital: a Sociedade Brasileira de AVC manda ir a hospital, não a posto de saúde nem UPA",
+  "Teste do sorriso, do abraço e da frase: entrou que teste normal não descarta AVC",
+  "Legenda: o AVC passageiro pode durar minutos ou horas; “nem AAS”; se ninguém viu começar, vale a última hora em que a pessoa estava bem"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-avc-sinais-v2/02.jpg",
@@ -29,7 +37,10 @@
  "fontes": [
   "Ministério da Saúde. Acidente vascular cerebral (lista de sinais; ligar 192 ou 193 ou levar ao hospital; quanto mais rápido o atendimento, maiores as chances de recuperação) - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/avc",
   "Sociedade Brasileira de AVC. Página para pacientes (início súbito dos sintomas; teste do sorriso, do abraço e da frase; ligar 192) - https://avc.org.br/pacientes/acidente-vascular-cerebral/",
-  "Ministério da Saúde. Protocolo do AVC isquêmico agudo (trombólise até 4 horas e meia) - https://www.gov.br/saude/pt-br/assuntos/pcdt/a/acidente-vascular-cerebral-isquemico-agudo/@@download/file"
+  "Ministério da Saúde/Conitec. PCDT do AVC Isquêmico Agudo, Portaria Conjunta SAES/SECTICS nº 29, de 12/12/2023 (alteplase em até 4 horas e meia do início; trombectomia em casos selecionados até 24 horas; hora de início = última vez em que a pessoa foi vista bem) - https://www.gov.br/conitec/pt-br/midias/protocolos/tromb-lise-no-acidente-vascular-cerebral-isqu-mico-agudo.pdf/@@display-file/file",
+  "AHA/ASA. 2026 Guideline for the Early Management of Patients With Acute Ischemic Stroke: Top Things to Know, 26/01/2026 (trombólise até 4 horas e meia; casos selecionados por imagem entre 4,5 e 9 horas; trombectomia até 24 horas) - https://professional.heart.org/en/science-news/2026-guideline-for-the-early-management-of-patients-with-acute-ischemic-stroke/top-things-to-know",
+  "NHS. Transient ischaemic attack (TIA), revisada em 28/06/2023 (os sinais podem sumir, mas a pessoa precisa ser avaliada no hospital) - https://www.nhs.uk/conditions/transient-ischaemic-attack-tia/",
+  "Stroke Foundation (Austrália). What to do while you wait for an ambulance (não dar comida, bebida nem remédio, nem aspirina) - https://strokefoundation.org.au/About-Stroke/Learn/signs-of-stroke/What-to-do-while-you-wait-for-an-ambulance"
  ],
- "legenda": "AVC é corrida contra o relógio: quanto antes o atendimento, mais cérebro é salvo.\n\nDuas coisas que quase ninguém sabe:\n\n1. Se os sinais sumirem sozinhos em poucos minutos, vá ao hospital do mesmo jeito. Pode ter sido um AVC passageiro, que é um aviso de que outro maior pode vir.\n\n2. Não dê remédio, comida nem água enquanto espera. A pessoa pode engasgar, e alguns remédios pioram certos tipos de AVC.\n\nAnote a hora em que os sinais começaram: é a primeira coisa que a equipe vai perguntar.\n\nEnvie para a sua família.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de AVC.\n\n#avc #derrame #sinaisdeavc #samu192 #primeirossocorros"
+ "legenda": "AVC é corrida contra o relógio: quanto antes o atendimento, maior a chance de recuperação.\n\nDuas coisas que quase ninguém sabe:\n\n1. Se os sinais sumirem sozinhos, em minutos ou horas, ligue 192 ou vá ao hospital do mesmo jeito. Pode ter sido um AVC passageiro, que é um aviso de que outro maior pode vir.\n\n2. Não dê remédio (nem AAS), comida nem água enquanto espera. A pessoa pode engasgar, e alguns remédios pioram certos tipos de AVC.\n\nAnote a hora em que os sinais começaram: é uma das primeiras coisas que a equipe vai perguntar. Se ninguém viu começar, vale a última hora em que a pessoa estava bem.\n\nEnvie para a sua família.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; Sociedade Brasileira de AVC; NHS.\n\n#avc #derrame #sinaisdeavc #samu192 #primeirossocorros"
 }

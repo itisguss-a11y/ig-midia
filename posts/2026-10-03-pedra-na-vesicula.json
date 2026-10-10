@@ -4,7 +4,14 @@
  "serie": "Sinais do corpo",
  "titulo": "Dor do lado direito depois de comer gordura.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-18 20h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "A fonte citada no post (“revisão brasileira de cirurgia digestiva, ABCD, 2019”) não foi localizada: saiu, e entraram as fontes abertas na conferência",
+  "A dor não vem só depois de gordura: virou “muitas vezes depois de refeição pesada ou gordurosa”, e é comum à noite",
+  "Sinais de urgência: entraram calafrios, fezes claras, vômitos e o prazo (“não passa em algumas horas”)",
+  "Capa: “dor do lado direito” virou “dor em cima, do lado direito”, e saiu o “4 sinais”, que o carrossel não numerava",
+  "Legenda: “só acompanha” virou “muitas vezes só acompanha; o médico decide caso a caso”; a dieta “pode ajudar” e não tira a pedra; entrou o aviso de infarto (aperto no peito, falta de ar ou suor frio: 192)"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-pedra-na-vesicula/02.jpg",
@@ -25,7 +32,11 @@
  ],
  "quem_manda": "Quem convive com alguém que vive com “má digestão” depois de comer gordura.",
  "fontes": [
-  "Arquivos Brasileiros de Cirurgia Digestiva (ABCD). Revisão sobre colelitíase - http://www.scielo.br/j/abcd/a/yp8jRmJGgy3DZnkpyg8cTbk/?lang=en"
+  "Ministério da Saúde/BVS. Pedra na vesícula (cálculo biliar), 2018 (função da vesícula; mais comum em mulheres; diagnóstico por ultrassom; cirurgia por vídeo) - https://bvsms.saude.gov.br/pedra-na-vesicula-calculo-biliar/",
+  "NIDDK. Gallstones: Symptoms & Causes e Treatment (a crise costuma vir depois de refeição pesada, à noite; pedra sem sintoma em geral não precisa de tratamento; a dor pode voltar; cirurgia por laparoscopia; dá para viver sem vesícula) - https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/symptoms-causes",
+  "NHS. Gallstones, revisada em 11/08/2025 (onde dói; dura de 30 minutos a várias horas; sinais de emergência; dieta com menos gordura enquanto espera) - https://www.nhs.uk/conditions/gallstones/",
+  "Mayo Clinic. Gallstones: Symptoms and causes, 16/04/2025 (dor nas costas e no ombro direito; fatores de risco: mulher, 40 anos ou mais, excesso de peso, emagrecer muito rápido) - https://www.mayoclinic.org/diseases-conditions/gallstones/symptoms-causes/syc-20354214",
+  "Mayo Clinic. Gallbladder cleanse: a 'natural' remedy for gallstones?, 28/02/2024 (não há prova de que a limpeza de vesícula funcione) - https://www.mayoclinic.org/diseases-conditions/gallstones/expert-answers/gallbladder-cleanse/faq-20058134"
  ],
- "legenda": "Pedra na vesícula: muita gente tem e nem sabe. O problema começa quando ela dói.\n\nQuem tem pedra e nunca sentiu nada, em geral, só acompanha. Quando a dor aparece, ela tende a voltar, e aí a conversa costuma ser a cirurgia: a retirada da vesícula, quase sempre por vídeo, com cortes pequenos.\n\nDá para viver sem vesícula? Dá. O fígado continua produzindo a bile; ela só deixa de ficar guardada.\n\nEnquanto a consulta não chega, refeições menores e com menos gordura costumam diminuir as crises. Chá e “limpeza de vesícula” não dissolvem pedra.\n\nCom febre, pele amarelada ou dor que não passa, o caminho é o pronto-socorro.\n\nEnvie para quem vive com “má digestão”.\n\nConteúdo educativo, não substitui consulta.\nFonte: revisão brasileira de cirurgia digestiva (ABCD, 2019).\n\n#pedranavesicula #vesicula #dornabarriga #cirurgia #saudedamulher"
+ "legenda": "Pedra na vesícula: muita gente tem e nem sabe. O problema começa quando ela dói.\n\nQuem tem pedra e nunca sentiu nada muitas vezes só acompanha; o médico decide caso a caso. Quando a dor aparece, ela tende a voltar, e aí a conversa costuma ser a cirurgia: a retirada da vesícula, quase sempre por vídeo, com cortes pequenos.\n\nDá para viver sem vesícula? Dá. O fígado continua produzindo a bile; ela só deixa de ficar guardada.\n\nEnquanto a consulta não chega, comer com menos gordura e evitar o que provoca a dor pode ajudar. Isso não tira a pedra. E não há prova de que chá ou “limpeza de vesícula” dissolva pedra.\n\nCom febre, pele amarelada, vômitos ou dor forte que não passa, o caminho é o pronto-socorro. Aperto no peito, falta de ar ou suor frio junto com a dor: ligue 192.\n\nEnvie para quem vive com “má digestão”.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; NIDDK; NHS; Mayo Clinic.\n\n#pedranavesicula #vesicula #dornabarriga #cirurgia #saudedamulher"
 }

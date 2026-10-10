@@ -4,7 +4,14 @@
  "serie": "Para salvar",
  "titulo": "Você não precisa de 1 hora de academia por dia.",
  "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-19 19h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "“O mínimo que faz efeito: 150 minutos” contradizia a própria OMS (qualquer quantidade já faz bem): virou “a meta da OMS: pelo menos 150 minutos”",
+  "“3 blocos de 10 minutos” vinha de uma regra que a OMS retirou em 2020: virou “blocos curtos; cada minuto conta”",
+  "“Já protegem o coração” virou “já ajudam a proteger”",
+  "Força: é pelo menos 2 vezes por semana, e subir escada não é exercício de força; os exemplos mudaram",
+  "Último slide: saiu a dica sem fonte e entrou o aviso de segurança (dor no peito ou tontura no esforço: parar e procurar atendimento)"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-exercicio-150-v2/02.jpg",
@@ -24,7 +31,10 @@
  ],
  "quem_manda": "Uma amiga manda para a outra, como convite para caminhar junto.",
  "fontes": [
-  "Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) - https://www.who.int/news-room/fact-sheets/detail/physical-activity"
+  "OMS. Diretrizes de atividade física e comportamento sedentário, 2020 (Bull et al., Br J Sports Med): pelo menos 150 a 300 minutos de atividade moderada por semana; força em 2 ou mais dias; qualquer quantidade conta; saiu a exigência de blocos de 10 minutos - https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/",
+  "Organização Mundial da Saúde. Physical activity (pelo menos 150 minutos de atividade moderada por semana; qualquer quantidade é melhor que nenhuma; benefícios em adultos) - https://www.who.int/news-room/fact-sheets/detail/physical-activity",
+  "Ministério da Saúde. Guia de Atividade Física para a População Brasileira, 2021 (pelo menos 150 minutos; pequenos blocos de tempo; cada minuto conta; teste da conversa; parar se sentir dor no peito ou tontura) - https://bvsms.saude.gov.br/bvs/publicacoes/guia_atividade_fisica_populacao_brasileira.pdf",
+  "CDC. Measuring Physical Activity Intensity, revisada em 04/12/2025 (na atividade moderada dá para conversar, mas não cantar) - https://www.cdc.gov/physical-activity-basics/measuring/index.html"
  ],
- "legenda": "150 minutos de exercício por semana parece muito até você dividir: dá pouco mais de 20 minutos por dia.\n\nO que conta como moderado? Qualquer atividade que acelera o coração e a respiração, mas ainda deixa você conversar: caminhar rápido, dançar, pedalar, varrer o quintal com vontade.\n\nPara quem está parada há muito tempo:\n\n• Comece com 10 minutos por dia e aumente aos poucos.\n• Prenda o exercício em algo que já existe na rotina: depois do almoço, na volta do trabalho, enquanto o filho está no treino.\n• Duas vezes por semana, inclua força: subir escada, agachar, carregar peso.\n\nTem doença do coração, ou sente dor no peito ou falta de ar ao esforço? Converse com o médico antes de começar.\n\nEnvie para a amiga que topa caminhar com você.\n\nConteúdo educativo, não substitui consulta.\nFonte: Organização Mundial da Saúde.\n\n#atividadefisica #caminhada #sedentarismo #saudedocoracao #rotinasaudavel"
+ "legenda": "150 minutos de exercício por semana parece muito até você dividir: dá pouco mais de 20 minutos por dia.\n\nO que conta como moderado? Qualquer atividade que acelera o coração e a respiração, mas ainda deixa você conversar: caminhar rápido, dançar, pedalar, varrer o quintal com vontade.\n\nPara quem está parada há muito tempo:\n\n• Comece com 10 minutos por dia e aumente aos poucos.\n• Prenda o exercício em algo que já existe na rotina: depois do almoço, na volta do trabalho, enquanto o filho está no treino.\n• Pelo menos 2 vezes por semana, inclua força: agachar, flexão na parede, carregar peso.\n\nTem doença do coração, diabetes ou pressão alta? Combine com o seu médico o tipo e a quantidade. Dor no peito, falta de ar fora do normal ou tontura durante o esforço: pare e procure atendimento.\n\nEnvie para a amiga que topa caminhar com você.\n\nConteúdo educativo, não substitui consulta.\nFontes: Organização Mundial da Saúde (2020); Ministério da Saúde (2021).\n\n#atividadefisica #caminhada #sedentarismo #saudedocoracao #rotinasaudavel"
 }
