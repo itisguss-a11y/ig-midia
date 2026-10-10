@@ -3,8 +3,13 @@
  "formato": "carrossel de 7 slides, capa creme com número gigante; letra de teste: DM Serif Display",
  "serie": "Entenda seu exame",
  "titulo": "A mamografia já pode começar aos 40",
- "papel": "segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado",
- "estado": "teste: conferir as afirmações antes de publicar",
+ "papel": "segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026",
+ "estado": "conferido na fonte em 2026-10-10; agendado no Metricool para 2026-10-10 20h (hora de Boa Vista)",
+ "corrigido_na_conferencia": [
+  "“Desde setembro” ficaria errado em 2026: virou “Desde 2025” e entrou a lei de dezembro de 2025 (Lei 15.284), que garante o exame a partir dos 40",
+  "75 anos ou mais: a regra oficial é a mesma dos 40 a 49 (por demanda, depois da conversa sobre riscos e benefícios)",
+  "Histórico familiar: o INCA não tem recomendação padrão para esse grupo; o texto passou a dizer que o médico avalia o risco e define o acompanhamento"
+ ],
  "midia": [
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-mamografia-40/01.jpg",
   "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/claude/base/midia/2026-10-03-mamografia-40/02.jpg",
@@ -24,8 +29,11 @@
  ],
  "quem_manda": "A amiga manda para a amiga que fez 40. A filha manda para a mãe.",
  "fontes": [
-  "Agência Brasil. Ministério da Saúde passa a recomendar mamografia a partir dos 40 anos (setembro de 2025) - https://agenciabrasil.ebc.com.br/saude/noticia/2025-09/ministerio-da-saude-passa-recomendar-mamografia-partir-dos-40-anos",
-  "INCA. Dados e números sobre câncer de mama - https://www.inca.gov.br/sites/ufu.sti.inca.local/files/media/document/relatorio_dados-e-numeros-ca-mama-2023.pdf"
+  "Agência Brasil, 23/09/2025. Ministério da Saúde passa a recomendar mamografia a partir dos 40 anos (40 a 49: sob demanda, em decisão conjunta com o profissional; rastreamento até os 74; 23% dos casos entre 40 e 49 anos) - https://agenciabrasil.ebc.com.br/saude/noticia/2025-09/ministerio-da-saude-passa-recomendar-mamografia-partir-dos-40-anos",
+  "Ministério da Saúde. Nota Técnica nº 626/2025-CGCAN/DECAN/SAES/MS, de 26/09/2025 (50 a 74 anos: rastreamento a cada dois anos; 40 a 49 e acima de 74: por demanda, com orientação sobre riscos e benefícios), resumida no informe do INCA - https://ninho.inca.gov.br/jspui/handle/123456789/17713",
+  "Lei nº 15.284, de 18/12/2025 (garante a mamografia a todas as mulheres a partir dos 40 anos, conforme as diretrizes do Ministério da Saúde) - https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15284.htm",
+  "INCA. Cartilha Câncer de mama, 11ª edição, 2026 (sinais e sintomas; 50 a 74 anos a cada dois anos; mama densa antes da menopausa; histórico familiar: conversar com o médico) - https://ninho.inca.gov.br/jspui/bitstream/123456789/18158/1/cartilha-mama-2026%20-%20DefesoEleitoral.pdf",
+  "INCA. Ferramenta de apoio à decisão sobre o rastreamento mamográfico, 2025 (falso-positivo, biópsia e sobrediagnóstico entre 40 e 49 anos) - https://ninho.inca.gov.br/jspui/bitstream/123456789/17734/1/INCA%20ferramenta%20rastreamento-mamo%20A4%202025%20%282%29.pdf"
  ],
- "legenda": "Mamografia aos 40: desde setembro de 2025, o SUS garante o exame a partir dessa idade para quem quiser fazer.\n\nO que muda na prática:\n\n• 40 a 49 anos: não é convocação. Você conversa com o profissional de saúde sobre os prós e os contras e decide.\n• 50 a 74 anos: o exame é recomendado a cada 2 anos, mesmo sem sintoma.\n\nPor que existe conversa antes dos 50? Nessa faixa, a mama costuma ser mais densa e o exame dá mais alarme falso, com biópsia que não precisava. Para muitas mulheres ainda vale a pena. A decisão é sua, com informação.\n\nQuem tem mãe, irmã ou filha com câncer de mama ou de ovário entra em outra regra: o acompanhamento começa mais cedo e é definido pelo médico.\n\nEnvie para a amiga que fez 40.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; INCA.\n\n#mamografia #cancerdemama #outubrorosa #saudedamulher #prevencao"
+ "legenda": "Mamografia aos 40: agora é lei. Desde 2025, o SUS garante o exame a partir dessa idade para quem quiser fazer, mesmo sem sintoma.\n\nO que muda na prática:\n\n• 40 a 49 anos: não é convocação. Você conversa com o profissional de saúde sobre os prós e os contras e decide.\n• 50 a 74 anos: o exame é recomendado a cada 2 anos, mesmo sem sintoma.\n\nPor que existe conversa antes dos 50? Antes da menopausa, a mama costuma ser mais densa e o exame erra mais: dá alarme falso, com mais exames e, às vezes, biópsia que não precisava. Para muitas mulheres ainda vale a pena. A decisão é sua, com informação.\n\nMãe, irmã ou filha teve câncer de mama (principalmente antes dos 50) ou de ovário? A conversa é outra: o médico avalia o seu risco e define o acompanhamento.\n\nEnvie para a amiga que fez 40.\n\nConteúdo educativo, não substitui consulta.\nFontes: Ministério da Saúde; INCA; Lei 15.284/2025.\n\n#mamografia #cancerdemama #outubrorosa #saudedamulher #prevencao"
 }

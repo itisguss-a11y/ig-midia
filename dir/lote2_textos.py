@@ -29,8 +29,11 @@ MS_HAS = "Ministério da Saúde. Protocolo de hipertensão arterial sistêmica, 
 SBC_2020 = "Sociedade Brasileira de Cardiologia. Diretrizes Brasileiras de Hipertensão Arterial 2020 - https://www.scielo.br/j/abc/a/Z6m5gGNQCvrW3WLV7csqbqh/?lang=pt"
 FEBRASGO = "FEBRASGO. Endometriose afeta uma em cada dez mulheres em idade fértil no Brasil (dor intensa no ciclo menstrual não é normal) - https://www.febrasgo.org.br/pt/noticias/item/2046-endometriose-doenca-afeta-uma-em-cada-dez-mulheres-em-idade-fertil-no-brasil"
 OMS_ENDO = "Organização Mundial da Saúde. Endometriosis (o que é; sintomas; demora no diagnóstico) - https://www.who.int/news-room/fact-sheets/detail/endometriosis"
-MS_MAMO = "Agência Brasil. Ministério da Saúde passa a recomendar mamografia a partir dos 40 anos (setembro de 2025) - https://agenciabrasil.ebc.com.br/saude/noticia/2025-09/ministerio-da-saude-passa-recomendar-mamografia-partir-dos-40-anos"
-INCA = "INCA. Dados e números sobre câncer de mama - https://www.inca.gov.br/sites/ufu.sti.inca.local/files/media/document/relatorio_dados-e-numeros-ca-mama-2023.pdf"
+MS_MAMO = "Agência Brasil, 23/09/2025. Ministério da Saúde passa a recomendar mamografia a partir dos 40 anos (40 a 49: sob demanda, em decisão conjunta com o profissional; rastreamento até os 74; 23% dos casos entre 40 e 49 anos) - https://agenciabrasil.ebc.com.br/saude/noticia/2025-09/ministerio-da-saude-passa-recomendar-mamografia-partir-dos-40-anos"
+LEI_MAMO = "Lei nº 15.284, de 18/12/2025 (garante a mamografia a todas as mulheres a partir dos 40 anos, conforme as diretrizes do Ministério da Saúde) - https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15284.htm"
+NT_MAMO = "Ministério da Saúde. Nota Técnica nº 626/2025-CGCAN/DECAN/SAES/MS, de 26/09/2025 (50 a 74 anos: rastreamento a cada dois anos; 40 a 49 e acima de 74: por demanda, com orientação sobre riscos e benefícios), resumida no informe do INCA - https://ninho.inca.gov.br/jspui/handle/123456789/17713"
+INCA_CARTILHA = "INCA. Cartilha Câncer de mama, 11ª edição, 2026 (sinais e sintomas; 50 a 74 anos a cada dois anos; mama densa antes da menopausa; histórico familiar: conversar com o médico) - https://ninho.inca.gov.br/jspui/bitstream/123456789/18158/1/cartilha-mama-2026%20-%20DefesoEleitoral.pdf"
+INCA_FERRAMENTA = "INCA. Ferramenta de apoio à decisão sobre o rastreamento mamográfico, 2025 (falso-positivo, biópsia e sobrediagnóstico entre 40 e 49 anos) - https://ninho.inca.gov.br/jspui/bitstream/123456789/17734/1/INCA%20ferramenta%20rastreamento-mamo%20A4%202025%20%282%29.pdf"
 ABCD = "Arquivos Brasileiros de Cirurgia Digestiva (ABCD). Revisão sobre colelitíase - http://www.scielo.br/j/abcd/a/yp8jRmJGgy3DZnkpyg8cTbk/?lang=en"
 SBC_MULHER = "Sociedade Brasileira de Cardiologia. Posicionamento sobre Doença Isquêmica do Coração: a Mulher no Centro do Cuidado, 2023 - https://www.scielo.br/j/abc/a/NHTpGXKFCz7NKht5CYLDZZF/?lang=pt"
 AHA_MULHER = "American Heart Association. Heart attack symptoms in women - https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack/heart-attack-symptoms-in-women"
@@ -193,22 +196,26 @@ Fontes: FEBRASGO; Organização Mundial da Saúde.
              "Capa de número (a série dos exames usa número ou laudo na capa)",
              "Um quadro com o que vale para cada idade, e 1 em cada 4 casos mostrado com desenho"],
       quem_manda="A amiga manda para a amiga que fez 40. A filha manda para a mãe.",
-      fontes=[MS_MAMO, INCA],
-      legenda="""Mamografia aos 40: desde setembro de 2025, o SUS garante o exame a partir dessa idade para quem quiser fazer.
+      conferido="2026-10-10", agenda="2026-10-10 20h",
+      correcoes=["“Desde setembro” ficaria errado em 2026: virou “Desde 2025” e entrou a lei de dezembro de 2025 (Lei 15.284), que garante o exame a partir dos 40",
+                 "75 anos ou mais: a regra oficial é a mesma dos 40 a 49 (por demanda, depois da conversa sobre riscos e benefícios)",
+                 "Histórico familiar: o INCA não tem recomendação padrão para esse grupo; o texto passou a dizer que o médico avalia o risco e define o acompanhamento"],
+      fontes=[MS_MAMO, NT_MAMO, LEI_MAMO, INCA_CARTILHA, INCA_FERRAMENTA],
+      legenda="""Mamografia aos 40: agora é lei. Desde 2025, o SUS garante o exame a partir dessa idade para quem quiser fazer, mesmo sem sintoma.
 
 O que muda na prática:
 
 • 40 a 49 anos: não é convocação. Você conversa com o profissional de saúde sobre os prós e os contras e decide.
 • 50 a 74 anos: o exame é recomendado a cada 2 anos, mesmo sem sintoma.
 
-Por que existe conversa antes dos 50? Nessa faixa, a mama costuma ser mais densa e o exame dá mais alarme falso, com biópsia que não precisava. Para muitas mulheres ainda vale a pena. A decisão é sua, com informação.
+Por que existe conversa antes dos 50? Antes da menopausa, a mama costuma ser mais densa e o exame erra mais: dá alarme falso, com mais exames e, às vezes, biópsia que não precisava. Para muitas mulheres ainda vale a pena. A decisão é sua, com informação.
 
-Quem tem mãe, irmã ou filha com câncer de mama ou de ovário entra em outra regra: o acompanhamento começa mais cedo e é definido pelo médico.
+Mãe, irmã ou filha teve câncer de mama (principalmente antes dos 50) ou de ovário? A conversa é outra: o médico avalia o seu risco e define o acompanhamento.
 
 Envie para a amiga que fez 40.
 
 Conteúdo educativo, não substitui consulta.
-Fontes: Ministério da Saúde; INCA.
+Fontes: Ministério da Saúde; INCA; Lei 15.284/2025.
 
 #mamografia #cancerdemama #outubrorosa #saudedamulher #prevencao"""),
  dict(id="2026-10-03-pedra-na-vesicula", tipo="carrossel", serie="Sinais do corpo", titulo="Dor do lado direito depois de comer gordura.", antes=None,
@@ -284,8 +291,12 @@ Fontes: Sociedade Brasileira de Cardiologia; Ministério da Saúde.
 ]
 
 def registro(p, slides):
+    estado = ESTADO
+    if p.get("conferido"):
+        estado = f"conferido na fonte em {p['conferido']}" + (f"; agendado no Metricool para {p['agenda']} (hora de Boa Vista)" if p.get("agenda") else "")
     d = dict(id=p["id"], formato=p["formato"], serie=p["serie"], titulo=p["titulo"],
-             papel="segundo lote de teste de 03/10/2026: refeito a partir do retorno dele, não publicado", estado=ESTADO)
+             papel="segundo lote de 03/10/2026, refeito a partir do retorno dele; postagens liberadas por ele em 10/10/2026", estado=estado)
+    if p.get("correcoes"): d["corrigido_na_conferencia"] = p["correcoes"]
     if p["tipo"] == "carrossel":
         d["midia"] = [f"{BASE}/{p['id']}/{i:02d}.jpg" for i in range(1, slides + 1)]
     else:

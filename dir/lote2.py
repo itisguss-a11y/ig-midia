@@ -153,15 +153,15 @@ POSTS = [
  ]),
  # ---------------------------------------------------------------- 7. mamografia aos 40 (tema do público; capa de número; teste de letra: DM Serif)
  dict(slug="2026-10-03-mamografia-40", serie="Entenda seu exame", letra="dmserif", slides=[
-  ("num", "cream", dict(q="A mamografia já<br>pode começar aos", n="40", sub="O que mudou no SUS em 2025 e o que vale para cada idade.")),
-  ("ideia", "green", dict(pos="meio", h2="Mamografia:<br><i>o que mudou</i><br>em 2025", p="Desde setembro, o SUS oferece o exame a partir dos 40 anos para quem quiser fazer.")),
+  ("num", "cream", dict(q="A mamografia já<br>pode começar aos", n="40", sub="Agora é lei no SUS. Veja o que vale para cada idade.")),
+  ("ideia", "green", dict(pos="meio", h2="Mamografia<br>aos 40:<br><i>agora é lei</i>", p="Desde 2025, o SUS garante o exame a partir dos 40 anos para quem quiser fazer. Não precisa ter sintoma.")),
   ("ideia", "cream", dict(pos="topo", h2="O que vale para <i>cada idade</i>", fig="limpo",
-        des=A.idades([("40 a 49", "Pode fazer, depois de conversar com o profissional de saúde."), ("50 a 74", "A cada 2 anos, mesmo sem sintoma nenhum."), ("75 ou +", "A decisão é caso a caso, com o médico.")]))),
+        des=A.idades([("40 a 49", "Pode fazer, depois de conversar com o profissional de saúde."), ("50 a 74", "A cada 2 anos, mesmo sem sintoma nenhum."), ("75 ou +", "Pode fazer, depois da mesma conversa.")]))),
   ("ideia", "green", dict(h2="Por que olhar <i>antes dos 50</i>", p="Quase 1 em cada 4 casos de câncer de mama aparece entre os 40 e os 49 anos.", des=A.pessoas(4, 1, "woman", 230, 4))),
   ("lista", "cream", dict(k="Em qualquer idade", h2="Não espere o exame se notar", rows=[(hi("magnifying_glass", 92), "Caroço na mama ou na axila"), (hi("breasts", 92), "Pele repuxada ou avermelhada"), (hi("blood_drop", 92), "Bico do peito que mudou ou solta líquido")], start=104)),
-  ("ideia", "green", dict(pos="topo", h2="Mãe ou irmã com câncer de mama?", p="Fale com o médico: o seu acompanhamento pode começar mais cedo.", des=A.linha([hi("old_woman", 260), hi("woman", 260)], 60))),
+  ("ideia", "green", dict(pos="topo", h2="Mãe ou irmã com câncer de mama?", p="Principalmente antes dos 50 anos: fale com o médico. Ele avalia o seu risco e define o seu acompanhamento.", des=A.linha([hi("old_woman", 260), hi("woman", 260)], 60))),
   ("fim", "cream", dict(h2="Para <i>guardar</i>", items=["40 a 49 anos: pode fazer, depois de conversar com o profissional de saúde.", "50 a 74 anos: a cada 2 anos, mesmo sem sintoma.", "Sinal na mama: procure avaliação em qualquer idade."],
-        env="Envie para a amiga que fez 40.", src="Fontes: Ministério da Saúde e INCA. " + AVISO)),
+        env="Envie para a amiga que fez 40.", src="Fontes: Ministério da Saúde, INCA e Lei 15.284/2025. " + AVISO)),
  ]),
  # ---------------------------------------------------------------- 8. pedra na vesícula (tema do público, com ponte para cirurgia)
  dict(slug="2026-10-03-pedra-na-vesicula", serie="Sinais do corpo", slides=[
