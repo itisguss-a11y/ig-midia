@@ -1,0 +1,30 @@
+{
+ "id": "2026-11-04-infeccao-urinaria-rim",
+ "formato": "reel de 47 s, fundo verde, silhueta de costas em linha dourada com bexiga e rins que acendem, texto menor embaixo, música sem voz",
+ "serie": "Sinais do corpo",
+ "titulo": "Ardência para fazer xixi. Depois, febre e dor nas costas.",
+ "papel": "conversão em reel do roteiro de 10/10 (Meta); conferido de novo por checador independente em 04/11/2026",
+ "estado": "arte pronta, aguardando agendamento",
+ "corrigido_na_conferencia": [
+  "Cena 3: “para um rim, ou para os dois” virou “para o rim” (a fonte não diz os dois)",
+  "Cena 8: “um desses sinais” virou os sinais citados (febre, calafrio, dor nas costas ou vômito), para a UPA não parecer a única opção só para ardência",
+  "Legenda: “a infecção que não passa também pode subir” virou “não é tratada ou não passa”, como diz o NIDDK; “emergência” virou “sinal de alerta”",
+  "Sem a Febrasgo na legenda e na tela (não reaberta nesta rodada)"
+ ],
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-04-infeccao-urinaria-rim/reel.mp4"
+ ],
+ "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-04-infeccao-urinaria-rim/capa.jpg",
+ "duracao": "47 s",
+ "quem_manda": "A mulher manda para a amiga que vive com infecção urinária.",
+ "fontes": [
+  "NIDDK, Bladder Infection, Symptoms and Causes - https://www.niddk.nih.gov/health-information/urologic-diseases/bladder-infection-uti-in-adults/symptoms-causes",
+  "NIDDK, Bladder Infection, Definition and Facts - https://www.niddk.nih.gov/health-information/urologic-diseases/bladder-infection-uti-in-adults/definition-facts",
+  "NIDDK, Bladder Infection, Treatment - https://www.niddk.nih.gov/health-information/urologic-diseases/bladder-infection-uti-in-adults/treatment",
+  "NIDDK, Kidney Infection, Symptoms and Causes - https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-infection-pyelonephritis/symptoms-causes",
+  "NIDDK, Kidney Infection, Treatment - https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-infection-pyelonephritis/treatment",
+  "Ministério da Saúde, Cistite - https://bvsms.saude.gov.br/cistite/",
+  "Ministério da Saúde, UPA 24h - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/u/upa-24h"
+ ],
+ "legenda": "Infecção urinária (cistite) e infecção no rim: o que não coube no vídeo.\n\nPor que dá mais em mulher: o canal por onde a urina sai é curto e fica perto do ânus, de onde vêm as bactérias.\n\nSó a ardência, sem febre? Procure atendimento mesmo assim, sem esperar a febre aparecer. Urina turva, com sangue ou com cheiro forte também é sinal de infecção: conte isso no atendimento.\n\nGrávida: a infecção da bexiga tem mais chance de chegar ao rim. Ardeu, avise a equipe do pré-natal sem esperar a próxima consulta.\n\nO tratamento é com antibiótico receitado. Tome como foi receitado, até o fim, mesmo se melhorar antes: fora disso, a bactéria pode ficar resistente e a infecção, mais difícil de tratar. Se a infecção não passou, volte ao atendimento: a infecção da bexiga que não é tratada ou não passa também pode chegar ao rim.\n\nNo dia a dia, pode ajudar a prevenir: beber água, ir ao banheiro quando der vontade, sem segurar, e se limpar de frente para trás.\n\nFebre junto com confusão, respiração ou coração acelerados, falta de ar ou dor muito forte é sinal de alerta: vá à UPA ou ao pronto atendimento na hora. É incomum, mas a infecção do rim pode levar à sepse, a chamada infecção generalizada, que ameaça a vida.\n\nEnvie para a amiga que vive com infecção urinária.\n\nConteúdo educativo. Não substitui consulta.\nFontes: NIDDK (instituto de saúde do governo dos Estados Unidos), Bladder Infection e Kidney Infection; Ministério da Saúde, Cistite e UPA 24h.\n\n#infeccaourinaria #cistite #saudedamulher #rins #sinaisdocorpo"
+}
