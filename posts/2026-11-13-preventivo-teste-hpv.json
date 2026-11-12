@@ -1,0 +1,28 @@
+{
+ "id": "2026-11-13-preventivo-teste-hpv",
+ "formato": "reel de 50,6 s, fundo creme, desenho de linha verde com destaque dourado (5 anos, frasco, lupa, linha do tempo, régua de idade, unidade de saúde), texto menor embaixo, música gerada pelo código, sem voz",
+ "serie": "Entenda seu exame",
+ "titulo": "O preventivo mudou. Deu negativo, o próximo é daqui a 5 anos.",
+ "papel": "conversão em reel do roteiro de 10/10 (Meta), roteiro de reel de 03/11; conferido de novo por checador independente em 12/11/2026",
+ "estado": "pronto para agendar",
+ "corrigido_na_conferencia": [
+  "Cena 5: 'o vírus ligado ao câncer do colo do útero, antes da lesão' virou 'o vírus que pode causar o câncer, muitas vezes antes de qualquer lesão' (a diretriz diz que o positivo pode já ter lesão em parte dos casos)",
+  "Legenda: gestante 'pode colher no pré-natal' virou 'com o preventivo atrasado pode colher no pré-natal' (rec. 31)",
+  "Legenda: depois dos 60, acrescentadas as exceções (lesão tratada, imunidade baixa) (rec. 12 a 14 e 38)",
+  "Legenda: HIV e imunidade baixa ganhou 'com teste de HPV negativo' e 'sem parar por idade' (rec. 38 e 39)"
+ ],
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-preventivo-teste-hpv/reel.mp4"
+ ],
+ "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-preventivo-teste-hpv/capa.jpg",
+ "duracao": "50,6 s",
+ "quem_manda": "A mulher de 25 anos ou mais manda para a amiga que vive adiando o preventivo.",
+ "fontes": [
+  "Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero, Parte I (Portaria Conjunta SAES/SECTICS nº 13/2025) - https://www.gov.br/saude/pt-br/assuntos/pcdt/c/cancer-de-colo-do-utero-parte-I/@@download/file",
+  "INCA, Detecção precoce - https://www.gov.br/inca/pt-br/assuntos/gestor-e-profissional-de-saude/controle-do-cancer-do-colo-do-utero/acoes/deteccao-precoce",
+  "INCA, Câncer do colo do útero, versão para população - https://www.gov.br/inca/pt-br/assuntos/cancer/tipos/colo-do-utero/versao-para-populacao",
+  "Ministério da Saúde, HPV - https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/h/hpv",
+  "Agência Gov, 28/10/2026, teste em 26 estados - https://agenciagov.ebc.com.br/noticias/202610/teste-para-deteccao-precoce-do-cancer-do-colo-do-utero-ja-esta-disponivel-em-26-estados-do-pais"
+ ],
+ "legenda": "Preventivo com teste de HPV: o que muda e o que continua igual.\n\nFez o Papanicolau há pouco tempo e deu normal? Não precisa correr atrás do teste novo. Ele entra na data em que você já voltaria.\n\nOnde o teste novo ainda não chegou, o Papanicolau é de 3 em 3 anos, depois de 2 exames normais seguidos, um por ano. Pergunte na sua unidade qual exame é feito lá e não adie o seu.\n\nDeu positivo? O próximo passo depende do tipo do vírus: para os tipos 16 e 18, a colposcopia, um exame mais detalhado do colo do útero; para os outros, o laboratório examina as células na mesma amostra. Células normais: o teste é repetido em 1 ano.\n\nGrávida com o preventivo atrasado pode colher no pré-natal, com segurança.\n\nTomou a vacina do HPV? O preventivo continua do mesmo jeito.\n\nQuem vive com HIV ou tem a imunidade baixa segue outra regra: começa depois da primeira relação e, com teste de HPV negativo, repete a cada 3 anos, sem parar por idade.\n\nAntes dos 25 o exame não é indicado. Depois dos 60, um teste de HPV negativo encerra o exame de rotina, menos para quem já tratou lesão no colo do útero ou tem a imunidade baixa.\n\nUm aviso: preventivo é exame de quem não sente nada. Sangramento durante ou depois da relação, entre as menstruações ou depois da menopausa, dor na relação ou corrimento com sangue ou mau cheiro pedem consulta logo, sem esperar a data do exame.\n\nEnvie para a amiga que vive adiando o preventivo.\n\nConteúdo educativo. Não substitui consulta.\nFonte: Ministério da Saúde e INCA, Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero (2025).\n\n#preventivo #testedehpv #papanicolau #saudedamulher #colodoutero"
+}
