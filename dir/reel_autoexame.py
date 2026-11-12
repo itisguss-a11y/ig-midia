@@ -53,7 +53,7 @@ def g(t0, t1, inner):
     return f"<g style='opacity:0;animation:sin .45s {t0:.2f}s both{', ' + out if out else ''}'>{inner}</g>"
 
 # tempos das cenas (s): cada cena fica o tempo de ler uma vez com calma
-DUR = [5.4, 4.2, 4.8, 3.8, 4.2, 3.8, 4.4, 4.4, 3.6, 6.2, 4.8]
+DUR = [5.4, 4.2, 4.6, 3.8, 4.2, 3.8, 4.4, 3.8, 6.2, 4.8]
 T = [0.0]
 for d in DUR: T.append(round(T[-1] + d, 2))
 FIM = T[-1] + 4.6
@@ -109,20 +109,20 @@ c9 = "".join(pessoa(3.4 + (i % 5) * 5.8, 7 + (i // 5) * 9, 1.5, "currentColor", 
 def marca(x, y, n, t):
     return (f"<g class='pop' style='--t:{t:.2f}s'><circle cx='{x}' cy='{y}' r='1.5' fill='var(--acc)'/>"
             f"<text x='{x}' y='{y + .65}' text-anchor='middle' font-family='Sans' font-weight='700' font-size='1.8' fill='var(--cream)'>{n}</text></g>")
-c10 = mama + "".join(marca(x, y, n, T[9] + .5 + i * 1.1) for i, (x, y, n) in enumerate(((8.4, 21.4, 1), (17.4, 16.2, 2), (15, 21.2, 3), (25.4, 7.6, 4))))
-c10 += f"<path class='fade' style='animation-delay:{T[9] + 2.7:.1f}s' d='M15 18.8 q .6 1.1 0 1.4 q -.6 -.3 0 -1.4' fill='var(--acc)' opacity='.6'/>"
+c10 = mama + "".join(marca(x, y, n, T[8] + .5 + i * 1.1) for i, (x, y, n) in enumerate(((8.4, 21.4, 1), (17.4, 16.2, 2), (15, 21.2, 3), (25.4, 7.6, 4))))
+c10 += f"<path class='fade' style='animation-delay:{T[8] + 2.7:.1f}s' d='M15 18.8 q .6 1.1 0 1.4 q -.6 -.3 0 -1.4' fill='var(--acc)' opacity='.6'/>"
 # cena 11: fachada da UBS, porta abre
 c11 = (f"<g {LINHA}><path d='M5 24 V12 H25 V24 M3.8 24 H26.2 M4.4 12 L 6 9 H24 L 25.6 12'/>"
        "<rect x='6.4' y='14.6' width='4' height='3'/><rect x='19.6' y='14.6' width='4' height='3'/><rect x='12.6' y='17' width='4.8' height='7'/></g>"
-       + f"<rect class='porta' style='--t:{T[10] + .6:.1f}s' x='12.8' y='17.2' width='4.4' height='6.8' fill='currentColor' opacity='.18'/>"
+       + f"<rect class='porta' style='--t:{T[9] + .6:.1f}s' x='12.8' y='17.2' width='4.4' height='6.8' fill='currentColor' opacity='.18'/>"
        "<rect x='10.4' y='5.4' width='9.2' height='3.6' rx='.5' fill='var(--acc)'/>"
        "<text x='15' y='8.1' text-anchor='middle' font-family='Sans' font-weight='700' font-size='2.3' fill='var(--cream)'>UBS</text>")
 # cena 12: celular com seta de envio
 c12 = (f"<g {LINHA} stroke-width='.22'><rect x='10.4' y='5' width='9.2' height='17' rx='1.3'/><path d='M13.6 6.4 H16.4'/></g>"
-       f"<g class='vai' style='--t:{T[11] + .3:.1f}s'><path d='M13 16 L 19 10 M19 10 H 15.6 M19 10 V 13.4' fill='none' stroke='var(--acc)' stroke-width='.36' stroke-linecap='round' stroke-linejoin='round'/></g>")
+       f"<g class='vai' style='--t:{T[10] + .3:.1f}s'><path d='M13 16 L 19 10 M19 10 H 15.6 M19 10 V 13.4' fill='none' stroke='var(--acc)' stroke-width='.36' stroke-linecap='round' stroke-linejoin='round'/></g>")
 
 W = 756
-cenas = [cal, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12]
+cenas = [cal, c3, c4, c5, c6, c7, c8, c10, c11, c12]
 desenho = "".join(g(T[i + 1], T[i + 2] if i + 2 < len(T) else 999, c) for i, c in enumerate(cenas))
 svg = f"<svg class='d' style='left:162px;top:300px' width='{W}' height='{W}' viewBox='0 0 30 30' fill='none' color='currentColor'>{desenho}</svg>"
 
@@ -138,11 +138,11 @@ FRASES = __import__("json").load(open(HERE / "reel_autoexame_frases.json", encod
 txt = ""
 for i, f in enumerate(FRASES[:-1]):
     txt += scene(T[i + 1], T[i + 2], ln(f, T[i + 1] + .1, "t8"))
-txt += scene(T[11], 999, ln(FRASES[-1], T[11] + .1, "t8") + ln("Fonte: INCA, cartilha sobre câncer de mama, 2026.", T[11] + .8, "fonte"))
+txt += scene(T[10], 999, ln(FRASES[-1], T[10] + .1, "t8") + ln("Fonte: INCA, 2025.", T[10] + .8, "fonte"))
 HTML = page(svg + txt + gancho)
 
 REEL = dict(slug="2026-11-13-autoexame-mama", html=HTML, dur=FIM, capa=0.0,
-            folha=tuple([0.0, 3.0] + [T[i] + 2.6 for i in range(1, 12)] + [FIM - .3, T[9] + 5.2]),
+            folha=tuple([0.0, 3.0] + [T[i] + 2.6 for i in range(1, 11)] + [FIM - .3, T[8] + 5.2, T[8] + 3.0]),
             acordes=[("F2", "F3", "A3", "C4", "E4"), ("C2", "C3", "G3", "E4", "B3"), ("A2", "A3", "E3", "C4", "G4"), ("G2", "G3", "D4", "B3", "E4")])
 
 if __name__ == "__main__":

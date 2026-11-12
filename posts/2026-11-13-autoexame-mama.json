@@ -1,0 +1,33 @@
+{
+ "id": "2026-11-13-autoexame-mama",
+ "formato": "reel de 49,8 s, gancho em fundo dourado só com letra, depois fundo creme com desenho de linha em movimento em cima e texto menor embaixo, música instrumental feita pelo código, sem voz",
+ "serie": "Mito ou verdade",
+ "titulo": "“Nunca aprendi a fazer o autoexame direito.” Não precisa.",
+ "papel": "conversão em reel (04/11) do carrossel de 11/10 (Meta); conferido por checador independente em 12/11/2026",
+ "estado": "pronto para agendar",
+ "corrigido_na_conferencia": [
+  "Cena 3: 'treinar a técnica com data marcada' virou 'ensinar o autoexame regular' (Cochrane fala em autoexame regular, não em data)",
+  "Cena 8: 'caroço duro, fixo e, em geral, sem dor' virou 'caroço duro e fixo' ('sem dor' só na cartilha, que não abriu)",
+  "Cena 9 cortada: 'mais de 9 de cada 10 casos' não achado na fonte aberta (cartilha do INCA fora do ar)",
+  "Cena 10: 'líquido saindo sozinho do bico' (saída espontânea)",
+  "Legenda: 'pode continuar' virou 'tudo bem; o que mudou...' (nenhuma fonte recomenda continuar)",
+  "Legenda: mamografia de 40 a 49 e depois de 74 por demanda no SUS, com conversa sobre riscos e benefícios (INCA, versão para população)",
+  "Legenda: família ampliada (câncer de mama antes dos 50, ovário, homem da família)",
+  "Legenda: cortado '1 em cada 100 casos' no homem (só na cartilha)",
+  "Fonte da tela e da legenda passou da cartilha 2026 (inacessível) para as páginas do INCA de 2025"
+ ],
+ "midia": [
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-autoexame-mama/reel.mp4"
+ ],
+ "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-autoexame-mama/capa.jpg",
+ "duracao": "49,8 s",
+ "quem_manda": "A mulher de 25 anos ou mais manda para a amiga, a irmã ou a mãe que diz que não sabe fazer o autoexame.",
+ "fontes": [
+  "INCA, Detecção precoce (30/09/2025) - https://www.gov.br/inca/pt-br/assuntos/gestor-e-profissional-de-saude/controle-do-cancer-de-mama/acoes/deteccao-precoce",
+  "INCA, Câncer de mama, versão para população (05/06/2025) - https://www.gov.br/inca/pt-br/assuntos/cancer/tipos/mama/versao-para-populacao",
+  "INCA, Conceito e magnitude - https://www.gov.br/inca/pt-br/assuntos/gestor-e-profissional-de-saude/controle-do-cancer-de-mama/conceito-e-magnitude",
+  "Kösters e Gøtzsche, Cochrane 2003 - https://doi.org/10.1002/14651858.CD003373",
+  "NHS, How to check your breasts or chest - https://www.nhs.uk/conditions/how-to-check-your-breasts-or-chest/"
+ ],
+ "legenda": "Autoexame das mamas: o que mudou e o que continua valendo.\n\nJá se examina todo mês? Tudo bem. O que mudou: não precisa de técnica nem de data marcada. O importante é conhecer o seu normal.\n\nAs mamas mudam ao longo do ciclo menstrual, na gravidez, na amamentação e depois da menopausa. E é comum uma ser maior que a outra. Conhecer o seu normal em cada fase é o que ajuda a notar o diferente.\n\nAchou um caroço? Pode não ser câncer, mas precisa ser investigado. O serviço de saúde deve dar prioridade a quem tem caroço ou outro sinal de alerta.\n\nA mamografia continua. De rotina, para quem não sente nada: dos 50 aos 74 anos, a cada 2 anos. Entre 40 e 49 anos ou depois dos 74, dá para fazer no SUS se você quiser, depois de conversar com o profissional sobre riscos e benefícios. Com uma alteração, o exame pode ser pedido em qualquer idade, quando o médico indicar.\n\nCâncer de mama na família (principalmente antes dos 50), câncer de ovário na família ou homem da família com câncer de mama? Converse com o médico sobre o seu risco.\n\nHomem também pode ter câncer de mama. É raro, mas caroço no peito do homem também pede avaliação.\n\nEnvie para a amiga que diz que não sabe fazer o autoexame.\n\nConteúdo educativo. Não substitui consulta.\nFonte: INCA, Detecção precoce do câncer de mama (2025).\n\n#autoexame #cancerdemama #mamas #saudedamulher #mamografia"
+}
