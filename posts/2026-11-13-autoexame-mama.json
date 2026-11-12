@@ -4,7 +4,7 @@
  "serie": "Mito ou verdade",
  "titulo": "“Nunca aprendi a fazer o autoexame direito.” Não precisa.",
  "papel": "conversão em reel (04/11) do carrossel de 11/10 (Meta); conferido por checador independente em 12/11/2026",
- "estado": "pronto para agendar",
+ "estado": "agendado para 2026-11-13 18h de Manaus, Metricool id 426245800",
  "corrigido_na_conferencia": [
   "Cena 3: 'treinar a técnica com data marcada' virou 'ensinar o autoexame regular' (Cochrane fala em autoexame regular, não em data)",
   "Cena 8: 'caroço duro, fixo e, em geral, sem dor' virou 'caroço duro e fixo' ('sem dor' só na cartilha, que não abriu)",
@@ -17,9 +17,9 @@
   "Fonte da tela e da legenda passou da cartilha 2026 (inacessível) para as páginas do INCA de 2025"
  ],
  "midia": [
-  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-autoexame-mama/reel.mp4"
+  "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/918b1a2b863cd14a235a47ec09f225a9a2876fb6/midia/2026-11-13-autoexame-mama/reel.mp4"
  ],
- "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/COMMIT/midia/2026-11-13-autoexame-mama/capa.jpg",
+ "capa": "https://raw.githubusercontent.com/itisguss-a11y/ig-midia/918b1a2b863cd14a235a47ec09f225a9a2876fb6/midia/2026-11-13-autoexame-mama/capa.jpg",
  "duracao": "49,8 s",
  "quem_manda": "A mulher de 25 anos ou mais manda para a amiga, a irmã ou a mãe que diz que não sabe fazer o autoexame.",
  "fontes": [
