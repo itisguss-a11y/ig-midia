@@ -1,0 +1,18 @@
+TÍTULO DO CARROSSEL · textos da tela · versão 1
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Título do carrossel, inteiro na capa.
+[02] A promessa da capa, o que a pessoa leva se passar para o lado.
+[03] A ideia da lâmina 2, numa frase.
+[04] O detalhe que explica a ideia, com o exemplo.
+[05] O título da lista.
+[06] O que o número quer dizer, numa frase.
+[07] O resumo do carrossel, para guardar.
+[08] Fonte · órgão oficial · data
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] primeiro item
+[D02] segundo item
+[D03] terceiro item
+[D04] 42%

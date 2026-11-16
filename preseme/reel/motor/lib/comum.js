@@ -36,6 +36,13 @@ function ehExterno(dir) {
   return !fs.existsSync(path.join(dir, 'score.js')) && fs.existsSync(path.join(dir, 'cenas.json'));
 }
 
+// carrossel (16/11): "tipo": "carrossel" no peca.json; lâminas paradas em 4:5, sem som nem vídeo (lib/carrossel.js)
+function ehCarrossel(dir) {
+  const pj = path.join(dir, 'peca.json');
+  if (!fs.existsSync(pj)) return false;
+  try { return JSON.parse(fs.readFileSync(pj, 'utf8')).tipo === 'carrossel'; } catch (e) { return false; }
+}
+
 // a pasta da peça: --peca <pasta> ou a pasta atual
 function pastaPeca(args, { exigir = true, soStudio = false } = {}) {
   const i = args.indexOf('--peca');
@@ -224,6 +231,6 @@ function traduzRitmo(l) {
 }
 
 module.exports = {
-  traduzRitmo, MOTOR, FERR, acharStudio, ehExterno, pastaPeca, posicionais, lerPeca, ganchoPeca, lerMapa, lerScore, conferirCenas, pastaEngine, roda, render,
+  traduzRitmo, MOTOR, FERR, acharStudio, ehExterno, ehCarrossel, pastaPeca, posicionais, lerPeca, ganchoPeca, lerMapa, lerScore, conferirCenas, pastaEngine, roda, render,
   arquivoFinal, arquivoVideo, mmss, n2, mtime, mb, sonda, contaQuadros, volume, VEL_LEITURA, FOLGA_LEITURA, palavras, tempoMinimo, instante, retratoTempos,
 };

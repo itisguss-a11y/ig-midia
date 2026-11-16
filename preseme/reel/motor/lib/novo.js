@@ -26,7 +26,8 @@ function comando(args) {
   if (!alvo) throw new Error('uso: novo <pasta> [--de <pasta-com-os-arquivos-da-peça>]   (o nome da pasta é o nome da peça)');
   const dir = path.resolve(alvo);
   const i = args.indexOf('--de');
-  const fonte = i >= 0 ? path.resolve(args[i + 1]) : path.join(C.MOTOR, 'modelo');
+  // --carrossel: o modelo de carrossel (4:5, uma lâmina por cena; lib/carrossel.js)
+  const fonte = i >= 0 ? path.resolve(args[i + 1]) : path.join(C.MOTOR, args.includes('--carrossel') ? 'modelo-carrossel' : 'modelo');
   if (!fs.existsSync(fonte)) throw new Error(`não achei ${fonte}`);
   if (fs.existsSync(dir) && fs.readdirSync(dir).some((f) => !['out', 'engine'].includes(f)) && !args.includes('--forca')) throw new Error(`${dir} já existe e não está vazia. Use outra pasta (ou --forca para escrever por cima).`);
   const pj = path.join(fonte, 'peca.json');
@@ -54,7 +55,7 @@ function comando(args) {
   const pd = path.join(dir, 'peca.json');
   if (fs.existsSync(pd)) {
     const p = JSON.parse(fs.readFileSync(pd, 'utf8'));
-    if (!p.nome || p.nome === 'modelo' || fonte === path.join(C.MOTOR, 'modelo')) { p.nome = path.basename(dir); fs.writeFileSync(pd, JSON.stringify(p, null, 2) + '\n'); }
+    if (!p.nome || p.nome === 'modelo' || fonte === path.join(C.MOTOR, 'modelo') || fonte === path.join(C.MOTOR, 'modelo-carrossel')) { p.nome = path.basename(dir); fs.writeFileSync(pd, JSON.stringify(p, null, 2) + '\n'); }
     if (p.nome !== path.basename(dir)) console.log(`AVISO: o peca.json diz que a peça se chama "${p.nome}", e a pasta é "${path.basename(dir)}": o vídeo sai com o nome da pasta (out/${path.basename(dir)}.mp4).`);
   }
   const md = path.join(dir, 'mapa-do-som.json');
@@ -68,7 +69,7 @@ function comando(args) {
   else console.log('letras da fábrica: todas em ~/.fonts');
   console.log(`peça montada em ${dir}${externo ? ' (de fora do animation-studio: sem engine/)' : ''}`);
   if (fs.existsSync(path.join(dir, 'textos.txt'))) require('./textos').comando(['--peca', dir]);
-  console.log(`Próximo: cd ${dir} && node ${path.join(C.MOTOR, 'preseme.js')} ${externo ? 'som' : 'quadros'}`);
+  console.log(`Próximo: cd ${dir} && node ${path.join(C.MOTOR, 'preseme.js')} ${externo ? 'som' : C.ehCarrossel(dir) ? 'laminas' : 'quadros'}`);
 }
 
 module.exports = { comando };

@@ -1,0 +1,10 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra".
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+[L01] Capa: a manchete "A covid entrou em alta em Roraima" e a pergunta "Leve ou grave, como saber a diferença?".
+[L02] A notícia: em seis semanas, a covid entrou em alta em 17 estados e no Distrito Federal; no Norte, só Rondônia e Roraima, marcados no mapa. No ano, ainda são 68,8% menos casos que em 2025.
+[L03] Caso leve tem nome, síndrome gripal: começou nos últimos 10 dias e tem pelo menos 2 sinais, um deles respiratório.
+[L04] Duas colunas de sinais. Respiratórios: tosse, coriza, dor de garganta, congestão nasal. Gerais: febre, dor de cabeça, dor no corpo, calafrio. Tosse e febre há 3 dias é síndrome gripal; febre e dor no corpo, sem nada respiratório, não é.
+[L05] Caso grave, a SRAG: a pessoa com síndrome gripal internada e com um sinal de agravamento, dispneia, taquipneia ou saturação de O2 de 94% ou menos.
+[L06] O cuidado no caso leve, numa linha de 10 dias: isolamento nos 5 primeiros dias e máscara bem ajustada até o 10º dia.
+[L07] Prevenção: a vacina é a principal forma de prevenir os casos graves; no calendário de rotina do SUS para crianças de 6 meses a menores de 5 anos, gestantes e idosos a partir de 60 anos. Quem tem sintoma usa máscara; mãos limpas e ambiente ventilado diminuem a transmissão.
+[L08] Resumo para guardar: leve, dois sinais, um respiratório; grave, internação e um sinal de agravamento; prevenção, vacina, máscara com sintoma e ar circulando. Com as fontes.

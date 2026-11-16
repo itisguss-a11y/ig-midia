@@ -21,11 +21,27 @@ uso: node ${path.relative(process.cwd(), __filename) || 'preseme.js'} <comando> 
   capa [@marcador]                  a capa e o recorte 3:4 da grade
   conferir [--rascunho]             tudo o que se mede, numa lista só
   compara <enviado> <devolvido> [--conta]   o que ele mudou no textos.txt (formato do caderno da voz)
-  entregar [rascunho|folha]         confere os arquivos e imprime a mensagem para ele`;
+  entregar [rascunho|folha]         confere os arquivos e imprime a mensagem para ele
+
+carrossel (peca.json "tipo": "carrossel", formato 4:5; monta com: novo <pasta> --carrossel, ou --de um molde):
+  laminas [--draft] [--estilo X]    um PNG por lâmina, a folha com todas (out/folha.jpg) e o JPEG de subir (out/subir)
+  conferir · capa · entregar [folha]   os mesmos nomes; no carrossel conferem as lâminas (qa, cores, contador do
+                                    Instagram, grade 3:4, texto alternativo, legenda) e entregam as imagens
+  textos, quadros, estilos e compara servem igual; som, rascunho, trecho, definitivo e juntar não (carrossel não tem vídeo)`;
 
 function main() {
   const [cmd, ...args] = process.argv.slice(2);
   const L = (m) => require(path.join(__dirname, 'lib', m));
+  // carrossel: os comandos que mudam de sentido, e os que não existem nele
+  const C0 = L('comum');
+  if (cmd !== 'novo' && C0.ehCarrossel(C0.pastaPeca(args || [], { exigir: false }))) {
+    const K = L('carrossel');
+    if (cmd === 'laminas') return K.laminas(args);
+    if (cmd === 'conferir') return K.conferir(args);
+    if (cmd === 'capa') return K.capa(args);
+    if (cmd === 'entregar') return K.entregar(args);
+    if (['som', 'rascunho', 'trecho', 'definitivo', 'juntar', 'folha-textos'].includes(cmd)) throw new Error(`a peça é carrossel: não tem som nem vídeo (${cmd} não se aplica). As lâminas saem com: laminas`);
+  } else if (cmd === 'laminas') throw new Error('laminas é comando de carrossel: o peca.json desta peça não tem "tipo": "carrossel"');
   switch (cmd) {
     case 'novo': return L('novo').comando(args);
     case 'textos': return L('textos').comando(args);

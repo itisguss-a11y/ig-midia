@@ -1,0 +1,6 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra".
+[L01] Capa: o título do carrossel em letra grande sobre fundo verde-escuro.
+[L02] A ideia principal em letra grande e, embaixo, a explicação.
+[L03] Uma lista de três itens, cada um num cartão.
+[L04] Um número grande no centro e a frase que diz o que ele é.
+[L05] O resumo do carrossel e, no rodapé, a fonte.
