@@ -1,0 +1,39 @@
+LISTA · 5 cuidados no calor forte · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] 5 cuidados no calor forte, e o porquê de cada um.
+[02] Para você, na visita com o ACS, e para quem você visita.
+[03] Muito tempo no calor faz o corpo perder água e sais. Beba mesmo sem sede: sem repor, vem a desidratação.
+[04] Bebida alcoólica e cafeína podem aumentar a desidratação.
+[05] Atividade ao ar livre, de manhã cedo ou no fim da tarde: quanto mais tempo no calor, mais água e sais o corpo perde.
+[06] Refeição pesada exige mais energia para ser digerida.
+[07] Em quem já tem doença, o esforço para manter a temperatura do corpo pode sobrecarregar coração e pulmões. Remédio, só se ajusta com o médico.
+[08] Os 5 cuidados, para salvar.
+[09] Água o dia todo, mesmo sem sede.
+[10] Sem álcool e sem cafeína: desidratam mais.
+[11] Rua na hora fresca: manhã cedo ou fim da tarde.
+[12] Prato leve: menos energia para digerir.
+[13] Atenção ao coração e ao pulmão: o calor sobrecarrega.
+[14] Se o corpo der sinal:
+[15] Suor demais, tontura, náusea, cãibra? Leve à unidade de saúde mais próxima.
+[16] Avalia quem chega e ajusta o remédio de quem já tem doença.
+[17] Confusão, convulsão ou desmaio no calor pode ser golpe de calor: ligue 192.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] lista para salvar
+[D02] por quê
+[D03] Fonte · Ministério da Saúde, página Calor (Saúde de A a Z), 2025
+[D04] Água o dia todo
+[D05] Sem álcool e sem cafeína
+[D06] Rua na hora fresca
+[D07] Prato leve
+[D08] Atenção ao coração e ao pulmão
+[D09] você
+[D10] a equipe
+[D11] 192
+[D12] Fontes · Ministério da Saúde, páginas Calor e SAMU 192, 2025
+[D13] manhã cedo
+[D14] meio-dia
+[D15] fim da tarde

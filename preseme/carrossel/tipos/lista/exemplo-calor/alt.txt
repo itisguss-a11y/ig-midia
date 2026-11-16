@@ -1,0 +1,8 @@
+[L01] Capa: o número 5 grande e o título "cuidados no calor forte, e o porquê de cada um". Embaixo, um estudante acena ao lado de uma garrafa de água, sob um sol forte com ondas de calor.
+[L02] Item 1, água o dia todo: uma garrafa de água, gotas e o sol. Por quê: muito tempo no calor faz o corpo perder água e sais.
+[L03] Item 2, sem álcool e sem cafeína: uma lata e uma xícara de café, as duas riscadas. Por quê: podem aumentar a desidratação.
+[L04] Item 3, rua na hora fresca: três relógios, manhã cedo e fim da tarde com o certo, meio-dia com o errado.
+[L05] Item 4, prato leve: um prato cheio riscado e um prato leve com o certo. Por quê: refeição pesada exige mais energia para ser digerida.
+[L06] Item 5, atenção ao coração e ao pulmão: um coração e dois pulmões embaixo do sol. Por quê: o esforço para manter a temperatura pode sobrecarregar os dois.
+[L07] Resumo: os 5 cuidados numerados, numa lâmina só.
+[L08] O que fazer: três cartões. Você leva à unidade de saúde quem tem suor demais, tontura, náusea ou cãibra; a equipe avalia e ajusta o remédio; confusão, convulsão ou desmaio no calor pode ser golpe de calor, ligue 192.
