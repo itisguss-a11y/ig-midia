@@ -30,6 +30,37 @@ function quadroDoVideo(arq, t, dest) {
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-ss', t.toFixed(3), '-i', arq, '-frames:v', '1', dest]);
 }
 
+// ---------- os cortes que a peça declara ----------
+// Nos tipos em que a câmera anda (linha do tempo, escada de níveis), a cena troca sem a imagem mudar de uma vez, e a
+// medida da imagem não vê esse corte. A peça declara os cortes no score.js (CORTES; no cenas.json, "cortes"): uma lista
+// de instantes (segundos, "@marcador" ou "[NN]") ou "cenas" (o começo de cada cena depois da primeira). Sem CORTES,
+// nada muda. Devolve { cortes } (em segundos, em ordem) ou { erro }.
+function cortesDeclarados(S) {
+  const d = S.CORTES;
+  if (d === undefined || d === null) return { cortes: null };
+  const lista = d === 'cenas' ? (S.cenas || []).slice(1).map((c) => c.t0) : Array.isArray(d) ? d : null;
+  if (!lista) return { erro: 'os cortes declarados (CORTES no score.js, "cortes" no cenas.json) têm de ser uma lista de instantes (segundos, "@marcador" ou "[NN]") ou "cenas"' };
+  try {
+    const ts = lista.map((c) => (typeof c === 'number' ? c : C.instante(S, c)));
+    return { cortes: [...new Set(ts.map((t) => Math.round(t * 1000) / 1000))].filter((t) => t > 0 && t < S.DURATION).sort((a, b) => a - b) };
+  } catch (e) { return { erro: `os cortes declarados (CORTES no score.js, "cortes" no cenas.json): ${e.message}` }; }
+}
+// os cortes que a medida de ritmo achou na imagem, lidos do pacing.svg que ela grava (o render.js só imprime o resumo):
+// no gráfico, x = 40 + (t ÷ duração) × 1140; o começo da imagem é o retângulo do gancho, e cada corte, uma linha laranja
+function cortesMedidos(svg, dur) {
+  const t = (x) => ((parseFloat(x) - 40) / 1140) * dur;
+  const ini = /<rect x="([-\d.e+]+)" y="10"[^>]*fill="#FFF3D6"/.exec(svg);
+  if (!ini || !(dur > 0)) return null;
+  return { t0: t(ini[1]), cortes: [...svg.matchAll(/<line x1="([-\d.e+]+)" y1="10" x2="[-\d.e+]+" y2="[\d.]+" stroke="#E0703E"/g)].map((m) => t(m[1])) };
+}
+// o maior trecho sem corte, juntando os cortes da imagem e os declarados
+function maiorTrecho(t0, cortes, dur) {
+  const b = [t0, ...[...new Set(cortes)].filter((c) => c > t0 && c < dur).sort((p, q) => p - q), dur];
+  let maior = 0, em = t0;
+  for (let i = 1; i < b.length; i++) if (b[i] - b[i - 1] > maior) { maior = b[i] - b[i - 1]; em = b[i - 1]; }
+  return { maior, em };
+}
+
 function comando(args) {
   const dir = C.pastaPeca(args);
   const peca = C.lerPeca(dir);
@@ -126,22 +157,39 @@ function comando(args) {
     if (tam > DRIVE_MB) aviso(`arquivo de ${tam.toFixed(1)} MB: acima de ${DRIVE_MB} MB não sobe pelo conector do Drive (uns 3 MB por envio); ele publica à mão ou sobe por link`);
     else ok(`arquivo de ${tam.toFixed(1)} MB (sobe pelo conector do Drive)`);
     // o ritmo: a medida de pacing do animation-studio (o primeiro segundo, os cortes, o texto no começo)
-    let linhas = [];
+    const dc = cortesDeclarados(S);
+    if (dc.erro) erro(dc.erro);
+    const declarados = dc.cortes && dc.cortes.length ? dc.cortes : null;
+    let linhas = [], durImg = null;
     if (externo) {
       const P = require(path.join(C.pastaEngine(dir), 'tools', 'pacing.js'));
       const t1 = Math.min(...Object.values(S.linha || {}).map((it) => it.t0), Infinity);
       const rep = P.analyse({ path, OUT: out, SCORE: {}, FPS: S.FPS, FW: W, FH: H, execFileSync, FFMPEG: 'ffmpeg', file: arq, probedText: Number.isFinite(t1) ? t1 + 0.25 : undefined });
       linhas = rep.rows.map((r) => `${r.ok ? '✓' : '⚠'} ${r.text}`);
       fs.writeFileSync(path.join(out, 'pacing.svg'), rep.svg);
+      durImg = rep.duration;
     } else linhas = C.render(dir, ['pacing', ...(rascunho ? ['--draft'] : [])], { quieto: true }).split('\n').filter((l) => /^[✓⚠]/.test(l));
-    for (const l of linhas) (l.startsWith('⚠') ? aviso : ok)(`ritmo: ${C.traduzRitmo(l.slice(2))}`);
-    // as trocas de música do modo blocos têm de cair num corte
+    for (const l of linhas) {
+      const tr = declarados && /longest stretch without a cut: (\S+)s from (\S+)s/.exec(l);
+      if (!tr) { (l.startsWith('⚠') ? aviso : ok)(`ritmo: ${C.traduzRitmo(l.slice(2))}`); continue; }
+      // com cortes declarados: o maior trecho sem corte conta os da imagem e os da peça
+      const dur = durImg || C.contaQuadros(arq) / (S.FPS || 30); // a duração que a medida usou: quadros ÷ 30
+      let med = null;
+      try { med = cortesMedidos(fs.readFileSync(path.join(out, 'pacing.svg'), 'utf8'), dur); } catch (e) { med = null; }
+      const r = med ? maiorTrecho(med.t0, med.cortes.concat(declarados), dur) : maiorTrecho(0, declarados, S.DURATION);
+      const certo = (med ? dur : S.DURATION) < 20 || r.maior <= 12;
+      (certo ? ok : aviso)(`ritmo: maior trecho sem corte: ${r.maior.toFixed(1)} s, a partir de ${r.em.toFixed(1)} s, contando os ${declarados.length} cortes que a peça declara (CORTES) (o certo: até 12 s); só pela imagem, ${tr[1]} s a partir de ${tr[2]} s${med ? '' : ' (o out/pacing.svg não deu para ler: contei só os declarados)'}`);
+    }
+    // as trocas de música do modo blocos têm de cair num corte (na imagem, ou num corte que a peça declara)
     const sb = path.join(out, 'som-blocos.json');
     if (fs.existsSync(sb)) { // só existe quando o último som foi feito no modo blocos
+      const tol = 2 / (S.FPS || 30) + 1e-6; // até dois quadros de distância
       for (const b of JSON.parse(fs.readFileSync(sb, 'utf8')).blocos.slice(1)) {
         const m = mudanca(arq, b.t0);
+        const perto = declarados ? declarados.find((c) => Math.abs(c - b.t0) <= tol) : undefined;
         if (m >= 12) ok(`troca de música em ${b.t0.toFixed(2)} s cai num corte (${m.toFixed(0)}% da imagem muda ali)`);
-        else aviso(`troca de música em ${b.t0.toFixed(2)} s: a imagem só muda ${m.toFixed(0)}% ali, não parece corte`);
+        else if (perto !== undefined) ok(`troca de música em ${b.t0.toFixed(2)} s cai num corte que a peça declara (CORTES, ${perto.toFixed(2)} s); ali a imagem muda ${m.toFixed(0)}% de uma vez (a câmera anda, não salta)`);
+        else aviso(`troca de música em ${b.t0.toFixed(2)} s: a imagem só muda ${m.toFixed(0)}% ali, não parece corte${declarados ? ' e não há corte declarado (CORTES) a até dois quadros' : ''}`);
       }
     }
   }
@@ -149,4 +197,4 @@ function comando(args) {
   process.exitCode = erros ? 1 : 0;
 }
 
-module.exports = { comando, PALETA, mudanca, quadroDoVideo };
+module.exports = { comando, PALETA, mudanca, quadroDoVideo, cortesDeclarados, cortesMedidos, maiorTrecho };

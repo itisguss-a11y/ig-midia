@@ -9,7 +9,8 @@ const relogio = () => { const t0 = Date.now(); return () => `${((Date.now() - t0
 const reduzir = (de, para, lado = 1900) => C.roda('python3', ['-I', '-c', `from PIL import Image; im = Image.open(${JSON.stringify(de)}); k = ${lado} / max(im.size); im.convert('RGB').resize((int(im.size[0] * k), int(im.size[1] * k))).save(${JSON.stringify(para)}, quality=88); print(im.size)`], { quieto: true }).trim();
 
 // quadros: a folha de quadros (um por marcador) e a cópia reduzida que se abre com Read (passo 7 da passagem)
-function quadros(args) {
+function quadros(args0) {
+  const [saida, args] = C.tirarOpcao(args0, '--saida');
   const dir = C.pastaPeca(args, { soStudio: true });
   const fim = relogio();
   const s = C.render(dir, ['board', ...C.posicionais(args)], { quieto: true });
@@ -17,10 +18,22 @@ function quadros(args) {
   console.log(linha);
   reduzir(path.join(dir, 'out', 'board.png'), path.join(dir, 'out', 'folha.jpg'));
   console.log(`out/folha.jpg pronta (lado maior 1.900 px), em ${fim()}: abra com a ferramenta Read e confira quadro por quadro.`);
+  copiaSaida(dir, path.join(dir, 'out', 'folha.jpg'), saida);
+}
+
+// --saida: uma cópia com outro nome (ex.: out/folha-v2.jpg, para guardar a versão); relativo à pasta da peça, como no estilos
+function copiaSaida(dir, feito, saida) {
+  if (!saida) return;
+  const d = path.resolve(dir, saida);
+  if (d === feito) return;
+  fs.mkdirSync(path.dirname(d), { recursive: true });
+  fs.copyFileSync(feito, d);
+  console.log(`cópia em ${path.relative(dir, d).startsWith('..') ? d : path.relative(dir, d)}`);
 }
 
 // folha-textos: um quadro pequeno por frase, no instante em que ela está inteira na tela (decisão 115)
-function folhaTextos(args) {
+function folhaTextos(args0) {
+  const [saida, args] = C.tirarOpcao(args0, '--saida');
   const dir = C.pastaPeca(args);
   const fim = relogio();
   const dest = path.join(dir, 'out', 'folha-textos.jpg');
@@ -39,6 +52,7 @@ function folhaTextos(args) {
   }
   console.log(`${s.split('\n').pop()}  (em ${fim()})`);
   console.log('Abra out/folha-textos.jpg com Read antes de mandar. Para ele: entregar folha.');
+  copiaSaida(dir, dest, saida);
 }
 
 // o som tem de ser do texto e do mapa atuais antes de qualquer vídeo
@@ -237,18 +251,58 @@ function juntar(args) {
 }
 
 // capa [@marcador]: a capa (1080 × 1920) e o recorte 3:4 da grade do perfil, de y 240 a 1680 (passo 20 da passagem)
+// ---------- a capa que uma peça de fora já traz (o motor de pixel art faz a dele, com o título grande) ----------
+// A capa é da peça quando: o peca.json ou o cenas.json dizem qual arquivo é ("capa_arquivo", relativo à pasta da peça),
+// ou out/capa-<nome>.png já existe e não foi o capa daqui que tirou do vídeo (o out/capa-origem.json guarda o que ele tirou).
+const ORIGEM = (dir) => path.join(dir, 'out', 'capa-origem.json');
+const sha1 = (arq) => require('crypto').createHash('sha1').update(fs.readFileSync(arq)).digest('hex');
+function capaFeitaAqui(dir, dest) {
+  try { const o = JSON.parse(fs.readFileSync(ORIGEM(dir), 'utf8')); return fs.existsSync(dest) && o.sha1 === sha1(dest); } catch (e) { return false; }
+}
+function capaDaPeca(dir, peca, dest) {
+  let cj = {};
+  try { cj = JSON.parse(fs.readFileSync(path.join(dir, 'cenas.json'), 'utf8')); } catch (e) { /* sem cenas.json legível: o comando já teria parado antes */ }
+  const decl = peca.capa_arquivo ? ['peca.json', peca.capa_arquivo] : cj.capa_arquivo ? ['cenas.json', cj.capa_arquivo] : null;
+  if (decl) {
+    const arq = path.resolve(dir, decl[1]);
+    if (!fs.existsSync(arq)) throw new Error(`o ${decl[0]} diz que a capa é ${decl[1]} ("capa_arquivo"), mas o arquivo não existe`);
+    if (arq !== dest) fs.copyFileSync(arq, dest);
+    fs.rmSync(ORIGEM(dir), { force: true });
+    return `${decl[1]}, a que o ${decl[0]} indica`;
+  }
+  if (fs.existsSync(dest) && !capaFeitaAqui(dir, dest)) return `out/${path.basename(dest)}, que veio com a peça`;
+  return null;
+}
+
 function capa(args) {
   const dir = C.pastaPeca(args);
   const peca = C.lerPeca(dir);
   const S = C.lerScore(dir);
-  const alvo = C.posicionais(args)[0] || peca.capa;
+  const pedido = C.posicionais(args)[0]; // instante dado no comando: tira o quadro do vídeo, mesmo numa peça que traz capa
+  const dest = path.join(dir, 'out', `capa-${peca.nome}.png`);
+  if (C.ehExterno(dir) && !pedido) {
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    const pronta = capaDaPeca(dir, peca, dest);
+    if (pronta) {
+      const tam = recorteDaGrade(dir, dest);
+      console.log(`${path.relative(dir, dest)} ${tam}: a capa da peça foi mantida (${pronta}); não troquei por um quadro do vídeo. Para tirar um quadro mesmo assim: capa @marcador (ou segundos). Recorte da grade em out/capa-grade.jpg: abra com Read e confira se o título, o rosto e o que importa aparecem inteiros.`);
+      if (tam !== '(1080, 1920)') console.log(`AVISO: a capa da peça tem ${tam}; a do reel é 1080 × 1920 (o recorte da grade conta com essa medida)`);
+      return;
+    }
+  }
+  const alvo = pedido || peca.capa;
   if (!alvo) throw new Error('diga o instante da capa: capa @marcador (ou ponha "capa" no peca.json)');
   const t = C.instante(S, alvo);
-  const dest = path.join(dir, 'out', `capa-${peca.nome}.png`);
   if (C.ehExterno(dir)) {
     const fonte = [C.arquivoFinal(dir, false), C.arquivoVideo(dir, false)].find((f) => fs.existsSync(f));
     if (!fonte) throw new Error('falta o vídeo para tirar a capa (out/video.mp4)');
+    if (fs.existsSync(dest) && !capaFeitaAqui(dir, dest)) { // a capa que a peça trouxe não se perde: fica guardada ao lado
+      const guarda = path.join(dir, 'out', `capa-${peca.nome}-da-peca.png`);
+      fs.copyFileSync(dest, guarda);
+      console.log(`a capa que veio com a peça ficou guardada em out/${path.basename(guarda)}`);
+    }
     require('./conferir').quadroDoVideo(fonte, t, dest);
+    fs.writeFileSync(ORIGEM(dir), JSON.stringify({ origem: 'quadro do vídeo', instante: +t.toFixed(3), sha1: sha1(dest) }));
   } else {
     const pasta = path.join(dir, 'out', 'stills');
     fs.rmSync(pasta, { recursive: true, force: true });
@@ -256,8 +310,12 @@ function capa(args) {
     const f = fs.readdirSync(pasta).find((x) => x.endsWith('.png'));
     fs.copyFileSync(path.join(pasta, f), dest);
   }
-  const tam = C.roda('python3', ['-I', '-c', `from PIL import Image; c = Image.open(${JSON.stringify(dest)}); print(c.size); c.convert('RGB').crop((0, 240, 1080, 1680)).resize((540, 720)).save(${JSON.stringify(path.join(dir, 'out', 'capa-grade.jpg'))}, quality=88)`], { quieto: true }).trim();
+  const tam = recorteDaGrade(dir, dest);
   console.log(`${path.relative(dir, dest)} ${tam}, do instante ${t.toFixed(2)} s; recorte da grade em out/capa-grade.jpg: abra com Read e confira se o título, o rosto e o que importa aparecem inteiros.`);
+}
+// o recorte 3:4 da grade do perfil (de y 240 a 1680), reduzido para conferir; devolve o tamanho da capa
+function recorteDaGrade(dir, dest) {
+  return C.roda('python3', ['-I', '-c', `from PIL import Image; c = Image.open(${JSON.stringify(dest)}); print(c.size); c.convert('RGB').crop((0, 240, 1080, 1680)).resize((540, 720)).save(${JSON.stringify(path.join(dir, 'out', 'capa-grade.jpg'))}, quality=88)`], { quieto: true }).trim();
 }
 
 module.exports = { quadros, folhaTextos, rascunho, definitivo, trecho, juntar, capa };

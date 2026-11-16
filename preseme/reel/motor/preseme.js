@@ -10,16 +10,17 @@ uso: node ${path.relative(process.cwd(), __filename) || 'preseme.js'} <comando> 
 
   novo <pasta> [--de <pasta>]       monta a peça (projeto 9:16 do animation-studio + arquivos da peça ou do modelo)
   textos [arquivo.txt] [--tabela]   lê o textos.txt, confere o formato, grava o textos.js, mostra duração e leitura
-  folha-textos                      um quadro por frase, no instante em que ela está inteira (decisão 115; peça de fora: do MP4)
-  quadros                           folha de quadros (um por marcador) e a cópia reduzida para olhar
+  folha-textos [--saida <arquivo>]  um quadro por frase, no instante em que ela está inteira (decisão 115; peça de fora: do MP4)
+  quadros [--saida <arquivo>]       folha de quadros (um por marcador) e a cópia reduzida para olhar
+                                    (--saida: mais uma cópia com esse nome, relativo à pasta da peça; ex.: out/folha-v2.jpg)
   estilos <instante> [a,b,c] [--todos]   a folha da parada 2: o mesmo quadro em três estilos do kit (A ★, B, C)
   som                               out/music.wav pelo mapa-do-som.json (modo trilha ou blocos), no volume de celular
   rascunho                          vídeo inteiro em meia resolução, com som, e o ritmo (demora: rodar em segundo plano)
   trecho <de> <até> [--final]       refaz só um pedaço e emenda sem recomprimir o resto (de/até: segundos, @marcador ou [NN])
   definitivo                        som, vídeo inteiro, junção e medidas (demora: rodar em segundo plano)
   juntar [--rascunho]               junta a imagem com out/music.wav (vídeo de fora: out/video.mp4; animation-studio: o mux)
-  capa [@marcador]                  a capa e o recorte 3:4 da grade
-  conferir [--rascunho]             tudo o que se mede, numa lista só
+  capa [@marcador]                  a capa e o recorte 3:4 da grade (peça de fora que já traz capa: fica a dela, sem instante)
+  conferir [--rascunho]             tudo o que se mede, numa lista só (corte que a câmera não mostra: CORTES no score.js)
   compara <enviado> <devolvido> [--conta]   o que ele mudou no textos.txt (formato do caderno da voz)
   entregar [rascunho|folha]         confere os arquivos e imprime a mensagem para ele
 

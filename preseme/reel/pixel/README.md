@@ -104,7 +104,7 @@ node <motor do reel>/preseme.js conferir --peca ...
 node <motor do reel>/preseme.js entregar --peca ...
 ```
 
-A pasta montada traz `peca.json` (`"motor": "externo"`), `textos.txt`, `cenas.json`, `mapa-do-som.json`, `legenda.txt`, `out/video.mp4` (a imagem sem som) e a capa deste motor (`out/capa-<nome>.png`). Não rode o `capa` do motor do reel nela: ele tira um quadro do vídeo e troca a capa com o título grande por esse quadro.
+A pasta montada traz `peca.json` (`"motor": "externo"`), `textos.txt`, `cenas.json`, `mapa-do-som.json`, `legenda.txt`, `out/video.mp4` (a imagem sem som) e a capa deste motor (`out/capa-<nome>.png`). O `capa` do motor do reel deixa essa capa como está (desde 16/11) e só faz o recorte da grade; com instante (`capa @marcador`), ele tira um quadro do vídeo e guarda esta em `out/capa-<nome>-da-peca.png`.
 
 No `cenas.json`, cada cena vai de corte a corte. O corte numa transição é o quadro do meio dela, onde a imagem mais muda. A transição `funde` é um dissolve e não tem corte: troca de música só em `afasta`, `aproxima`, `desliza` ou em duas cenas seguidas sem transição. Cena que volta mais tarde ganha número (`mapa`, `mapa-2`), para o som de cada vez ser escolhido à parte. A abertura, quando há, é a cena `abertura`: no modo blocos, deixe-a fora dos blocos (fica sem música, como no vídeo deste motor).
 

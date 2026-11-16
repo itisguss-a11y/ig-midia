@@ -69,6 +69,15 @@ function posicionais(args) {
   }
   return out;
 }
+// uma opção com valor (ex.: --saida arquivo.jpg): devolve [valor ou null, os argumentos sem o par], para o valor
+// não chegar ao posicionais (no quadros, ele iria parar no board do animation-studio como se fosse um marcador)
+function tirarOpcao(args, nome) {
+  const i = args.indexOf(nome);
+  if (i < 0) return [null, args];
+  const v = args[i + 1];
+  if (v === undefined || v.startsWith('--')) throw new Error(`${nome} pede um valor (ex.: ${nome} out/folha-v2.jpg)`);
+  return [v, args.slice(0, i).concat(args.slice(i + 2))];
+}
 
 const PADRAO_PECA = {
   formato: '9:16',
@@ -111,6 +120,7 @@ function scoreExterno(dir) {
   return {
     externo: true, FPS: j.fps || 30, FORMAT: '9:16', DURATION: j.duracao, BPM: bpm, BEAT: bpm ? 60 / bpm : 0,
     cenas, linha, efeitos: j.efeitos || [], markers: j.marcadores || {}, TX, S: Object.fromEntries(cenas.map((c) => [c.id, [c.t0, c.t1]])),
+    CORTES: j.cortes === undefined ? undefined : j.cortes, // opcional: os cortes que a imagem não mostra de uma vez (o conferir usa)
   };
 }
 // as cenas de uma peça de fora têm de vir em ordem e emendadas (o t0 de cada uma é um corte)
@@ -231,6 +241,6 @@ function traduzRitmo(l) {
 }
 
 module.exports = {
-  traduzRitmo, MOTOR, FERR, acharStudio, ehExterno, ehCarrossel, pastaPeca, posicionais, lerPeca, ganchoPeca, lerMapa, lerScore, conferirCenas, pastaEngine, roda, render,
+  traduzRitmo, MOTOR, FERR, acharStudio, ehExterno, ehCarrossel, pastaPeca, posicionais, tirarOpcao, lerPeca, ganchoPeca, lerMapa, lerScore, conferirCenas, pastaEngine, roda, render,
   arquivoFinal, arquivoVideo, mmss, n2, mtime, mb, sonda, contaQuadros, volume, VEL_LEITURA, FOLGA_LEITURA, palavras, tempoMinimo, instante, retratoTempos,
 };

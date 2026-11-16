@@ -208,7 +208,7 @@ function ambienteNoBus(A, S, mapa, bus, relato, busCoisas = bus) {
   for (const [id, f] of Object.entries(mapa.fundos || {})) {
     const c = cena[id]; if (!c) continue;
     const fazer = AMB[f.som];
-    if (typeof fazer !== 'function') throw new Error(`fundo "${f.som}" não existe no banco (há: floresta, cidade, mosquito, chuva, sirene, salaDeEspera, noite, monitor)`);
+    if (typeof fazer !== 'function') throw new Error(`fundo "${f.som}" não existe no banco (há: floresta, cidade, mosquito, chuva, sirene, salaDeEspera, noite, monitor, rio, varanda)`);
     if (AMB.APROVADOS[f.som] === 'reprovado') throw new Error(`o fundo "${f.som}" foi reprovado por ele e não se usa mais`);
     const x = fazer(c.t1 - c.t0, Object.assign({ seed: f.seed || 1 }, f.opcoes || {}));
     bus.addStereo(x.L, x.R, c.t0, f.vol === undefined ? 0.35 : f.vol);
@@ -220,7 +220,7 @@ function ambienteNoBus(A, S, mapa, bus, relato, busCoisas = bus) {
     const vol = k.vol === undefined ? 0.5 : k.vol;
     const pan = Array.isArray(k.pan) ? k.pan : [k.pan || 0, k.pan || 0];
     let x = null;
-    if (['mosquito', 'sirene', 'carroPassando', 'chuva', 'floresta', 'cidade', 'noite', 'monitor', 'salaDeEspera'].includes(k.som)) {
+    if (['mosquito', 'sirene', 'carroPassando', 'chuva', 'floresta', 'cidade', 'noite', 'monitor', 'salaDeEspera', 'rio', 'varanda'].includes(k.som)) {
       const dur = k.dur || 2.5;
       if (k.som === 'mosquito') x = AMB.mosquito(dur, { seed: k.seed || 1, pan: (tt) => pan[0] + (pan[1] - pan[0]) * (tt / dur) });
       else if (k.som === 'carroPassando') x = AMB.carroPassando(dur, { seed: k.seed || 1, ida: pan[1] >= pan[0] ? 1 : -1 });
@@ -385,7 +385,12 @@ function somBlocos(dir, S, peca, mapa, relato) {
     for (const e of S.efeitos || []) {
       const m = efeito(A, e.som);
       if (!m) { relato.push(`(efeito "${e.som}" não existe no modo blocos: ficou de fora)`); continue; }
-      fx.addMono(m, e.t, (e.vol === undefined ? 0.8 : e.vol) * 0.5, e.pan || 0);
+      const g = (e.vol === undefined ? 0.8 : e.vol) * 0.5;
+      if (Array.isArray(e.pan)) { // pan: [de, para]: o efeito anda de um lado para o outro do fone (ex.: a câmera ou a coisa passa)
+        const x = panMovel(m, Number(e.pan[0]) || 0, Number(e.pan[1]) || 0);
+        fx.addStereo(x.L, x.R, e.t, g);
+        relato.push(`efeito ${e.som} em ${e.t.toFixed(2)} s andando de ${e.pan[0]} a ${e.pan[1]} no fone`);
+      } else fx.addMono(m, e.t, g, e.pan || 0);
     }
     fx.mixInto(envio, 0.15);
   }

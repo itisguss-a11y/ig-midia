@@ -58,6 +58,7 @@ const { SR, TAU, Bus, rng, Pink, Saw, Square, Sine, SVF, reverb } = D;
 const APROVADOS = {
   floresta: 'em uso', cidade: 'em uso', mosquito: 'em uso', chuva: 'em uso',
   sirene: 'em uso', salaDeEspera: 'em uso', noite: 'em uso', monitor: 'em uso',
+  rio: 'em uso', varanda: 'em uso', // 16/11: entram direto, como os outros (ele ainda não ouviu)
 };
 
 // ---------- ajudantes ----------
@@ -413,6 +414,57 @@ function monitor(seg, { bpm = 72, coracao = true } = {}) {
   return suave(b, 0.05, 0.2);
 }
 
+// rio (16/11): a água que corre (chiado largo que cresce e diminui devagar, um pouco de brilho em cima) e as bolhas
+// (um assobio curto que sobe de tom e some: a água passando por cima das pedras)
+function rio(seg, { seed = 1, forca = 1, bolhas = 1 } = {}) {
+  const n = Math.round(seg * SR), b = new Bus(n), u = sorteio(seed);
+  const pL = new Pink(seed * 11 + 1), pR = new Pink(seed * 11 + 2);
+  const aL = new SVF(), aR = new SVF(), cL = new SVF(), cR = new SVF();
+  const corre = lfoLento(u, [0.09, 0.17, 0.27]);
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    const g = (0.8 + 0.2 * corre(t)) * 1.0 * forca;
+    const c = 650 + 250 * corre(t * 1.3);
+    const l = pL.next(), r = pR.next();
+    b.L[i] += (aL.bp(l, c, 0.5) + cL.hp(l, 2500, 0.7) * 0.25) * g;
+    b.R[i] += (aR.bp(r, c * 1.05, 0.5) + cR.hp(r, 2500, 0.7) * 0.25) * g;
+  }
+  const nb = Math.round(seg * 22 * bolhas);
+  for (let k = 0; k < nb; k++) {
+    const d = 0.02 + u() * 0.05, len = Math.round(d * SR), g = new Float32Array(len), f0 = 350 + u() * 900, o = new Sine();
+    for (let i = 0; i < len; i++) { const x = i / len; g[i] = o.next(f0 * (1 + 1.6 * x)) * Math.min(1, x / 0.08) * Math.exp(-x * 4); }
+    b.addMono(g, u() * seg, 0.15 + 0.3 * u(), (u() * 2 - 1) * 0.8);
+  }
+  comEco(b, 0.2, { room: 0.6, damp: 0.4, hp: 250, lp: 7000 });
+  return suave(b);
+}
+
+// varanda (16/11): vento leve (sopro que vem em rajadas e fica mais agudo quando aperta) e um pássaro ao longe
+// (o mesmo passarinho do banco, baixo, sem o brilho de perto e com mais eco)
+function varanda(seg, { seed = 1, vento = 1, passaros = 0.3 } = {}) {
+  const n = Math.round(seg * SR), b = new Bus(n), u = sorteio(seed);
+  const pL = new Pink(seed * 13 + 1), pR = new Pink(seed * 13 + 2), fL = new SVF(), fR = new SVF();
+  const rajada = lfoLento(u, [0.05, 0.11, 0.19]);
+  for (let i = 0; i < n; i++) {
+    const r = 0.5 + 0.5 * rajada(i / SR); // 0 a 1
+    const g = (0.25 + 0.75 * r * r) * 1.6 * vento;
+    const c = 300 + 500 * r;
+    b.L[i] += fL.bp(pL.next(), c, 0.6) * g;
+    b.R[i] += fR.bp(pR.next(), c * 1.1, 0.6) * g;
+  }
+  const longe = new Bus(n);
+  let t = 0.6 + u() * 1.2, k = 0;
+  while (passaros > 0 && t < seg - 0.6) { // passaros: 0 = só o vento
+    longe.addMono(passaro({ seed: seed * 59 + k++ }), t, 0.26 + 0.1 * u(), (u() * 2 - 1) * 0.7);
+    t += 1.2 + -Math.log(1 - u() * 0.999) / passaros;
+  }
+  const qL = new SVF(), qR = new SVF();
+  for (let i = 0; i < n; i++) { longe.L[i] = qL.lp(longe.L[i], 4200, 0.7); longe.R[i] = qR.lp(longe.R[i], 4200, 0.7); }
+  comEco(longe, 0.55, { room: 0.82, damp: 0.45, hp: 400, lp: 6000 });
+  longe.mixInto(b, 1);
+  return suave(b, 0.4, 0.5);
+}
+
 // ---------- amostra para ele ouvir ----------
 const AMOSTRA = [
   ['floresta', 'Floresta: pássaros e folhas', (d) => floresta(d, { seed: 4 })],
@@ -423,6 +475,8 @@ const AMOSTRA = [
   ['salaDeEspera', 'Sala de espera da UBS, com a senha', (d) => salaDeEspera(d, { seed: 6 })],
   ['noite', 'Noite: grilos e sapos', (d) => noite(d, { seed: 8 })],
   ['monitor', 'Monitor do coração', (d) => monitor(d, { bpm: 72 })],
+  ['rio', 'Rio: água correndo', (d) => rio(d, { seed: 2 })],
+  ['varanda', 'Varanda: vento leve e um pássaro ao longe', (d) => varanda(d, { seed: 3 })],
 ];
 
 function amostra(pasta, { cada = 4.2, vao = 0.7, abertura = 1.6, alvo = -16 } = {}) {
@@ -447,7 +501,7 @@ function amostra(pasta, { cada = 4.2, vao = 0.7, abertura = 1.6, alvo = -16 } = 
 
 module.exports = {
   APROVADOS, AMOSTRA, amostra,
-  floresta, cidade, mosquito, chuva, sirene, salaDeEspera, noite, monitor, // fundos de lugar
+  floresta, cidade, mosquito, chuva, sirene, salaDeEspera, noite, monitor, rio, varanda, // fundos de lugar
   passaro, buzina, carroPassando, sapo, bip, senha, trovaoSom,               // coisas
 };
 

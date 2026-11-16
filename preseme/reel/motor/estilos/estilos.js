@@ -103,15 +103,16 @@
 
   // ---------- as cores por papel, em cada estilo ----------
   // fundo · tinta (contorno e linha) · texto · destaque (o que importa) · alerta (erro, pegadinha) · apoio (claro) ·
-  // apoioEscuro · superficie (parede, papel, cartão) · chao · sombra · grade (quadriculado, linhas de fundo)
-  const CLARO = { fundo: PAL.papel, tinta: PAL.floresta, texto: PAL.floresta, destaque: PAL.marca, alerta: PAL.coral, apoio: PAL.salvia, apoioEscuro: PAL.folha, superficie: GENTE.branco, chao: PAL.salvia, sombra: PAL.folha, grade: PAL.salvia };
+  // apoioEscuro · superficie (parede, papel, cartão) · chao · sombra · grade (quadriculado, linhas de fundo) ·
+  // linhaChao (linha, faixa ou marca desenhada em cima do chão: a cor que se lê no chão de cada estilo; 16/11)
+  const CLARO = { fundo: PAL.papel, tinta: PAL.floresta, texto: PAL.floresta, destaque: PAL.marca, alerta: PAL.coral, apoio: PAL.salvia, apoioEscuro: PAL.folha, superficie: GENTE.branco, chao: PAL.salvia, sombra: PAL.folha, grade: PAL.salvia, linhaChao: PAL.floresta };
   const CORES = {
     lapis: CLARO,
-    pixel: Object.assign({}, CLARO, { tinta: PAL.noite }),
-    giz: { fundo: PAL.floresta, tinta: PAL.papel, texto: PAL.papel, destaque: PAL.marca, alerta: PAL.coral, apoio: PAL.salvia, apoioEscuro: PAL.folha, superficie: PAL.folha, chao: PAL.folha, sombra: PAL.noite, grade: PAL.folha },
+    pixel: Object.assign({}, CLARO, { tinta: PAL.noite, linhaChao: PAL.noite }),
+    giz: { fundo: PAL.floresta, tinta: PAL.papel, texto: PAL.papel, destaque: PAL.marca, alerta: PAL.coral, apoio: PAL.salvia, apoioEscuro: PAL.folha, superficie: PAL.folha, chao: PAL.folha, sombra: PAL.noite, grade: PAL.folha, linhaChao: PAL.papel },
     planta: Object.assign({}, CLARO, { superficie: PAL.papel, chao: PAL.papel }),
     carimbo: Object.assign({}, CLARO, { superficie: PAL.papel, sombra: PAL.noite }),
-    chapado: Object.assign({}, CLARO, { fundo: PAL.salvia, superficie: PAL.papel, chao: PAL.folha, grade: PAL.folha }),
+    chapado: Object.assign({}, CLARO, { fundo: PAL.salvia, superficie: PAL.papel, chao: PAL.folha, grade: PAL.folha, linhaChao: PAL.papel }), // no chão Folha, a tinta Floresta some (contraste 2:1); o Papel dá 4,9:1
   };
   const cor = (p) => (CORES[ESCOLHA.nome][p] || PAL[p] || GENTE[p] || p);
 
@@ -214,9 +215,10 @@
   function grade(ctx) {
     ctx.save();
     ctx.strokeStyle = PAL.salvia;
+    const a0 = ctx.globalAlpha; // o fundo que entra transparente leva o quadriculado junto
     for (let pass = 0; pass < 2; pass++) {
       const passo = pass ? 150 : 30;
-      ctx.globalAlpha = pass ? 0.75 : 0.38; ctx.lineWidth = pass ? 2 : 1;
+      ctx.globalAlpha = a0 * (pass ? 0.75 : 0.38); ctx.lineWidth = pass ? 2 : 1;
       ctx.beginPath();
       for (let x = 0; x <= G.W; x += passo) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, G.H); }
       for (let y = 0; y <= G.H; y += passo) { ctx.moveTo(0, y + 0.5); ctx.lineTo(G.W, y + 0.5); }
@@ -308,7 +310,7 @@
   // ======================================================================================================
   // As funções da cena. Todas recebem o ctx primeiro e as medidas no quadro de 1080 × 1920.
   // Cor: o nome de um papel (tinta, texto, destaque, alerta, apoio, apoioEscuro, superficie, chao, sombra, grade,
-  // fundo), uma cor da paleta (floresta, papel, marca, coral, salvia, folha, noite) ou de gente (pele, cabelo, branco).
+  // fundo, linhaChao), uma cor da paleta (floresta, papel, marca, coral, salvia, folha, noite) ou de gente (pele, cabelo, branco).
   // k (de 0 a 1): quanto do desenho já apareceu (para desenhar entrando: linha, seta, cota, destaque, carimbo).
   // ======================================================================================================
 
@@ -329,13 +331,13 @@
       // o símbolo de terreno das plantas: uma linha firme e a faixa de traços inclinados embaixo dela
       G.line(ctx, [[x0, y], [x1, y]], { color: cor('tinta'), lw: 6, seed, amp: 0 });
       ctx.save(); ctx.beginPath(); ctx.rect(-10, y + 3, G.W + 20, 46); ctx.clip();
-      ctx.strokeStyle = cor('tinta'); ctx.globalAlpha = 0.55; ctx.lineWidth = 2.2; ctx.beginPath();
+      ctx.strokeStyle = cor('tinta'); ctx.globalAlpha *= 0.55; ctx.lineWidth = 2.2; ctx.beginPath(); // *=: respeita o globalAlpha de quem chama
       for (let x = -60; x < G.W + 60; x += 22) { ctx.moveTo(x, y + 48); ctx.lineTo(x + 30, y + 4); }
       ctx.stroke(); ctx.restore();
       return;
     }
     G.poly(ctx, [[x0, y], [x1, y], [x1, y1], [x0, y1]], { fill: cor(papel), stroke: null, lw: 0, seed, hatch: hachura() });
-    if (D.chapado) { ctx.save(); ctx.fillStyle = cor('sombra'); ctx.globalAlpha = 0.35; ctx.fillRect(x0, y, x1 - x0, 14); ctx.restore(); }
+    if (D.chapado) { ctx.save(); ctx.fillStyle = cor('sombra'); ctx.globalAlpha *= 0.35; ctx.fillRect(x0, y, x1 - x0, 14); ctx.restore(); }
     else G.line(ctx, [[x0, y], [x1, y]], { color: cor('tinta'), lw: 7, seed: seed + 1 });
   };
 
@@ -456,7 +458,7 @@
     }
     const top = yBase - size * 0.84, bot = yBase + size * 0.22;
     if (D.chapado) { G.rrect(ctx, x - 12, top, ww + 24, bot - top, (bot - top) / 2, { fill: PAL.marca, stroke: null, lw: 0, seed }); return; }
-    if (D.planta) { ctx.save(); ctx.globalAlpha = 0.85; ctx.fillStyle = PAL.marca; ctx.fillRect(x - 8, top + size * 0.25, ww + 16, bot - top - size * 0.25); ctx.restore(); return; }
+    if (D.planta) { ctx.save(); ctx.globalAlpha *= 0.85; ctx.fillStyle = PAL.marca; ctx.fillRect(x - 8, top + size * 0.25, ww + 16, bot - top - size * 0.25); ctx.restore(); return; }
     G.poly(ctx, [[x - 10, top + size * 0.02], [x + ww + 12, top - size * 0.06], [x + ww + 8, bot], [x - 14, bot + size * 0.04]], { fill: PAL.marca, stroke: null, lw: 0, seed, amp: D.carimbo ? 1.6 : 2.2 });
   };
 

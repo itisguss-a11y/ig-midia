@@ -50,6 +50,12 @@ function comando(args) {
     for (const f of ['estilos.js', 'estilos-folha.js']) fs.copyFileSync(path.join(kit, f), path.join(dir, 'ferramentas', f));
     for (const f of fs.readdirSync(path.join(kit, 'fontes'))) fs.copyFileSync(path.join(kit, 'fontes', f), path.join(dir, 'ferramentas', 'fontes', f));
     console.log('kit de estilos: ferramentas/estilos.js (o estilo sai de ESTILO no score.js; sem ele, lápis no papel)');
+    // a biblioteca de desenhos (motor/estilos/biblioteca.js: lugares, objetos e gente prontos, por nome), só na peça
+    // cujo index.html a carrega, logo depois da linha do kit. No film: const B = globalThis.BIB;
+    if (fs.readFileSync(ih, 'utf8').includes('ferramentas/biblioteca.js')) {
+      fs.copyFileSync(path.join(kit, 'biblioteca.js'), path.join(dir, 'ferramentas', 'biblioteca.js'));
+      console.log('biblioteca: ferramentas/biblioteca.js (B.varanda, B.cadeira, B.pessoa...; a lista em motor/estilos/BIBLIOTECA.md)');
+    }
   } else if (!externo) console.log('kit de estilos: esta peça não usa (o index.html não carrega ferramentas/estilos.js)');
   // o modelo se chama "modelo": a peça nova leva o nome da pasta
   const pd = path.join(dir, 'peca.json');

@@ -173,7 +173,13 @@ def trilha(dur, path, clima="curioso", semente="preseme", efeitos=None):
     if efeitos:                                                              # efeitos: baixos, por cima da música, com um pouco da mesma sala
         fx = np.zeros((m, 2))
         for e in efeitos:
-            som = EFEITOS[e["som"]](rng) * float(e.get("vol", 1)); i = int(SR * float(e["t"])); pan = float(e.get("pan", 0))
+            som = EFEITOS[e["som"]](rng) * float(e.get("vol", 1)); i = int(SR * float(e["t"])); pan = e.get("pan", 0)
+            if isinstance(pan, (list, tuple)):                              # pan [de, para]: o efeito anda de um lado para o outro do fone
+                if 0 <= i < m:
+                    som = som[:m - i]; p = np.clip(np.linspace(float(pan[0]), float(pan[1]), len(som)), -1, 1)
+                    fx[i:i + len(som), 0] += som * (1 - np.maximum(0, p)); fx[i:i + len(som), 1] += som * (1 + np.minimum(0, p))
+                continue
+            pan = float(pan)
             if 0 <= i < m:
                 som = som[:m - i]; fx[i:i + len(som), 0] += som * (1 - max(0, pan)); fx[i:i + len(som), 1] += som * (1 + min(0, pan))
         for q in (0, 1): fx[:, q] += np.fft.irfft(np.fft.rfft(fx[:, q], N) * F, N)[:m] * .22

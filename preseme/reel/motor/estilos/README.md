@@ -6,6 +6,8 @@ O kit faz a mesma cena sair em seis estilos de desenho, trocando um nome. Serve 
 
 Feito na noite de 15 para 16/11/2026, por cima do animation-studio (o motor de desenho), sem mexer no motor. Testado numa cena de demonstração (pasta `demo-estilos`): os seis estilos, a folha da parada 2, dois clipes em movimento e o som pelo motor do reel.
 
+Junto do kit mora a **biblioteca de desenhos** (`biblioteca.js`, guia em `BIBLIOTECA.md`): 9 lugares, 35 objetos e 9 pessoas prontos, chamados pelo nome (`B.varanda(ctx)`, `B.cadeira(ctx, { x, y })`, `B.pessoa(ctx, { quem: 'idosa', pose: 'sit' })`), que saem nos seis estilos. Peça nova já nasce com ela: o desenho que está lá não se escreve de novo.
+
 ## Os seis estilos
 
 **lapis · lápis no papel.** Traço de lápis que treme, hachura e textura de papel: o acabamento A do sus-hoje. Serve para peça que conta um caso ou um dia; é a referência do kit. Nota dele: positivo (15/11, "Acabamento A").
@@ -48,7 +50,9 @@ Todos usam só a paleta (Floresta, Papel, Marca-texto, Coral, Sálvia, Folha e o
 | `E.objeto(ctx, 'casa' \| 'prancheta' \| 'vaso' \| 'sol', {...})` | objetos de rua e de UBS feitos com as funções acima |
 | `E.cor('texto')`, `E.letra('titulo')`, `E.nome`, `E.escuro()` | a cor e a letra de cada papel no estilo da vez |
 
-Os papéis de cor: `fundo`, `tinta` (contorno e linha), `texto`, `destaque`, `alerta`, `apoio`, `apoioEscuro`, `superficie`, `chao`, `sombra`, `grade`. Também valem os nomes da paleta (`floresta`, `coral`...) e de gente (`pele`, `cabelo`, `branco`). A cena de `demo-estilos/film-1-demo.js` é o exemplo inteiro.
+Os papéis de cor: `fundo`, `tinta` (contorno e linha), `texto`, `destaque`, `alerta`, `apoio`, `apoioEscuro`, `superficie`, `chao`, `sombra`, `grade` e `linhaChao` (linha, faixa ou marca desenhada em cima do chão: `E.linha(ctx, pts, { papel: 'linhaChao' })`; sai na cor que se lê no chão de cada estilo: Floresta no lápis, no carimbo e na planta, Noite no pixel, Papel no giz e no chapado). Também valem os nomes da paleta (`floresta`, `coral`...) e de gente (`pele`, `cabelo`, `branco`). A cena de `demo-estilos/film-1-demo.js` é o exemplo inteiro.
+
+Transparência: as funções respeitam o `ctx.globalAlpha` de quem chama (a cena que entra ou sai clareando leva tudo junto). Desde 16/11 isso vale também para o chão, o marca-texto e o quadriculado da planta e para a faixa de sombra do chão no chapado. Ainda não vale para a falha de tinta do carimbo e para o anel do selo (`E.carimbo`, no lápis e no carimbo): os pontos da cor do papel saem com transparência fixa.
 
 Desenho feito direto no motor (`G.rrect`, `G.text`...) também muda com o estilo (o kit embrulha o motor), mas a cor escrita à mão não acompanha o fundo: na lousa, uma letra Floresta some.
 
@@ -70,6 +74,7 @@ Para virar comando do motor do reel (`node preseme.js estilos <instante> [a,b,c]
 - No pixel, só o texto que passa pelo `G.text` sai nítido por cima dos blocos; texto que o motor escreve por outro caminho (`UI.text`, `Data.counter`) vira bloco junto com o desenho.
 - Na planta, as pessoas também ficam em aguada (transparentes), como o resto do desenho.
 - Na lousa, o fundo é sempre a lousa; `E.fundo(ctx, { tipo: 'escuro' })` não muda nada ali.
+- No chapado não há contorno: preenchimento creme (`papel`, `superficie`) ou branco (`branco`) em cima da parede creme (`superficie`) some, porque é a mesma cor sem linha em volta. Em cima da parede, use `apoio` (Sálvia), `apoioEscuro` (Folha), `destaque` ou `alerta`, ou ligue a sombra (`sombra: true`). No chão do chapado (Folha), a linha na `tinta` (Floresta) quase some (contraste de 2 para 1): use `linhaChao`, que ali sai em Papel (4,9 para 1).
 - Estilo novo (aquarela, por exemplo) entra como mais uma linha em `DEF`, `CORES` e `LETRAS`, dentro do `estilos.js`, e só depois de passar numa folha que ele viu.
 
 ## As letras

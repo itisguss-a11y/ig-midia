@@ -23,6 +23,8 @@ ONDE = {
     'salaDeEspera': 'UBS, posto, consulta',
     'noite': 'noite no interior',
     'monitor': 'hospital, coração',
+    'rio': 'beira de rio, igarapé, ribeirinho',
+    'varanda': 'casa, quintal, fim de tarde',
 }
 
 def quebra(d, texto, f, largura):
