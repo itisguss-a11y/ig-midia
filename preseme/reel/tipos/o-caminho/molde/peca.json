@@ -1,0 +1,1 @@
+{"nome": "TROQUE-nome-da-peca", "titulo": "TROQUE: a pergunta da frase [01]", "tipo": "o caminho", "nota": "molde do tipo o caminho; o chat 1 troca tudo o que diz TROQUE", "limite": 175, "capa": "@pergunta", "estilo": "carimbo", "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"], "esperado": {"frases": 10, "palavras": 6}}

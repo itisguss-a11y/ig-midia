@@ -1,0 +1,30 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# O caminho da vacina até o braço · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+
+PARTE 1 · as frases
+[01] Como a vacina chega fria até o seu braço?
+[02] Da fábrica até você, ela não pode passar de 8 °C.
+[03] Primeiro, a central nacional, perto do aeroporto, planeja a entrega para o país.
+[04] Até os estados, ela segue de avião ou por terra, com a temperatura medida em toda embalagem.
+[05] Depois, uma das 27 centrais estaduais guarda as doses e distribui para os municípios.
+[06] Se a temperatura saiu da faixa no caminho, a central avisa o Ministério na hora.
+[07] Do estado ao município, ela vai por terra, em veículo refrigerado, e às vezes de barco ou de avião.
+[08] A câmara refrigerada apita antes do limite, abaixo de 3 °C ou acima de 7 °C.
+[09] Na sala de vacinação, a câmara fica entre 2 °C e 8 °C, e a temperatura é anotada, de preferência, a cada hora.
+[10] Fora da faixa, a vacina pode perder a força, e o estrago não tem volta.
+[11] No dia de vacinar, ela vai para uma caixa térmica, com bobinas de gelo no fundo e nas laterais.
+[12] Uma barreira separa a vacina do gelo, e o termômetro fica no centro da caixa.
+[13] Quando o termômetro chega a 7 °C, as bobinas são trocadas.
+[14] Só então ela chega ao seu braço, como saiu da fábrica.
+[15] Fria do começo ao fim, e conferida em cada parada.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] fábrica
+[D02] central nacional
+[D03] central estadual
+[D04] município
+[D05] sala de vacinação
+[D06] caixa térmica
+[D07] seu braço
+[D08] 2 °C a 8 °C

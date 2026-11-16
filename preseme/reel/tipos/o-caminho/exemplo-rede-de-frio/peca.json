@@ -1,0 +1,11 @@
+{
+  "nome": "rede-de-frio",
+  "titulo": "Como a vacina chega fria até o seu braço?",
+  "tipo": "o caminho",
+  "nota": "exemplo do motor do tipo o caminho; texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos",
+  "limite": 175,
+  "capa": "@pergunta",
+  "estilo": "carimbo",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"],
+  "esperado": { "frases": 15, "palavras": 8 }
+}
