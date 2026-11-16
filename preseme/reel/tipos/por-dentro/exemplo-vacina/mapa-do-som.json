@@ -1,0 +1,35 @@
+{
+  "modo": "blocos",
+  "semente": "vacina-por-dentro",
+  "bpm": 96,
+  "lufs": -16,
+  "blocos": [
+    {
+      "cenas": [
+        "pergunta"
+      ],
+      "clima": "curioso"
+    },
+    {
+      "cenas": [
+        "braco",
+        "celulas",
+        "anticorpo",
+        "memoria"
+      ],
+      "clima": "tenso"
+    },
+    {
+      "cenas": [
+        "depois",
+        "prevencao",
+        "fecho"
+      ],
+      "clima": "calmo"
+    }
+  ],
+  "fundos": {},
+  "coisas": [],
+  "silencios": [],
+  "efeitos": true
+}

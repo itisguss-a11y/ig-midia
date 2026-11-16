@@ -1,0 +1,34 @@
+# Por dentro · como a vacina ensina o corpo · textos da tela · versão 1
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# A pergunta [01] é a capa: o que acontece por dentro de algo que a pessoa vive por fora.
+# Cada nível tem de uma a três frases: o que acontece ali e por quê, com a fonte. A volta para fora diz o que se faz para prevenir.
+# Do jeito dele: vírgula, não dois-pontos, para apresentar algo; nada de aula, módulo ou cronograma; sem apelo no fim; sem o nome do perfil.
+
+[01] Como uma vacina ensina o corpo a se defender?
+[02] Uma vacina pode ser feita do próprio micróbio, enfraquecido ou morto.
+[03] O antígeno da vacina é estranho ao corpo, e ativa as defesas.
+[04] O corpo identifica o micróbio e descobre como combatê-lo.
+[05] Entre as células de defesa estão os linfócitos, do tipo B e do tipo T.
+[06] Perto do antígeno, o linfócito B vira plasmócito e fabrica uma proteína, o anticorpo.
+[07] O anticorpo tem regiões que se ligam ao antígeno, para eliminá-lo.
+[08] E ele é específico, só serve para aquele micróbio.
+[09] No fim, ficam as células de memória, que reconhecem o mesmo micróbio numa próxima vez.
+[10] Se o micróbio de verdade chegar, o corpo já está preparado para combatê-lo.
+[11] A resposta vem imediata, pelas células de memória.
+[12] Fabricar anticorpo leva tempo, por isso a vacina vem antes de a pessoa se expor.
+[13] Algumas vacinas exigem mais de uma dose, e o calendário diz quantas.
+[14] Com muita gente vacinada, o micróbio circula menos na comunidade.
+[15] A vacina ensina antes, e o corpo lembra depois.
+
+# palavras de dentro do desenho (as quatro primeiras são a trilha do alto, uma por nível)
+[D01] Por fora
+[D02] O braço
+[D03] As células
+[D04] O anticorpo
+[D05] antígeno
+[D06] linfócito B
+[D07] linfócito T
+[D08] plasmócito
+[D09] anticorpo
+[D10] memória

@@ -1,0 +1,19 @@
+{
+  "nome": "modelo",
+  "titulo": "Por dentro · (o assunto)",
+  "tipo": "Por dentro",
+  "estilo": "lapis",
+  "limite": 120,
+  "capa": "@principal",
+  "cores": [
+    "#FFFDF6",
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 9,
+    "palavras": 3
+  }
+}
