@@ -1,0 +1,31 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# MOLDE do motor "linha do tempo" · o chat 1 troca cada linha pelo texto da peça (entre parênteses, o que vai ali).
+# Toda frase com fato leva a fonte na tabela de afirmações. Edite só o que vem depois do número; linha apagada sai do vídeo.
+# Uma cena por marco, na ordem do tempo, com 1 a 4 frases cada; o ROTEIRO do score.js diz quais frases são de qual cena.
+# Para pôr mais marcos: frases novas, palavras novas e uma linha a mais em MARCOS e no ROTEIRO (o molde aguenta de 2 a 6).
+[01] (a pergunta que a linha do tempo responde, a capa; ex.: Quem decidiu que a UBS atende qualquer pessoa?)
+[02] (em quantas datas está a resposta; ex.: A resposta está em quatro datas.)
+[03] (marco 1, o que aconteceu, com o mês ou o ano no começo)
+[04] (marco 1, por que aconteceu ou o que propôs)
+[05] (marco 2, o que aconteceu)
+[06] (marco 2, o que mudou para quem usa a UBS)
+[07] (marco 3, o que aconteceu)
+[08] (marco 3, o que mudou)
+[09] (hoje, uma pessoa na UBS e o que ela tem por causa disso)
+[10] (hoje, o segundo efeito, se houver)
+[11] (a resposta da pergunta, com o verbo de cada marco; ex.: Quem decidiu? A 8ª Conferência propôs...)
+[12] (o que cai na prova, em uma frase)
+
+# palavras de dentro do desenho
+[D01] (ano do marco 1; ex.: 1986)
+[D02] (ano do marco 2)
+[D03] (ano do marco 3)
+[D04] hoje
+[D05] (rótulo do marco 1, embaixo da linha; ex.: 8ª Conferência Nacional de Saúde)
+[D06] (rótulo do marco 2)
+[D07] (rótulo do marco 3)
+[D08] UBS
+[D09] (verbo do marco 1, no fecho; ex.: propôs)
+[D10] (verbo do marco 2)
+[D11] (verbo do marco 3)
+[D12] (palavra do desenho; ponha quantas precisar, com número novo)
