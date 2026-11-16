@@ -1,0 +1,27 @@
+# Mito ou verdade · (o assunto) · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# A frase do selo ([03], [07], [11]) começa com MITO, VERDADE ou DEPENDE: é a palavra que o selo carimba; o resto, curto, sai embaixo dele.
+# A abertura diz quantas são mito ("Uma é mito."): o motor confere a conta com os selos.
+# Do jeito dele: vírgula, não dois-pontos, para apresentar algo; nada de aula, módulo ou cronograma; sem apelo no fim; sem o nome do perfil.
+
+[01] Três frases sobre o assunto que você vai ouvir na visita. Uma é mito.
+[02] "Primeira frase que todo mundo repete, entre aspas."
+[03] Mito, e um resto curto que sai embaixo do selo.
+[04] Primeiro passo do porquê, que o desenho começa a mostrar.
+[05] Segundo passo do porquê, com o número da fonte.
+[06] "Segunda frase que todo mundo repete."
+[07] Depende.
+[08] Do que depende, que o desenho mostra funcionando.
+[09] O outro lado, com o número da fonte.
+[10] "Terceira frase que todo mundo repete."
+[11] Verdade.
+[12] Por que é verdade, que o desenho mostra.
+[13] O cuidado que vem junto, com a fonte.
+[14] A regra que junta as três frases numa só.
+
+# palavras de dentro do desenho
+[D01] Mito ou verdade?
+[D02] resumo da 1ª
+[D03] resumo da 2ª
+[D04] resumo da 3ª
+[D05] palavra do desenho
