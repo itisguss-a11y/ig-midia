@@ -1,0 +1,46 @@
+MAPA MENTAL · febre do Oropouche · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Oropouche: o que é, como pega e como se evita?
+[02] Em 2024, até junho, Roraima teve 138 casos confirmados.
+[03] É uma doença de vírus, que um inseto passa.
+[04] Quem passa é principalmente o maruim, que não é o mosquito da dengue.
+[05] Parece dengue, com febre de repente e dor forte.
+[06] Quem confirma é o exame que acha o vírus no sangue.
+[07] Não tem remédio próprio, o cuidado é repouso e tratar os sintomas.
+[08] Contra o maruim, tela de malha fina, roupa comprida e repelente.
+[09] Todo caso com diagnóstico é notificado, e de imediato.
+[10] Os sintomas podem voltar 1 a 2 semanas depois, e a equipe acompanha.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] Mapa mental
+[D02] Oropouche
+[D03] O que é
+[D04] arbovírus, vírus que artrópode transmite
+[D05] gênero Orthobunyavirus
+[D06] Como pega
+[D07] picada do maruim, o mosquito-pólvora
+[D08] nome científico, Culicoides paraensis
+[D09] de pessoa a pessoa, sem evidência
+[D10] O que se vê
+[D11] febre de repente e dor de cabeça
+[D12] dor no corpo e nas juntas
+[D13] dura de 2 a 7 dias
+[D14] Como se confirma
+[D15] biologia molecular, de preferência
+[D16] fica no sangue 2 a 5 dias
+[D17] positivo vai ao laboratório de referência
+[D18] Como se trata
+[D19] sem tratamento específico
+[D20] repouso e tratamento dos sintomas
+[D21] acompanhamento médico
+[D22] Como se previne
+[D23] tela fina em porta e janela
+[D24] roupa comprida e repelente na pele
+[D25] limpar terreno e criação de animais
+[D26] Para salvar
+[D27] Fontes · Ministério da Saúde: Oropouche (Saúde de A a Z); Nota Técnica nº 6/2024; Informe de arboviroses, 17/06/2025
+[D28] Na equipe
+[D29] Fontes · Ministério da Saúde: Nota Técnica nº 6/2024, Orientações para a vigilância da Febre do Oropouche

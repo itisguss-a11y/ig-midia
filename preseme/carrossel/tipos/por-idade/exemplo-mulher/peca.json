@@ -1,0 +1,12 @@
+{
+  "nome": "exemplo-mulher",
+  "titulo": "Rastreamento de câncer na mulher: o que muda com a idade?",
+  "tipo": "carrossel",
+  "formato": "4:5",
+  "capa": "@l01",
+  "cores": [
+    "#B9B2A6",
+    "#C3855D"
+  ],
+  "esperado": null
+}

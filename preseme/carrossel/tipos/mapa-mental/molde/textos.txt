@@ -1,0 +1,37 @@
+MAPA MENTAL · o tema · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] O tema num mapa só: o que cai na prova?
+[02] A frase de baixo da capa: o dado de Roraima, com o ano.
+[03] A frase do ramo 1: o que guardar dele.
+[04] A frase do ramo 2, numa linha ou duas.
+[05] A frase do ramo 3, numa linha ou duas.
+[06] A frase do ramo 4, numa linha ou duas.
+[07] A frase do ramo 5, numa linha ou duas.
+[08] O que é da equipe, primeira parte.
+[09] O que é da equipe, segunda parte.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] Mapa mental
+[D02] O tema
+[D03] Ramo 1
+[D04] folha curta do ramo 1
+[D05] outra folha do ramo 1
+[D06] Ramo 2
+[D07] folha curta do ramo 2
+[D08] outra folha do ramo 2
+[D09] Ramo 3
+[D10] folha curta do ramo 3
+[D11] outra folha do ramo 3
+[D12] Ramo 4
+[D13] folha curta do ramo 4
+[D14] outra folha do ramo 4
+[D15] Ramo 5
+[D16] folha curta do ramo 5
+[D17] outra folha do ramo 5
+[D18] Para salvar
+[D19] Fontes · órgão oficial, documento, ano
+[D20] Na equipe
+[D21] Fontes · órgão oficial, documento, ano

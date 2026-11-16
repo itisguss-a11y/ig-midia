@@ -1,0 +1,9 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra". TROQUE pelo que a peça mostra.
+[L01] Capa: a pergunta em letra grande e, embaixo, o mapa mental pequeno, com o tema num círculo amarelo no meio e o nome de cada ramo em volta.
+[L02] O ramo 1 de perto: a frase do ramo, o desenho dele e as folhas em cartões. No canto, o mapa pequeno com o ramo da vez aceso.
+[L03] O ramo 2 de perto, no mesmo formato.
+[L04] O ramo 3 de perto, no mesmo formato.
+[L05] O ramo 4 de perto, no mesmo formato.
+[L06] O ramo 5 de perto, no mesmo formato.
+[L07] O mapa inteiro para salvar: o tema no meio, os ramos numerados em volta, cada um com as folhas, e as fontes no pé.
+[L08] A última lâmina, em fundo escuro: o que é da equipe na atenção primária.

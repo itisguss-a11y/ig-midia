@@ -1,0 +1,6 @@
+[L01] TROQUE, a capa: a pergunta e a régua das idades, com a pessoa de cada faixa.
+[L02] TROQUE, a faixa 1: a idade, a pessoa, o que a UBS oferece e o porquê.
+[L03] TROQUE, a faixa 2.
+[L04] TROQUE, a faixa 3.
+[L05] TROQUE, a régua inteira: cada faixa e o que se oferece nela.
+[L06] TROQUE, o que fazer na visita: o que é de você e o que é da equipe.
