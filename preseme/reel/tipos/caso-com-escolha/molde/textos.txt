@@ -1,0 +1,33 @@
+# Caso com escolha · (o assunto) · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# A primeira frase do porquê de cada opção ([08], [10], [12]) começa com Certa, Errada ou Pode ser: é a palavra que o selo carimba.
+# Se a resposta [07] disser a letra ("É a B."), o motor confere com os selos; "qualquer uma" pede as três Pode ser (ou Certa).
+# Nada de diagnóstico pela tela: quem separa as opções é o exame e a equipe.
+# Do jeito dele: vírgula, não dois-pontos, para apresentar algo; nada de aula, módulo ou cronograma; sem apelo no fim; sem o nome do perfil.
+
+[01] O caso em uma frase, quem chega e o que sente.
+[02] A pista que muda tudo, onde mora ou o que fez.
+[03] O que é?
+[04] Opção A
+[05] Opção B
+[06] Opção C
+[07] A resposta, curta, que entra depois da contagem.
+[08] Pode ser, e o que aponta para a opção A.
+[09] O que o desenho mostra, com o número da fonte.
+[10] Errada, e por que a opção B não serve.
+[11] O que o desenho mostra, com a fonte.
+[12] Certa, e por que a opção C é a do caso.
+[13] O que o desenho mostra, com a fonte.
+[14] O que a equipe faz na UBS, com o exame.
+[15] Quando procurar a unidade, ou a notificação.
+[16] A prevenção, que o desenho mostra.
+[17] O fecho, que volta ao caso e diz o que ele ensina.
+
+# palavras de dentro do desenho
+[D01] Caso da UBS
+[D02] Na UBS
+[D03] Prevenção
+[D04] pista 1
+[D05] pista 2
+[D06] pista 3
+[D07] palavra do desenho

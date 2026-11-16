@@ -1,0 +1,52 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# Caso com escolha · exemplo: febre perto da mata (dengue, Oropouche ou malária) · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# A primeira frase do porquê de cada opção ([08], [10], [12]) começa com Certa, Errada ou Pode ser: é a palavra que o selo carimba.
+# Nada de diagnóstico pela tela: quem separa as três é o exame e a equipe.
+
+[01] Febre que começou de repente, dor de cabeça e dor no corpo.
+[02] Ele mora perto de uma área de mata, em Roraima.
+[03] O que é?
+[04] Dengue
+[05] Febre do Oropouche
+[06] Malária
+[07] Pode ser qualquer uma das três, e pela tela não dá para saber.
+[08] Pode ser dengue, que passa pela picada do Aedes aegypti.
+[09] Ela dá febre alta, dor atrás dos olhos e manchas vermelhas no corpo.
+[10] Pode ser Oropouche, que passa pelo maruim, o mosquito-pólvora.
+[11] Os sintomas parecem os da dengue, e é por isso que confunde.
+[12] Pode ser malária, que passa pela fêmea do mosquito Anopheles.
+[13] Em 2024, Roraima teve 30.632 casos de malária pegos aqui mesmo.
+[14] Na UBS, quem decide é a equipe, com o exame, e não o palpite.
+[15] A malária se confirma achando o parasita no sangue, e o remédio é de graça no SUS.
+[16] Dengue e malária vão para a notificação semanal da vigilância.
+[17] Se vier dor forte na barriga, vômito que não para ou sangramento, ele volta na hora.
+[18] Contra o Aedes, acabar com a água parada.
+[19] Contra o maruim, tela de malha fina na porta e na janela.
+[20] Contra o Anopheles, mosquiteiro, roupa comprida e repelente.
+[21] Febre de repente, perto da mata, em Roraima, quem responde é o exame.
+
+# palavras de dentro do desenho
+[D01] Caso da UBS
+[D02] Na UBS
+[D03] Prevenção
+[D04] febre de repente
+[D05] dor de cabeça
+[D06] dor no corpo
+[D07] perto da mata
+[D08] Aedes aegypti
+[D09] febre alta
+[D10] atrás dos olhos
+[D11] manchas
+[D12] maruim
+[D13] Anopheles
+[D14] Roraima, 2024
+[D15] palpite
+[D16] exame
+[D17] grátis no SUS
+[D18] toda semana
+[D19] volta na hora
+[D20] água parada
+[D21] tela fina
+[D22] mosquiteiro
+[D23] Oropouche

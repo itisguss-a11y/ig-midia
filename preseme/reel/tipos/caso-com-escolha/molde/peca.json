@@ -1,0 +1,19 @@
+{
+  "nome": "modelo",
+  "titulo": "Caso com escolha · (o assunto)",
+  "tipo": "Caso com escolha",
+  "estilo": "giz",
+  "limite": 175,
+  "capa": "@principal",
+  "cores": [
+    "#FFFDF6",
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 17,
+    "palavras": 7
+  }
+}

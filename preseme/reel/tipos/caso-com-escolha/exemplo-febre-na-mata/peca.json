@@ -1,0 +1,19 @@
+{
+  "nome": "exemplo-febre-na-mata",
+  "titulo": "Caso com escolha · febre perto da mata (exemplo)",
+  "tipo": "Caso com escolha",
+  "estilo": "giz",
+  "limite": 175,
+  "capa": "@principal",
+  "cores": [
+    "#FFFDF6",
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 21,
+    "palavras": 23
+  }
+}
