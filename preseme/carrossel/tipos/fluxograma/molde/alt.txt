@@ -1,0 +1,9 @@
+[L01] TROQUE, a capa: o título e o que o desenho mostra, com a silhueta do fluxo ao lado.
+[L02] TROQUE, o número e o que ele é, o desenho ao lado e o detalhe embaixo.
+[L03] Passo 1: TROQUE, o texto da caixa e o que o desenho mostra. No canto, o fluxo pequeno com este passo marcado.
+[L04] Pergunta 1, num losango: TROQUE, a pergunta. Sim leva a: TROQUE. Não leva a: TROQUE.
+[L05] Pergunta 2: TROQUE, a pergunta e os dois caminhos.
+[L06] Passo 2: TROQUE, o texto da caixa e o que o desenho mostra.
+[L07] Pergunta 3: TROQUE, a pergunta e as duas condutas.
+[L08] O fluxo inteiro numa lâmina: TROQUE, cada caixa na ordem, com o sim e o não de cada pergunta.
+[L09] Quem faz o quê, em três cartões: TROQUE, o que você faz, o que a equipe faz e quando chamar o 192.

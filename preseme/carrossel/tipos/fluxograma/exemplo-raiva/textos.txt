@@ -1,0 +1,47 @@
+FLUXOGRAMA · MORDIDA DE CACHORRO, E AGORA? · textos da tela · versão 0
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Mordida de cachorro: e agora?
+[02] O caminho do Ministério da Saúde, da água com sabão até a vacina.
+[03] atendimentos antirrábicos em Roraima, de setembro a dezembro de 2025.
+[04] E nenhum caso de raiva humana no estado em 2025.
+[05] Quem decide se precisa de vacina ou de soro é a equipe do posto.
+[06] Com morcego e outros bichos do mato, o acidente é sempre grave.
+[07] Se o bicho morreu, sumiu ou já tem sinal de raiva, a resposta é não.
+[08] O vírus aparece na saliva de 2 a 5 dias, ou mais, antes dos sinais da doença.
+[09] A raiva é uma doença que mata, mas pode ser prevenida.
+[10] Ajude a lavar com água e sabão, bastante, e leve ao posto na hora.
+[11] Avalia a ferida e o bicho e decide se precisa de vacina e de soro.
+[12] Vacine cão e gato a partir dos 3 meses. A vacina é de graça no SUS.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] fluxograma
+[D02] pergunta
+[D03] sim
+[D04] não
+[D05] passo
+[D06] na próxima lâmina
+[D07] em Roraima
+[D08] 1.972
+[D09] Fontes: Sesau-RR, Dados e Indicadores 2025, 3º quadrimestre; Ministério da Saúde, raiva humana 2010 a 2025
+[D10] Lave com água e sabão, bastante, e vá ao posto na hora.
+[D11] Lave e vá ao posto
+[D12] Foi morcego ou outro bicho do mato?
+[D13] Morcego ou bicho do mato?
+[D14] Soro e vacina, já.
+[D15] O cão ou gato está sadio e dá para observar 10 dias?
+[D16] Cão ou gato sadio, dá para observar?
+[D17] Começa a profilaxia na hora.
+[D18] Observe o bicho por 10 dias, sem começar a vacina.
+[D19] Observe 10 dias, sem vacina
+[D20] Nos 10 dias, ele morreu, sumiu ou teve sinal de raiva?
+[D21] Morreu, sumiu ou teve sinal?
+[D22] Raiva descartada.
+[D23] o fluxo inteiro
+[D24] Fonte: Ministério da Saúde, Nota Técnica nº 8/2022 (profilaxia da raiva humana) e folder Raiva, 2022
+[D25] quem faz o quê
+[D26] Você
+[D27] A equipe
+[D28] Prevenção

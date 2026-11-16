@@ -83,10 +83,12 @@ function conferir(args) {
     if (!fs.existsSync(js) || C.mtime(js) < C.mtime(txt)) erro('o textos.js é mais velho que o textos.txt: rode o comando textos antes');
     else ok('o textos.js saiu do textos.txt atual');
   }
-  // 2. quantas lâminas, e o título inteiro na primeira
+  // 2. quantas lâminas, e o título inteiro na primeira. O tipo pode pedir outra faixa no score.js (LAMINAS_MIN e
+  // LAMINAS_MAX, de 1 a 20): o meme em imagem vai de 1 a 5. Sem elas, de 5 a 20, como antes. Uma lâmina só é post de imagem.
   const n = S.LAMINAS.length;
-  if (n < 5 || n > 20) erro(`${n} lâminas: o carrossel tem de ter de 5 a 20 (o Instagram aceita até 20)`);
-  else ok(`${n} lâminas (de 5 a 20)`);
+  const lmin = Math.min(20, Math.max(1, S.LAMINAS_MIN || 5)), lmax = Math.max(lmin, Math.min(20, S.LAMINAS_MAX || 20));
+  if (n < lmin || n > lmax) erro(`${n} lâmina${n === 1 ? '' : 's'}: este carrossel tem de ter de ${lmin} a ${lmax} (o Instagram aceita até 20)`);
+  else ok(`${n} lâmina${n === 1 ? ' (post de uma imagem só)' : 's'} (de ${lmin} a ${lmax})`);
   if (!(S.LAMINAS[0].linhas || []).includes(1)) erro('a frase [01], o título, não está na lâmina 1: o título vai inteiro na capa');
   else ok('o título [01] está na lâmina 1');
   const fantasmas = Object.keys(S.TX || {}).filter((k) => k[0] !== 'D' && !S.LAMINAS.some((l) => (l.linhas || []).includes(parseInt(k, 10))));
@@ -200,7 +202,9 @@ function entregar(args) {
     fs.copyFileSync(path.join(dir, 'legenda.txt'), path.join(out, `legenda-${peca.nome}.txt`));
     const jpgs = S.LAMINAS.map((l) => path.join(out, 'subir', `${C.n2(l.n)}.jpg`));
     arquivos = [...jpgs, path.join(out, 'alt.txt'), path.join(out, `legenda-${peca.nome}.txt`), path.join(out, 'textos.txt')];
-    msg = `Carrossel pronto para postar (${n} imagens).\n\nO que você tem de fazer:\n1. No Instagram, crie um post e escolha as imagens na ordem, de 01.jpg a ${C.n2(n)}.jpg.\n2. Antes de publicar, em Configurações avançadas, Escrever texto alternativo, cole em cada imagem a linha dela do alt.txt.\n3. Cole a legenda do legenda-${peca.nome}.txt e publique.`;
+    msg = n === 1
+      ? `Post pronto (uma imagem só).\n\nO que você tem de fazer:\n1. No Instagram, crie um post com a imagem 01.jpg.\n2. Antes de publicar, em Configurações avançadas, Escrever texto alternativo, cole a linha do alt.txt.\n3. Cole a legenda do legenda-${peca.nome}.txt e publique.`
+      : `Carrossel pronto para postar (${n} imagens).\n\nO que você tem de fazer:\n1. No Instagram, crie um post e escolha as imagens na ordem, de 01.jpg a ${C.n2(n)}.jpg.\n2. Antes de publicar, em Configurações avançadas, Escrever texto alternativo, cole em cada imagem a linha dela do alt.txt.\n3. Cole a legenda do legenda-${peca.nome}.txt e publique.`;
   }
   let falta = false;
   console.log('Arquivos (mandar com SendUserFile):');

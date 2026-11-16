@@ -136,12 +136,13 @@ Também dá para chamar pelo nome, como texto: `B.desenha(ctx, 'cadeira', { x: 6
 | `idade` | `'crianca'` (fica menor), `'idosa'` (cabelo grisalho) |
 
 - **O resto vai direto para o Ch.person**: `pose` (`'stand'`, `'sit'`, `'walk'`), `gesture`, `eyes`, `mouth`, `look`, `handR`, `walk`, `s`...
+- **Em pé, passe `pose: 'stand'`**: aí o x, y é o pé. Sem a pose, o Ch.person usa `'sit'` (de frente, parece em pé, com as pernas para baixo), e o x, y vira o quadril: o pé fica umas 150 × s unidades abaixo do y (medido em 16/11, frente U4).
 - No chapado, roupa da cor do fundo (Sálvia) vira branca. Sem contorno, ela sumiria.
 
 ```js
 const c = B.cadeira(ctx, { x: 600, y: 1400 });
 B.pessoa(ctx, { quem: 'idosa', x: c.assento[0], y: c.assento[1], pose: 'sit', look: -0.5 });
-B.pessoa(ctx, { quem: 'medica', pele: 'escura', penteado: 'cacheado', x: 300, y: 1400, gesture: 'point' });
+B.pessoa(ctx, { quem: 'medica', pele: 'escura', penteado: 'cacheado', pose: 'stand', x: 300, y: 1400, gesture: 'point' });
 B.pessoa(ctx, { quem: 'calouro', roupa: 'jaleco', x: 700, y: 1400, pose: 'walk', walk: an.walk });
 ```
 

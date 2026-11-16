@@ -1,0 +1,9 @@
+[L01] Capa escura com o título "Mordida de cachorro: e agora?". Embaixo, um cachorro sentado e, ao lado, a silhueta de um fluxograma com losangos e caixas.
+[L02] O número 1.972, os atendimentos antirrábicos em Roraima de setembro a dezembro de 2025, ao lado do mapa do estado com os municípios. Embaixo: nenhum caso de raiva humana no estado em 2025.
+[L03] Passo 1: uma caixa com "lave com água e sabão, bastante, e vá ao posto na hora". Embaixo, uma torneira aberta, um sabão com espuma e uma seta até o posto de saúde. No canto, o fluxo pequeno com o primeiro passo marcado.
+[L04] Pergunta 1, num losango amarelo: foi morcego ou outro bicho do mato? Sim leva a uma caixa vermelha: soro e vacina, já. Não leva, tracejado, à próxima pergunta. Ao lado, um morcego.
+[L05] Pergunta 2: o cão ou gato está sadio e dá para observar por 10 dias? Sim leva à próxima caixa. Não leva a uma caixa vermelha: começa a profilaxia na hora. Ao lado, um cão e um gato.
+[L06] Passo 2: observe o bicho por 10 dias, sem começar a vacina. Embaixo, um calendário com dez dias marcados e o cachorro sentado.
+[L07] Pergunta 3: nos 10 dias, ele morreu, sumiu ou teve sinal de raiva? Sim: começa a profilaxia na hora, em vermelho. Não: raiva descartada, em verde.
+[L08] O fluxo inteiro numa lâmina: lave e vá ao posto; morcego ou bicho do mato, sim, soro e vacina; cão ou gato sadio e observável, não, profilaxia na hora; sim, observe 10 dias; morreu, sumiu ou teve sinal, sim, profilaxia na hora; não, raiva descartada.
+[L09] Quem faz o quê, em três cartões: você ajuda a lavar e leva ao posto; a equipe avalia a ferida e o bicho e decide vacina e soro; prevenção, vacinar cão e gato a partir dos 3 meses, de graça no SUS.

@@ -1,0 +1,14 @@
+{
+  "nome": "modelo",
+  "titulo": "",
+  "tipo": "carrossel",
+  "formato": "4:5",
+  "capa": "@l01",
+  "cores": [
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": null
+}

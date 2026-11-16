@@ -1,0 +1,17 @@
+{
+  "nome": "monitor-de-frasco",
+  "titulo": "Se eu fosse vacina, já era descarte",
+  "tipo": "carrossel",
+  "formato": "4:5",
+  "capa": "@l01",
+  "cores": [
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 5,
+    "palavras": 3
+  }
+}
