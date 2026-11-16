@@ -5,3 +5,4 @@ node_modules/
 *.wav
 *.mov
 __pycache__/
+textos.js

@@ -1,0 +1,10 @@
+EXEMPLO MÍNIMO · textos da tela · versão 1
+Peça de teste do motor: texto neutro, sem fato, não vai ao ar.
+
+PARTE 1 · as frases
+[01] Peça de teste do motor.
+[02] A música troca no corte.
+[03] Silêncio antes desta frase.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] teste

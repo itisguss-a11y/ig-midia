@@ -1,0 +1,19 @@
+{
+  "_aviso": "versão 5, só para testar o motor; a peça de verdade está no chat dela",
+  "nome": "sus-hoje",
+  "titulo": "Quantas vezes você usou o SUS hoje?",
+  "limite": 175,
+  "capa": "@abertura",
+  "cores": [
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#C9A063",
+    "#2B211E",
+    "#5C6B55"
+  ],
+  "esperado": {
+    "frases": 32,
+    "palavras": 26
+  }
+}

@@ -1,0 +1,70 @@
+(versão 5, só para testar o motor; a peça de verdade está no chat dela)
+QUANTAS VEZES VOCÊ USOU O SUS HOJE? · textos da tela · versão 5
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+Parte 1: as frases, iguais às da versão 4, que você aprovou. Parte 2: as palavras de dentro do desenho.
+
+PARTE 1 · as frases
+[01] Quantas vezes você usou o SUS hoje?
+[02] Nenhuma. Nem fui no hospital.
+[03] Prevenção que funciona não aparece.
+[04] Alguém conferiu esta água antes de você beber.
+[05] Isso tem nome, vigilância ambiental.
+[06] É cuidar do que, no ambiente, pode te fazer adoecer.
+[07] Alguém pôs ferro e ácido fólico na farinha do seu pão.
+[08] É regra, para prevenir anemia e malformação do bebê.
+[09] Na caixa do remédio está escrito Reg. MS.
+[10] MS é Ministério da Saúde. Sem esse registro, o remédio não pode ser vendido.
+[11] Isso tem nome, vigilância sanitária.
+[12] É diminuir o risco à saúde nos produtos e nos serviços que você usa.
+[13] Olha o seu braço direito. Essa marquinha é da vacina BCG.
+[14] Essa você tem desde que nasceu.
+[15] Você tomou a gotinha quando era criança.
+[16] O último caso de paralisia infantil no Brasil foi em 1989.
+[17] O agente de combate às endemias procura o foco do mosquito de casa em casa.
+[18] Cada caso de dengue vira um ponto no mapa, e o mapa mostra onde agir.
+[19] Isso tem nome, vigilância epidemiológica.
+[20] É perceber onde a doença está aumentando e agir para prevenir e controlar.
+[21] Essa lupa preta no pacote avisa que tem açúcar demais.
+[22] Quem obriga o fabricante a avisar é a vigilância sanitária.
+[23] Alguém pôs iodo no sal da sua cozinha.
+[24] Em 1955, 1 em cada 5 crianças tinha bócio. Em 2000, 1 em cada 70.
+[25] Alguém tirou a gordura trans do seu salgadinho.
+[26] A indústria está proibida de usar desde 2023, para prevenir infarto.
+[27] Vigilância sanitária, 5.
+[28] Vigilância epidemiológica, 3.
+[29] Vigilância ambiental, 1.
+[30] Consulta, exame, hospital, 0.
+[31] Você usou o SUS 9 vezes hoje e nem foi no hospital.
+[32] Prevenção que funciona não aparece.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+O rótulo do contador:
+[D01] SUS hoje
+A hora de cada cena, na ordem (água, pão, remédio, braço, gotinha, agente, lanche, sal, salgadinho):
+[D02] 06h10
+[D03] 06h30
+[D04] 07h00
+[D05] 07h20
+[D06] na infância
+[D07] 07h30
+[D08] 10h00
+[D09] 12h00
+[D10] 16h00
+As três etiquetas:
+[D11] VIGILÂNCIA AMBIENTAL
+[D12] VIGILÂNCIA SANITÁRIA
+[D13] VIGILÂNCIA EPIDEMIOLÓGICA
+O que a lente mostra (água; pão; remédio; braço; gotinha; agente; lanche; sal; salgadinho):
+[D14] conferida
+[D15] ferro
+[D16] ácido fólico
+[D17] registrado
+[D18] protege da tuberculose grave
+[D19] 1989
+[D20] último caso
+[D21] casos
+[D22] limite
+[D23] açúcar
+[D24] bócio
+[D25] gordura trans
+[D26] desde 2023

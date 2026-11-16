@@ -1,0 +1,8 @@
+{
+  "nome": "exemplo-minimo",
+  "titulo": "Peça de teste do motor (não vai ao ar)",
+  "limite": 179.6,
+  "capa": "@abertura",
+  "cores": [],
+  "esperado": { "frases": 3, "palavras": 1 }
+}

@@ -1,0 +1,99 @@
+PRESEME · motor do reel · relatório dos testes (madrugada de 15 para 16/11/2026)
+Máquina: 2 núcleos e 7 GB, dividida com outras frentes rodando juntas (carga 6 a 8). Os tempos saíram inflados por isso.
+
+=====================================================================
+PROVA 1 · REGRESSÃO: o sus-hoje da versão 5, pela passagem e pelo motor
+=====================================================================
+Base: os passos 1 a 9 da passagem, feitos à mão em /home/claude/trabalho/reel/sus-hoje-v5. As 9 conferências deram "ok".
+Motor: `novo --de pecas/sus-hoje-v5`, depois os comandos do motor, em teste-motor/sus-hoje.
+
+| O que se compara                | passagem                          | motor                               | igual? |
+|---------------------------------|-----------------------------------|-------------------------------------|--------|
+| textos.js                       | 32 frases, 26 palavras do desenho | o mesmo JSON                        | sim    |
+| duração, cenas, andamento       | 163,74 s, 12 cenas, 107           | 163,74 s, 12 cenas, 107             | sim    |
+| efeitos e marcadores do score   | —                                 | os mesmos                           | sim    |
+| leitura                         | LEITURA OK                        | LEITURA OK                          | sim    |
+| conta da peça (peca.js)         | CONTA OK 5 + 3 + 1 = 9            | CONTA OK 5 + 3 + 1 = 9              | sim    |
+| folha de quadros (25 quadros)   | board.png                         | board.png                           | sim (*) |
+| music.wav e efeitos.json        | -15,9 LUFS, pico -2,1 dBFS        | os mesmos bytes                     | sim    |
+| qa / cores                      | 188 quadros, 0 problemas          | 188 / 0; cores: 25 quadros ok       | sim    |
+| video-draft.mp4 (md5)           | e6b20483a1c82a881d8943e045f42c0a  | e6b20483a1c82a881d8943e045f42c0a    | sim    |
+| <nome>-draft.mp4 (md5)          | 4fdcbb3960f8b732a0979bbcf87ccf47  | 4fdcbb3960f8b732a0979bbcf87ccf47    | sim    |
+| 5 quadros sorteados do rascunho | 1723, 1752, 2763, 3313 e 4130     | o mesmo sha256 nos 5                | sim    |
+| ritmo (pacing)                  | 6 conferências ✓, 27 cortes       | 6 ✓, 27 cortes (traduzido)          | sim    |
+| conferir --rascunho             | —                                 | 0 erro, 1 aviso (29,7 MB, o Drive)  | —      |
+
+(*) A primeira folha de quadros da passagem diferiu da do motor em 11.724 pixels. Era a primeira abertura do Chrome do animation-studio. Refeita, a da passagem ficou pixel a pixel igual à do motor.
+
+Outros comandos no sus-hoje:
+- `folha-textos`: 32 quadros em 24 s. A folha foi aberta e conferida.
+- `compara <enviado-v5> textos.txt --conta`: 32 linhas, 1 mudada ([14]), CONTA OK 9.
+
+=====================================================================
+TRECHO · refazer só a frase [14] do rascunho do sus-hoje (63,93 a 67,30 s)
+=====================================================================
+- Pedido fora do lugar (trecho [16] com a mudança na [14]): recusou e disse o que cobrir.
+- Primeira versão do comando, que emendava recomprimindo o vídeo todo: 6 min 23, 101 quadros. Os quadros de fora ficaram parecidos, não iguais (46,9 a 49,1 dB de PSNR).
+- Versão final do comando: refaz do quadro-chave antes ao quadro-chave depois, com a mesma compressão do vídeo inteiro, e emenda sem recomprimir o resto:
+  - 1 min 23 no total, já com o som refeito (14 s) e a junção do rascunho (40 s);
+  - 101 quadros refeitos; dos 4912 quadros do vídeo, os outros 4811 saíram idênticos bit a bit (framemd5);
+  - o recorte do quadro em 66,5 s mostra "desde que nasceu!";
+  - conferir --rascunho: 0 erro, 1 aviso (25,9 MB, o Drive).
+- Vídeo que veio de uma emenda antiga (com outra compressão): o comando percebe e recomprime tudo uma vez, com a compressão do animation-studio (1 min 50). O trecho seguinte já emenda sem recomprimir.
+- `trecho --final` (1080 × 1920): a frase [02] do exemplo-minimo foi trocada ("troca" virou "muda") e refeita.
+  - 3 min 27 no total, já com o som e o mux do animation-studio, que gera o arquivo de postar.
+  - Foram refeitos 192 quadros, de 4,80 a 11,20 s, de quadro-chave a quadro-chave.
+  - Os outros 240 quadros saíram idênticos bit a bit.
+  - O arquivo final saiu com 14,40 s, H.264 yuv420p e 5,2 MB. O recorte mostra "muda".
+
+=====================================================================
+PROVA 2 · DO ZERO: exemplo-minimo (14,4 s, 3 cenas, modo blocos)
+=====================================================================
+Do `novo` ao `entregar`, só com comandos do motor (modelo + ROTEIRO de 3 cenas + 3 frases e 1 palavra do desenho).
+
+som (modo blocos):
+- 14,40 s, -16,0 LUFS, pico -1,5 dBFS
+- blocos curioso, calmo e festa: -20,1 / -18,2 / -16,9 dB
+- grave abaixo de 100 Hz: 10,9% (a música passa por um corte de grave em 80 Hz)
+- silêncio antes da frase [03] (9,15 a 9,55 s): -120 dB; o resto do fecho, -16,4 dB
+
+O carro que anda de um fone ao outro (lado = direito menos esquerdo, no primeiro e no último terço da passagem dele):
+- sozinho: -6,5 dB no começo e +6,4 dB no fim
+- no som final, antes do "abaixa": -0,5 dB e +0,9 dB. A música cobria o carro, e o motor não media isso.
+- no som final, com a música e o lugar abaixando 8 dB sob o carro e o carro com vol 1,0: -2,7 dB e +2,5 dB. Medido também no MP4 final.
+
+Demais comandos:
+- `definitivo`: 5 min 26 → 1080 × 1920, 30/1, 14,40 s, 5,4 MB; qa 17 quadros, 0 problemas; ritmo todo ✓.
+- `juntar` (som novo no mesmo vídeo, pelo mux do animation-studio): 1 min 28.
+- `capa`: ok, recorte da grade conferido.
+- `conferir`: 0 erro, 1 aviso (5,4 MB, o Drive). As trocas de música em 4,80 s (93% da imagem muda) e em 9,60 s (34%) caem em cortes.
+- `entregar`: imprimiu a mensagem B ("Reel pronto para postar", 3 passos).
+
+=====================================================================
+PROVA 3 · VÍDEO DE FORA (o que o motor de pixel art vai entregar)
+=====================================================================
+Peça externo-minimo: `"motor": "externo"`, um cenas.json escrito a partir do score do exemplo-minimo e out/video.mp4 = a imagem sem som do exemplo-minimo.
+
+- `textos`: 3 frases e 1 palavra; duração e leitura saem do cenas.json; LEITURA OK.
+- `folha-textos`: 3 quadros tirados do MP4, em 2 s. Conferida.
+- `som`: o mesmo do exemplo-minimo. A diferença máxima por amostra é 3e-8, 185 dB abaixo do som (vem de 14,4 contra 14,399999999999999).
+- `juntar`:
+  - copiando a imagem (H.264 yuv420p): 1,2 s, 13,9 MB;
+  - com uma imagem em H.264 RGB (gbrp), recomprimiu para yuv420p em 47 s, 8,1 MB.
+- `capa`: tirada do MP4, ok.
+- `conferir`: 0 erro, 1 aviso (o Drive). O qa do texto fica com o motor que desenhou; cores, volume, pico, H.264 yuv420p, ritmo e trocas nos cortes foram medidos no MP4.
+- `compara`: 1 mudada ([02]).
+- `entregar final`: mensagem e cópia do textos mandado ok.
+- `quadros`, `rascunho`, `trecho` e `definitivo`: recusaram com o aviso, código de saída 1.
+
+=====================================================================
+TEMPO DE CADA COMANDO (2 núcleos, máquina ocupada)
+=====================================================================
+novo 0,2 a 0,5 s · textos 0,1 a 0,2 s · quadros 4 s · folha-textos 24 s (32 frases) · som 8 a 22 s · capa 1 s · compara e entregar 0,1 s
+conferir 15 a 50 s (sem vídeo / com o rascunho de 2min44)
+rascunho do sus-hoje:
+- pela passagem: 6 min 45 de vídeo + 1 min 42 do mux + 9 s de ritmo = 8 min 36
+- pelo motor: 12 min 49, no pior momento de disputa da máquina
+trecho 1 min 23 (3,4 s refeitos, com som e junção)
+definitivo 5 min 26 (14,4 s de vídeo)
+juntar: 1 s copiando, 47 s recomprimindo 14 s, 1 min 28 pelo mux do animation-studio

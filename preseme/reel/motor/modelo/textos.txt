@@ -1,0 +1,12 @@
+TÍTULO DA PEÇA · textos da tela · versão 1
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+
+PARTE 1 · as frases
+[01] Título da peça.
+[02] Primeira frase da abertura.
+[03] Frase da cena do meio.
+[04] Outra frase da cena do meio.
+[05] Frase do fecho.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] palavra
