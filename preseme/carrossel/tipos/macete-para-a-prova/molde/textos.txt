@@ -1,0 +1,29 @@
+MACETE PARA A PROVA · MOLDE · textos da tela · versão 0
+Molde do tipo macete para a prova. Troque todo texto marcado com TROQUE. A peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] TROQUE, a pergunta que cai na prova?
+[02] TROQUE, a promessa: o que o macete resolve.
+[03] TROQUE, a resposta curta à pergunta da capa.
+[04] TROQUE, a frase que gruda: o macete em uma linha.
+[05] TROQUE, o que a peça 1 significa, em palavra simples.
+[06] TROQUE, na UBS: o exemplo da peça 1 na vida real.
+[07] TROQUE, o que a peça 2 significa.
+[08] TROQUE, na UBS: o exemplo da peça 2.
+[09] TROQUE, a pegadinha: o que a prova confunde com o quê.
+[10] TROQUE, o detalhe que desfaz a confusão.
+[11] TROQUE, nome 1: a definição curta para o cartão.
+[12] TROQUE, nome 2: a definição curta para o cartão.
+[13] TROQUE, a regra de uma linha que fecha o cartão.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] macete para a prova
+[D02] Fonte · TROQUE, a lei ou o documento, curto
+[D03] A
+[D04] B
+[D05] TROQUE, nome 1
+[D06] TROQUE, nome 2
+[D07] pegadinha
+[D08] TROQUE, o título do cartão
+[D09] Fonte · TROQUE, órgão oficial, título do documento, ano

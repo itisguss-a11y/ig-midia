@@ -1,6 +1,9 @@
-// PRESEME · motor do reel · novo <pasta> [--de <pasta-com-os-arquivos-da-peça>]
+// PRESEME · motor do reel · novo <pasta> [--de <pasta-com-os-arquivos-da-peça>] [--molde <pasta-do-molde>]
 // Monta a pasta de trabalho de uma peça: o projeto 9:16 do animation-studio (engine/), as pastas e os arquivos da peça.
 // Sem --de, os arquivos saem do modelo do motor (motor/modelo), para o chat 1 preencher.
+// Com --molde, o molde vai primeiro e os arquivos do --de vão por cima (a peça guardada só com o que mudou do molde).
+// Sem --molde, se a pasta do --de não tem index.html e tem uma pasta "molde" ao lado (o exemplo de um tipo, que só traz
+// o que muda), o molde vizinho vai primeiro sozinho.
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -21,17 +24,24 @@ function copiar(de, para) {
 }
 
 function comando(args) {
-  const pos = C.posicionais(args.filter((x, i) => args[i - 1] !== '--de'));
+  const pos = C.posicionais(args.filter((x, i) => args[i - 1] !== '--de' && args[i - 1] !== '--molde'));
   const alvo = pos[0];
-  if (!alvo) throw new Error('uso: novo <pasta> [--de <pasta-com-os-arquivos-da-peça>]   (o nome da pasta é o nome da peça)');
+  if (!alvo) throw new Error('uso: novo <pasta> [--de <pasta-com-os-arquivos-da-peça>] [--molde <pasta-do-molde>]   (o nome da pasta é o nome da peça)');
   const dir = path.resolve(alvo);
   const i = args.indexOf('--de');
   // --carrossel: o modelo de carrossel (4:5, uma lâmina por cena; lib/carrossel.js)
   const fonte = i >= 0 ? path.resolve(args[i + 1]) : path.join(C.MOTOR, args.includes('--carrossel') ? 'modelo-carrossel' : 'modelo');
   if (!fs.existsSync(fonte)) throw new Error(`não achei ${fonte}`);
+  const jm = args.indexOf('--molde');
+  let molde = jm >= 0 ? path.resolve(args[jm + 1]) : null;
+  if (molde && !fs.existsSync(path.join(molde, 'index.html'))) throw new Error(`o --molde ${molde} não tem index.html`);
+  if (!molde && i >= 0 && !fs.existsSync(path.join(fonte, 'index.html'))) {
+    const viz = path.join(path.dirname(fonte), 'molde');
+    if (fs.existsSync(path.join(viz, 'index.html')) && viz !== fonte) molde = viz;
+  }
   if (fs.existsSync(dir) && fs.readdirSync(dir).some((f) => !['out', 'engine'].includes(f)) && !args.includes('--forca')) throw new Error(`${dir} já existe e não está vazia. Use outra pasta (ou --forca para escrever por cima).`);
-  const pj = path.join(fonte, 'peca.json');
-  const peca = fs.existsSync(pj) ? JSON.parse(fs.readFileSync(pj, 'utf8')) : {};
+  const lerJ = (d) => { const f = d && path.join(d, 'peca.json'); return f && fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {}; };
+  const peca = Object.assign({}, lerJ(molde), lerJ(fonte));
   const externo = peca.motor === 'externo';
   if (!externo) {
     const AS = C.acharStudio();
@@ -40,6 +50,7 @@ function comando(args) {
     for (const f of ['film.js', 'song.js']) fs.rmSync(path.join(dir, f), { force: true });
   } else fs.mkdirSync(dir, { recursive: true });
   fs.mkdirSync(path.join(dir, 'out'), { recursive: true });
+  if (molde) { copiar(molde, dir); console.log(`molde: ${molde}; por cima, os arquivos de ${fonte}`); }
   copiar(fonte, dir);
   // o kit de estilos (motor/estilos): vai para ferramentas/ só na peça cujo index.html o carrega. Ele muda o traço e as
   // cores do motor de desenho, então peça antiga sem a linha do kit continua saindo como saía.

@@ -1,0 +1,11 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra". TROQUE pelo que a peça mostra.
+[L01] Capa: o rótulo "Caso da visita", o caso em letra grande, a pessoa do caso e a prancheta com as pistas.
+[L02] A pergunta em letra grande e as opções A, B e C, cada uma num cartão. Uma seta pede para arrastar para a resposta.
+[L03] A resposta e os cartões das opções, cada um com o selo: certa, errada ou pode ser.
+[L04] O porquê da opção A, com o selo e o desenho que explica.
+[L05] O porquê da opção B, com o selo e o desenho que explica.
+[L06] O porquê da opção C, com o selo e o desenho que explica.
+[L07] O dado de Roraima em colunas, com a fonte embaixo.
+[L08] O que a equipe faz na atenção primária, em três cartões com desenho.
+[L09] A prevenção, em quatro cartões com desenho.
+[L10] O cartão para salvar, com as três frases do resumo e as fontes.

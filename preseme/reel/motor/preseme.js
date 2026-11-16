@@ -9,6 +9,8 @@ const AJUDA = `PRESEME · motor do reel
 uso: node ${path.relative(process.cwd(), __filename) || 'preseme.js'} <comando> [--peca <pasta>]
 
   novo <pasta> [--de <pasta>]       monta a peça (projeto 9:16 do animation-studio + arquivos da peça ou do modelo)
+       [--molde <pasta>]            o molde vai primeiro e o --de por cima (a peça guardada só com o que mudou; o
+                                    exemplo de um tipo acha o molde vizinho sozinho)
   textos [arquivo.txt] [--tabela]   lê o textos.txt, confere o formato, grava o textos.js, mostra duração e leitura
   folha-textos [--saida <arquivo>]  um quadro por frase, no instante em que ela está inteira (decisão 115; peça de fora: do MP4)
   quadros [--saida <arquivo>]       folha de quadros (um por marcador) e a cópia reduzida para olhar
