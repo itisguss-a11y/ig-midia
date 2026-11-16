@@ -1,0 +1,725 @@
+{
+ "nome": "A casa 12",
+ "versao": 3,
+ "clima": "curioso",
+ "semente": "casa 12",
+ "fps": 30,
+ "arquivo": "casa12",
+ "usa_brasao": true,
+ "usa_mapa": true,
+ "nota": "Roteiro do reel, lido pelo motor de pixel art (pasta pixel). Para trocar uma palavra: edite o textos.txt (comando textos), aplique (textos --aplica) e rode o comando texto; ou mude aqui e rode texto. 'topo' e o cartao de cima (fica ate ser trocado; '*' no comeco da linha = marca-texto). 'fala' e o texto escrito no papel da cena; um trecho entre asteriscos, como *MICROAREA*, sai com marca-texto. 'lista' sao os itens com caixinha. 'dur' em segundos e opcional: sem ela, o tempo sai do numero de palavras, pela conta de 'ritmo'. 'papeis' sao os nomes escritos no cabecalho de cada papel. 'rotulos' sao as etiquetas soltas sobre a cena (desenhadas pelo peca.py). 'abertura' e o trecho de destaque que o motor poe antes do primeiro quadro (versao 3, 14/11): o texto dele e o 'topo' do primeiro momento; aqui ficam a duracao, a 'janela' (o retangulo da tela grande que fica aceso: a casa 12) e os sons, sem musica (os tiques batem com o pisca do balao de alerta). Com --sem-abertura sai o video da versao 2.",
+ "ritmo": {
+  "base": 1.3,
+  "por_palavra": 0.32,
+  "min": 2.6,
+  "max": 11.5
+ },
+ "contador": {
+  "a": [
+   "750",
+   "PESSOAS POR MICROÁREA",
+   "ATÉ"
+  ],
+  "b": [
+   "2.000 a 3.500",
+   "PESSOAS POR ÁREA",
+   "DE"
+  ]
+ },
+ "abertura": {
+  "dur": 4.4,
+  "janela": [
+   175,
+   625,
+   924,
+   1124
+  ],
+  "sons": [
+   {
+    "t": 0.12,
+    "som": "baque",
+    "vol": 1.0
+   },
+   {
+    "t": 0.4,
+    "som": "tique",
+    "vol": 0.6
+   },
+   {
+    "t": 1.2,
+    "som": "tique",
+    "vol": 0.6
+   },
+   {
+    "t": 2.0,
+    "som": "tique",
+    "vol": 0.6
+   },
+   {
+    "t": 2.8,
+    "som": "tique",
+    "vol": 0.6
+   },
+   {
+    "t": 3.6,
+    "som": "tique",
+    "vol": 0.6
+   },
+   {
+    "t": 3.8,
+    "som": "sopro",
+    "vol": 0.5
+   }
+  ]
+ },
+ "papeis": {
+  "caderneta": "caderneta de vacinação",
+  "prancheta": "prancheta do ACS",
+  "prontuario": "prontuário da família",
+  "relatorio": "relatório",
+  "mapa": "legenda do mapa",
+  "caderno": "caderno do AIS",
+  "polo": "ficha de atendimento"
+ },
+ "legenda": [
+  "Território na atenção primária, explicado por uma casa só: a casa 12.",
+  "",
+  "O SUS divide o chão em degraus para que sempre exista alguém, com nome e endereço, cuidando de cada pedaço:",
+  "",
+  "Microárea → as ruas de um agente comunitário de saúde (ACS), até 750 pessoas.",
+  "Área → as microáreas de uma equipe de Saúde da Família, com base na UBS.",
+  "Distrito sanitário → várias áreas juntas; é o município planejando.",
+  "DSEI → o distrito da saúde indígena; é federal e segue o território indígena, não a divisa dos estados.",
+  "",
+  "Macete para a questão: olhe quem é o sujeito da frase. Falou em agente, é microárea. Falou em equipe, é área. Falou em município, é distrito. Falou em povo indígena e Ministério da Saúde, é DSEI.",
+  "",
+  "Em Roraima isso está no mapa: dois DSEI (Leste de Roraima e Yanomami) e CASAI em Boa Vista.",
+  "",
+  "Salva para rever quando o território aparecer na sua frente.",
+  "",
+  "Fontes: Lei 11.350/2006; PNAB (Portaria GM/MS 2.436/2017); Lei 8.080/1990, art. 10 e arts. 19-A a 19-H; PNASPI (Portaria GM/MS 254/2002); polos-base: SESAU-RR, relatório situacional de 2024.",
+  "",
+  "#atencaoprimaria #sus #saudedafamilia #saudeindigena #medicinaufrr"
+ ],
+ "cenas": {
+  "moradia": {
+   "nivel": "MORADIA",
+   "papel": "caderneta",
+   "fase": 1
+  },
+  "rua": {
+   "nivel": "MICROÁREA",
+   "papel": "prancheta",
+   "fase": 2
+  },
+  "area": {
+   "nivel": "ÁREA",
+   "papel": "prontuario",
+   "fase": 3
+  },
+  "cidade": {
+   "nivel": "DISTRITO",
+   "papel": "relatorio",
+   "fase": 4
+  },
+  "mapa": {
+   "nivel": "DSEI",
+   "papel": "mapa",
+   "fase": 5,
+   "escuro": true
+  },
+  "aldeia": {
+   "nivel": "ALDEIA",
+   "papel": "caderno",
+   "fase": 5,
+   "escuro": true
+  },
+  "polo": {
+   "nivel": "POLO-BASE",
+   "papel": "polo",
+   "fase": 5,
+   "escuro": true
+  },
+  "escada": {
+   "nivel": "RESPOSTA",
+   "papel": "bilhete",
+   "fase": 5
+  },
+  "moradia_fim": {
+   "nivel": "MORADIA",
+   "papel": "cartao",
+   "fase": 5,
+   "fase_fixa": true
+  }
+ },
+ "beats": [
+  {
+   "cena": "moradia",
+   "acao": "alerta",
+   "topo": [
+    "A vacina da criança",
+    "*da casa 12 atrasou."
+   ],
+   "dur": 3.6
+  },
+  {
+   "cena": "moradia",
+   "acao": "alerta",
+   "fala": "Ninguém em casa viu a data. Ninguém buscou a unidade."
+  },
+  {
+   "cena": "moradia",
+   "acao": "alerta",
+   "fala": "No SUS, nenhuma casa fica sem alguém responsável por ela."
+  },
+  {
+   "cena": "moradia",
+   "acao": "alerta",
+   "topo": [
+    "*Quem responde pela casa 12?"
+   ],
+   "pergunta": true,
+   "dur": 4.8,
+   "capa": true
+  },
+  {
+   "cena": "trans",
+   "de": "moradia",
+   "para": "rua",
+   "modo": "afasta",
+   "alvo": [
+    142,
+    198,
+    160,
+    214
+   ],
+   "dur": 1.4
+  },
+  {
+   "cena": "rua",
+   "acao": "sai",
+   "fala": "Primeiro ele: o *ACS*.",
+   "dur": 3.4
+  },
+  {
+   "cena": "rua",
+   "acao": "para",
+   "ficha": "acs"
+  },
+  {
+   "cena": "rua",
+   "acao": "borda",
+   "fala": "O agente comunitário de saúde atua em certa parte do bairro chamada *MICROÁREA*."
+  },
+  {
+   "cena": "rua",
+   "acao": "casas",
+   "fala": "Uma microárea é um conjunto de casas que comporta até 750 pessoas."
+  },
+  {
+   "cena": "rua",
+   "acao": "visita",
+   "fala": "Cada casa dessas está na prancheta dele:",
+   "lista": [
+    "quem mora",
+    "quem está grávida",
+    "quem tem pressão alta ou diabetes",
+    "quem está acamado",
+    "as crianças e as cadernetas"
+   ]
+  },
+  {
+   "cena": "rua",
+   "acao": "visita",
+   "fala": "O trabalho dele é andar: visitar as casas com a frequência que a equipe planeja, conferir quem precisa de consulta, vacina ou remédio, orientar e levar para a equipe o que viu."
+  },
+  {
+   "cena": "rua",
+   "acao": "alunos",
+   "fala": "E de vez em quando recebe alunos e os faz andar no sol com ele."
+  },
+  {
+   "cena": "rua",
+   "acao": "visita",
+   "fala": "Ele não consulta, não receita, não vacina. Ele é os olhos e a voz da equipe dentro do bairro."
+  },
+  {
+   "cena": "rua",
+   "acao": "percebe",
+   "fala": "Por isso é ele quem percebe.",
+   "dur": 4.0
+  },
+  {
+   "cena": "trans",
+   "de": "rua",
+   "para": "area",
+   "modo": "afasta",
+   "alvo": [
+    145,
+    181,
+    211,
+    250
+   ],
+   "dur": 1.4
+  },
+  {
+   "cena": "area",
+   "acao": "forma",
+   "fala": "Se juntarmos várias microáreas, temos uma *ÁREA*, que é o território de abrangência de uma equipe de saúde da família."
+  },
+  {
+   "cena": "area",
+   "acao": "contador",
+   "fala": "Uma área comporta entre 2 mil e 3,5 mil pessoas.",
+   "contador": true,
+   "dur": 6.5
+  },
+  {
+   "cena": "area",
+   "acao": "equipe",
+   "fala": "Quem responde pela área é a *equipe de saúde da família*, a *eSF*."
+  },
+  {
+   "cena": "area",
+   "acao": "parada",
+   "nota": {
+    "titulo": "Nota",
+    "texto": "Uma *equipe de saúde da família* deve ter no mínimo um médico, enfermeiro, técnico ou auxiliar de enfermagem e agente comunitário de saúde.",
+    "carimbo": "SE PERGUNTAREM, JÁ SABEM"
+   },
+   "dur": 9.5
+  },
+  {
+   "cena": "area",
+   "acao": "opcionais",
+   "fala": "A equipe pode ter também dentista, auxiliar ou técnico em saúde bucal e agente de combate às endemias, porém esses não são obrigatórios."
+  },
+  {
+   "cena": "area",
+   "acao": "parada",
+   "ficha": "medico"
+  },
+  {
+   "cena": "area",
+   "acao": "parada",
+   "ficha": "enfermeiro"
+  },
+  {
+   "cena": "area",
+   "acao": "parada",
+   "ficha": "tecnico"
+  },
+  {
+   "cena": "area",
+   "acao": "parada",
+   "ficha": "agentes"
+  },
+  {
+   "cena": "area",
+   "acao": "ubs",
+   "fala": "A base da equipe é a *UBS*, a unidade básica de saúde. A recomendação é de 4 equipes por UBS."
+  },
+  {
+   "cena": "area",
+   "acao": "porta",
+   "fala": "É a principal porta de entrada do SUS:",
+   "lista": [
+    "consulta",
+    "pré-natal",
+    "puericultura",
+    "vacina",
+    "curativo",
+    "teste rápido",
+    "receita",
+    "acompanhamento de pressão e diabetes",
+    "visitas a domicílio"
+   ],
+   "colunas": 2
+  },
+  {
+   "cena": "area",
+   "acao": "encaminha",
+   "fala": "Precisou de especialista ou hospital? O encaminhamento sai daqui."
+  },
+  {
+   "cena": "area",
+   "acao": "anos",
+   "fala": "A mesma equipe acompanha as mesmas famílias por anos. Ela te conhece pelo nome."
+  },
+  {
+   "cena": "area",
+   "acao": "resolve",
+   "fala": "Quem resolve o problema da vacina atrasada da criança da casa 12 é a equipe.",
+   "dur": 6.5
+  },
+  {
+   "cena": "trans",
+   "de": "area",
+   "para": "cidade",
+   "modo": "afasta",
+   "alvo": [
+    1,
+    102,
+    78,
+    168
+   ],
+   "dur": 1.4
+  },
+  {
+   "cena": "cidade",
+   "acao": "bairro",
+   "fala": "O problema de uma moradia a equipe resolve, mas se é o bairro inteiro com problemas? Um surto de dengue, remédio em falta?"
+  },
+  {
+   "cena": "cidade",
+   "acao": "bairro",
+   "fala": "Isso é problema do gestor distrital, não de uma equipe só."
+  },
+  {
+   "cena": "cidade",
+   "acao": "distrito",
+   "fala": "Várias áreas formam um *DISTRITO SANITÁRIO*. É como o município pode dividir a cidade para gerenciar a saúde."
+  },
+  {
+   "cena": "cidade",
+   "acao": "sede",
+   "ficha": "gestor"
+  },
+  {
+   "cena": "cidade",
+   "acao": "enxerga",
+   "fala": "O gestor distrital enxerga a cobertura vacinal de cada área, os casos de dengue que as equipes notificaram, o estoque de vacina e remédio…",
+   "grafico": true
+  },
+  {
+   "cena": "cidade",
+   "acao": "faz",
+   "fala": "…planeja campanhas, pede reforço, entre outras coisas.",
+   "grafico": true,
+   "dur": 5.0
+  },
+  {
+   "cena": "trans",
+   "de": "cidade",
+   "para": "mapa",
+   "modo": "afasta",
+   "alvo": [
+    148,
+    160,
+    160,
+    172
+   ],
+   "dur": 1.5
+  },
+  {
+   "cena": "mapa",
+   "acao": "maloca",
+   "topo": [
+    "E quando a casa 12",
+    "*é uma maloca?"
+   ],
+   "dur": 4.0
+  },
+  {
+   "cena": "mapa",
+   "acao": "subsistema",
+   "nivel": "SAÚDE INDÍGENA",
+   "fala": "Aí o mapa é outro. O SUS tem um subsistema só para a saúde indígena, e ele tem a própria escada."
+  },
+  {
+   "cena": "trans",
+   "de": "mapa",
+   "para": "aldeia",
+   "modo": "aproxima",
+   "alvo": [
+    98,
+    164,
+    104,
+    170
+   ],
+   "dur": 1.4
+  },
+  {
+   "cena": "aldeia",
+   "acao": "alerta",
+   "fala": "Degrau 1: a *ALDEIA*. É onde a família mora: a casa 12 daqui."
+  },
+  {
+   "cena": "aldeia",
+   "acao": "ais",
+   "fala": "Degrau 2: o *AIS*, agente indígena de saúde. É indígena, trabalha dentro da aldeia e é o primeiro a ver o problema."
+  },
+  {
+   "cena": "aldeia",
+   "acao": "parada",
+   "ficha": "ais"
+  },
+  {
+   "cena": "aldeia",
+   "acao": "radio",
+   "fala": "Quando precisa, chama a equipe do polo-base."
+  },
+  {
+   "cena": "aldeia",
+   "acao": "degrau",
+   "fala": "Na cidade, esse degrau é o ACS na microárea. Na aldeia, é o AIS."
+  },
+  {
+   "cena": "trans",
+   "de": "aldeia",
+   "para": "polo",
+   "modo": "desliza",
+   "dur": 1.0
+  },
+  {
+   "cena": "polo",
+   "acao": "lancha",
+   "fala": "Degrau 3: o *POLO-BASE* é uma “base de operações”. É a primeira referência de várias aldeias, como a UBS é da área. Pode ficar numa aldeia ou na cidade."
+  },
+  {
+   "cena": "polo",
+   "acao": "emsi",
+   "fala": "Nele fica a *EMSI*, a equipe multidisciplinar de saúde indígena: médico, enfermeiro, dentista, técnico ou auxiliar de enfermagem e AIS. Atendem no polo-base e nas aldeias."
+  },
+  {
+   "cena": "trans",
+   "de": "polo",
+   "para": "mapa",
+   "modo": "afasta",
+   "alvo": [
+    90,
+    155,
+    98,
+    163
+   ],
+   "dur": 1.4
+  },
+  {
+   "cena": "mapa",
+   "acao": "dsei",
+   "fala": "Degrau 4: o *DSEI*, distrito sanitário especial indígena. É composto por vários polos-base. Não pertence ao município: é do Ministério da Saúde."
+  },
+  {
+   "cena": "mapa",
+   "acao": "dois",
+   "fala": "São 34 no Brasil. Roraima tem dois: o Leste de Roraima e o Yanomami, que entra no Amazonas."
+  },
+  {
+   "cena": "mapa",
+   "acao": "segue",
+   "fala": "O distrito segue o território indígena e não se limita por fronteira de estados e municípios."
+  },
+  {
+   "cena": "mapa",
+   "acao": "polos",
+   "fala": "O DSEI Leste de Roraima tem 34 polos-base. O DSEI Yanomami tem 37.",
+   "dur": 7.0
+  },
+  {
+   "cena": "mapa",
+   "acao": "casai",
+   "fala": "Quando um indígena precisa de exame e cuidados médicos, ele vem à cidade grande, onde é amparado pela *CASAI*, casa de saúde indígena, que recebe, hospeda e leva de volta."
+  },
+  {
+   "cena": "trans",
+   "de": "mapa",
+   "para": "escada",
+   "modo": "funde",
+   "dur": 1.0
+  },
+  {
+   "cena": "escada",
+   "acao": "resposta1",
+   "topo": [
+    "*Quem responde pela casa 12?"
+   ],
+   "fala": "Pela casa 12 respondem: o agente, a equipe, o distrito.",
+   "dur": 7.5
+  },
+  {
+   "cena": "escada",
+   "acao": "resposta2",
+   "fala": "E se fosse uma maloca: o AIS, o polo-base, o DSEI.",
+   "dur": 6.5
+  },
+  {
+   "cena": "trans",
+   "de": "escada",
+   "para": "moradia_fim",
+   "modo": "funde",
+   "dur": 1.0
+  },
+  {
+   "cena": "moradia_fim",
+   "acao": "certo",
+   "topo": [
+    "*Casa 12: respondida."
+   ],
+   "dur": 3.4
+  },
+  {
+   "cena": "moradia_fim",
+   "acao": "obrigado",
+   "agradecimento": "Um agradecimento dos alunos da UFRR aos *agentes comunitários de saúde* que nos recebem todos os anos.",
+   "dur": 7.5
+  }
+ ],
+ "fichas": {
+  "acs": {
+   "titulo": "AGENTE COMUNITÁRIO DE SAÚDE",
+   "sprite": "acs",
+   "linhas": [
+    [
+     "requisito",
+     "precisa ser alguém que mora na área onde atua"
+    ],
+    [
+     "território",
+     "microárea, até 750 pessoas"
+    ],
+    [
+     "não faz",
+     "consulta, receita, vacina"
+    ]
+   ]
+  },
+  "medico": {
+   "titulo": "MÉDICO",
+   "sprite": "medico",
+   "linhas": [
+    [
+     "habilidades",
+     "consulta, diagnóstico, receita, encaminhamento"
+    ],
+    [
+     "base",
+     "a UBS, com a equipe"
+    ]
+   ]
+  },
+  "enfermeiro": {
+   "titulo": "ENFERMEIRO",
+   "sprite": "enfermeiro",
+   "linhas": [
+    [
+     "habilidades",
+     "pré-natal, puericultura, consulta de enfermagem"
+    ],
+    [
+     "também",
+     "supervisiona a sala de vacina e o trabalho dos agentes"
+    ]
+   ]
+  },
+  "tecnico": {
+   "titulo": "TÉCNICO DE ENFERMAGEM",
+   "sprite": "tecnico",
+   "linhas": [
+    [
+     "habilidades",
+     "vacina, curativo, coleta de exames, medicação"
+    ],
+    [
+     "base",
+     "a UBS, com a equipe"
+    ]
+   ]
+  },
+  "agentes": {
+   "titulo": "AGENTES COMUNITÁRIOS",
+   "sprite": "acs",
+   "linhas": [
+    [
+     "quantos",
+     "pode haver mais de um por eSF"
+    ],
+    [
+     "papel",
+     "a ponte entre as casas e a equipe"
+    ]
+   ]
+  },
+  "gestor": {
+   "titulo": "GESTOR DISTRITAL",
+   "sprite": "predio",
+   "linhas": [
+    [
+     "quem é",
+     "a Secretaria Municipal de Saúde"
+    ],
+    [
+     "território",
+     "o distrito: várias áreas"
+    ],
+    [
+     "habilidades",
+     "planejar, vigiar, distribuir vacina e remédio, pedir reforço"
+    ],
+    [
+     "não faz",
+     "atender paciente"
+    ]
+   ]
+  },
+  "ais": {
+   "titulo": "AIS · AGENTE INDÍGENA DE SAÚDE",
+   "sprite": "ais",
+   "linhas": [
+    [
+     "origem",
+     "indígena, formado em serviço"
+    ],
+    [
+     "território",
+     "a aldeia onde atua"
+    ],
+    [
+     "habilidades",
+     "ver primeiro, acompanhar, chamar a equipe do polo"
+    ],
+    [
+     "referência",
+     "o polo-base"
+    ]
+   ]
+  }
+ },
+ "rotulos": {
+  "degraus_cidade": [
+   "CASA 12",
+   "AGENTE",
+   "EQUIPE · UBS",
+   "DISTRITO"
+  ],
+  "degraus_aldeia": [
+   "MALOCA",
+   "AIS",
+   "POLO-BASE",
+   "DSEI"
+  ],
+  "pilha_cidade": [
+   "caderneta",
+   "prancheta do ACS",
+   "prontuário",
+   "relatório"
+  ],
+  "pilha_aldeia": [
+   "caderneta",
+   "caderno do AIS",
+   "ficha do polo",
+   "mapa do DSEI"
+  ],
+  "dsei_leste": "DSEI Leste de Roraima",
+  "dsei_yanomami": "DSEI Yanomami",
+  "polo_base": "polo-base",
+  "roraima": "RORAIMA",
+  "amazonas": "AMAZONAS",
+  "casai": "CASAI · Boa Vista",
+  "cobertura": "cobertura vacinal de cada área",
+  "secretaria": "SECRETARIA MUNICIPAL DE SAÚDE",
+  "microarea": "microárea: até 750 pessoas",
+  "acs_cidade": "ACS · cidade",
+  "ais_aldeia": "AIS · aldeia",
+  "marca": "PRESEME"
+ }
+}

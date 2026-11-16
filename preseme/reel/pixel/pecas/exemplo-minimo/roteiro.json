@@ -1,0 +1,32 @@
+{
+ "nome": "Exemplo mínimo",
+ "versao": 1,
+ "clima": "calmo",
+ "semente": "exemplo-minimo",
+ "fps": 30,
+ "arquivo": "exemplo-minimo",
+ "hud": false,
+ "nota": "Peça de teste do motor de pixel art (16/11/2026): três cenas feitas só com o que já está na biblioteca (pasta pixel), duas transições, ficha, contador e Nota. Texto neutro, sem fato: não vai ao ar. É também o modelo que o comando novo copia. Campos: 'topo' é o cartão de cima (fica até ser trocado; '*' no começo da linha = linha inteira em marca-texto); 'fala' é o texto que se escreve no papel da cena ('*trecho*' = marca-texto); 'dur' é a duração do momento, em segundos (sem ela, vale o 'ritmo': base + por_palavra × palavras, que aqui é a regra de leitura do projeto); 'trans' é a transição entre duas cenas (afasta, aproxima, desliza, funde; 'alvo' é o retângulo da cena de chegada onde a de saída cabe); 'capa': true marca o momento da capa; 'hud': false desliga as caixinhas de fase.",
+ "ritmo": {"base": 1.7, "por_palavra": 0.46, "min": 2.6, "max": 11.5},
+ "contador": {"a": ["30", "QUADROS POR SEGUNDO", "SÃO"]},
+ "papeis": {"caderneta": "papel de teste", "prancheta": "prancheta de teste", "prontuario": "folha de teste"},
+ "legenda": ["Peça de teste do motor de pixel art do PRESEME. Não vai ao ar."],
+ "cenas": {
+  "casa": {"nivel": "CENA 1", "papel": "caderneta", "fase": 1},
+  "rua": {"nivel": "CENA 2", "papel": "prancheta", "fase": 2},
+  "ubs": {"nivel": "CENA 3", "papel": "prontuario", "fase": 3}
+ },
+ "fichas": {
+  "teste": {"titulo": "FICHA DE TESTE", "sprite": "acs", "linhas": [["o que é", "um exemplo do motor"], ["serve para", "conferir a ficha que entra e sai"]]}
+ },
+ "rotulos": {"etiqueta": "rua de teste"},
+ "beats": [
+  {"cena": "casa", "acao": "chega", "topo": ["Teste do motor", "*de pixel art"], "fala": "Cena 1: *a casa*.", "dur": 3.4, "capa": true},
+  {"cena": "trans", "de": "casa", "para": "rua", "modo": "afasta", "alvo": [142, 198, 160, 214], "dur": 0.9},
+  {"cena": "rua", "acao": "anda", "fala": "Cena 2: *a rua*.", "dur": 3.3},
+  {"cena": "rua", "acao": "para", "ficha": "teste", "dur": 2.4},
+  {"cena": "trans", "de": "rua", "para": "ubs", "modo": "desliza", "dur": 0.7},
+  {"cena": "ubs", "acao": "conta", "fala": "Cena 3: *a UBS*.", "contador": true, "dur": 3.3},
+  {"cena": "ubs", "acao": "fim", "topo": ["*Fim do teste."], "nota": {"titulo": "Nota", "texto": "Só um teste. *Não vai ao ar.*", "carimbo": "SÓ TESTE"}, "dur": 4.8}
+ ]
+}

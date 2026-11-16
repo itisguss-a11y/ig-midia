@@ -1,0 +1,296 @@
+{
+ "peca": "casa12",
+ "total_quadros": 10853,
+ "fonte": "quadros desenhados pelo codigo original do reel \"A casa 12\" (versao 2 da construcao.md: reel.py, reel_base*.py, reel_camada.py e cia.; a abertura da versao 3 pelo reel_abertura.py), 16/11/2026, com o brasao do projeto (--brasao) e os mapas do comando dados",
+ "impressao": "sha256 dos bytes RGB do quadro 1080 x 1920 (os 8 do sorteio e os 14 da abertura inteiros; os 22 de cobertura, os 16 primeiros caracteres)",
+ "quadros": [
+  {
+   "instante": "#656",
+   "quadro": 656,
+   "momento": 5,
+   "cena": "rua",
+   "acao": "sai",
+   "sha256": "3bc6228a7682eded4ff02cea8080687049fcd088fc7d7be8ff2a312e026aacf8",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#1941",
+   "quadro": 1941,
+   "momento": 11,
+   "cena": "rua",
+   "acao": "alunos",
+   "sha256": "bb1a9c35d86d5ebbb1d5fa5bdb5f5a5ba6cb414d3a1d7f3b342fc4389adc8e60",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#3287",
+   "quadro": 3287,
+   "momento": 18,
+   "cena": "area",
+   "acao": "parada",
+   "sha256": "cc3f763d266df9f14e4301bec6b7e2a129a6338a19285f5b8d4cdc02ba290d6a",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#4532",
+   "quadro": 4532,
+   "momento": 24,
+   "cena": "area",
+   "acao": "ubs",
+   "sha256": "d3311bcb47e1bb850d2c6ad2d43cdc6e492a122e11e8951c35ef3fc697c9e8b8",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#5700",
+   "quadro": 5700,
+   "momento": 31,
+   "cena": "cidade",
+   "acao": "bairro",
+   "sha256": "707b4e057c0416af50c182e353a097e2cbcee46b6d772477cddc0631f4430c38",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#7319",
+   "quadro": 7319,
+   "momento": 40,
+   "cena": "aldeia",
+   "acao": "alerta",
+   "sha256": "73a6feb37901d1f49ef3d7a3af0904ea91c7bbff46e7e6b1415f272d2fd4abd8",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#8428",
+   "quadro": 8428,
+   "momento": 46,
+   "cena": "polo",
+   "acao": "lancha",
+   "sha256": "9a6b8bc89c4c547bfe99545c5ce09dbcddcd770c38416f0dfd68e4200ba20ecf",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "#10093",
+   "quadro": 10093,
+   "momento": 55,
+   "cena": "escada",
+   "acao": "resposta1",
+   "sha256": "e547eb67c2881d4928cf83c740c98617b6337841ce8e610d27610078d7bd89ab",
+   "de_onde": "sorteio"
+  },
+  {
+   "instante": "3:0.4",
+   "quadro": 435,
+   "sha256": "64b138cab063d228",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "3:0.9",
+   "quadro": 507,
+   "sha256": "b54dcdbd9f2d82b2",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "4:0.5",
+   "quadro": 543,
+   "sha256": "a663bf768eefa865",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "6:0.5",
+   "quadro": 800,
+   "sha256": "418e0f7a3f5caa62",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "9:0.85",
+   "quadro": 1498,
+   "sha256": "333fab6eda693913",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "16:0.3",
+   "quadro": 2742,
+   "sha256": "71fc226107c82186",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "16:0.8",
+   "quadro": 2840,
+   "sha256": "cd3d75ddc1bb1c35",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "25:0.85",
+   "quadro": 4827,
+   "sha256": "1f7406a3d3158a4f",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "29:0.5",
+   "quadro": 5382,
+   "sha256": "e006ea6254dbd5ed",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "35:0.5",
+   "quadro": 6662,
+   "sha256": "b1bd8fddd80f812a",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "36:0.6",
+   "quadro": 6764,
+   "sha256": "c509cfd0fc07ebfb",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "37:0.6",
+   "quadro": 6854,
+   "sha256": "74860c5835687020",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "39:0.5",
+   "quadro": 7164,
+   "sha256": "fd5834814c9ac64b",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "42:0.6",
+   "quadro": 7777,
+   "sha256": "ec16269eff3b7f95",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "47:0.6",
+   "quadro": 8696,
+   "sha256": "509433f8db0e18e7",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "48:0.7",
+   "quadro": 8841,
+   "sha256": "1d04b9cac07df412",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "50:0.5",
+   "quadro": 9210,
+   "sha256": "099ae20c4d83b015",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "51:0.8",
+   "quadro": 9470,
+   "sha256": "cbc006beb989c25e",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "53:0.5",
+   "quadro": 9882,
+   "sha256": "a24f1337f2aab97c",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "56:0.6",
+   "quadro": 10418,
+   "sha256": "c26b61b84667985e",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "58:0.3",
+   "quadro": 10556,
+   "sha256": "a6e1680c5cd5c339",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "59:0.85",
+   "quadro": 10819,
+   "sha256": "009fc25368d908b1",
+   "de_onde": "cobertura"
+  },
+  {
+   "instante": "ab0",
+   "quadro": "ab0",
+   "sha256": "a5ba62bf1d65b8598fbbc3e3f700fea8226d480c3a901dee8d799c7a463d47e5",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab3",
+   "quadro": "ab3",
+   "sha256": "52f7192687177f83847d12052c9b1f7d0d685f77c6c6b069787b25d274d93ed2",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab7",
+   "quadro": "ab7",
+   "sha256": "059191b8694a8e2fb34cd05ffa372c5099b3cde3ffed43575bd76d5206383804",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab10",
+   "quadro": "ab10",
+   "sha256": "3bb1498a3fd2983e3135c26c05f553732708a325ebeb545ea67a5691dc464246",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab30",
+   "quadro": "ab30",
+   "sha256": "e371885b29588886ebe6e71b83c2451be4140934f615b05cb87eb74ef686fc6c",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab66",
+   "quadro": "ab66",
+   "sha256": "376700010272ed932d49c3fe1d9345d2b6a5c1c18b4585a836921400f00b205d",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab100",
+   "quadro": "ab100",
+   "sha256": "376700010272ed932d49c3fe1d9345d2b6a5c1c18b4585a836921400f00b205d",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab110",
+   "quadro": "ab110",
+   "sha256": "376700010272ed932d49c3fe1d9345d2b6a5c1c18b4585a836921400f00b205d",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab114",
+   "quadro": "ab114",
+   "sha256": "376700010272ed932d49c3fe1d9345d2b6a5c1c18b4585a836921400f00b205d",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab120",
+   "quadro": "ab120",
+   "sha256": "2ced7f043b878c75c947674fc7d45c6b934bb982d85edc6e70a231d78997ecdd",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab124",
+   "quadro": "ab124",
+   "sha256": "017d47c9c25df6307b86ee35dcfc0e20269816c033efdfbf9b4341918117775c",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab126",
+   "quadro": "ab126",
+   "sha256": "859f805113382ca32e1b3b1cb8ffddf31de68b245f00a076d188d300d4886fb0",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab128",
+   "quadro": "ab128",
+   "sha256": "baf553fe4e0a0800497be330e5ff03eb2933c3815617823e20cae6b8b6fe7241",
+   "de_onde": "abertura"
+  },
+  {
+   "instante": "ab131",
+   "quadro": "ab131",
+   "sha256": "deaab78cd82c283a7062fa9e8c86c24049e2f29ef60597712cd5112faecd0c28",
+   "de_onde": "abertura"
+  }
+ ]
+}

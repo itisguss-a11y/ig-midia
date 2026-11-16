@@ -1,0 +1,106 @@
+PRESEME · motor de pixel art · relatório de teste (16/11/2026, frente G)
+
+Máquina: 2 núcleos e 7 GB, dividida com outras frentes; render longo dentro de flock, um por vez. Os tempos variam com a carga.
+Impressão digital de um quadro = sha256 dos bytes RGB do quadro 1080 × 1920, antes de virar vídeo.
+
+
+PROVA 1 · REGRESSÃO: o "A casa 12" pelo motor tem de sair igual ao do código original
+-------------------------------------------------------------------------------------
+
+Linha de base: o código original (reel.py, reel_base*.py, reel_camada.py, reel_texto.py, reel_papel.py, reel_rotulos.py,
+reel_desenhos.py, quadros.py, folhas.py, roteiro.json, preseme-trilha.py e reel_abertura.py), copiado do projeto sem mudança
+(do folhas.py saíram só as folhas de briefing que o reel não chama), com o brasão do projeto e os mesmos mapas.
+  vídeo inteiro (versão 2, sem a abertura): 10.853 quadros, 361,8 s, 1080 × 1920, 30 quadros por segundo, 83,6 MB,
+  -15,9 LUFS, pico -1,5 dBFS, 164 efeitos, trilha curioso / semente "casa 12" / fá# lídio / 100 bpm.
+  Render: 10 min 24 s (com outras frentes rodando). Bate com a construcao.md, versão 2.
+
+1. Quadros sorteados (semente 16112026, um em cada oitavo do vídeo), motor x original: 8 de 8 iguais.
+     #656     21,9 s  rua      sai        3bc6228a7682eded
+     #1941    64,7 s  rua      alunos     bb1a9c35d86d5ebb
+     #3287   109,6 s  area     parada     cc3f763d266df9f1
+     #4532   151,1 s  area     ubs        d3311bcb47e1bb85
+     #5700   190,0 s  cidade   bairro     707b4e057c0416af
+     #7319   244,0 s  aldeia   alerta     73a6feb37901d1f4
+     #8428   280,9 s  polo     lancha     9a6b8bc89c4c547b
+     #10093  336,4 s  escada   resposta1  e547eb67c2881d49
+
+2. Quadros de cobertura (toda cena, as quatro transições, ficha, lista, contador nas duas fases, mapa com terras e polos,
+   Nota e cartão com o brasão): 22 de 22 iguais.
+     3:0.4 3:0.9 4:0.5 6:0.5 9:0.85 16:0.3 16:0.8 25:0.85 29:0.5 35:0.5 36:0.6 37:0.6 39:0.5 42:0.6 47:0.6 48:0.7 50:0.5
+     51:0.8 53:0.5 56:0.6 58:0.3 59:0.85 (momento:fração; as impressões estão em testes/casa12-esperado.json)
+
+3. A abertura da versão 3 (reel_abertura.py, passada para o motor): 14 de 14 quadros iguais
+   (0, 3, 7, 10, 30, 66, 100, 110, 114, 120, 124, 126, 128 e 131, dos 132 quadros dela).
+
+4. A passada 1 inteira (a cena na tela pequena, 216 × 384), quadro a quadro: 10.853 de 10.853 iguais.
+
+5. Os efeitos de som (instante, som, volume): 164 no original, 164 no motor, todos iguais.
+
+6. A capa (1080 × 1920), a folha de momentos (2196 × 3392) e a legenda: iguais, pixel a pixel e letra a letra.
+
+7. O vídeo inteiro (motor com --sem-abertura, a versão 2, contra o original):
+   - os 10.853 quadros que entram no codificador, montados em sequência como no vídeo: todos iguais, um a um;
+   - a trilha (trilha.wav) saiu byte a byte igual; o MP4 tem 10.853 quadros, 361,77 s, 1080 × 1920 e 30/1, como o original;
+   - os bytes do vídeo comprimido diferem em 9 pacotes (quadros 6.764 a 6.773, na transição cidade → mapa): com a mesma
+     entrada, o x264 comprimiu esses quadros de outro jeito (ele usa várias linhas de execução). Depois de descomprimidos,
+     a diferença média é de até 0,07 em 255 (máximo 26 em 6 pixels), e os dois ficam igualmente perto do quadro de entrada
+     (diferença média de 1,95 a 2,47 em 255, igual nos dois até a terceira casa);
+   - som: -16,0 LUFS no motor e -15,9 no original, pico -1,5 dBFS nos dois, correlação das ondas 0,9999;
+   - render pelo motor: 6 min 16 s (o original levou 10 min 24 s, com mais carga na máquina).
+
+8. A versão 3 (com a abertura; comando texto, que reaproveita a passada 1) contra o original (reel_abertura.py sem --fim,
+   colado no vídeo da versão 2 do código original):
+   - 10.985 quadros e 366,17 s nos dois (132 da abertura + 10.853); MP4 de 86,8 MB nos dois; render: 3 min 53 s;
+   - quadros descomprimidos iguais na abertura (0 a 66) e no meio (500, 3.000, 10.984). Na emenda (quadros 120 a 133) há
+     diferença de compressão: o original comprimiu a abertura à parte e colou o vídeo antigo; o motor comprime tudo de uma
+     vez. O do motor ficou tão perto ou mais perto do quadro de entrada (quadro 131: 1,30 em 255 no motor, 1,56 no original);
+   - som: -16,0 LUFS no motor e -15,9 no original, pico -1,5 dBFS nos dois, correlação 0,9996 (abertura 0,9992; de 4,4 a
+     30 s, 0,9969, porque o original normalizava a trilha sozinha, numa passada; dali ao fim, 0,9999).
+
+Diferenças: nenhuma no desenho nem no tempo. Mudanças de propósito, que não mexem no "A casa 12":
+  - volume: o motor mede o som antes e aplica o ganho certo (duas passadas do loudnorm). Numa passada só, o vídeo curto da
+    prova 2 saía em -15,3 LUFS (medido pelo loudnorm); com duas, -16,0. No "A casa 12": -16,0 (o original: -15,9).
+  - o ritmo padrão (para momento sem "dur" e roteiro sem "ritmo") passou a ser a regra de leitura do projeto
+    (palavras ÷ 2,17 + 0,5 s com a frase inteira na tela): 1,7 s + 0,46 s por palavra. O "A casa 12" traz o ritmo dele.
+  - rótulo apagado no textos.txt não desenha etiqueta vazia.
+  - biblioteca: "bairro" (a rua do "A casa 12" sem ninguém) entrou para a peça nova usar; o "cena_rua" não mudou.
+
+Teste guardado: testes/regressao.py desenha os 44 quadros dos itens 1 a 3 e compara (4,5 s). Rodado depois de cada mudança
+na pasta pixel: 44 de 44 iguais na última vez.
+
+
+PROVA 2 · REUSO: uma peça nova só com a biblioteca e um JSON novo (pecas/exemplo-minimo)
+-----------------------------------------------------------------------------------------
+
+O que a peça tem: roteiro.json novo, peca.py de 80 linhas com os comentários (só a coreografia: quem anda, o que pisca,
+que som toca) e mapa-do-som.json. Texto neutro de teste, sem fato.
+Da biblioteca: cena da casa, bairro, UBS por dentro, bonecos ACS e MINI, balão, marca de feito, moldura, tracejado, papéis
+caderneta, prancheta e prontuário, ficha, contador, Nota com carimbo, cartão de cima, etiqueta, transições afasta e desliza.
+
+Saída do motor (comando video): 564 quadros, 18,8 s, 1080 × 1920, 30 quadros por segundo, h264, 4,0 MB, 21 efeitos,
+  -15,7 LUFS (ebur128, a medida do motor do reel; loudnorm: -16,0), pico -2,5 dBFS.
+  Folha de momentos, capa e recorte da grade conferidos de olho: cada cena, a ficha, o contador e a Nota no lugar.
+Tempos: folha 2,2 s; vídeo inteiro 14 s com a máquina livre; texto (só a passada 2 e o vídeo) 37 s com outra frente
+  renderizando; quadros 0,3 s; textos 0,1 s; cortes 0,4 s; para-reel 0,3 s; dados (os 3 mapas) 2,3 s.
+textos.txt: 9 frases e 15 palavras de dentro do desenho. Editar e aplicar, testado numa cópia feita pelo comando novo:
+  3 mudanças (uma frase, uma linha de ficha, um rótulo apagado) entraram no roteiro; o mesmo arquivo, aplicado de novo,
+  foi recusado pela assinatura (o roteiro já tinha mudado).
+cortes: casa 0 a 3,833 s, rua 3,833 a 10,333 s, ubs 10,333 a 18,8 s (cada corte no meio da transição).
+
+Pelo motor do reel (frente B), como vídeo de fora (para-reel e depois os comandos de lá):
+  textos   9 frases e 15 palavras; "LEITURA OK: as 9 frases ficam na tela o tempo de ler".
+  som      modo blocos (calmo, curioso, festa; som de cidade na rua; pássaro na casa): -16,0 LUFS, pico -1,5 dBFS, 11 s.
+  juntar   1080 × 1920, 18,80 s, 4,2 MB, 1,8 s.
+  conferir nenhum erro, 2 avisos: o arquivo tem 4,2 MB (acima dos 2,9 MB do conector do Drive) e há 1 batida nos 3 primeiros
+           segundos (o certo é 2). As duas trocas de música caem em corte (56 % e 32 % da imagem mudando ali). Cores: 6
+           quadros, nenhuma mancha fora da paleta. Leitura, duração, tamanho, quadros por segundo, volume e pico: ok.
+  entregar arquivos em dia e mensagem impressa (teste: nada foi mandado a ninguém).
+  compara  leu o textos.txt deste motor e achou a frase mudada.
+
+
+ACHADOS (da peça, não do motor)
+-------------------------------
+- "A casa 12": 34 das 63 frases ficam na tela menos que a regra de leitura do projeto (o ritmo dele é 1,3 s + 0,32 s por
+  palavra) e o vídeo tem 366,2 s, acima do limite de 179,6 s do motor do reel. Pelo para-reel, o textos de lá leu as 11 cenas
+  (a abertura e as 10 do roteiro), as 63 frases e os 171 efeitos, e deu o erro de duração e os avisos de leitura.
+- Transição "funde" é dissolve: não tem quadro de corte, e o conferir do motor do reel avisa se uma troca de música cair nela.
