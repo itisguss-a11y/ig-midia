@@ -1,0 +1,34 @@
+TÍTULO DO CARROSSEL · textos da tela · versão 1
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] TROQUE: a pergunta da capa, como você sabe preencher o documento?
+[02] TROQUE: a promessa, quantos campos e de qual documento.
+[03] TROQUE: o que o campo 1 quer dizer, numa frase.
+[04] TROQUE: o erro comum no campo 1.
+[05] TROQUE: o porquê, com a regra da fonte oficial.
+[06] TROQUE: o que o campo 3 quer dizer, numa frase.
+[07] TROQUE: o erro comum no campo 3.
+[08] TROQUE: o porquê do campo 3.
+[09] TROQUE: o que o campo 4 quer dizer.
+[10] TROQUE: o erro comum no campo 4.
+[11] TROQUE: o porquê do campo 4.
+[12] TROQUE: o que os campos 5 e 6 querem dizer.
+[13] TROQUE: o erro comum nos campos 5 e 6.
+[14] TROQUE: o porquê dos campos 5 e 6.
+[15] Para salvar: os campos que pedem cuidado.
+[16] Fonte · TROQUE: órgão oficial, nome do documento, ano
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] documento anotado
+[D02] erro comum
+[D03] por quê
+[D10] Primeiro campo
+[D11] TROQUE: o resumo do campo 1
+[D12] Data do terceiro campo
+[D13] TROQUE: o resumo do campo 3
+[D14] Quarto campo
+[D15] TROQUE: o resumo do campo 4
+[D16] Quinto campo e Sexto campo
+[D17] TROQUE: o resumo dos campos 5 e 6
+[D20] 16/11/2026

@@ -1,0 +1,9 @@
+[L01] Capa com o título "Você sabe preencher a ficha de notificação?" e, embaixo, a Ficha de Notificação/Conclusão do Sinan inteira, com uma lupa aumentando o campo 3, Data da Notificação.
+[L02] Campos 3 e 7, as datas: o pedaço da ficha aumentado, com Data da Notificação (16/11/2026, de exemplo) e Data dos Primeiros Sintomas (12/11/2026) marcados. Erro comum: a 7 depois da 3 (o sintoma começa antes, ou no mesmo dia). Por quê: delas saem as semanas epidemiológicas.
+[L03] Campo 8, Nome do Paciente, aumentado, com o nome de exemplo Fulano de Tal da Silva. Erro comum: abreviar. Por quê: o dicionário do Sinan pede nome completo, também no 16, o nome da mãe.
+[L04] Campo 10, (ou) Idade, aumentado: 25 nas casas e 4 no quadradinho da unidade, ano. Erro comum: escrever só o número, sem a unidade. Por quê: com o 3, 6 é seis meses; com o 4, seis anos.
+[L05] Campo 12, Gestante, aumentado, com as opções de trimestre e o 6 no quadradinho. Erro comum: deixar em branco numa mulher. Por quê: em mulher é obrigatório, e sem ele a ficha não entra no Sinan; em homem, vai 6, Não se aplica.
+[L06] Campo 13, Raça/Cor, aumentado, com as opções de 1-Branca a 9-Ignorado. Erro comum: marcar pela cor que se vê. Por quê: vale a cor ou raça declarada pela pessoa.
+[L07] Campo 14, Escolaridade, aumentado, com o 8 no quadradinho. Erro comum: marcar 10, Não se aplica, num adulto. Por quê: o 10 é só para menor de 7 anos, e acima disso o Sinan não aceita.
+[L08] Campo 26, Ponto de Referência, aumentado, com o exemplo "Em frente à escola, casa de muro verde". Erro comum: deixar em branco. Por quê: serve para facilitar a localização da casa do paciente.
+[L09] A ficha inteira de novo, com os números 3, 7, 8, 10, 12, 13, 14 e 26 marcados e, ao lado, o resumo de cada um. Embaixo, as fontes.
