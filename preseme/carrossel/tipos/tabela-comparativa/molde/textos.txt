@@ -1,0 +1,47 @@
+TABELA COMPARATIVA · o assunto · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] A, B e C: o que muda de uma para a outra?
+[02] A frase de baixo da capa: por que comparar as três.
+[03] O que reparar na primeira linha, numa frase.
+[04] O que reparar na segunda linha, numa frase.
+[05] O que reparar na terceira linha, numa frase.
+[06] O que reparar na quarta linha, numa frase.
+[07] O que reparar na quinta linha, numa frase.
+[08] O que as três têm em comum, primeira parte.
+[09] O que as três têm em comum, segunda parte.
+[10] O que é da equipe, primeira parte.
+[11] O que é da equipe, segunda parte.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] Lado a lado
+[D02] Coisa A
+[D03] Coisa B
+[D04] Coisa C
+[D05] Primeira linha
+[D06] célula A da primeira linha
+[D07] célula B da primeira linha
+[D08] célula C da primeira linha
+[D09] Segunda linha
+[D10] célula A da segunda linha
+[D11] célula B da segunda linha
+[D12] —
+[D13] Terceira linha
+[D14] célula A da terceira linha
+[D15] célula B da terceira linha
+[D16] célula C da terceira linha
+[D17] Quarta linha
+[D18] célula A da quarta linha
+[D19] célula B da quarta linha
+[D20] célula C da quarta linha
+[D21] Quinta linha
+[D22] célula A da quinta linha
+[D23] célula B da quinta linha
+[D24] célula C da quinta linha
+[D25] Para salvar
+[D26] Fontes · órgão oficial, documento, ano
+[D27] Em comum
+[D28] Na equipe
+[D29] Fontes · órgão oficial, documento, ano

@@ -1,0 +1,9 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra". TROQUE pelo que a peça mostra.
+[L01] Capa: a pergunta em letra grande e três cartões lado a lado, cada um com o desenho e o nome de uma das coisas comparadas.
+[L02] A primeira linha da tabela: o que reparar e, em três cartões, o que cada coluna diz. No canto, a tabela pequena com a linha da vez acesa.
+[L03] A segunda linha da tabela, no mesmo formato. Uma das células está em branco, com um travessão.
+[L04] A terceira linha da tabela, no mesmo formato.
+[L05] A quarta linha da tabela, no mesmo formato.
+[L06] A quinta linha da tabela, no mesmo formato.
+[L07] A tabela inteira para salvar: as colunas no alto e uma faixa por linha, com as fontes no pé.
+[L08] O fecho, em fundo escuro: o que as três têm em comum e o que é da equipe.

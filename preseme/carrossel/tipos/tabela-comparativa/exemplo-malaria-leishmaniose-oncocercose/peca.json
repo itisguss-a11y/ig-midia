@@ -1,0 +1,11 @@
+{
+  "nome": "exemplo-malaria-leishmaniose-oncocercose",
+  "titulo": "Malária, leishmaniose e oncocercose: o que muda?",
+  "tipo": "carrossel",
+  "formato": "4:5",
+  "capa": "@l01",
+  "cores": [
+    "#C98A62"
+  ],
+  "esperado": null
+}

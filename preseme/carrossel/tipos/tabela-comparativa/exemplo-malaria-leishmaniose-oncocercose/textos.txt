@@ -1,0 +1,51 @@
+TABELA COMPARATIVA · malária, leishmaniose tegumentar e oncocercose · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Malária, leishmaniose e oncocercose: o que muda?
+[02] Três doenças que um inseto passa, e Roraima tem as três.
+[03] Cada uma tem o seu inseto, e as três passam pela picada.
+[04] Malária e leishmaniose não passam de pessoa para pessoa: quem passa é o inseto.
+[05] A malária dá febre, a leishmaniose dá ferida, e a oncocercose pode chegar ao olho.
+[06] Roraima está no mapa das três.
+[07] Malária e leishmaniose se tratam no SUS, e a oncocercose trata a área inteira.
+[08] Tela e mosquiteiro protegem de duas delas; na oncocercose, o jeito é evitar ficar exposto ao borrachudo.
+[09] As três passam pela picada de um inseto.
+[10] Na leishmaniose, a equipe acolhe a pessoa e acompanha depois do tratamento.
+[11] Na malária, o caso vai para a notificação semanal, no SIVEP-Malária.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] Lado a lado
+[D02] Malária
+[D03] Leishmaniose tegumentar
+[D04] Oncocercose
+[D05] Quem passa
+[D06] a fêmea do mosquito Anopheles
+[D07] flebotomíneo (mosquito-palha)
+[D08] o borrachudo, ou pium
+[D09] Pega de pessoa para pessoa?
+[D10] não: não há transmissão direta
+[D11] não: não é contagiosa
+[D12] —
+[D13] O que se vê
+[D14] febre, calafrio, tremor e suor
+[D15] manchinha vermelha que vira ferida redonda
+[D16] coceira, caroço e perda da visão
+[D17] Onde mais pega
+[D18] 99% dos casos, na região amazônica
+[D19] Roraima, 2022: quase 7 vezes o Brasil
+[D20] só na Terra Indígena Yanomami
+[D21] Como se trata
+[D22] comprimidos de graça, no SUS
+[D23] no SUS, até 30 dias
+[D24] a área toda, a cada 6 meses
+[D25] Como se previne
+[D26] mosquiteiro, tela, roupa comprida e repelente
+[D27] tela, mosquiteiro, roupa e quintal limpo
+[D28] evitar a exposição longa ao borrachudo
+[D29] Para salvar
+[D30] Fontes · Ministério da Saúde: Malária, Oncocercose, álbum Leishmaniose tegumentar (2025) e Sinan (2022); Agência Gov, 2025
+[D31] Em comum
+[D32] Na equipe
+[D33] Fontes · Ministério da Saúde, álbum Leishmaniose tegumentar, 2025; Secretaria de Saúde de Roraima, lista de notificação, 2024

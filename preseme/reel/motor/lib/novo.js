@@ -43,7 +43,11 @@ function comando(args) {
   const lerJ = (d) => { const f = d && path.join(d, 'peca.json'); return f && fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : {}; };
   const peca = Object.assign({}, lerJ(molde), lerJ(fonte));
   const externo = peca.motor === 'externo';
-  if (!externo) {
+  if (!externo && fs.existsSync(path.join(dir, 'engine', 'render.js'))) {
+    // --forca numa peça já montada: o engine/ fica (o new-project do animation-studio não escreve por cima de pasta cheia)
+    console.log('engine/ já existe nesta pasta: fica o mesmo; os arquivos da peça vão por cima');
+    for (const f of ['film.js', 'song.js']) fs.rmSync(path.join(dir, f), { force: true });
+  } else if (!externo) {
     const AS = C.acharStudio();
     const np = C.roda(process.execPath, [path.join(AS, 'scripts', 'new-project.js'), dir, '--format', peca.formato || '9:16'], { quieto: true });
     console.log(np.split('\n').filter((l) => /[✓✗]/.test(l)).join('\n')); // a conferência do ambiente: Node, ffmpeg e Chrome
