@@ -1,0 +1,13 @@
+{
+  "nome": "quiz-vacinas",
+  "titulo": "Quiz relâmpago · vacinas",
+  "tipo": "Quiz relâmpago",
+  "estilo": "pixel",
+  "limite": 90,
+  "capa": "@capa",
+  "cores": [],
+  "esperado": {
+    "frases": 14,
+    "palavras": 18
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "modo": "blocos",
+  "semente": "quiz-vacinas",
+  "bpm": 120,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["abertura", "q1", "q2", "q3", "q4", "q5"], "clima": "brincalhao" },
+    { "cenas": ["regua", "estudar"], "clima": "calmo" }
+  ],
+  "fundos": {},
+  "coisas": [],
+  "silencios": [],
+  "efeitos": true
+}

@@ -1,0 +1,41 @@
+# Quiz relâmpago · vacinas · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# Cada pergunta é uma afirmação curta (até umas 10 palavras: a pessoa lê e responde em 3 s).
+# O porquê de cada pergunta é uma frase só, que COMEÇA com a palavra do selo, Verdadeiro ou Falso (D02, D03), e bate com a
+# resposta marcada no score.js (PERGUNTAS, r).
+# Texto de exemplo escrito pelo Opus; os fatos estão na tabela de afirmações e passam pela conferência do Fable.
+
+[01] 5 perguntas sobre vacina, 3 segundos para cada.
+[02] Conta os acertos e comenta o placar.
+[03] A gotinha ainda está no esquema da pólio.
+[04] Falso, desde novembro de 2024 todas as doses são de VIP.
+[05] O último caso de pólio no Brasil foi em 1989.
+[06] Verdadeiro, em 19 de março de 1989, em Souza, na Paraíba.
+[07] Vacina pode ser guardada a 10 °C.
+[08] Falso, o máximo é 8 °C, acima disso ela pode perder força.
+[09] A BCG é dada ao nascer.
+[10] Verdadeiro, uma dose até 30 dias de vida, contra a tuberculose grave.
+[11] Em 2023, a VIP bateu a meta de cobertura.
+[12] Falso, ficou em 86,5%, e a meta do Ministério é 95%.
+[13] Quantas você acertou?
+[14] Para estudar, o calendário da criança e a rede de frio.
+
+# palavras de dentro do desenho
+[D01] Quiz relâmpago
+[D02] Verdadeiro
+[D03] Falso
+[D04] 5 · pronto para a prova
+[D05] 3 ou 4 · revisa as que errou
+[D06] até 2 · começa pelo calendário
+[D07] Fontes · Ministério da Saúde: Manual de Rede de Frio (2025), informe da pólio (2025) e calendário da criança; Agência Gov (2024)
+[D08] Certa
+[D09] 2 meses
+[D10] 4 meses
+[D11] 6 meses
+[D12] 15 meses
+[D13] março de 1989
+[D14] 10 °C
+[D15] 2 a 8 °C
+[D16] ao nascer
+[D17] 86,5%
+[D18] meta 95%

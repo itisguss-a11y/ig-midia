@@ -1,0 +1,32 @@
+# Quiz relâmpago · (o assunto) · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# Cada pergunta é uma afirmação curta (até umas 10 palavras: a pessoa lê e responde em 3 s).
+# O porquê de cada pergunta é uma frase só, que COMEÇA com a palavra do selo, Verdadeiro ou Falso (D02, D03), e bate com a
+# resposta marcada no score.js (PERGUNTAS, r). No modo A ou B, começa com "É a A" ou "É a B".
+# Pergunta sem trecho de fonte não entra. Do jeito dele: vírgula, não dois-pontos, para apresentar algo; nada de aula, módulo
+# ou cronograma; sem apelo no fim (a regra do placar fica na abertura); sem o nome do perfil.
+
+[01] 5 perguntas sobre (o assunto) em 1 minuto.
+[02] Conta quantas você acerta e comenta o placar.
+[03] Pergunta 1, uma afirmação curta para julgar.
+[04] Falso, e o porquê numa frase, com o número da fonte.
+[05] Pergunta 2, uma afirmação curta para julgar.
+[06] Verdadeiro, e o porquê numa frase, com a fonte.
+[07] Pergunta 3, uma afirmação curta para julgar.
+[08] Falso, e o porquê numa frase, com a fonte.
+[09] Pergunta 4, uma afirmação curta para julgar.
+[10] Verdadeiro, e o porquê numa frase, com a fonte.
+[11] Pergunta 5, uma afirmação curta para julgar.
+[12] Falso, e o porquê numa frase, com a fonte.
+[13] Quantas você acertou?
+[14] Para estudar, (o que revisar, em uma frase).
+
+# palavras de dentro do desenho
+[D01] Quiz relâmpago
+[D02] Verdadeiro
+[D03] Falso
+[D04] 5 · pronto para a prova
+[D05] 3 ou 4 · revisa (o ponto)
+[D06] até 2 · começa por (o ponto)
+[D07] Fontes · (as fontes oficiais, com o ano)
+[D08] Certa
