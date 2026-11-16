@@ -1,0 +1,8 @@
+{
+  "nome": "modelo",
+  "titulo": "(TROQUE: a frase [01])",
+  "limite": 35,
+  "capa": "@preparacao",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"],
+  "esperado": null
+}

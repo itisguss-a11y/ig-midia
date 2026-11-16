@@ -1,0 +1,16 @@
+{
+  "modo": "blocos",
+  "semente": "modelo",
+  "bpm": 120,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["preparacao"], "clima": "tenso" },
+    { "cenas": ["virada"], "clima": "festa" },
+    { "cenas": ["licao"], "clima": "brincalhao" },
+    { "cenas": ["fecho"], "clima": "curioso" }
+  ],
+  "fundos": {},
+  "coisas": [],
+  "silencios": [ { "frase": 3, "antes": 0.5 } ],
+  "efeitos": true
+}
