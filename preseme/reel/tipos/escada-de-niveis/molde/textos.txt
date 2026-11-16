@@ -1,0 +1,23 @@
+MOLDE · motor "escada de níveis" · o chat 1 troca cada linha pelo texto da peça (o que está entre parênteses diz o que vai ali)
+Toda frase com fato leva a fonte na tabela de afirmações. Edite só o que vem depois do número. Linha apagada = texto que sai do vídeo.
+
+PARTE 1 · as frases
+[01] (abertura) A pergunta que a escada responde, em até 7 palavras. É a capa.
+[02] (abertura) A lente em uma frase, e quem vai subir a escada.
+[03] (degrau 1) O nome do degrau e o que se faz nele.
+[04] (degrau 1) O que aconteceu com a pessoa neste degrau.
+[05] (degrau 2) O nome do degrau e o que se faz nele.
+[06] (degrau 2) O que aconteceu com a pessoa neste degrau.
+[07] (degrau 3) O nome do degrau e o que se faz nele.
+[08] (degrau 3) O que aconteceu com a pessoa neste degrau.
+[09] (corrimão) O que vale em todos os degraus, e por que não é mais um degrau.
+[10] (corrimão) O que acontece com a pessoa por causa dele.
+[11] (fecho) A pergunta da abertura, respondida.
+[12] (fecho) Onde a resposta fica na escada.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+As palavras dos quadros de cada degrau vêm depois destas, numeradas de D10 em diante (uma por linha, no mesmo formato).
+[D01] (nome do degrau 1)
+[D02] (nome do degrau 2)
+[D03] (nome do degrau 3)
+[D06] (nome do corrimão)

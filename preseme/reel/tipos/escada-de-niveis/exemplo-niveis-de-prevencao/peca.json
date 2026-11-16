@@ -1,0 +1,10 @@
+{
+  "nome": "niveis-de-prevencao",
+  "titulo": "Mamografia previne câncer de mama?",
+  "motor_tipo": "escada de níveis",
+  "limite": 179.6,
+  "capa": "@abertura",
+  "estilo": "planta",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"],
+  "esperado": null
+}

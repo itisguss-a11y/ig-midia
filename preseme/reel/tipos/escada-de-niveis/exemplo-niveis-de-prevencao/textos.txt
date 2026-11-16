@@ -1,0 +1,41 @@
+EXEMPLO · motor "escada de níveis" · os níveis de prevenção a partir da mamografia
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Cada fato tem a fonte em ../tabela-de-afirmacoes-niveis-de-prevencao.md. Edite só o que vem depois do número. Linha apagada = texto que sai do vídeo.
+
+PARTE 1 · as frases
+[01] Mamografia previne câncer de mama?
+[02] Quem sobe a escada da prevenção é a Dona Lúcia, de 52 anos.
+[03] Prevenção primária é evitar que a doença comece.
+[04] A Dona Lúcia caminha, cuida do peso, bebe pouco e amamentou os filhos.
+[05] Prevenção secundária é achar a doença cedo e tratar logo.
+[06] De 50 a 74 anos, a mamografia de rotina é a cada dois anos, mesmo sem sintoma.
+[07] Sem sentir nada, ela fez a dela, e o exame achou um tumor pequeno.
+[08] Prevenção terciária é a reabilitação, depois que a doença já aconteceu.
+[09] Depois do tratamento, ela faz a reabilitação e volta às caminhadas.
+[10] Prevenção quaternária é proteger do excesso de exame e de tratamento.
+[11] Ela não é um quarto degrau, é o corrimão, vale em todos.
+[12] Antes do diagnóstico, ela fazia a mamografia a cada dois anos, e não todo ano por garantia.
+[13] Exame a mais tem risco, como o alarme falso, que traz susto e mais exames.
+[14] A mamografia não evita que o câncer comece, ela acha cedo.
+[15] Por isso ela é prevenção secundária, o segundo degrau.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] Primária
+[D02] Secundária
+[D03] Terciária
+[D06] Quaternária
+[D10] caminhar
+[D11] cuidar do peso
+[D12] beber pouco
+[D13] amamentar
+[D14] 50 anos
+[D15] 74 anos
+[D16] a cada 2 anos
+[D17] achou cedo
+[D18] tratamento
+[D19] reabilitação
+[D20] rotina
+[D21] todo ano
+[D22] a cada 2 anos
+[D23] alarme falso
+[D24] exame a mais
