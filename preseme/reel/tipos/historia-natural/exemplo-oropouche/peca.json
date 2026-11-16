@@ -1,0 +1,10 @@
+{
+  "nome": "exemplo-oropouche",
+  "titulo": "O que o Oropouche faz com uma pessoa, dia a dia?",
+  "motor_tipo": "história natural",
+  "estilo": "lapis",
+  "limite": 120,
+  "capa": "@abertura",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E", "#E8E4DA"],
+  "esperado": { "frases": 14, "palavras": 26 }
+}

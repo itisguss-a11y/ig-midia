@@ -1,0 +1,16 @@
+{
+  "modo": "blocos",
+  "semente": "modelo",
+  "bpm": 92,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["abertura"], "clima": "curioso" },
+    { "cenas": ["f1", "f2"], "clima": "calmo" },
+    { "cenas": ["f3", "f4"], "clima": "tenso" },
+    { "cenas": ["fecho"], "clima": "curioso" }
+  ],
+  "fundos": {},
+  "coisas": [],
+  "silencios": [ { "frase": 8, "antes": 0.6 } ],
+  "efeitos": true
+}

@@ -1,0 +1,31 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# MOLDE do motor "história natural" · o chat 1 troca cada linha pelo texto da peça (entre parênteses, o que vai ali).
+# Toda frase com fato leva a fonte na tabela de afirmações. Edite só o que vem depois do número; linha apagada sai do vídeo.
+# Uma cena por fase, na ordem do tempo, com 1 a 3 frases cada; o ROTEIRO do score.js diz quais frases são de qual cena.
+# Para pôr mais fases: frases novas, palavras novas e uma linha a mais em FASES e no ROTEIRO (o molde aguenta de 3 a 7).
+[01] (a pergunta que a peça responde, a capa; ex.: O que o Oropouche faz com uma pessoa, dia a dia?)
+[02] (a régua inteira aparece: quem é a pessoa ou o que a régua mostra)
+[03] (fase 1, antes de pegar: o lugar e o risco)
+[04] (fase 2, o contágio: como pega, com o dia)
+[05] (fase 3, o primeiro sintoma: o que aparece)
+[06] (fase 3, segunda frase: o que confunde, ou como se acha cedo)
+[07] (fase 4, o fim: como termina, com o tempo da fonte)
+[08] (fecho: onde dava para parar a doença)
+[09] (fecho: o que fica para a prova, em uma frase)
+
+# palavras de dentro do desenho
+[D01] (o tempo da fase 2, em cima da régua; ex.: dia 0)
+[D02] (o tempo da fase 3; ex.: 3 a 8 dias)
+[D03] (o tempo da fase 4)
+[D04] (o nome da fase 1, embaixo da régua; ex.: antes de pegar)
+[D05] (o nome da fase 2; ex.: o contágio)
+[D06] (o nome da fase 3; ex.: os sinais)
+[D07] (o nome da fase 4; ex.: o fim)
+[D08] prevenção primária
+[D09] prevenção secundária
+[D10] prevenção terciária
+[D11] (o que a prevenção primária faz nesta doença; ex.: vacina, tela, repelente)
+[D12] (o que a secundária faz; ex.: achar cedo e tratar logo)
+[D13] o primeiro sintoma
+[D14] dava para parar aqui
+[D15] (palavra do desenho; ponha quantas precisar, com número novo)

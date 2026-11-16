@@ -1,0 +1,22 @@
+{
+  "modo": "blocos",
+  "semente": "exemplo-oropouche",
+  "bpm": 92,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["abertura"], "clima": "curioso" },
+    { "cenas": ["antes", "picada"], "clima": "calmo" },
+    { "cenas": ["incubacao", "sinais"], "clima": "tenso" },
+    { "cenas": ["exame", "fim"], "clima": "serio" },
+    { "cenas": ["fecho"], "clima": "curioso" }
+  ],
+  "fundos": {
+    "antes": { "som": "floresta", "vol": 0.22, "seed": 3 },
+    "picada": { "som": "floresta", "vol": 0.18, "seed": 5 },
+    "exame": { "som": "salaDeEspera", "vol": 0.2, "seed": 2 },
+    "fim": { "som": "varanda", "vol": 0.2, "seed": 4 }
+  },
+  "coisas": [],
+  "silencios": [ { "frase": 13, "antes": 0.6 } ],
+  "efeitos": true
+}
