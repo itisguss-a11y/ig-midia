@@ -1,0 +1,75 @@
+{
+  "modo": "blocos",
+  "semente": "longitudinalidade",
+  "bpm": 100,
+  "lufs": -16,
+  "blocos": [
+    {
+      "cenas": [
+        "titulo"
+      ],
+      "clima": "curioso"
+    },
+    {
+      "cenas": [
+        "y",
+        "x"
+      ],
+      "clima": "calmo"
+    },
+    {
+      "cenas": [
+        "diferenca",
+        "caso"
+      ],
+      "clima": "curioso"
+    },
+    {
+      "cenas": [
+        "regra"
+      ],
+      "clima": "brincalhao"
+    },
+    {
+      "cenas": [
+        "fecho"
+      ],
+      "clima": "festa"
+    }
+  ],
+  "fundos": {
+    "caso": {
+      "som": "salaDeEspera",
+      "vol": 0.22,
+      "seed": 3
+    }
+  },
+  "coisas": [
+    {
+      "cena": "caso",
+      "som": "senha",
+      "em": "[08]",
+      "vol": 0.4,
+      "pan": -0.5
+    },
+    {
+      "cena": "caso",
+      "som": "mosquito",
+      "em": "[09]",
+      "dur": 2.2,
+      "pan": [
+        -0.9,
+        0.6
+      ],
+      "vol": 0.7,
+      "abaixa": 14
+    }
+  ],
+  "silencios": [
+    {
+      "frase": 7,
+      "antes": 0.6
+    }
+  ],
+  "efeitos": true
+}

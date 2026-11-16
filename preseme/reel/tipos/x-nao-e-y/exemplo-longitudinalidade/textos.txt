@@ -1,0 +1,36 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# Motor "X não é Y" · exemplo: Longitudinalidade não é continuidade (o conteúdo do reel 1, que ele aprovou)
+# Edite só o que vem depois do número. Linha apagada sai do vídeo.
+[01] Longitudinalidade não é continuidade.
+[02] As duas falam de cuidado ao longo do tempo, por isso se confundem.
+[03] Continuidade é a sequência de atendimentos de um problema.
+[04] Consulta, exame, retorno, alta. Resolvido o problema, a linha termina.
+[05] Longitudinalidade é ter a mesma equipe cuidando de você ao longo dos anos.
+[06] Doente ou não, você tem para onde voltar, e a equipe te conhece.
+[07] Uma acompanha um problema. A outra acompanha a pessoa.
+[08] Dona Maria fez o pré-natal na UBS do bairro.
+[09] Anos depois, dengue. Depois, pressão alta.
+[10] Três problemas. A mesma equipe.
+[11] Cada problema teve começo, meio e fim. O vínculo com a equipe ficou.
+[12] Na questão, falou em vínculo e tempo, é longitudinalidade.
+[13] Falou em sequência de atendimentos de um problema, é continuidade.
+[14] A continuidade termina com o problema. A longitudinalidade fica com você.
+
+# palavras de dentro do desenho (D01 e D02: os nomes dos lados; D03 a D06: as pistas da regra; D07 em diante: as palavras dos desenhos)
+[D01] CONTINUIDADE
+[D02] LONGITUDINALIDADE
+[D03] vínculo
+[D04] tempo
+[D05] sequência
+[D06] um problema
+[D07] consulta
+[D08] exame
+[D09] retorno
+[D10] alta
+[D11] UBS
+[D12] pré-natal
+[D13] dengue
+[D14] pressão alta
+[D15] 2019
+[D16] 2022
+[D17] 2025

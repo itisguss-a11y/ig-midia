@@ -1,0 +1,10 @@
+{
+  "nome": "modelo",
+  "titulo": "TROQUE: X não é Y",
+  "tipo": "X não é Y",
+  "limite": 179.6,
+  "capa": "@abertura",
+  "estilo": "chapado",
+  "cores": ["#C98A62", "#DBA27E", "#A86E4B", "#2B211E", "#FFFDF6"],
+  "esperado": { "frases": 14, "palavras": 6 }
+}
