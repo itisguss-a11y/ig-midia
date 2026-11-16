@@ -1,0 +1,26 @@
+# Exemplo do tipo "tour": a UBS, sala por sala. Fontes na tabela de afirmações (Portaria GM/MS nº 6.185/2024 e PNAB).
+[01] O que tem numa UBS, sala por sala?
+[02] Na entrada fica o acolhimento, com a recepção e a espera.
+[03] Na sala de vacinação, quem vacina é o técnico ou auxiliar de enfermagem.
+[04] E o enfermeiro supervisiona o trabalho do técnico e do agente comunitário.
+[05] Na sala de curativo, o curativo também é com o técnico ou auxiliar de enfermagem.
+[06] Na sala de medicação e coleta, ele dá o remédio e colhe o material para exame.
+[07] No consultório atendem o enfermeiro e o médico da equipe.
+[08] O consultório odontológico é da equipe de saúde bucal, que a eSF pode ter.
+[09] E o agente comunitário? A sala dele é a área, nas visitas às casas.
+[10] Numa UBS, cada sala tem a sua função e quem faz.
+
+[D01] Unidade Básica de Saúde
+[D02] Recepção e espera
+[D03] Sala de vacinação
+[D04] Sala de curativo
+[D05] Sala de medicação e coleta
+[D06] Consultório
+[D07] Consultório odontológico
+[D08] técnica de enfermagem
+[D09] enfermeira
+[D10] médico
+[D11] cirurgiã-dentista
+[D12] agente comunitária de saúde
+[D13] a área da equipe
+[D14] você

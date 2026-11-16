@@ -1,0 +1,1 @@
+{"nome": "exemplo-ubs", "titulo": "Tour · o que tem numa UBS, sala por sala", "tipo": "tour", "nota": "exemplo do tipo tour: texto escrito pelo Opus, a conferir pelo Fable", "limite": 150, "capa": "@entrada", "estilo": "pixel", "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E", "#B9B2A6"], "esperado": {"frases": 10, "palavras": 14}}

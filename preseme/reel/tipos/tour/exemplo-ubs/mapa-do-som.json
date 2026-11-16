@@ -1,0 +1,21 @@
+{
+  "modo": "blocos",
+  "semente": "exemplo-ubs",
+  "bpm": 96,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["entrada"], "clima": "curioso" },
+    { "cenas": ["sala1", "sala2", "sala3", "sala4", "sala5"], "clima": "calmo" },
+    { "cenas": ["fora", "planta"], "clima": "brincalhao" }
+  ],
+  "fundos": {
+    "entrada": { "som": "cidade", "vol": 0.14, "seed": 3 },
+    "sala1": { "som": "salaDeEspera", "vol": 0.14, "seed": 4 },
+    "sala2": { "som": "salaDeEspera", "vol": 0.12, "seed": 5 },
+    "sala3": { "som": "salaDeEspera", "vol": 0.12, "seed": 6 },
+    "sala4": { "som": "salaDeEspera", "vol": 0.12, "seed": 7 },
+    "sala5": { "som": "salaDeEspera", "vol": 0.12, "seed": 8 },
+    "fora": { "som": "varanda", "vol": 0.18, "seed": 9 }
+  },
+  "efeitos": true
+}

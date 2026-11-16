@@ -84,6 +84,17 @@ function comando(args) {
   }
   const S = C.lerScore(dir);
   for (const e of C.conferirCenas(S)) erro(e);
+  // a conferência do tipo (peca.js), a mesma do comando textos: o que trava lá trava aqui, antes de entregar
+  const g = externo ? {} : C.ganchoPeca(dir);
+  if (typeof g.conferir === 'function' && fs.existsSync(txt)) {
+    const r = g.conferir(TXT.lerTxt(txt).T, S) || {};
+    for (const l of r.linhas || []) {
+      if (/^ERRO/i.test(l)) erro(`tipo: ${l.replace(/^ERRO:\s*/i, '')}`);
+      else if (/^aviso/i.test(l)) aviso(`tipo: ${l.replace(/^aviso:\s*/i, '')}`);
+      else ok(`tipo: ${l}`);
+    }
+    if (r.ok === false && !(r.linhas || []).some((l) => /^ERRO/i.test(l))) erro('tipo: a conferência do peca.js travou');
+  }
   if (S.DURATION > peca.limite) erro(`duração ${S.DURATION.toFixed(2)} s passa do limite de ${peca.limite} s`);
   else ok(`duração ${S.DURATION.toFixed(2)} s (${C.mmss(S.DURATION)}), abaixo do limite de ${peca.limite} s`);
   const curtas = Object.entries(S.linha || {}).filter(([n, it]) => it.t1 - it.t0 < C.tempoMinimo((S.TX || {})[n]) - 0.05 * (S.BEAT || 0) - 1e-6);
