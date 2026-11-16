@@ -63,7 +63,9 @@ const py = `
 import json, sys
 from PIL import Image, ImageDraw, ImageFont
 q, rot, saida, fonte, inst = json.loads(sys.argv[1])
-cw = 600; ch = int(cw * 16 / 9); gap = 24; top = 64
+# a altura sai da proporção do próprio quadro (reel 9:16, carrossel 4:5), para não esticar a lâmina
+w0, h0 = Image.open(q[0]).size
+cw = 600; ch = int(cw * h0 / w0); gap = 24; top = 64
 cols = 3; rows = (len(q) + cols - 1) // cols
 W = cols * cw + (cols + 1) * gap; H = rows * (ch + top + gap) + gap + 56
 f = Image.new('RGB', (W, H), (244, 237, 223)); d = ImageDraw.Draw(f)

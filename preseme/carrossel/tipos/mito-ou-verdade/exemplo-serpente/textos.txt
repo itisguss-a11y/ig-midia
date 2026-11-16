@@ -1,0 +1,51 @@
+MITO OU VERDADE · picada de cobra · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Picada de cobra, três frases que todo mundo repete.
+[02] Duas são mito e uma é verdade, pelo Ministério da Saúde.
+[03] Em 2023, Roraima teve a maior incidência de acidente por cobra do Brasil.
+[04] Foram 81,81 casos por 100 mil habitantes, uns 5 vezes a incidência do país.
+[05] Incidência é casos por 100 mil habitantes, a conta que deixa comparar estado pequeno com estado grande.
+[06] “Amarre o braço para o veneno não subir.”
+[07] O Guia do Ministério da Saúde manda não amarrar e, muito menos, cortar, queimar ou espremer o local.
+[08] Quando precisa, o tratamento é o soro antiveneno, de graça no SUS, e dar cedo é uma das medidas mais importantes para evitar a injúria renal aguda.
+[09] “Chupar o veneno ajuda.”
+[10] O Guia manda não chupar, e a demora até o atendimento e o soro pode elevar muito a letalidade.
+[11] O que fazer, pelo mesmo Guia.
+[12] “Bota de cano alto evita picada.”
+[13] Bota de cano alto ou perneira de couro pode evitar cerca de 75% dos acidentes por cobra.
+[14] Para mexer em folha seca, lenha ou monte de lixo, luva de couro. E mão em buraco, nunca.
+[15] Na picada, não amarre, não corte, não chupe e procure atendimento já.
+[16] Até lá, lave com água e sabão, deixe em repouso com o membro elevado e dê água para beber.
+[17] Na roça e na trilha, bota de cano alto.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] mito ou verdade
+[D02] o dado
+[D03] Fonte · Ministério da Saúde, Boletim Epidemiológico v. 55, n. 15, 2024
+[D04] Roraima
+[D05] 81,81
+[D06] Região Norte
+[D07] 51,84
+[D08] Brasil
+[D09] 15,28
+[D10] mito
+[D11] o porquê
+[D12] amarrar
+[D13] cortar
+[D14] queimar
+[D15] espremer
+[D16] soro antiveneno
+[D17] mito
+[D18] o porquê
+[D19] procure atendimento já
+[D20] lave com água e sabão
+[D21] repouso, com o membro elevado
+[D22] dê água potável para beber
+[D23] verdade
+[D24] o porquê
+[D25] cerca de 75 em cada 100 acidentes evitados
+[D26] para guardar
+[D27] Fontes · Ministério da Saúde, Boletim Epidemiológico v. 55, n. 15, 2024 · Guia de Animais Peçonhentos do Brasil, 2024

@@ -1,0 +1,11 @@
+Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra".
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+[L01] Capa: "Picada de cobra, três frases que todo mundo repete" e "Duas são mito e uma é verdade, pelo Ministério da Saúde", com uma jararaca desenhada no chão.
+[L02] O dado: em 2023, Roraima teve a maior incidência de acidente por cobra do Brasil, 81,81 casos por 100 mil habitantes, contra 51,84 da Região Norte e 15,28 do país, em barras.
+[L03] A frase "Amarre o braço para o veneno não subir", com o carimbo MITO e um braço com uma corda amarrada, riscada com um X.
+[L04] O porquê: o Guia do Ministério da Saúde manda não amarrar, cortar, queimar nem espremer, quatro ícones riscados; quando precisa, o tratamento é o soro antiveneno, de graça no SUS, e dar cedo ajuda a evitar a injúria renal aguda.
+[L05] A frase "Chupar o veneno ajuda", com o carimbo MITO e um braço com as duas marcas da picada e uma seta saindo dela, riscada.
+[L06] O porquê e o que fazer: a demora até o atendimento e o soro pode elevar muito a letalidade; os passos são procurar atendimento já, lavar com água e sabão, repouso com o membro elevado e água potável para beber.
+[L07] A frase "Bota de cano alto evita picada", com o carimbo VERDADE e uma bota de cano alto no capim.
+[L08] O porquê: bota de cano alto ou perneira de couro pode evitar cerca de 75% dos acidentes por cobra, 75 de 100 quadradinhos pintados; para mexer em folha seca, lenha ou lixo, luva de couro, e mão em buraco, nunca.
+[L09] Para guardar: na picada, não amarre, não corte, não chupe e procure atendimento já; até lá, lave, repouso com o membro elevado e água; na roça e na trilha, bota de cano alto.

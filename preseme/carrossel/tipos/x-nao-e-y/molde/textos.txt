@@ -1,0 +1,42 @@
+X NÃO É Y · o assunto · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] X não é Y.
+[02] Por que os dois se confundem, numa frase.
+[03] X é a definição dele, em uma frase.
+[04] O exemplo de X, com o número da fonte.
+[05] Y é a definição dele, em uma frase.
+[06] O exemplo de Y, com o número da fonte.
+[07] O caso, quem chega e onde.
+[08] O lado de X, quem é e o que acontece.
+[09] O lado de Y, quem é e o que acontece.
+[10] A primeira lâmina livre, a frase de cima.
+[11] A frase de baixo da primeira lâmina livre.
+[12] A segunda lâmina livre, a frase de cima.
+[13] A frase de baixo da segunda lâmina livre.
+[14] A pergunta que separa os dois?
+[15] O que fazer quando a resposta é sim.
+[16] X é o resumo de X, numa frase.
+[17] Y é o resumo de Y, numa frase.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] não confunda
+[D02] nome de X
+[D03] nome de Y
+[D04] a pista de X
+[D05] a pista de Y
+[D06] o caso
+[D07] a etiqueta da lâmina livre
+[D08] rótulo 1
+[D09] rótulo 2
+[D10] a outra etiqueta
+[D11] o que acontece com X
+[D12] o que acontece com Y
+[D13] na prática
+[D14] a pergunta?
+[D15] não
+[D16] sim
+[D17] para guardar
+[D18] Fontes · órgão oficial, documento, ano
