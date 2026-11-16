@@ -1,0 +1,31 @@
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# MOLDE do motor "antes e depois" · o chat 1 troca cada linha pelo texto da peça (entre parênteses, o que vai ali).
+# Toda frase com fato leva a fonte na tabela de afirmações. Edite só o que vem depois do número; linha apagada sai do vídeo.
+# As cenas, na ordem: a pergunta (01-02), o antes (03-04), a ação (05-06), o depois (07-08), por que funcionou (09-10),
+# o que acontece se parar (11-13) e o fecho (14-15). O ROTEIRO do score.js diz quais frases são de qual cena.
+[01] (a pergunta que o antes e depois responde, a capa; ex.: Por que ninguém mais pega pólio no Brasil?)
+[02] (apresenta o lugar nos dois tempos; ex.: É a mesma rua, em 1975 e hoje.)
+[03] (o antes, com o número oficial daquele tempo)
+[04] (o antes, o que a doença ou o problema fazia, explicado)
+[05] (a ação, com o ano no começo: a vacina, a lei, o programa)
+[06] (a ação, o que ela fez logo depois)
+[07] (o depois, com o número oficial de hoje ou o marco)
+[08] (o depois, o segundo fato, se houver)
+[09] (por que funcionou, o mecanismo em uma frase)
+[10] (por que funcionou, o número ou o termo que explica)
+[11] (a pergunta do "se parar"; ex.: E o que acontece se a vacinação cair?)
+[12] (se parar, o risco, com a fonte)
+[13] (se parar, o número de hoje que mostra o risco)
+[14] (o fecho, de volta ao hoje: o que existe agora)
+[15] (o fecho, a resposta da pergunta da capa, sem apelo)
+
+# palavras de dentro do desenho: D01 o ano do antes (carimbo), D02 hoje, D03 o número oficial do antes (placa) e D04 o
+# que ele conta, D05 o número oficial de hoje e D06 o que ele conta, D07 o ano da ação (carimbo da cena da ação)
+[D01] (ex.: 1975)
+[D02] hoje
+[D03] (ex.: 3.596)
+[D04] (ex.: casos de pólio em 1975)
+[D05] (ex.: 0)
+[D06] (ex.: casos depois de 1989)
+[D07] (ex.: 1980)
+[D08] (palavra do desenho; ponha quantas precisar, com número novo)

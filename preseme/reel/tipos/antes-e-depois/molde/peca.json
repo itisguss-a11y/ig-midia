@@ -1,0 +1,10 @@
+{
+  "nome": "modelo",
+  "titulo": "(TROQUE: a pergunta da frase 01)",
+  "motor_tipo": "antes e depois",
+  "estilo": "carimbo",
+  "limite": 175,
+  "capa": "@abertura",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E", "#E8E4DA"],
+  "esperado": { "frases": 15, "palavras": 8 }
+}
