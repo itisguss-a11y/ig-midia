@@ -1,0 +1,43 @@
+# MOLDE da série Doença de Roraima · o chat 1 troca cada linha pelo texto da peça (entre parênteses, o que vai ali)
+# Toda frase com fato leva a fonte na tabela de afirmações. Edite só o que vem depois do número; linha apagada sai do vídeo.
+# As frases [02] e [03] trazem o número com ponto de milhar (138.493): o desenho conta até o maior número da frase.
+[01] Por que (a doença) é uma doença de Roraima?
+[02] Em (ano), o Brasil teve (número) casos de (doença).
+[03] Só Roraima teve (número).
+[04] (a comparação que o número de Roraima permite, sem arredondar para cima)
+[05] (a parte dos casos do país que está numa região, com o número em %)
+[06] Em Roraima, os municípios com mais casos foram (município 1) e (município 2).
+[07] (quem transmite, o vetor e o agente)
+[08] (como pega e como não pega)
+[09] (vacina, existe ou não existe)
+[10] (a prevenção de cada um)
+[11] (a prevenção no coletivo)
+[12] (os sintomas mais comuns)
+[13] (como se confirma, o exame)
+[14] (o tratamento, e onde)
+[15] (quem notifica, onde e em que prazo)
+[16] (a outra regra de notificação, se houver)
+[17] Por isso (a doença) é doença de Roraima, e a prevenção também é daqui.
+
+# palavras de dentro do desenho
+[D01] Brasil
+[D02] Roraima
+[D03] (município 1)
+[D04] (município 2)
+[D05] Boa Vista
+[D06] (casos do município 1)
+[D07] (casos do município 2)
+[D08] (nome do vetor)
+[D09] (nome do agente)
+[D10] (sistema de notificação)
+[D11] (prazo 1)
+[D12] (prazo 2)
+[D13] grátis no SUS
+[D14] casos em (ano)
+[D15] (a parte do país da frase [05], como "na região amazônica")
+[D20] onde
+[D21] quem transmite
+[D22] como pega
+[D23] como prevenir
+[D24] como reconhecer
+[D25] quem notifica

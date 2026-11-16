@@ -1,0 +1,28 @@
+{
+  "modo": "blocos",
+  "semente": "doenca-rr-malaria",
+  "bpm": 96,
+  "lufs": -16,
+  "blocos": [
+    { "cenas": ["abertura", "numero"], "clima": "curioso" },
+    { "cenas": ["mapa", "vetor", "ciclo"], "clima": "serio" },
+    { "cenas": ["prevencao"], "clima": "calmo" },
+    { "cenas": ["sinais", "notifica"], "clima": "curioso" },
+    { "cenas": ["fecho"], "clima": "festa" }
+  ],
+  "fundos": {
+    "abertura": { "som": "floresta", "vol": 0.25, "seed": 2 },
+    "vetor": { "som": "floresta", "vol": 0.35, "seed": 3 },
+    "ciclo": { "som": "noite", "vol": 0.25, "seed": 4 },
+    "sinais": { "som": "salaDeEspera", "vol": 0.25, "seed": 5 },
+    "notifica": { "som": "monitor", "vol": 0.2, "seed": 6 }
+  },
+  "coisas": [
+    { "cena": "abertura", "som": "mosquito", "em": 0.0, "dur": 2.5, "pan": [-0.9, 0.6], "vol": 0.45 },
+    { "cena": "vetor", "som": "mosquito", "em": 0.0, "dur": 1.6, "pan": [-0.9, 0.1], "vol": 0.55 },
+    { "cena": "vetor", "som": "passaro", "em": 3.0, "pan": 0.8, "vol": 0.3 },
+    { "cena": "ciclo", "som": "mosquito", "em": 0.0, "dur": 1.6, "pan": [0.3, -0.6], "vol": 0.5 }
+  ],
+  "silencios": [ { "frase": 4, "antes": 0.6 } ],
+  "efeitos": true
+}

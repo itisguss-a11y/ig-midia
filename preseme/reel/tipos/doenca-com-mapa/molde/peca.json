@@ -1,0 +1,19 @@
+{
+  "nome": "modelo",
+  "titulo": "Doença de Roraima · TROQUE pela doença",
+  "serie": "Doença de Roraima",
+  "estilo": "giz",
+  "limite": 175,
+  "capa": "@abertura",
+  "cores": [
+    "#FFFDF6",
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 17,
+    "palavras": 21
+  }
+}
