@@ -1,0 +1,5 @@
+[L01] TROQUE, o que a capa mostra (a pergunta e o desenho).
+[L02] TROQUE, a data 1 e o que o desenho mostra.
+[L03] TROQUE, a data 2 e o que o desenho mostra.
+[L04] TROQUE, a data 3 e o que o desenho mostra.
+[L05] TROQUE, hoje, a linha inteira com o verbo de cada data.

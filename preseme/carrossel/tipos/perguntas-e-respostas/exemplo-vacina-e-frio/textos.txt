@@ -1,0 +1,39 @@
+PERGUNTAS E RESPOSTAS · a vacina e o frio · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos. A fonte de cada frase está na tabela de afirmações.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] Vacina que esquentou ainda protege?
+[02] A resposta e mais três dúvidas sobre a rede de frio, o caminho gelado da vacina até o braço.
+[03] Por que a vacina não pode esquentar?
+[04] Ela tem de ficar entre 2 °C e 8 °C, e fora dessa faixa pode perder a força de proteger.
+[05] O estrago não tem volta e vai se somando, a cada vez que ela sai da faixa.
+[06] Quem cuida da vacina até ela chegar ao braço?
+[07] Uma rede de paradas, da central nacional ao estado, ao município e à sala de vacinação.
+[08] Entre uma parada e outra ela viaja no frio, e o datalogger, um registrador, mostra se a temperatura passou do limite.
+[09] E se a geladeira da sala de vacinação parar?
+[10] A câmara refrigerada tem alarme, que toca em 3 °C ou 7 °C, antes de a vacina sair da faixa.
+[11] E toda ocorrência é registrada e comunicada ao estado.
+[12] Como saber se a vacina da sala ainda está boa?
+[13] Pela temperatura, lida de preferência a cada hora, e pelo monitor do frasco, se ele tiver.
+[14] O monitor é uma etiqueta que escurece com o calor, e quadrado igual ou mais escuro que o círculo vai para o descarte.
+[15] A vacina fica entre 2 °C e 8 °C, e fora disso pode perder força, sem volta.
+[16] Da central nacional à sala, ela viaja no frio, com a temperatura registrada.
+[17] O alarme da câmara toca em 3 °C e 7 °C, e toda ocorrência vai para o estado.
+[18] Quadrado do monitor igual ou mais escuro que o círculo, descarte.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] perguntas e respostas
+[D02] resumo
+[D03] Fonte · Ministério da Saúde, Manual de Rede de Frio do Programa Nacional de Imunizações, 6ª edição, 2025
+[D04] 8 °C
+[D05] 2 °C
+[D06] força
+[D07] nacional
+[D08] 27 estados
+[D09] município
+[D10] sala de vacinação
+[D11] 3 °C
+[D12] 7 °C
+[D13] pode usar
+[D14] descarte

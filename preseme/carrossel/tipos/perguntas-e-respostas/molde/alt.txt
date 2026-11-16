@@ -1,0 +1,5 @@
+[L01] TROQUE, o que a capa mostra (o título e o desenho).
+[L02] TROQUE, a dúvida 1 no balão e o que o desenho mostra.
+[L03] TROQUE, a dúvida 2 no balão e o que o desenho mostra.
+[L04] TROQUE, a dúvida 3 no balão e o que o desenho mostra.
+[L05] TROQUE, a ficha do resumo, uma linha por dúvida.
