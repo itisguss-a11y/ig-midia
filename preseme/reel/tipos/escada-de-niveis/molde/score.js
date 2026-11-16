@@ -40,6 +40,11 @@
   const PLACA = SUBIDA + 0.05; // a placa do degrau acende
   const RIL = { de: 0.2, ate: 1.6 }; // o corrimão se desenha
   const MARCA = SUBIDA + 0.25; // no fecho, o degrau que responde se acende
+  // a câmera: toda cena (menos a abertura) começa perto e abre para a escada inteira entre ABRE.de e ABRE.de + ABRE.dur;
+  // o quadro do degrau entra em ENTRA. Na abertura, a pessoa entra andando (ENTRADA): o primeiro movimento, antes de 1 s
+  const ABRE = { de: SUBIDA + 0.45, dur: 0.85 };
+  const ENTRA = ABRE.de + ABRE.dur - 0.2;
+  const ENTRADA = { de: 0.1, dur: 0.8 };
   // leitura: 2,17 palavras por segundo e meio segundo de folga; nenhuma frase fica menos de 4 batidas
   const VEL = 2.17, FOLGA = 0.5, MINIMO = 4;
   const palavras = (n) => (TX[n] || '').trim().split(/\s+/).filter(Boolean).length;
@@ -76,6 +81,8 @@
   // o certo quando o degrau que responde se acende no fecho. pan: o lado do fone em que a pessoa está.
   const X0 = SAFE.x + 150, PASSO = (SAFE.x + SAFE.w - 6 - X0) / Math.max(1, Math.min(5, NDEGRAUS));
   const lado = (k) => U.clamp(((k <= 0 ? X0 - 80 : X0 + (k - 0.5) * PASSO) / W) * 2 - 1, -0.8, 0.8);
+  // a abertura: dois passos de quem entra andando
+  if (cenas[0] && cenas[0].tipo === 'abertura') [0.4, 0.75].forEach((x, i) => efeitos.push({ t: cenas[0].t0 + ENTRADA.de + x * ENTRADA.dur, som: 'tique', vol: 0.45, pan: -0.6 + 0.2 * i }));
   for (const c of cenas) {
     if (c !== cenas[0]) efeitos.push({ t: c.t0, som: 'pop', vol: 0.55 });
     if (c.tipo === 'degrau') {
@@ -96,14 +103,15 @@
   const mk = (k, t) => { markers[k] = Math.min(DURATION - 0.2, t); };
   for (const c of cenas) {
     c.itens.forEach((it, i) => {
-      const extra = i === 0 && c.tipo === 'degrau' ? PLACA + 0.35 : i === 0 && c.tipo === 'corrimao' ? RIL.ate + 0.3 : i === 0 && c.tipo === 'escada' ? MARCA + 0.6 : 0;
+      // na 1.ª frase das cenas que começam de perto: depois que a câmera abriu e o quadro entrou
+      const extra = i === 0 && c.tipo !== 'abertura' ? Math.max(ENTRA + 0.45, c.tipo === 'corrimao' ? RIL.ate + 0.3 : 0) : i === 0 ? ENTRADA.de + ENTRADA.dur + 0.3 : 0;
       mk(i ? `${c.id}${i + 1}` : c.id, it.t0 + Math.max(extra, Math.min(2 * BEAT, (it.t1 - it.t0) / 2)));
     });
   }
   const fecho = cenas.find((c) => c.tipo === 'escada');
-  if (fecho) mk('principal', fecho.t0 + MARCA + 1.0);
+  if (fecho) mk('principal', fecho.t0 + ABRE.de + ABRE.dur + 0.5);
 
   const cenaEm = (t) => { let c = cenas[0]; for (const x of cenas) if (t >= x.t0) c = x; return c; };
-  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, ESTILO, cenas, linha, efeitos, cenaEm, TX, NDEGRAUS, SUBIDA, PLACA, RIL, MARCA, ROTEIRO };
+  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, ESTILO, cenas, linha, efeitos, cenaEm, TX, NDEGRAUS, SUBIDA, PLACA, RIL, MARCA, ABRE, ENTRA, ENTRADA, ROTEIRO };
   if (node) module.exports = SCORE; else globalThis.SCORE = SCORE;
 })();

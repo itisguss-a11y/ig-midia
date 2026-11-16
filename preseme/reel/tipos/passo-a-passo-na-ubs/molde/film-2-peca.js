@@ -3,22 +3,31 @@
 // Exemplo completo: ../exemplo-engasgo/film-2-peca.js (engasgo no adulto).
 // O molde (film-1-molde.js) põe em volta o texto, o trilho do protocolo, a conta, o cartão da pergunta e o do 192.
 // Regras: todo desenho é função do tempo (nada de Math.random); palavra escrita no desenho vem do textos.txt por D('Dnn').
+// Cor: o que fica sobre o fundo pede o papel (COR.tinta, COR.texto, COR.cartao, COR.apoio, COR.chao); o que fica por cima de
+// uma cor pede B.sobre(cor) (escura sobre clara, Papel sobre escura, Noite sobre Coral). Assim a peça sai em qualquer estilo do
+// kit (na lousa, uma linha Floresta some). A paleta pelo nome (C.coral, C.folha...) fica para o que é sempre daquela cor.
 (function () {
   const U = globalThis.U, G = globalThis.G, Ch = globalThis.Ch, B = globalThis.UBS;
-  const { C, INK, L, R, CX, GY, D, txt, hand } = B;
+  const { C, COR, INK, L, R, CX, GY, D, txt, hand } = B;
 
   // TROQUE: o trecho de cada frase que leva marca-texto, pelo número da frase. Se o trecho sumir da frase, ela sai sem marca.
   const DESTAQUE = { 3: 'agora' };
 
-  // TROQUE: o paciente desta peça (pele, cabelo, roupa). Cores fora da paleta vão para "cores" no peca.json.
-  const PACIENTE = { skin: C.pele, hair: C.grisalho, hairStyle: 'short', outfit: 'shirt', shirt: C.coral, trim: C.noite, collar: C.coral, bottoms: 'pants', shorts: '#5C6B55', build: 'regular', shoes: C.noite };
+  // TROQUE: o paciente desta peça (pele, cabelo, roupa), na paleta do perfil e nas cores de gente. Ele ou ela: PACIENTE no score.js.
+  const PACIENTE = B.vestir({ skin: C.pele, hair: C.grisalho, hairStyle: 'short', outfit: 'shirt', shirt: C.coral, trim: C.noite, collar: C.coral, bottoms: 'pants', shorts: C.folha, build: 'regular', shoes: C.noite });
+
+  // TROQUE (se quiser): a aparência da agente e do estudante nesta peça (pele, cabelo, roupa); a cena não muda.
+  // Vazio = as da série (film-1-molde.js). Exemplo: const ACS = { skin: C.pele, hairStyle: 'bun' };
+  const ACS = {};
+  const ESTUDANTE = {};
 
   // ---------- o lugar (a sala da casa visitada; troque se a peça acontecer em outro lugar) ----------
   function sala(ctx) {
-    G.rrect(ctx, R - 300, 960, 250, 210, 14, { fill: C.salvia, stroke: INK, lw: 6, seed: 101, hatch: { color: 'rgba(23,64,44,0.12)', gap: 12 } });
-    G.line(ctx, [[R - 175, 960], [R - 175, 1170]], { color: INK, lw: 5, seed: 102 });
-    G.line(ctx, [[R - 300, 1065], [R - 50, 1065]], { color: INK, lw: 5, seed: 103 });
-    B.chao(ctx, GY, C.salvia);
+    // a janela: COR.apoio (Sálvia; no chapado, que tem fundo Sálvia, o cartão), com os caixilhos na cor que se lê por cima
+    G.rrect(ctx, R - 300, 960, 250, 210, 14, { fill: COR.apoio, stroke: INK, lw: 6, seed: 101, hatch: { color: B.rgba(B.sobre(COR.apoio), 0.12), gap: 12 } });
+    G.line(ctx, [[R - 175, 960], [R - 175, 1170]], { color: B.sobre(COR.apoio), lw: 5, seed: 102 });
+    G.line(ctx, [[R - 300, 1065], [R - 50, 1065]], { color: B.sobre(COR.apoio), lw: 5, seed: 103 });
+    B.chao(ctx, GY);
   }
   // o desenho padrão: a sala, o estudante e o paciente de pé. Roda enquanto o gesto da cena não foi desenhado.
   function padrao(ctx, st) {
@@ -46,7 +55,7 @@
       const k = U.ease.outBack(U.clamp((u - AB.alerta) / 0.3, 0, 1));
       ctx.save(); ctx.translate(800, 935); ctx.scale(k, k); // baixo o bastante para caber no close médio
       G.ellipse(ctx, 0, 0, 54, 54, { fill: C.coral, stroke: INK, lw: 6, seed: 152 });
-      txt(ctx, '!', 0, 30, { size: 84, align: 'center', color: INK }); // tinta sobre Coral (papel sobre Coral não chega a 3:1)
+      txt(ctx, '!', 0, 30, { size: 84, align: 'center', color: B.sobre(C.coral) }); // Noite sobre Coral (Papel sobre Coral não chega a 3:1)
       ctx.restore();
     }
   };
@@ -62,14 +71,14 @@
   GESTO.erro = padrao;     // o erro: desenhe o gesto errado e ponha B.xis em cima no tempo do "pop" (BEAT * 2 depois do início)
 
   // os casos especiais: um cartão por frase, no centro. Na troca, o cartão novo empurra o velho para fora (0,35 s) e tem
-  // outra cor (branco, Sálvia): é o corte da cena. TROQUE: o rótulo (D04, D05...) e o desenho de cada caso
-  const CASOS = ['D04', 'D05'], FUNDO = [C.branco, C.salvia];
+  // outra cor (o cartão e o apoio do estilo; no chapado, o marca-texto): é o corte da cena. TROQUE: o rótulo (D04, D05...) e o desenho de cada caso
+  const CASOS = ['D04', 'D05'], FUNDO = [COR.cartao, COR.apoio !== COR.cartao ? COR.apoio : COR.destaque];
   GESTO.especiais = (ctx, st) => {
     const it1 = st.c.itens[1], k = it1 ? U.ease.inOutCubic(U.clamp((st.t - it1.t0) / 0.35, 0, 1)) : 0, desliza = 1150;
     const caso = (i, dx) => {
       ctx.save(); ctx.translate(CX + dx, 1150); ctx.scale(1.25, 1.25); ctx.translate(-CX, -1150);
       G.rrect(ctx, CX - 210, 870, 420, 560, 30, { fill: FUNDO[i % 2], stroke: INK, lw: 6, seed: 211 + i });
-      hand(ctx, D(CASOS[i]), CX, 935, { size: 50, align: 'center' });
+      hand(ctx, D(CASOS[i]), CX, 935, { size: 50, align: 'center', color: B.sobre(FUNDO[i % 2]) });
       Ch.person(ctx, { x: CX, y: 1390, pose: 'stand', s: 0.92, eyes: 'normal', mouth: 'flat', style: PACIENTE });
       ctx.restore();
     };
@@ -83,9 +92,10 @@
     const k = U.ease.outBack(U.clamp((st.t - st.it.t0) / 0.35, 0, 1));
     ctx.save(); ctx.translate(R - 120, 470); ctx.scale(k, k);
     G.ellipse(ctx, 0, 0, 92, 92, { fill: C.papel, stroke: C.papel, lw: 6, seed: 241 });
-    G.line(ctx, [[-70, 30], [70, 30]], { color: INK, lw: 6, seed: 242 }); G.line(ctx, [[0, -70], [0, 70]], { color: INK, lw: 6, seed: 243 });
-    G.ellipse(ctx, -36, -10, 26, 26, { fill: C.folha, stroke: INK, lw: 4, seed: 244 });
-    G.poly(ctx, [[34, -12], [56, -50], [78, -12]], { fill: C.coral, stroke: INK, lw: 4, seed: 245 });
+    // o mapa é Papel em todo estilo: o traço por cima dele é o escuro (COR.escura)
+    G.line(ctx, [[-70, 30], [70, 30]], { color: COR.escura, lw: 6, seed: 242 }); G.line(ctx, [[0, -70], [0, 70]], { color: COR.escura, lw: 6, seed: 243 });
+    G.ellipse(ctx, -36, -10, 26, 26, { fill: C.folha, stroke: COR.escura, lw: 4, seed: 244 });
+    G.poly(ctx, [[34, -12], [56, -50], [78, -12]], { fill: C.coral, stroke: COR.escura, lw: 4, seed: 245 });
     ctx.restore();
   };
 
@@ -102,5 +112,5 @@
   // TROQUE: aponte para o detalhe de cada gesto (exemplo: o punho nas compressões, o telefone no 192)
   const FOCO = { situacao: [680, 1030, 1.35], passo1: [520, 990, 1.3], passo2: [520, 990, 1.3], passo3: [520, 950, 1.3], passo4: [520, 990, 1.3], alerta: [520, 990, 1.25], erro: [520, 990, 1.3] };
 
-  globalThis.PECA = { DESTAQUE, PACIENTE, GESTO, FOCO };
+  globalThis.PECA = { DESTAQUE, PACIENTE, GESTO, FOCO, ACS, ESTUDANTE };
 })();

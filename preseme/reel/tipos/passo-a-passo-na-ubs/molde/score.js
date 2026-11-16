@@ -1,7 +1,7 @@
 // PRESEME · série "Na UBS, e agora?" · linha do tempo (molde fixo da série) · MOLDE: o chat 1 copia esta pasta e preenche
 // Fonte única dos tempos: o desenho (film-*.js) e o som (mapa-do-som.json + efeitos daqui) leem deste arquivo.
 // Os tempos saem do tamanho de cada frase do textos.js: mudou o texto, o tempo se ajusta sozinho.
-// O chat 1 preenche só o bloco ROTEIRO (as cenas da peça, em ordem) e o BPM; o resto é do molde e não muda.
+// O chat 1 preenche só a parte PREENCHER (o ESTILO, o PACIENTE, o BPM e o ROTEIRO, as cenas da peça em ordem); o resto é do molde.
 (function () {
   const node = typeof require !== 'undefined';
   const U = node ? require('./engine/util') : globalThis.U;
@@ -11,15 +11,19 @@
   const FORMAT = U.pickFormat('9:16');
   const [W, H] = U.formatSize(FORMAT);
   const SAFE = U.safeArea(W, H);
-  const STYLE = 'paper'; // a cara da série: lápis no papel (acabamento A)
 
-  // ===================== PREENCHER (chat 1): o andamento e as cenas da peça =====================
+  // ===================== PREENCHER (chat 1): o estilo, o paciente, o andamento e as cenas da peça =====================
   // Troque os números das frases pelos do textos.txt da peça e os nomes dos gestos pelos do film-2-peca.js.
   // Exemplo completo e conferido: ../exemplo-engasgo/score.js (engasgo no adulto).
+  const ESTILO = 'lapis'; // o desenho, do kit de estilos: lapis (a cara da série) · giz · chapado · pixel · planta · carimbo
+  const PACIENTE = 'ele'; // quem passa mal: 'ele' ou 'ela'. A frase do 192 concorda ("Fique perto dele" ou "dela"); o textos confere
   const BPM = 100;
+  const SOM_CONTA = 'baque'; // o som de cada batida da conta (golpe, compressão). Um passo troca o dele com somConta:
+  //   somConta: 'bip' · somConta: { som: 'bip', vol: 0.55, atraso: 0.18 } · somConta: null (sem som). Sons: baque, tique, pop, gota, bip, sino, sopro, lapis
   // tipos de cena do molde (a série segue esta ordem): situacao · pergunta · passo · alerta · especial · equipe · ligue192 · erro · fecho
   // passo: num = o número do passo; gesto = o desenho do gesto (film-2-peca.js); conta = quantas batidas contam o gesto
   //        (golpes, compressões); rotulo = a palavra [DNN] que nomeia a conta. Passo sem gesto contado não leva conta.
+  //        somConta = o som da conta deste passo, se não for o SOM_CONTA (no aparelho de pressão: o bip).
   const ROTEIRO = [
     { id: 'situacao', tipo: 'situacao', linhas: [1, 2] },
     { id: 'pergunta', tipo: 'pergunta', linhas: [3] },
@@ -35,6 +39,7 @@
     { id: 'fecho', tipo: 'fecho', linhas: [22] },
   ];
   // ============================================================================================
+  const STYLE = { lapis: 'paper', giz: 'chalk', chapado: 'flat', pixel: 'pixel', planta: 'paper', carimbo: 'paper' }[ESTILO] || 'paper'; // o estilo-base do motor, se o kit não carregar
 
   const clock = MU.makeClock({ bpm: BPM, offset: 0 });
   const { T, BEAT } = clock;
@@ -73,7 +78,9 @@
   const ef = (t, som, vol = 0.8, pan = 0) => efeitos.push({ t, som, vol, pan });
   for (const c of cenas) {
     if (c.tipo === 'passo') ef(c.t0 + 0.05, 'sino', 0.55); // o número do passo acende na trilha
-    if (c.tConta) c.tConta.forEach((t, k) => ef(t, 'baque', 0.75 + 0.03 * k, -0.2)); // cada golpe, cada compressão
+    // cada golpe, cada compressão: o SOM_CONTA, ou o somConta do passo
+    const sc = c.somConta !== undefined ? c.somConta : SOM_CONTA, so = typeof sc === 'string' ? { som: sc } : sc;
+    if (c.tConta && so && so.som) c.tConta.forEach((t, k) => ef(t + (so.atraso || 0), so.som, (so.vol ?? 0.75) + 0.03 * k, so.pan ?? -0.2));
     // efeitos que são só da peça (no exemplo do engasgo: o 1-9-2 discado, o objeto que sai): ponha aqui, pelo nome do gesto
     if (c.tipo === 'alerta') ef(c.t0 + 0.05, 'baque', 0.9);
     if (c.tipo === 'erro') ef(c.itens[0].t0 + BEAT * 2, 'pop', 0.8, 0.3); // o X em cima do tapa
@@ -95,6 +102,6 @@
   }
 
   const cenaEm = (t) => { let c = cenas[0]; for (const x of cenas) if (t >= x.t0) c = x; return c; };
-  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, STYLE, cenas, linha, efeitos, cenaEm, TX, ROTEIRO, ABERTURA };
+  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, STYLE, ESTILO, PACIENTE, SOM_CONTA, cenas, linha, efeitos, cenaEm, TX, ROTEIRO, ABERTURA };
   if (node) module.exports = SCORE; else globalThis.SCORE = SCORE;
 })();

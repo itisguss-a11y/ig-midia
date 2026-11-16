@@ -3,21 +3,22 @@
 // O molde (film-1-molde.js) põe em volta o texto, o trilho do protocolo, a conta e os cartões.
 (function () {
   const U = globalThis.U, G = globalThis.G, Ch = globalThis.Ch, B = globalThis.UBS, TX = globalThis.TEXTOS;
-  const { C, INK, L, R, CX, GY, D, txt, hand } = B;
+  const { C, COR, INK, L, R, CX, GY, D, txt, hand } = B;
 
   // o trecho de cada frase que leva marca-texto (se a frase mudar e o trecho sumir, ela sai sem marca)
   const DESTAQUE = { 1: 'engasgou', 2: 'não consegue tossir', 3: 'agora', 4: '192', 5: 'logo no começo', 6: 'Deixe tossir', 7: 'incentivar a tosse', 8: '5 golpes nas costas', 9: 'engasgo grave', 10: '5 compressões no abdome', 11: 'diretriz de 2025', 12: '5 e 5', 13: 'compressões no peito', 14: 'objeto visível', 15: 'no peito', 16: 'não no abdome', 17: 'Fique com ele', 19: 'Grátis', 20: 'ponto de referência', 21: 'quem ainda tosse', 22: 'incentivar a tosse', 23: '5 golpes e 5 compressões' };
 
   // o paciente desta peça
-  const RAIMUNDO = { skin: C.pele, hair: C.grisalho, hairStyle: 'short', facialHair: 'mustache', outfit: 'shirt', shirt: C.coral, trim: C.noite, collar: C.coral, bottoms: 'pants', shorts: '#5C6B55', build: 'regular', shoes: C.noite };
+  const RAIMUNDO = B.vestir({ skin: C.pele, hair: C.grisalho, hairStyle: 'short', facialHair: 'mustache', outfit: 'shirt', shirt: C.coral, trim: C.noite, collar: C.coral, bottoms: 'pants', shorts: '#5C6B55', build: 'regular', shoes: C.noite }); // B.vestir: na lousa, o sapato vem claro
 
   // ---------- o lugar: a sala da casa visitada ----------
   function sala(ctx) {
     // parede, janela e o chão
-    G.rrect(ctx, R - 300, 960, 250, 210, 14, { fill: C.salvia, stroke: INK, lw: 6, seed: 101, hatch: { color: 'rgba(23,64,44,0.12)', gap: 12 } });
-    G.line(ctx, [[R - 175, 960], [R - 175, 1170]], { color: INK, lw: 5, seed: 102 });
-    G.line(ctx, [[R - 300, 1065], [R - 50, 1065]], { color: INK, lw: 5, seed: 103 });
-    B.chao(ctx, GY, C.salvia);
+    // a janela: COR.apoio (Sálvia; no chapado, de fundo Sálvia, o cartão), com os caixilhos na cor que se lê por cima
+    G.rrect(ctx, R - 300, 960, 250, 210, 14, { fill: COR.apoio, stroke: INK, lw: 6, seed: 101, hatch: { color: B.rgba(B.sobre(COR.apoio), 0.12), gap: 12 } });
+    G.line(ctx, [[R - 175, 960], [R - 175, 1170]], { color: B.sobre(COR.apoio), lw: 5, seed: 102 });
+    G.line(ctx, [[R - 300, 1065], [R - 50, 1065]], { color: B.sobre(COR.apoio), lw: 5, seed: 103 });
+    B.chao(ctx, GY);
   }
   function mesa(ctx, x, comida = true) {
     G.rrect(ctx, x - 150, GY - 250, 300, 30, 8, { fill: C.folha, stroke: INK, lw: 6, seed: 111 });
@@ -55,7 +56,7 @@
     ctx.save(); ctx.translate(x, y); ctx.scale(k, k);
     G.rrect(ctx, -95, -150, 190, 300, 30, { fill: INK, stroke: INK, lw: 5, seed });
     G.rrect(ctx, -78, -126, 156, 230, 16, { fill: C.marca, stroke: null, lw: 0, seed: seed + 1 });
-    txt(ctx, D('D02'), 0, 10, { size: 78, align: 'center' });
+    txt(ctx, D('D02'), 0, 10, { size: 78, align: 'center', color: B.sobre(C.marca) });
     G.ellipse(ctx, 0, 72, 26, 26, { fill: C.salvia, stroke: INK, lw: 4, seed: seed + 2 });
     ctx.restore();
   }
@@ -83,7 +84,7 @@
       const k = U.ease.outBack(U.clamp((u - AB.alerta) / 0.3, 0, 1));
       ctx.save(); ctx.translate(770, 930); ctx.scale(k, k); // baixo o bastante para caber no close médio
       G.ellipse(ctx, 0, 0, 54, 54, { fill: C.coral, stroke: INK, lw: 6, seed: 152 });
-      txt(ctx, '!', 0, 30, { size: 84, align: 'center', color: INK }); // tinta sobre Coral (papel sobre Coral não chega a 3:1)
+      txt(ctx, '!', 0, 30, { size: 84, align: 'center', color: B.sobre(C.coral) }); // Noite sobre Coral (Papel sobre Coral não chega a 3:1)
       ctx.restore();
     }
   };
@@ -134,13 +135,13 @@
   };
   // passo 5 · repita 5 e 5: o ciclo desenhado; no fim, o objeto sai
   GESTO.ciclo = (ctx, st) => {
-    B.chao(ctx, GY, C.salvia);
+    B.chao(ctx, GY);
     const t = st.t, cy = 1130, r = 190;
     // as duas metades do ciclo
     G.ellipse(ctx, CX - 210, cy, 120, 120, { fill: C.papel, stroke: INK, lw: 6, seed: 191 });
     G.ellipse(ctx, CX + 210, cy, 120, 120, { fill: C.papel, stroke: INK, lw: 6, seed: 192 });
-    txt(ctx, '5', CX - 210, cy + 44, { size: 120, align: 'center' });
-    txt(ctx, '5', CX + 210, cy + 44, { size: 120, align: 'center' });
+    txt(ctx, '5', CX - 210, cy + 44, { size: 120, align: 'center', color: B.sobre(C.papel) });
+    txt(ctx, '5', CX + 210, cy + 44, { size: 120, align: 'center', color: B.sobre(C.papel) });
     hand(ctx, D('D03'), CX - 210, cy + 170, { size: 40, align: 'center' });
     hand(ctx, D('D04'), CX + 210, cy + 170, { size: 40, align: 'center' });
     // as setas que giram: uma volta a cada 4 batidas
@@ -156,7 +157,7 @@
   };
   // desmaiou · compressões no peito: ele deitado; as mãos do estudante entram por cima e descem a cada batida
   GESTO.rcp = (ctx, st) => {
-    B.chao(ctx, GY, C.salvia);
+    B.chao(ctx, GY);
     const t = st.t, BEAT = globalThis.SCORE.BEAT;
     const fase = ((t - st.c.t0) / (BEAT / 2)) % 1, desce = Math.max(0, Math.sin(fase * Math.PI));
     // o estudante ajoelhado atrás dele (sentado no chão), os braços retos até o peito; desce duas vezes por batida
@@ -192,29 +193,29 @@
     if (k < 1) {
     plano(L + 210, -k * desliza);
     cartao(L, 870, 420, 560, 211);
-    hand(ctx, D('D06'), L + 210, 935, { size: 50, align: 'center' });
+    hand(ctx, D('D06'), L + 210, 935, { size: 50, align: 'center', color: B.sobre(C.branco) });
     Ch.person(ctx, { x: L + 210, y: 1390, pose: 'stand', s: 0.92, eyes: 'normal', mouth: 'flat', style: { skin: C.peleEscura, hair: C.cabelo, hairStyle: 'long', outfit: 'dress', shirt: C.salvia, build: 'regular', shoes: C.noite } });
     G.ellipse(ctx, L + 212, 1236, 66, 56, { fill: C.salvia, stroke: INK, lw: 5, seed: 212 });
     G.ellipse(ctx, L + 210, 1150, 32, 32, { fill: C.marca, stroke: INK, lw: 5, seed: 213 });
-    txt(ctx, '5', L + 210, 1165, { size: 38, align: 'center' });
+    txt(ctx, '5', L + 210, 1165, { size: 38, align: 'center', color: B.sobre(C.marca) });
     ctx.restore();
     }
     // bebê
     if (bebe) {
       plano(R - 210, (1 - k) * desliza);
       cartao(R - 420, 870, 420, 560, 221, C.salvia);
-      hand(ctx, D('D07'), R - 210, 935, { size: 50, align: 'center' });
+      hand(ctx, D('D07'), R - 210, 935, { size: 50, align: 'center', color: B.sobre(C.salvia) });
       // de bruços no antebraço: 5 golpes nas costas
       const bx = R - 240, by = 1060;
       G.limb(ctx, [[R - 390, by + 62], [bx, by + 58], [R - 70, by + 40]], { color: C.pele, lw: 40, outline: INK }); // o antebraço de quem segura
       G.rrect(ctx, bx - 70, by - 4, 140, 60, 30, { fill: C.branco, stroke: INK, lw: 5, seed: 222 }); // o corpo do bebê
       G.ellipse(ctx, bx + 96, by + 26, 40, 36, { fill: C.peleClara, stroke: INK, lw: 5, seed: 223 }); // a cabeça
-      G.ellipse(ctx, bx - 14, by - 38, 26, 26, { fill: C.marca, stroke: INK, lw: 5, seed: 224 }); txt(ctx, '5', bx - 14, by - 25, { size: 32, align: 'center' });
+      G.ellipse(ctx, bx - 14, by - 38, 26, 26, { fill: C.marca, stroke: INK, lw: 5, seed: 224 }); txt(ctx, '5', bx - 14, by - 25, { size: 32, align: 'center', color: B.sobre(C.marca) });
       // de barriga para cima: 5 compressões no peito; a barriga, riscada
       const cx2 = R - 230, cy2 = 1270;
       G.rrect(ctx, cx2 - 80, cy2 - 30, 160, 64, 30, { fill: C.branco, stroke: INK, lw: 5, seed: 226 });
       G.ellipse(ctx, cx2 + 108, cy2, 40, 36, { fill: C.peleClara, stroke: INK, lw: 5, seed: 227 });
-      G.ellipse(ctx, cx2 + 30, cy2 - 64, 26, 26, { fill: C.marca, stroke: INK, lw: 5, seed: 228 }); txt(ctx, '5', cx2 + 30, cy2 - 51, { size: 32, align: 'center' });
+      G.ellipse(ctx, cx2 + 30, cy2 - 64, 26, 26, { fill: C.marca, stroke: INK, lw: 5, seed: 228 }); txt(ctx, '5', cx2 + 30, cy2 - 51, { size: 32, align: 'center', color: B.sobre(C.marca) });
       B.xis(ctx, cx2 - 40, cy2 + 2, 26, 1, 225);
       ctx.restore();
     }
@@ -232,7 +233,7 @@
       G.rrect(ctx, x + 270, y - 300, 120, 70, 14, { fill: C.branco, stroke: INK, lw: 5, seed: 232 });
       G.rrect(ctx, x, y - 150, 400, 34, 4, { fill: C.coral, stroke: null, lw: 0, seed: 233 });
       ctx.save(); ctx.globalAlpha *= U.clamp((x + 33 - (L - 40)) / 40, 0, 1); // a palavra só aparece dentro da área segura
-      txt(ctx, D('D01'), x + 40, y - 168, { size: 54 });
+      txt(ctx, D('D01'), x + 40, y - 168, { size: 54, color: B.sobre(C.branco) });
       ctx.restore();
       for (const wx of [x + 80, x + 320]) G.ellipse(ctx, wx, y - 22, 44, 44, { fill: INK, stroke: INK, lw: 5, seed: 234 + wx % 7 });
       const pisca = Math.sin(t * 18) > 0;
@@ -246,9 +247,9 @@
     const k = U.ease.outBack(U.clamp((st.t - st.it.t0) / 0.35, 0, 1));
     ctx.save(); ctx.translate(R - 120, 470); ctx.scale(k, k);
     G.ellipse(ctx, 0, 0, 92, 92, { fill: C.papel, stroke: C.papel, lw: 6, seed: 241 });
-    G.line(ctx, [[-70, 30], [70, 30]], { color: INK, lw: 6, seed: 242 }); G.line(ctx, [[0, -70], [0, 70]], { color: INK, lw: 6, seed: 243 });
-    G.ellipse(ctx, -36, -10, 26, 26, { fill: C.folha, stroke: INK, lw: 4, seed: 244 });
-    G.poly(ctx, [[34, -12], [56, -50], [78, -12]], { fill: C.coral, stroke: INK, lw: 4, seed: 245 });
+    G.line(ctx, [[-70, 30], [70, 30]], { color: COR.escura, lw: 6, seed: 242 }); G.line(ctx, [[0, -70], [0, 70]], { color: COR.escura, lw: 6, seed: 243 });
+    G.ellipse(ctx, -36, -10, 26, 26, { fill: C.folha, stroke: COR.escura, lw: 4, seed: 244 });
+    G.poly(ctx, [[34, -12], [56, -50], [78, -12]], { fill: C.coral, stroke: COR.escura, lw: 4, seed: 245 });
     ctx.restore();
   };
   // cuidado · tapa em quem ainda tosse: a mão vai, e o X Coral cai em cima; na [22], a mão volta e o estudante incentiva

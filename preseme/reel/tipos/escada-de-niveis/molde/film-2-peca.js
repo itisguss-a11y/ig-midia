@@ -16,7 +16,8 @@
 
   // TROQUE: o desenho do quadro de cada cena (pelo id da cena; o fecho não leva quadro).
   // Primeiro, os quadros prontos (Q). Palavra vem do textos.txt pela chave ('D10') ou escrita direto. frase = a partir de
-  // que frase da cena (0 = a primeira); quando = segundos depois que essa frase entrou.
+  // que frase da cena (0 = a primeira); quando = segundos depois que essa frase entrou (na 1.ª frase da cena, depois que o
+  // quadro entrou: a cena começa de perto e o quadro só entra quando a câmera abre, uns 2 s depois do corte).
   //   Q.lista(['D10', 'D11', 'D12'], { frase: 1, quando: [1.4, 2.6, 3.5] })          lista com o visto entrando item a item
   //   Q.regua({ de: 'D14', ate: 'D15', marcas: 13, rotulo: 'D16', frase: 1,
   //            marca: { n: 1, frase: 2, quando: 3.6, carimbo: 'D17' } })              régua de uma ponta à outra, com uma marca

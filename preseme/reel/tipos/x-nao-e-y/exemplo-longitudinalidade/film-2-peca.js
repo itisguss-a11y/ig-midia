@@ -126,10 +126,10 @@
       }
       const resolvido = t >= mo('fim');
       ctx.save(); ctx.globalAlpha *= Math.min(1, kP * 2);
-      E.personagem(ctx, { quem: 'calouro', x, y: yL - 4, s: 0.72, pose: anda ? 'walk' : 'stand', walk: (x / 110) % 1, look: 0.6, mouth: resolvido ? 'smile' : 'flat', seed: 290 });
+      E.personagem(ctx, { quem: 'calouro', x, y: yL - 4, s: 1.05, pose: anda ? 'walk' : 'stand', walk: (x / 110) % 1, look: 0.6, mouth: resolvido ? 'smile' : 'flat', seed: 290 });
       ctx.restore();
       // o problema: aparece em cima da cabeça dela e fica marcado no começo da linha
-      if (x <= X.problema + 1) problema(ctx, X.problema, yL - 400, kP, { r: 40 });
+      if (x <= X.problema + 1) problema(ctx, X.problema, yL - 625, kP, { r: 40 });
       else problema(ctx, X.problema, yL, 1, { r: 30 });
     }
   }
@@ -141,32 +141,33 @@
     if (kE <= 0) return;
     // a agente fica atrás da quina da UBS (desenhada antes dela): dentro da área segura, sem tapar a placa
     ctx.save(); ctx.globalAlpha *= Math.min(1, kE * 2);
-    E.personagem(ctx, { quem: 'agente', x: 160, y: yC, s: 0.8, pose: 'stand', look: 0.6, mouth: 'smile', seed: 310 });
-    const u = ubs(ctx, 200, yC, 1.25, { seed: 300 });
+    E.personagem(ctx, { quem: 'agente', x: 175, y: yC, s: 1.1, pose: 'stand', look: 0.6, mouth: 'smile', seed: 310 });
+    const u = ubs(ctx, 200, yC, 1.5, { seed: 300 });
     ctx.restore();
     // o fio: da UBS até a pessoa, em onda, com os anos marcados; depois dela, continua
-    const x0 = u.x + u.w + 6, xP = 846, y0 = yC - 280, xF = xP - 70;
+    const x0 = u.x + u.w + 6, xP = 846, y0 = yC - 410, xF = xP - 70;
     const kF = em(t, 'fio', 2.4);
     E.linha(ctx, fioPts(x0, xF, y0, 30, 130), { papel: 'apoioEscuro', lw: 17, k: kF, seed: 320 });
-    const ANOS = [[470, 'D15'], [585, 'D16'], [700, 'D17']];
+    const ANOS = [[490, 'D15'], [598, 'D16'], [706, 'D17']]; // os anos sem encostar um no outro, e o 2025 longe da cabeça dela
     ANOS.forEach(([x, k], i) => {
       const a = prog(kF, (x - x0) / (xF - x0), 0.08);
       if (a <= 0) return;
       const y = yFio(x, x0, y0, 30, 130);
       E.circulo(ctx, x, y, 19 * U.ease.outBack(a), { papel: 'destaque', seed: 330 + i, lw: 4, sombra: false });
-      E.texto(ctx, D(k), x, y - 56, { papel: 'numero', size: 42, align: 'center', alpha: a });
+      E.texto(ctx, D(k), x, y - 56, { papel: 'numero', size: 38, align: 'center', alpha: a });
     });
     // a pessoa, no fim do fio (doente ou não, ela tem para onde voltar)
     const kP = em(t, 'pessoa', 0.35);
     if (kP > 0) {
       ctx.save(); ctx.globalAlpha *= Math.min(1, kP * 2);
-      E.personagem(ctx, { quem: 'moradora', x: xP, y: yC, s: 0.8, pose: 'stand', look: -0.6, mouth: 'smile', seed: 340 });
+      E.personagem(ctx, { quem: 'moradora', x: xP, y: yC, s: 1.2, pose: 'stand', look: -0.6, mouth: 'smile', seed: 340 });
       ctx.restore();
       continua(ctx, xP + 70, 1010, y0, t, { alpha: kP });
     }
     // a volta: a seta da pessoa até a UBS, por cima do fio
     const kV = em(t, 'volta', 0.7);
-    if (kV > 0) E.seta(ctx, [xP - 40, y0 - 250], [u.x + u.w * 0.55, y0 - 150], { curva: 0.2, k: U.ease.inOutCubic(kV), lw: 10, cabeca: 40, seed: 350 });
+    // (mais baixa e mais reta: o desenho todo cabe na faixa embaixo do texto sem a seta encostar nele)
+    if (kV > 0) E.seta(ctx, [xP - 90, y0 - 210], [u.x + u.w * 0.6, y0 - 150], { curva: 0.12, k: U.ease.inOutCubic(kV), lw: 10, cabeca: 40, seed: 350 });
   }
 
   // lado a lado: a continuidade em pé (de cima para baixo, termina) e a longitudinalidade (da UBS, não termina)
@@ -217,10 +218,13 @@
     const kMesma = U.ease.inOutCubic(em(t, 'mesma', 0.8));
     if (kMesma > 0) E.linha(ctx, [[x0, yF], [x1, yF]], { papel: 'destaque', lw: 34, k: kMesma, seed: 419 });
     E.linha(ctx, [[x0, yF], [x1, yF]], { papel: 'apoioEscuro', lw: 13, k: kF, seed: 420 });
-    ctx.save(); ctx.globalAlpha *= Math.min(1, kM * 2);
-    ubs(ctx, 74, yF, 0.9, { pulso, seed: 400 });
-    E.personagem(ctx, { quem: 'moradora', x: 322, y: yF - 6, s: 0.58, pose: 'stand', look: 0.5, mouth: 'smile', seed: 410 });
-    ctx.restore();
+    // no close (st.zoom), a UBS e Dona Maria ficam de fora do quadro: a câmera mostra os problemas, sem gente cortada na borda
+    if (!st.zoom) {
+      ctx.save(); ctx.globalAlpha *= Math.min(1, kM * 2);
+      ubs(ctx, 74, yF, 0.9, { pulso, seed: 400 });
+      E.personagem(ctx, { quem: 'moradora', x: 322, y: yF - 6, s: 0.58, pose: 'stand', look: 0.5, mouth: 'smile', seed: 410 });
+      ctx.restore();
+    }
     // os três problemas: o ano em cima, o desenho no nó, o nome embaixo e o ramo (a continuidade de cada um)
     // (o nome vai embaixo porque é largo: em cima ele encostava em Dona Maria)
     const EV = [
@@ -288,5 +292,13 @@
     ],
     // o desenho de cada cena (pelo id da cena, ou pelo lado no caso dos conceitos)
     DESENHO: { y: continuidade, x: longitudinalidade, mini_y: miniY, mini_x: miniX, caso, fecho },
+    // de que altura a que altura vai o desenho de cada conceito ([topo, base]): o molde o põe no meio da faixa embaixo do texto
+    ALTURA: { y: [590, 1345], x: [760, 1445] },
+    // o close, por frase ([x, y, zoom]: o ponto que fica parado e o quanto aproxima), no outro tom do fundo. [09]: a dengue e a pressão
+    // chegando. As frases [08], [10] e [11] mostram o caso inteiro: o corte é a troca de frase.
+    // x = 960 segura "pressão alta" dentro da área segura no close
+    // [06]: um passo para perto, por 3,6 s, enquanto a seta da volta corre (é o corte da cena x; depois volta ao inteiro, para a
+    // cena acabar no tom dela). A [11] fica inteira: o caso acaba no tom dele, e a regra, no outro tom, entra em corte
+    FOCO: { 6: [470, 1100, 1.1, 3.6], 9: [960, 1150, 1.45] },
   };
 })();

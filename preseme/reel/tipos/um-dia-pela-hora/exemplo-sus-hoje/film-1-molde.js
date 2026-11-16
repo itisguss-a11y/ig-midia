@@ -9,7 +9,18 @@
   if (!E) throw new Error('o tipo "um dia" desenha com o kit de estilos: falta ferramentas/estilos.js no index.html');
   const W = G.W, H = G.H, SAFE = G.SAFE;
   const C = { floresta: '#17402C', papel: '#F4EDDF', marca: '#E4EB6C', coral: '#F16D4D', salvia: '#B5D8C0', folha: '#30724E', noite: '#072618', branco: '#FFFDF6', pele: '#C98A62', peleClara: '#DBA27E', peleEscura: '#A86E4B', miolo: '#C9A063', cabelo: '#2B211E' };
-  const INK = C.floresta;
+  // INK (Floresta) é o traço e a letra por cima de cor clara (papel, branco, marca-texto, Sálvia), em todo estilo.
+  // TINTA é o traço sobre o fundo: sai do kit (E.cor('tinta')) e muda com o estilo; na lousa (giz) o fundo é Floresta e
+  // ela vira Papel. O molde desenha o contorno sobre o fundo com TINTA: com INK, ele sumiria na lousa.
+  const INK = C.floresta, TINTA = E.cor('tinta');
+  // a letra que se lê por cima de uma cor: Floresta sobre cor clara, Papel sobre cor escura, Noite sobre Coral
+  const lum = (hex) => {
+    const m = /^#?([0-9a-f]{6})$/i.exec(String(hex));
+    if (!m) return 1;
+    const v = parseInt(m[1], 16), c = [v >> 16, (v >> 8) & 255, v & 255].map((x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const sobre = (fill) => (String(fill).toUpperCase() === C.coral ? C.noite : lum(fill) > 0.23 ? INK : C.papel);
   const L = SAFE.x, R = SAFE.x + SAFE.w, TOP = SAFE.y, BOT = SAFE.y + SAFE.h, CX = (L + R) / 2;
   const GY = 1400, BASE = 706, CHIPY = 786; // o chão; a base da última linha do texto; a faixa da categoria
   const NB = ' '; // espaço que não quebra: o trecho com marca-texto fica numa linha só
@@ -113,14 +124,14 @@
 
   function chip(ctx, label, x, y, bg, fg) {
     const size = 34, w = wid(ctx, label, size, 'titulo') + 44;
-    G.rrect(ctx, x, y - 44, w, 62, 31, { fill: bg, stroke: INK, lw: 3.5, seed: 3 });
+    G.rrect(ctx, x, y - 44, w, 62, 31, { fill: bg, stroke: TINTA, lw: 3.5, seed: 3 });
     txt(ctx, label, x + 22, y, { size, color: fg, papel: 'titulo' });
     return w;
   }
   function hora(ctx, h) {
     if (!h) return;
     const size = 40, w = wid(ctx, h, size, 'numero') + 40;
-    G.rrect(ctx, L, TOP + 8, w, 68, 16, { fill: C.papel, stroke: INK, lw: 4, seed: 4 });
+    G.rrect(ctx, L, TOP + 8, w, 68, 16, { fill: C.papel, stroke: TINTA, lw: 4, seed: 4 });
     txt(ctx, h, L + 20, TOP + 56, { size, papel: 'numero', color: INK });
   }
   // o contador; pop (de 1 a 0) faz ele dar um pulo quando o número muda
@@ -129,7 +140,7 @@
     ctx.save(); ctx.translate(cx, cy); ctx.scale(z, z); ctx.translate(-cx, -cy);
     hand(ctx, D(SC.CONTADOR), cx, cy - h / 2 - 16 * k, { size: 50 * k, align: 'center' });
     G.rrect(ctx, cx - w / 2 + 10, cy - h / 2 + 12, w, h, 26 * k, { fill: C.folha, stroke: null, lw: 0, seed: 8 });
-    G.rrect(ctx, cx - w / 2, cy - h / 2, w, h, 26 * k, { fill: INK, stroke: INK, lw: 4, seed: 9 });
+    G.rrect(ctx, cx - w / 2, cy - h / 2, w, h, 26 * k, { fill: C.floresta, stroke: TINTA, lw: 4, seed: 9 }); // o cartão escuro; na lousa, o contorno de giz
     G.line(ctx, [[cx - w / 2 + 6, cy], [cx + w / 2 - 6, cy]], { color: C.folha, lw: 4, seed: 2, amp: 0.4 });
     txt(ctx, String(n), cx, cy + 62 * k, { size: 176 * k, color: C.marca, align: 'center', papel: 'numero' });
     ctx.restore();
@@ -140,20 +151,20 @@
     if (k <= 0) return;
     const off = (1 - k) * 780;
     ctx.save(); ctx.translate(lado * off, off);
-    G.line(ctx, [[cx + lado * r * 0.72, cy + r * 0.72], [cx + lado * r * 1.42, cy + r * 1.42]], { color: INK, lw: 54, seed: 31, amp: 0.6 });
+    G.line(ctx, [[cx + lado * r * 0.72, cy + r * 0.72], [cx + lado * r * 1.42, cy + r * 1.42]], { color: TINTA, lw: 54, seed: 31, amp: 0.6 });
     G.line(ctx, [[cx + lado * r * 0.78, cy + r * 0.78], [cx + lado * r * 1.38, cy + r * 1.38]], { color: C.folha, lw: 22, seed: 32, amp: 0.6 });
     ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
-    ctx.fillStyle = INK; ctx.fillRect(cx - r - 4, cy - r - 4, 2 * r + 8, 2 * r + 8);
+    ctx.fillStyle = C.floresta; ctx.fillRect(cx - r - 4, cy - r - 4, 2 * r + 8, 2 * r + 8); // o vidro escuro, em todo estilo
     dentro(ctx);
     ctx.restore();
     G.ellipse(ctx, cx, cy, r, r, { stroke: C.marca, lw: 10, seed: 33 });
-    G.ellipse(ctx, cx, cy, r + 14, r + 14, { stroke: INK, lw: 22, seed: 34 });
+    G.ellipse(ctx, cx, cy, r + 14, r + 14, { stroke: TINTA, lw: 22, seed: 34 });
     ctx.restore();
   }
   function balao(ctx, linhas, x, y, tx, ty, size = 46) {
     const w = Math.max(...linhas.map((s) => wid(ctx, s, size))) + 64, h = linhas.length * zz(size) * 1.3 + 44;
-    G.poly(ctx, [[x + 60, y + h - 6], [tx, ty], [x + 150, y + h - 6]], { fill: C.branco, stroke: INK, lw: 5, seed: 41 });
-    G.rrect(ctx, x, y, w, h, 34, { fill: C.branco, stroke: INK, lw: 5, seed: 42 });
+    G.poly(ctx, [[x + 60, y + h - 6], [tx, ty], [x + 150, y + h - 6]], { fill: C.branco, stroke: TINTA, lw: 5, seed: 41 });
+    G.rrect(ctx, x, y, w, h, 34, { fill: C.branco, stroke: TINTA, lw: 5, seed: 42 });
     G.poly(ctx, [[x + 66, y + h - 8], [tx + 6, ty - 14], [x + 144, y + h - 8]], { fill: C.branco, stroke: null, lw: 0, seed: 43, amp: 0 });
     linhas.forEach((s, i) => txt(ctx, s, x + 32, y + 30 + zz(size) * (i + 0.85) * 1.3 - zz(size) * 0.25, { size, color: INK }));
   }
@@ -181,7 +192,7 @@
   S1.numero = (ctx, x, y, q, seed, uso) => txt(ctx, String(uso || '?'), x, y + q(14), { size: q(40), color: INK, align: 'center', papel: 'numero' });
   function selo(ctx, x, y, kind, seed, k = 1.14, uso = 0) {
     const q = (v) => v * k;
-    G.ellipse(ctx, x, y, q(44), q(44), { fill: C.branco, stroke: INK, lw: 5, seed });
+    G.ellipse(ctx, x, y, q(44), q(44), { fill: C.branco, stroke: TINTA, lw: 5, seed });
     (S1[kind] || S1.numero)(ctx, x, y, q, seed, uso);
   }
 
@@ -258,9 +269,9 @@
   // um pacote em pé no chão: x = esquerda; linhas = o que está impresso (o primeiro grande); cor = a cor do pacote
   DIA.OBJ.pacote = (ctx, { x = L + 40, w = 300, h = 420, cor = 'marca', linhas = [], miudo = '', seed = 900 } = {}) => {
     const y = GY - h, bg = corDe(cor), fg = fgDe(bg);
-    G.rrect(ctx, x, y, w, h, 20, { fill: bg, stroke: INK, lw: 7, seed, hatch: HAT });
-    G.line(ctx, [[x, y + 40], [x + w, y + 40]], { color: INK, lw: 4, seed: seed + 1 });
-    G.line(ctx, [[x, y + h - 40], [x + w, y + h - 40]], { color: INK, lw: 4, seed: seed + 2 });
+    G.rrect(ctx, x, y, w, h, 20, { fill: bg, stroke: TINTA, lw: 7, seed, hatch: HAT });
+    G.line(ctx, [[x, y + 40], [x + w, y + 40]], { color: fg, lw: 4, seed: seed + 1 });
+    G.line(ctx, [[x, y + h - 40], [x + w, y + h - 40]], { color: fg, lw: 4, seed: seed + 2 });
     G.decor(() => {
       linhas.forEach((s, i) => txt(ctx, s, x + w / 2, y + 150 + i * 56, { size: i ? 36 : 52, color: fg, align: 'center', papel: 'titulo' }));
       if (miudo) txt(ctx, miudo, x + w / 2, y + h - 66, { size: 22, color: fg, align: 'center' });
@@ -270,10 +281,10 @@
   // uma caixa (de remédio, de exame...) deitada no chão, com tampa e lateral
   DIA.OBJ.caixa = (ctx, { x = L + 10, w = 520, h = 330, cor = 'folha', linhas = [], seed = 600 } = {}) => {
     const y = GY - h - 6;
-    G.poly(ctx, [[x + w, y], [x + w + 44, y - 32], [x + w + 44, y + h - 32], [x + w, y + h]], { fill: C.salvia, stroke: INK, lw: 6, seed: seed + 1 });
-    G.poly(ctx, [[x, y], [x + 44, y - 32], [x + w + 44, y - 32], [x + w, y]], { fill: C.branco, stroke: INK, lw: 6, seed: seed + 2 });
-    G.rrect(ctx, x, y, w, h, 6, { fill: C.branco, stroke: INK, lw: 7, seed: seed + 3 });
-    G.rrect(ctx, x, y, w, 62, 4, { fill: corDe(cor), stroke: INK, lw: 5, seed: seed + 4 });
+    G.poly(ctx, [[x + w, y], [x + w + 44, y - 32], [x + w + 44, y + h - 32], [x + w, y + h]], { fill: C.salvia, stroke: TINTA, lw: 6, seed: seed + 1 });
+    G.poly(ctx, [[x, y], [x + 44, y - 32], [x + w + 44, y - 32], [x + w, y]], { fill: C.branco, stroke: TINTA, lw: 6, seed: seed + 2 });
+    G.rrect(ctx, x, y, w, h, 6, { fill: C.branco, stroke: TINTA, lw: 7, seed: seed + 3 });
+    G.rrect(ctx, x, y, w, 62, 4, { fill: corDe(cor), stroke: TINTA, lw: 5, seed: seed + 4 });
     G.decor(() => linhas.forEach((s, i) => txt(ctx, s, x + 26, y + 176 + i * 52, { size: i ? 34 : 56, color: INK, papel: 'titulo' })));
     return { topo: y, meio: [x + w / 2, y + h / 2] };
   };
@@ -293,6 +304,6 @@
     if (palavra) hand(c, palavra, lx, ly + 130, { size: 58, color: C.marca, align: 'center' });
   };
 
-  Object.assign(DIA, { C, INK, L, R, TOP, BOT, CX, GY, BASE, CHIPY, HAT, NB, D, txt, hand, wid, zz, caber, mark, quebrar, bloco, titulo, chip, hora, contador, lente, balao, chao, selo, faixaVig, moldura, palco, cartaoNome, estado, corDe, fgDe });
+  Object.assign(DIA, { C, INK, TINTA, sobre, L, R, TOP, BOT, CX, GY, BASE, CHIPY, HAT, NB, D, txt, hand, wid, zz, caber, mark, quebrar, bloco, titulo, chip, hora, contador, lente, balao, chao, selo, faixaVig, moldura, palco, cartaoNome, estado, corDe, fgDe });
   globalThis.DIA = DIA;
 })();

@@ -7,7 +7,7 @@
 // Texto: DIA.txt e DIA.hand (letra do estilo); palavra dentro da lente com DIA.caber, para caber em qualquer estilo.
 (function () {
   const G = globalThis.G, Ch = globalThis.Ch, DIA = globalThis.DIA;
-  const { C, INK, L, R, GY, D, hand } = DIA;
+  const { C, INK, TINTA, L, R, GY, D, hand } = DIA;
 
   // TROQUE: o trecho que leva marca-texto em cada frase, pelo número da frase (sem trecho, a frase sai sem marca)
   Object.assign(DIA.DESTAQUE, { 1: 'hoje', 3: 'não aparece', 5: 'categoria A', 8: 'categoria B', 12: 'nem viu', 13: 'não aparece' });
@@ -37,8 +37,8 @@
   DIA.LENTE.noite = [R - 215, 1080];
   DIA.CENA.noite = (ctx, st) => {
     DIA.chao(ctx);
-    G.rrect(ctx, L + 20, GY - 520, 360, 520, 8, { fill: C.branco, stroke: INK, lw: 7, seed: 71, hatch: DIA.HAT });
-    G.rrect(ctx, L + 90, GY - 440, 220, 180, 6, { fill: C.marca, stroke: INK, lw: 6, seed: 72 });
+    G.rrect(ctx, L + 20, GY - 520, 360, 520, 8, { fill: C.branco, stroke: TINTA, lw: 7, seed: 71, hatch: DIA.HAT }); // contorno sobre o fundo: TINTA
+    G.rrect(ctx, L + 90, GY - 440, 220, 180, 6, { fill: C.marca, stroke: INK, lw: 6, seed: 72 }); // por cima do branco: INK
     G.line(ctx, [[L + 200, GY - 440], [L + 200, GY - 260]], { color: INK, lw: 5, seed: 73 });
     Ch.person(ctx, { x: L + 470, y: GY, pose: 'stand', s: 0.95, eyes: 'normal', mouth: 'smile', look: 0.6, style: DIA.GENTE.protagonista });
     const [lx, ly] = DIA.LENTE.noite;

@@ -59,8 +59,8 @@
         daqui.forEach((u, j) => { const t0 = it.t0 + 0.12 * (j + 1); if (t >= t0) DIA.selo(ctx, L + 56 + j * passo, yy, u.selo, 200 + i * 20 + j * 3, 1 + 0.3 * U.pulse(t, t0, 9), u.uso); });
         if (t >= it.t0 + 0.12 * (daqui.length + 1)) txt(ctx, String(daqui.length), L + 56 + daqui.length * passo - 14, yy + 24, { size: 68, papel: 'numero' });
       } else {
-        for (let j = 0; j < 3; j++) { ctx.save(); ctx.setLineDash([10, 12]); G.ellipse(ctx, L + 56 + j * passo, yy, 44, 44, { stroke: C.folha, lw: 4, seed: 260 + j, second: false }); ctx.restore(); }
-        if (t >= it.t0 + 0.36) txt(ctx, '0', L + 56 + 3 * passo - 14, yy + 24, { size: 68, color: C.coral, stroke: DIA.INK, strokeW: 7, papel: 'numero' }); // o contorno dá o contraste que o Coral sozinho não tem
+        for (let j = 0; j < 3; j++) { ctx.save(); ctx.setLineDash([10, 12]); G.ellipse(ctx, L + 56 + j * passo, yy, 44, 44, { stroke: DIA.TINTA, lw: 4, seed: 260 + j, second: false }); ctx.restore(); }
+        if (t >= it.t0 + 0.36) txt(ctx, '0', L + 56 + 3 * passo - 14, yy + 24, { size: 68, color: C.coral, stroke: DIA.TINTA, strokeW: 7, papel: 'numero' }); // o contorno (na tinta do estilo) dá o contraste que o Coral sozinho não tem
       }
     });
   };

@@ -133,5 +133,17 @@
     return bloco(ctx, st.it.n, Object.assign({ alpha: st.aTexto, dy: st.dyTexto, k: st.kDestaque }, o));
   }
 
-  globalThis.MOLDE = { W, H, L, R, TOP, BOT, CX, TEXTO_Y, AREA, D, prog, bloco, arranjo, etiqueta, nomeDe, diferente, pista, estado, textoDaVez };
+  // a base da última linha da frase mais alta da cena, com as mesmas opções do textoDaVez: o desenho que fica embaixo
+  // do texto começa daqui (assim ele não pula quando a frase troca, e não sobra faixa vazia entre o texto e o desenho)
+  function fimDoTexto(ctx, c, { y0 = TEXTO_Y, papel = 'titulo', sizes, maxLinhas, maxW = R - L, entrelinha = 1.22 } = {}) {
+    let fim = y0;
+    for (const it of c.itens) {
+      if (!D(it.n)) continue;
+      const { ls, size } = arranjo(ctx, it.n, { papel, sizes, maxLinhas, maxW });
+      fim = Math.max(fim, y0 + (ls.length - 1) * size * E.letra(papel)[2] * entrelinha);
+    }
+    return fim;
+  }
+
+  globalThis.MOLDE = { W, H, L, R, TOP, BOT, CX, TEXTO_Y, AREA, D, prog, bloco, arranjo, etiqueta, nomeDe, diferente, pista, estado, textoDaVez, fimDoTexto };
 })();

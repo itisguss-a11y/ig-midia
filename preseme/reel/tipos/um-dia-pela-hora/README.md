@@ -41,6 +41,18 @@ O que se troca está marcado com TROQUE nos arquivos de `molde/`.
 
 A conta não se escreve: o número de cada fileira, o total e o contador saem da lista de momentos. O motor confere no comando `textos` se as frases da recontagem dizem o mesmo (`CONTA OK: 5 + 3 + 1 = 9`); se não disserem, aponta a frase e o número certo.
 
+## A cor de desenho novo
+
+A cor de um desenho da peça depende de onde ele fica, porque na lousa (giz) o fundo é Floresta e um traço Floresta some:
+
+- **Sobre o fundo** (o contorno de um objeto no chão, uma linha, uma seta): `DIA.TINTA`, a tinta do estilo (Floresta nos estilos claros, Papel na lousa). A letra sobre o fundo sai da cor padrão do `DIA.txt` (`E.cor('texto')`), sem passar `color`.
+- **Por cima de uma cor clara** (papel, branco, marca-texto, Sálvia): `DIA.INK`, o Floresta, em todo estilo.
+- **Letra por cima de uma cor qualquer**: `DIA.sobre(cor)`, que dá Floresta sobre cor clara, Papel sobre cor escura e Noite sobre Coral. Exemplo: `DIA.txt(ctx, 'VACINA', x, y, { color: DIA.sobre(C.coral) })`.
+- **Dentro da lente** (o vidro é escuro em todo estilo): Papel e marca-texto, como no `DIA.DENTRO`.
+- **A paleta pelo nome** (`DIA.C.coral`, `DIA.C.folha`...) fica para o que é sempre daquela cor: o recheio de um objeto, uma roupa, um selo.
+
+Antes de mandar a parada 2, a folha `estilos @<momento> lapis,giz,chapado` mostra se algum traço sumiu.
+
 ## Os comandos, na ordem
 
 De dentro da pasta da peça, com `M=<ig-midia>/preseme/reel/motor/preseme.js`:
@@ -74,7 +86,7 @@ Quanto a peça precisou escrever além do molde: o bloco PREENCHER (2,8 mil cara
 
 ## Limites
 
-- Os desenhos da peça usam as cores da paleta escritas à mão (como no sus-hoje). Nos estilos de fundo claro (lápis, carimbo, chapado) ficam certos, e foram conferidos: 0 problemas no qa dos três. No giz na lousa, que é escuro, um traço Floresta some no fundo: peça em giz desenha com `E.cor(...)` do kit.
+- O molde (o contador, a lente, a hora, os cartões, os selos, a faixa e os objetos prontos) desenha o que fica sobre o fundo com a tinta do kit, e sai certo também no giz. Os desenhos da peça de exemplo (o sus-hoje) ainda usam as cores da paleta escritas à mão: nos estilos de fundo claro (lápis, carimbo, chapado) ficam certos, conferidos com 0 problemas no qa dos três; no giz, o traço Floresta deles some no fundo. Peça nova segue a regra abaixo e sai em qualquer estilo.
 - O peso da letra vem do estilo: nos dizeres impressos nos objetos, o `weight` que o sus-hoje usava não vale mais.
 - O pixel e a planta não foram testados neste tipo.
 - O texto do exemplo é o da versão 5 do sus-hoje, que ele aprovou; a peça de verdade está no chat dela.

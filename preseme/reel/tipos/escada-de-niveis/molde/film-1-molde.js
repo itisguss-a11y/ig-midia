@@ -138,6 +138,9 @@
     const nome = nomeDegrau(k), x = xDe(k), y = yDe(k), alto = CHAO - y;
     // o número no alto do degrau, no meio; o nome logo embaixo, no tamanho que couber na largura (de 42 a 22 px)
     const r = alto >= 120 ? 26 : 20, cx = x + PASSO / 2, cy = y + r + 14;
+    // de perto, a placa que a câmera põe fora da área segura não aparece (palavra cortada na borda ou embaixo dos botões)
+    const meiaL = Math.max(r + 13, soNumero ? 0 : Math.min(PASSO - 20, med(ctx, nome, 42, 'corpo')) / 2);
+    if (!naArea(cx - meiaL, cy - r - 13, cx + meiaL, soNumero ? cy + r + 13 : Math.min(cy + r + 14 + 42 * 0.75, CHAO - 12) + 14)) return;
     const esc = U.ease.outBack(Math.min(1, kp)), mais = 1 + 0.22 * U.ease.outBack(U.clamp(enfase, 0, 1)); // só o número cresce
     ctx.save(); ctx.globalAlpha *= alpha; ctx.translate(cx, cy); ctx.scale(esc, esc); ctx.translate(-cx, -cy);
     ctx.save(); ctx.translate(cx, cy); ctx.scale(mais, mais); ctx.translate(-cx, -cy);
@@ -167,6 +170,7 @@
     const px = RA + (RB - RA) * 0.12, py = railY(px) - 92; // no começo do corrimão: no fecho, a pessoa fica mais acima
     let size = 42; while (size > 22 && med(ctx, nome, size, 'corpo') > 330) size -= 2;
     const w = med(ctx, nome, size, 'corpo') + 40, h = size * 1.5;
+    if (!naArea(px - w / 2, py - h / 2, px + w / 2, py + h / 2)) return; // de perto, fora da área segura: não aparece
     const esc = U.ease.outBack(Math.min(1, kPlaca));
     ctx.save(); ctx.translate(px, py); ctx.scale(esc, esc); ctx.translate(-px, -py);
     E.linha(ctx, [[px, py + h / 2], [px, railY(px) - 8]], { papel: 'tinta', lw: 4, seed: 620 });
@@ -179,39 +183,92 @@
 
   // ---------- a pessoa: a mesma do começo ao fim ----------
   // de -> para: os degraus da subida (0 = o chão); q de 0 a 1: quanto da subida já foi
-  function pessoa(ctx, de, para, q, { gesto = null, look = 0.2, lookY = 0, mouth = 'smile', handR = null, seed = 300 } = {}) {
+  // dx: quanto ela está à esquerda de onde para (na abertura, ela entra andando); anda: o passo da caminhada (0 a 1)
+  function pessoa(ctx, de, para, q, { gesto = null, look = 0.2, lookY = 0, mouth = 'smile', handR = null, seed = 300, dx = 0, anda = null } = {}) {
     const e = U.ease.inOutCubic(U.clamp(q, 0, 1));
-    const x = U.lerp(meio(de), meio(para), e);
+    const x = U.lerp(meio(de), meio(para), e) + dx;
     const y = U.lerp(yDe(de), yDe(para), e) - Math.sin(e * Math.PI) * (de === para ? 0 : 30);
-    const andando = de !== para && q > 0 && q < 1;
+    const andando = anda !== null || (de !== para && q > 0 && q < 1);
     const cfg = P.PESSOA;
     const o = Object.assign({ quem: cfg.quem || 'moradora', style: cfg.style || {}, x, y, s: S_P, seed, look, lookY, mouth },
-      andando ? { pose: 'walk', walk: e } : { pose: 'stand', gesture: gesto || undefined, handR: handR || undefined });
+      andando ? { pose: 'walk', walk: anda !== null ? anda : e } : { pose: 'stand', gesture: gesto || undefined, handR: handR || undefined });
     // na planta, o kit pinta tudo em aguada (meio transparente): a pessoa passa cinco vezes para ficar firme na frente
     // da escada e do corrimão (o que fica atrás dela não aparece através do corpo)
     const vezes = E.nome === 'planta' ? 5 : 1;
     for (let v = 0; v < vezes; v++) E.personagem(ctx, o);
   }
 
+  // ---------- a câmera: o corte de cada cena e de cada frase ----------
+  // Toda cena, menos a abertura, começa num corte para perto: o degrau novo (a pessoa sobe para dentro do quadro e a placa
+  // acende), a base do corrimão (os pilares sobem) ou, no fecho, o degrau que responde. Em SC.ABRE a câmera abre para a
+  // escada inteira, e o quadro do degrau entra (SC.ENTRA). Da 2.ª frase da cena em diante ela alterna, em corte seco:
+  // perto da pessoa (2.ª, 4.ª frase...) e a escada inteira (3.ª, 5.ª...). De perto, o fundo fica um tom mais fundo (o fundo
+  // do estilo com 20% de Folha; 70% no estilo escuro), como os dois tons do tipo X não é Y: no estilo de traço fino (a
+  // planta), só a troca do fundo inteiro garante que o corte passe de 12% da imagem (sem ela, a pessoa de perto mudava 8 a
+  // 13%). Assim o conferir conta cada troca como corte, e a troca de música (que cai no começo da cena) cai num corte.
+  const PERTO = { z: 1.8, x: CX + 60, y: 1270 }; // o degrau novo: o pé de quem chega fica aqui na tela
+  // a pessoa de perto, à direita (o quadro fica à esquerda, em cima), com a placa do degrau embaixo dos pés; na abertura,
+  // mais baixa, para não encostar na pergunta
+  const DE_PERTO = { z: 1.5, x: R - 200, y: 1300 };
+  let CAM = null; // a câmera do quadro da vez: o ponto (ax, ay) do desenho vai para (sx, sy) da tela, com zoom z
+  const ondeEsta = (c) => (c.tipo === 'degrau' ? c.degrau : c.tipo === 'escada' ? c.destaque || c.de || N : c.tipo === 'abertura' ? 0 : c.de || N);
+  function camera(st) {
+    const c = st.c;
+    if (st.i >= 1) {
+      if (st.i % 2 === 0) return null; // a escada inteira
+      const k = ondeEsta(c);
+      return { z: DE_PERTO.z, ax: meio(k), ay: yDe(k), sx: DE_PERTO.x, sy: c.tipo === 'abertura' ? 1400 : DE_PERTO.y, tom: 'B' };
+    }
+    if (c.tipo === 'abertura') return null; // a abertura começa com a escada inteira (é a capa) e a pessoa entrando
+    const k = c.tipo === 'corrimao' ? 1 : ondeEsta(c); // o corrimão começa pela base
+    const ax = meio(k), ay = yDe(k), q = U.ease.inOutCubic(p01(st.tc, SC.ABRE.de, SC.ABRE.dur));
+    if (q >= 1) return null;
+    return { z: U.lerp(PERTO.z, 1, q), ax, ay, sx: U.lerp(PERTO.x, ax, q), sy: U.lerp(PERTO.y, ay, q) };
+  }
+  // o tom B do fundo (de perto): o fundo do estilo misturado com Folha, duas cores da paleta (a conferência das cores aceita)
+  let corB = null;
+  function fundoB() {
+    if (corB) return corB;
+    const hex = (h) => [1, 3, 5].map((i) => parseInt(String(h).slice(i, i + 2), 16));
+    const a = hex(E.cor('fundo')), b = hex(E.cor('folha')), f = E.escuro() ? 0.7 : 0.2;
+    if (a.concat(b).some((v) => !Number.isFinite(v))) return (corB = E.cor('fundo'));
+    return (corB = '#' + a.map((v, i) => Math.round(v + (b[i] - v) * f).toString(16).padStart(2, '0')).join(''));
+  }
+  const aplicar = (ctx, cam) => { if (cam) { ctx.translate(cam.sx, cam.sy); ctx.scale(cam.z, cam.z); ctx.translate(-cam.ax, -cam.ay); } };
+  const tela = (x, y) => (CAM ? [(x - CAM.ax) * CAM.z + CAM.sx, (y - CAM.ay) * CAM.z + CAM.sy] : [x, y]);
+  // um retângulo do desenho cabe na área segura, com a câmera da vez? (4 px de folga, como o qa)
+  function naArea(x0, y0, x1, y1) {
+    if (!CAM) return true;
+    const [a, b] = tela(x0, y0), [c2, d] = tela(x1, y1);
+    return a >= L - 4 && b >= TOP - 4 && c2 <= R + 4 && d <= SAFE.y + SAFE.h + 4;
+  }
+
   // ---------- o quadro do que se faz no degrau ----------
   // fn(ctx, caixa, o): caixa = { x, y, w, h } (a área de dentro do quadro); o.k = a entrada do quadro (0 a 1);
-  // o.i = qual frase da cena está na tela (0, 1, 2…); o.ti = segundos desde que essa frase entrou; o.tc = desde o corte
+  // o.i = qual frase da cena está na tela (0, 1, 2…); o.ti = segundos desde que essa frase entrou (na 1.ª frase da cena,
+  // desde que o quadro entrou: a cena começa de perto, sem o quadro); o.tc = desde o corte
   // o quadro fica à esquerda da pessoa quando a cabeça dela chega à altura dele (com 4 ou 5 degraus, ele estreita
-  // nos degraus do meio); 390 px é a altura dela com o coque, e 120 px a folga para o braço levantado
-  function caixaDoPainel(c) {
-    const k = c.tipo === 'degrau' ? c.degrau : c.de || 0, topo = yDe(k) - 390 * (S_P / 0.72);
-    const dir = topo < PAINEL.y + PAINEL.h + 10 ? Math.min(PAINEL.x + PAINEL.w, meio(k) - 120) : PAINEL.x + PAINEL.w;
+  // nos degraus do meio; de perto, ele estreita até a pessoa); 390 px é a altura dela com o coque, e 120 px a folga
+  // para o braço levantado
+  function caixaDoPainel(c, cam = CAM) {
+    const k = c.tipo === 'degrau' ? c.degrau : c.de || 0, z = cam ? cam.z : 1;
+    const px = cam ? (meio(k) - cam.ax) * z + cam.sx : meio(k), py = cam ? (yDe(k) - cam.ay) * z + cam.sy : yDe(k);
+    const topo = py - 390 * (S_P / 0.72) * z;
+    const dir = topo < PAINEL.y + PAINEL.h + 10 ? Math.min(PAINEL.x + PAINEL.w, px - 120 * z) : PAINEL.x + PAINEL.w;
     return { x: PAINEL.x, y: PAINEL.y, w: Math.max(380, dir - PAINEL.x), h: PAINEL.h };
   }
+  const comPerto = (c) => c.tipo !== 'abertura'; // a cena começa de perto: o quadro só entra quando a câmera abre
   function painel(ctx, st, fn) {
-    const a = U.ease.outCubic(p01(st.tc, 0.15, 0.35));
+    const entra = comPerto(st.c) ? SC.ENTRA : 0.15;
+    const a = U.ease.outCubic(p01(st.tc, entra, 0.35));
     if (a <= 0) return;
     const { x, y, w, h } = caixaDoPainel(st.c);
     ctx.save(); ctx.globalAlpha *= a;
     const esc = 0.94 + 0.06 * a;
     ctx.translate(x + w / 2, y + h / 2); ctx.scale(esc, esc); ctx.translate(-(x + w / 2), -(y + h / 2));
     E.ret(ctx, x, y, w, h, { papel: 'superficie', r: 18, seed: 700, sombra: true });
-    fn(ctx, { x: x + 22, y: y + 22, w: w - 44, h: h - 44 }, { t: st.t, k: a, i: st.i, ti: st.t - st.it.t0, tc: st.tc, c: st.c, E, U, G });
+    const ti = st.i === 0 && comPerto(st.c) ? st.tc - entra : st.t - st.it.t0;
+    fn(ctx, { x: x + 22, y: y + 22, w: w - 44, h: h - 44 }, { t: st.t, k: a, i: st.i, ti, tc: st.tc, c: st.c, E, U, G });
     ctx.restore();
   }
 
@@ -334,20 +391,22 @@
   P.PRONTO = PR;
 
   // ---------- um quadro do filme ----------
+  // o desenho (chão, escada, placas, corrimão, pessoa) passa pela câmera; o texto e o quadro do degrau ficam na tela
   function quadro(ctx, t) {
     const st = estado(t), c = st.c, tc = st.tc, cfg = P.PESSOA, gestos = cfg.gestos || {};
-    E.fundo(ctx);
+    CAM = camera(st);
+    if (CAM && CAM.tom === 'B') G.bg(ctx, fundoB()); else E.fundo(ctx);
+    ctx.save(); aplicar(ctx, CAM);
     E.chao(ctx, CHAO);
     const temCorrimao = SC.cenas.some((x) => x.tipo === 'corrimao');
     if (c.tipo === 'abertura') {
       escada(ctx, { aceso: 0 });
       for (let k = 1; k <= N; k++) placa(ctx, k, 1, { soNumero: true, alpha: 0.45 });
-      pessoa(ctx, 0, 0, 1, { gesto: gestos.abertura || 'think', look: 0.6, lookY: -0.4, mouth: 'flat' });
-      const yT = titulo(ctx, c.itens[0].n, { kDest: U.ease.inOutCubic(p01(tc, 0.4, 0.5)) });
-      if (st.i >= 1) bloco(ctx, st.it.n, { y0: yT + 120, alpha: st.aTexto, dy: st.dyTexto, kDest: st.kDest });
-      return;
-    }
-    if (c.tipo === 'degrau') {
+      // ela entra andando pela esquerda (o primeiro movimento, antes de 1 s) e para no pé da escada, pensando
+      const qe = p01(tc, SC.ENTRADA.de, SC.ENTRADA.dur);
+      if (qe < 1) pessoa(ctx, 0, 0, 1, { dx: -(1 - U.ease.outCubic(qe)) * 360, anda: qe * 2, look: 0.6, mouth: 'flat' });
+      else pessoa(ctx, 0, 0, 1, { gesto: gestos.abertura || 'think', look: 0.6, lookY: -0.4, mouth: 'flat' });
+    } else if (c.tipo === 'degrau') {
       const kAtual = U.ease.outCubic(p01(tc, SC.SUBIDA - 0.25, 0.35));
       escada(ctx, { aceso: c.degrau, atual: c.degrau, kAtual });
       for (let k = 1; k <= c.degrau; k++) placa(ctx, k, k < c.degrau ? 1 : p01(tc, SC.PLACA, 0.35));
@@ -368,10 +427,16 @@
       const de = c.de || N, para = d || de;
       pessoa(ctx, de, para, tc / SC.SUBIDA, { gesto: gestos[c.id] || gestos.escada || 'thumbsUp', look: 0.2 });
     }
+    ctx.restore();
+    if (c.tipo === 'abertura') {
+      const yT = titulo(ctx, c.itens[0].n, { kDest: U.ease.inOutCubic(p01(tc, 0.4, 0.5)) });
+      if (st.i >= 1) bloco(ctx, st.it.n, { y0: yT + 120, alpha: st.aTexto, dy: st.dyTexto, kDest: st.kDest });
+      return;
+    }
     const fn = P.PAINEL[c.id] || P.PAINEL[c.tipo];
     if (fn) painel(ctx, st, fn);
     bloco(ctx, st.it.n, { alpha: st.aTexto, dy: st.dyTexto, kDest: st.kDest });
   }
 
-  globalThis.ESCADA = Object.assign(P, { quadro, estado, bloco, titulo, escada, placa, corrimao, pessoa, painel, caixaDoPainel, N, CHAO, X0, X1, PASSO, ALTURA, xDe, yDe, meio, railY, PAINEL, S_P, TEXTO_Y, L, R, TOP, CX });
+  globalThis.ESCADA = Object.assign(P, { quadro, estado, bloco, titulo, escada, placa, corrimao, pessoa, painel, caixaDoPainel, camera, tela, N, CHAO, X0, X1, PASSO, ALTURA, xDe, yDe, meio, railY, PAINEL, S_P, TEXTO_Y, L, R, TOP, CX });
 })();

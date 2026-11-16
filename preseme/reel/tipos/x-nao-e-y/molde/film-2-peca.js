@@ -29,7 +29,8 @@
   // ---------- os desenhos de cada cena ----------
   // st (o que cada desenho recebe): t (o tempo), c (a cena: id, tipo, lado, t0, t1, itens), it (a frase da vez: n, t0,
   // t1) e, nos desenhos da cena diferenca, caixa ({ x0, x1, y0, y1 }: o espaço de cada lado).
-  // A área livre do desenho, embaixo do texto, é M.AREA ({ x0, x1, y0, y1 }); a área segura vai de M.L a M.R.
+  // A área livre do desenho, embaixo do texto, é M.AREA ({ x0, x1, y0, y1 }); a área segura vai de M.L a M.R. Nas cenas
+  // dos conceitos, st.area é a faixa de verdade (do fim da frase mais alta da cena até o fim da área segura).
 
   // TROQUE: o conceito Y (o que se confunde com X) funcionando, na cena 'y' (frases 3 e 4). No exemplo: a pessoa anda
   // pelos atendimentos de um problema, e a linha termina.
@@ -65,5 +66,14 @@
     ],
     // o desenho de cada cena (pelo id da cena, ou pelo lado no caso dos conceitos)
     DESENHO: { y: conceitoY, x: conceitoX, mini_y: miniY, mini_x: miniX, caso, fecho },
+    // TROQUE: de que altura a que altura vai o desenho de cada conceito ([topo, base], nas coordenadas do desenho). O molde
+    // põe esse trecho no meio da faixa entre o texto e o fim da área segura (st.area é a faixa). Sem ALTURA, fica onde
+    // foi desenhado. Exemplo: ALTURA: { y: [590, 1345], x: [760, 1445] }. Desenho baixo deixa faixa vazia: faça crescer.
+    ALTURA: {},
+    // TROQUE: o close, pelo número da frase: [x, y, zoom] (o ponto que fica parado e o quanto aproxima), no caso e nos
+    // conceitos; a frase com close entra no outro tom do fundo, e é o corte de dentro da cena (o conferir pede um corte a
+    // cada 12 s). No caso, alterne o caso inteiro e o close (no exemplo, a 9 de perto; na cena x, a 6 por 3,6 s). A palavra do desenho tem de caber na área
+    // segura no close (o qa confere). Um 4.º número diz quantos segundos o close dura; a última frase de uma cena não acaba de perto. Exemplo: FOCO: { 6: [470, 1100, 1.1, 3.6], 9: [960, 1150, 1.45] }.
+    FOCO: {},
   };
 })();

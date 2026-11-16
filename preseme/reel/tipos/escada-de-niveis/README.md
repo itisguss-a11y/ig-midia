@@ -27,10 +27,12 @@ Não serve para comparar duas coisas lado a lado, para coisas sem ordem nem para
 
 | cena | o que aparece | frases |
 |---|---|---|
-| abertura | a escada apagada, só com os números, e a pessoa no chão, pensando. A pergunta fica grande no alto. É a capa | 2 |
-| degrau1 a degrau5 | a pessoa sobe um degrau (dois passos no som), a placa acende (sino) e o quadro do degrau entra | 2 ou mais |
-| corrimao (opcional) | os pilares sobem, o corrimão corre de baixo até o topo (som de lápis) e ganha o nome; a pessoa põe a mão nele | 2 ou mais |
-| escada (fecho) | a escada inteira. O degrau que responde acende, a placa dele cresce com um anel (som de "certo") e a pessoa vai até ele | 2 |
+| abertura | a escada apagada, só com os números; a pessoa entra andando pela esquerda (o primeiro movimento, antes de 1 s, com dois passos no som) e para no pé da escada, pensando. A pergunta fica grande no alto. É a capa. Na 2.ª frase, corte para ela de perto | 2 |
+| degrau1 a degrau5 | corte para perto do degrau novo: a pessoa sobe para dentro do quadro (dois passos no som) e a placa acende (sino); a câmera abre para a escada inteira e o quadro do degrau entra. Na 2.ª frase, corte para ela de perto; na 3.ª, a escada inteira de novo | 2 ou mais |
+| corrimao (opcional) | corte para perto da base: os pilares sobem e o corrimão corre de baixo até o topo (som de lápis) enquanto a câmera abre; ele ganha o nome e a pessoa põe a mão nele. Depois, alterna de perto e a escada inteira | 2 ou mais |
+| escada (fecho) | corte para perto do degrau que responde: a pessoa vai até ele, ele acende e a placa cresce com um anel (som de "certo"); a câmera abre para a escada inteira. Na 2.ª frase, ela de perto, com a placa | 2 |
+
+O corte é a câmera: toda cena começa num corte para perto e abre para a escada inteira; da 2.ª frase em diante, cada troca de frase é um corte seco (perto da pessoa, a escada inteira, de novo perto...). De perto, o fundo fica um tom mais fundo (o fundo do estilo com 20% de Folha), como nos dois tons do X não é Y: na planta, de traço fino, só a troca do fundo inteiro faz o corte passar de 12% da imagem. Assim nenhum trecho passa de uma frase sem corte, e a troca de música, que cai no começo da cena, cai num corte. A placa que a câmera põe fora da área segura não aparece. O desenho (chão, escada, placas, corrimão, pessoa) passa pela câmera; o texto e o quadro do degrau ficam parados na tela.
 
 O som vem em blocos: abertura curiosa, degraus calmos, corrimão sério e fecho curioso. Há 0,6 s de silêncio antes da escada inteira aparecer. Os sons de fundo e os sons soltos de cada cena (pássaro, senha, bip...) a peça escolhe.
 
@@ -75,6 +77,8 @@ A peça de exemplo também roda assim: `node preseme.js novo teste --de exemplo-
 `exemplo-niveis-de-prevencao/`: os quatro níveis de prevenção a partir da mamografia. A Dona Lúcia, de 52 anos, sobe a escada: no degrau 1 ela caminha e cuida do peso; no 2, a mamografia de rotina acha um tumor pequeno; no 3, ela faz a reabilitação; o corrimão é a prevenção quaternária. A abertura pergunta "Mamografia previne câncer de mama?" e o fecho responde que ela não impede o câncer de começar, acha cedo, e por isso é prevenção secundária.
 
 Ela dá 1min43 (102,5 s), com 6 cenas a 96 batidas por minuto, 15 frases e 19 palavras de dentro do desenho. Além do molde, o exemplo escreveu uns 6 mil caracteres: 1,7 mil no textos.txt, 2,4 mil dos quadros (quatro linhas de quadro pronto e os destaques) e o resto em roteiro, som, título e legenda.
+
+A conferência do rascunho (16/11, 04h06, com a câmera): nenhum erro, só o aviso do Drive (7,5 MB, ele publica à mão). Primeiro movimento em 0,27 s; 3 batidas nos 3 primeiros segundos; maior trecho sem corte, 8,8 s; as três trocas de música caem em corte (91%, 87% e 79% da imagem mudam ali); qa de 116 quadros sem problema; cores na paleta; -16,0 LUFS e pico de -2,2 dBFS. Antes da câmera, a abertura ficava parada por 10 s e o vídeo inteiro era um trecho só, de 102,5 s.
 
 Os fatos saíram todos do banco do projeto. Cada frase tem a fonte em `tabela-de-afirmacoes-niveis-de-prevencao.md`, junto com o teste de ensino e o teste da premissa.
 

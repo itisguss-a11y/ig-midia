@@ -11,7 +11,7 @@
   const DESTAQUE = { 1: 'medir a pressão', 2: 'cafezinho', 3: 'agora', 4: '30 minutos', 5: 'Exercício físico, 90', 6: '5 minutos', 7: 'sem falar', 8: 'pés no chão', 9: 'altura do coração', 10: 'sem folga', 11: 'erra menos', 12: '3 vezes', 13: 'duas últimas', 14: 'dor no peito', 15: 'emergência', 16: 'dois braços', 17: 'sobe a pressão', 18: '3 números', 19: 'duas ocasiões', 20: 'Grátis', 21: 'ponto de referência', 22: 'não', 23: 'braço nu', 24: '3 medidas' };
 
   // a paciente desta peça
-  const FRANCISCA = { skin: C.pele, hair: C.grisalho, hairStyle: 'bun', outfit: 'dress', shirt: C.marca, trim: C.coral, collar: C.marca, bottoms: 'skirt', shorts: C.marca, build: 'regular', shoes: C.noite };
+  const FRANCISCA = B.vestir({ skin: C.pele, hair: C.grisalho, hairStyle: 'bun', outfit: 'dress', shirt: C.marca, trim: C.coral, collar: C.marca, bottoms: 'skirt', shorts: C.marca, build: 'regular', shoes: C.noite }); // B.vestir: na lousa, o sapato vem claro
   const PX = 600, PY = GY - 150; // onde ela senta
   const MX = 820, MESA = GY - 262; // a mesinha: o centro e o tampo (na altura do coração dela sentada)
   const NA_MESA = [770, MESA - 8]; // onde a mão dela fica, apoiada na mesa

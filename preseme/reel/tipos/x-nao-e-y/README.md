@@ -98,6 +98,10 @@ O estilo padrão é o infográfico chapado.
    - o fecho.
 
    Enquanto um não for trocado, ele aparece na folha de quadros como um quadro tracejado escrito TROQUE. O desenho usa o kit de estilos (`E.*`), para a folha da parada 2 sair sozinha.
+
+   Mais duas linhas no `PECA`:
+   - `ALTURA`: de que altura a que altura vai o desenho de cada conceito, `[topo, base]`. O molde põe esse trecho no meio da faixa entre a frase mais alta da cena e o fim da área segura, e não sobra faixa vazia entre o texto e o desenho. Desenho baixo demais para a faixa: faça crescer (gente, prédio, a linha do tempo). Exemplo: `ALTURA: { y: [590, 1345], x: [760, 1445] }`.
+   - `FOCO`: o close, por número de frase, `[x, y, zoom]` (o ponto que fica parado e o quanto aproxima), no caso e nos conceitos. A frase com close entra em corte seco e no outro tom do fundo: é o corte de dentro da cena (o conferir pede um corte a cada 12 s). No caso, alterne o caso inteiro e o close. Um 4.º número diz quantos segundos o close dura: a última frase de uma cena não acaba de perto, senão o fim dela fica no tom da cena seguinte e o corte some. Exemplo: `FOCO: { 6: [470, 1100, 1.1, 3.6], 9: [960, 1150, 1.45] }`. No close, a palavra do desenho tem de caber na área segura (o qa confere).
 4. `peca.json`: o título. `mapa-do-som.json`: o som do lugar do caso (`fundos`) e até duas coisas com som por cena (`coisas`), se houver. `legenda.txt`.
 
 O resto é do molde e não muda: `index.html`, `film-1-molde.js` (as peças do tipo: texto, etiqueta, ≠, pista) e `film-3-filme.js` (onde cada coisa fica em cada tipo de cena).
@@ -153,8 +157,8 @@ As saídas do exemplo ficaram em `/home/claude/trabalho/reel-tipo-comparacao/tra
 - **Os fatos.** Vêm da Starfield (2002), coletados pelo Opus e a conferir pelo Fable. A frase "a equipe te conhece" é leitura do Claude para "uma relação entre um profissional de saúde e um paciente".
 - **Afirmação sem fonte.** Toda frase com fato sai da tabela de afirmações. Afirmação sem trecho de fonte sai da peça.
 - **Termos explicados.** O exemplo não fala dos quatro atributos da atenção primária: os outros três termos ficariam sem explicação, o que reprova no teste de ensino.
-- **O meio da cena "x".** No exemplo, entre o texto e o desenho dessa cena sobra uma faixa vazia de uns 450 px. Fica para o chat 1 da peça de verdade decidir se o desenho cresce.
-- **O caso sem corte.** O caso do exemplo passa 19,2 s sem corte, e a conferência pede até 12 s. Ele cresce frase a frase, mas não corta. Se a peça de verdade quiser um corte dentro do caso, o caminho é um close no detalhe da virada, como faz o Na UBS.
+- **A faixa entre o texto e o desenho** (consertada em 16/11). O desenho do conceito vai para o meio da faixa livre (`ALTURA`). No exemplo, a cena "x" ganhou gente e UBS maiores e o fio mais alto: a faixa vazia de uns 450 px virou duas folgas de uns 80 px.
+- **O caso e a cena x** (consertados em 16/11). O close por frase (`FOCO`, no outro tom do fundo) corta a cena, como no Na UBS. No exemplo, a [09] é de perto, e a [06] nos primeiros 3,6 s.
 
 ## A conferência do exemplo (rascunho de 16/11, 02h14)
 

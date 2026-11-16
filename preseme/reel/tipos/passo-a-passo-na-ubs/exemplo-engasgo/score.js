@@ -11,10 +11,13 @@
   const FORMAT = U.pickFormat('9:16');
   const [W, H] = U.formatSize(FORMAT);
   const SAFE = U.safeArea(W, H);
-  const STYLE = 'paper'; // a cara da série: lápis no papel (acabamento A)
 
-  // ===================== PREENCHER (chat 1): o andamento e as cenas da peça =====================
+  // ===================== PREENCHER (chat 1): o estilo, o paciente, o andamento e as cenas da peça =====================
+  const ESTILO = 'lapis'; // o desenho, do kit de estilos: lapis (a cara da série) · giz · chapado · pixel · planta · carimbo
+  const PACIENTE = 'ele'; // quem passa mal: 'ele' ou 'ela'. A frase do 192 concorda ("Fique perto dele" ou "dela"); o textos confere
   const BPM = 100;
+  const SOM_CONTA = 'baque'; // o som de cada batida da conta (golpe, compressão). Um passo troca o dele com somConta:
+  //   somConta: 'bip' · somConta: { som: 'bip', vol: 0.55, atraso: 0.18 } · somConta: null (sem som). Sons: baque, tique, pop, gota, bip, sino, sopro, lapis
   // tipos de cena do molde (a ordem é livre, mas a série segue esta): situacao · pergunta · passo · alerta · especial · equipe · ligue192 · erro · fecho
   // passo: num = o número do passo; gesto = o desenho do gesto (film-2-peca.js); conta = quantas batidas contam o gesto (golpes, compressões)
   const ROTEIRO = [
@@ -33,6 +36,7 @@
     { id: 'fecho', tipo: 'fecho', linhas: [23] },
   ];
   // ============================================================================================
+  const STYLE = { lapis: 'paper', giz: 'chalk', chapado: 'flat', pixel: 'pixel', planta: 'paper', carimbo: 'paper' }[ESTILO] || 'paper'; // o estilo-base do motor, se o kit não carregar
 
   const clock = MU.makeClock({ bpm: BPM, offset: 0 });
   const { T, BEAT } = clock;
@@ -71,7 +75,9 @@
   const ef = (t, som, vol = 0.8, pan = 0) => efeitos.push({ t, som, vol, pan });
   for (const c of cenas) {
     if (c.tipo === 'passo') ef(c.t0 + 0.05, 'sino', 0.55); // o número do passo acende na trilha
-    if (c.tConta) c.tConta.forEach((t, k) => ef(t, 'baque', 0.75 + 0.03 * k, -0.2)); // cada golpe, cada compressão
+    // cada golpe, cada compressão: o SOM_CONTA, ou o somConta do passo
+    const sc = c.somConta !== undefined ? c.somConta : SOM_CONTA, so = typeof sc === 'string' ? { som: sc } : sc;
+    if (c.tConta && so && so.som) c.tConta.forEach((t, k) => ef(t + (so.atraso || 0), so.som, (so.vol ?? 0.75) + 0.03 * k, so.pan ?? -0.2));
     if (c.gesto === 'ligar') [0, 1, 2].forEach((k) => ef(c.itens[0].t0 + BEAT * (1 + k * 0.5), 'tique', 0.7)); // 1, 9, 2
     if (c.gesto === 'ciclo') ef(c.itens[0].t1 - BEAT * 1.5, 'pop', 0.9); // o objeto sai
     if (c.tipo === 'alerta') ef(c.t0 + 0.05, 'baque', 0.9);
@@ -94,6 +100,6 @@
   }
 
   const cenaEm = (t) => { let c = cenas[0]; for (const x of cenas) if (t >= x.t0) c = x; return c; };
-  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, STYLE, cenas, linha, efeitos, cenaEm, TX, ROTEIRO, ABERTURA };
+  const SCORE = { FPS, FORMAT, W, H, SAFE, DURATION, clock, T, BEAT, BPM, S, markers, STYLE, ESTILO, PACIENTE, SOM_CONTA, cenas, linha, efeitos, cenaEm, TX, ROTEIRO, ABERTURA };
   if (node) module.exports = SCORE; else globalThis.SCORE = SCORE;
 })();
