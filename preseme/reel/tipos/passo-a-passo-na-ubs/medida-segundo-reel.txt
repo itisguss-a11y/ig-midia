@@ -1,0 +1,32 @@
+# A medida · frente K · o 2.º reel no mesmo motor (Na UBS, e agora? · aferir a pressão na visita)
+# texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos
+# contado com medir.py (caracteres, não bytes), em 16/11/2026, 02h45 de Manaus
+
+CARACTERES ESCRITOS PARA A PEÇA DA PRESSÃO (só os arquivos da peça)
+  film-2-peca.js, o desenho ............ 29.613
+      cabeça 1.771 · lugar, a varanda 2.233 · coisas (relógio, aparelho, manguito, bloco, calendário...) 10.005 · cenas 15.605
+  textos.txt ........................... 2.068
+  score.js, só as linhas que mudaram ... 1.675
+  mapa-do-som.json ..................... 1.236
+  peca.json ............................ 438
+  TOTAL ................................ 35.030
+
+O ENGASGO, molde mais peça como copiados .. 52.668
+  dos quais o molde pronto, que a pressão ganhou sem escrever .. 28.763
+
+RESULTADO
+  a pressão escreveu 67% do engasgo, um terço a menos (33%).
+  a economia veio do molde. O desenho próprio da pressão (29,6 mil) é maior que o do engasgo (20,4 mil),
+  porque o assunto pede um lugar novo e mais coisas desenhadas.
+  estimativa: se lugar e coisas (12,2 mil) virarem um banco de cenários e objetos do molde, uma peça que os
+  reuse escreve uns 23 mil, cerca de 57% a menos que o engasgo.
+
+TEMPO (relógio de Manaus)
+  início ................................. 01:03
+  1.º rascunho com som ................... 01:35 · 32 min (uns 15 de trabalho, 7 de fila, 10 de render)
+  rascunho final conferido ............... 02:42 · 99 min no total
+      depois do 1.º rascunho vieram a revisão de arte (o tampo da mesa sumia no chapado e o braço parecia
+      solto, o contrário do "apoiado") e o teste da premissa (a [18] ganhou "Só mede quem treinou", cuidado
+      do banco de fatos). Foram mais 2 rascunhos inteiros e 1 trecho.
+      dos 99 min, uns 36 foram de fila no render (outras frentes renderizando) e uns 30 de render.
+      com a máquina livre, uns 63 min.
