@@ -1,12 +1,14 @@
 # Biblioteca de desenhos do PRESEME
 
-Lugares, objetos e pessoas prontos, para qualquer reel ou carrossel feito no animation-studio. A peça chama pelo nome (`B.cadeira(ctx, { x: 600, y: 1400 })`) em vez de desenhar à mão. Tudo é feito com o kit de estilos, então sai nos seis estilos (lápis, pixel, giz, planta, carimbo, chapado) e só nas cores da paleta.
+Lugares, objetos e pessoas prontos, para qualquer reel ou carrossel feito no animation-studio. Versão 2 (16/11/2026): 11 lugares, 61 objetos, 9 pessoas e o `B.cabeca`. A peça chama pelo nome (`B.cadeira(ctx, { x: 600, y: 1400 })`) em vez de desenhar à mão. Tudo é feito com o kit de estilos, então sai nos seis estilos (lápis, pixel, giz, planta, carimbo, chapado) e só nas cores da paleta.
 
 Arquivos (todos em `motor/estilos/`):
 - `biblioteca.js`: a biblioteca.
 - `catalogo.sh` e a pasta `catalogo/`: geram a folha com todos os desenhos (abaixo, "A folha de catálogo").
 
 A prova da economia (feita em 16/11 com a cena da varanda do reel da pressão): à mão, a cena levava 4.468 caracteres de código; com a biblioteca, 1.254, ou 72% a menos. No reel inteiro, 91% do desenho de lugar e de coisa já está aqui: o reel de uns 35 mil caracteres cai para perto de 24 mil.
+
+A versão 2 pôs aqui os desenhos que os tipos da madrugada de 16/11 tinham feito à mão. Prova: o desenho do exemplo do fluxograma (a mordida de cachorro) caiu de 7.024 para 2.942 caracteres (58% a menos) só trocando o cão, o gato, o morcego e a torneira pelas chamadas, e as lâminas saíram iguais (8 de 9 pixel a pixel; a 9ª difere em 57 pixels, arredondamento da escala). O que existia na versão 1 saiu igual: as 5 páginas do catálogo antigo, nos seis estilos, deram 30 de 30 iguais pixel a pixel.
 
 ## Como uma peça carrega
 
@@ -39,7 +41,7 @@ No film: `const B = globalThis.BIB;`. Se a biblioteca for carregada sem o kit, e
     - Uma cor, como `fundo: 'papel'`, pinta essa cor, e as cores do lugar são escolhidas para não sumir nela. Use quando o molde pinta um fundo diferente do estilo, como o molde "Na UBS", que pinta Papel até no chapado.
 - Todos devolvem pontos úteis. Exemplo: `const c = B.cadeira(...)`, depois `c.assento` é o x, y da pessoa sentada.
 
-## Lugares (9)
+## Lugares (11)
 
 | nome | o que desenha | parâmetros (além de chao e fundo) | devolve |
 |---|---|---|---|
@@ -52,6 +54,8 @@ No film: `const B = globalThis.BIB;`. Se a biblioteca for carregada sem o kit, e
 | `salaEspera` | painel de senha, relógio, cadeiras presas na barra, vaso | `senha: D('D06')`; `cadeiras: 4`; `cor: 'coral'`; `hora: 9.25`; `relogio: false`; `vaso: false` | `assentos` (x, y de quem senta em cada cadeira) |
 | `floresta` | a mata do outro lado, o rio, uma árvore grande e um buriti | `rio: false`; `t` (a água corre) | `margem`, `agua` |
 | `mapaRR` | Roraima com os 15 municípios (contorno do IBGE) | `x, y, w, h` (a caixa); `destaques: { 'Boa Vista': 'destaque', 'Alto Alegre': 'alerta' }`; `base: 'apoioEscuro'`; `k` (acende); `ponto: 'Boa Vista'` | `proj(lon, lat)`, `centro(nome)`, `nomes` |
+| `territorio` (v2) | a UBS pequena, duas casas, os moradores e a linha tracejada do território em volta, que se desenha sozinha | `rotulo: D('D09')` (o texto do limite); `kLimite` (0 a 1: a linha se desenha); `kGente` (os moradores chegam); `gente: false` | `ubs`, `portas` (o topo de cada casa), `limite` (x0, y0, x1, y1) |
+| `salaDeAula` (v2) | meia-parede, lousa vazia, relógio, a carteira com a folha | `aluno: { quem: 'calouro', ... }` (senta na cadeira, atrás da carteira, que esconde as pernas); `hora: 7`; `relogio: false`; `folha: false` | `lousa` (o retângulo para o texto), `assento`, `mesa` (o y do tampo), `cabeca` (do aluno) |
 
 Exemplos:
 
@@ -60,9 +64,12 @@ B.varanda(ctx);
 B.rua(ctx, { numeros: [D('D01'), D('D02'), D('D03')], portas: [0, abre, 0] });
 const sala = B.salaEspera(ctx, { senha: D('D06') }); B.pessoa(ctx, { quem: 'idoso', x: sala.assentos[1][0], y: sala.assentos[1][1], pose: 'sit' });
 const m = B.mapaRR(ctx, { x: 90, y: 330, w: 820, h: 1000, destaques: { 'Alto Alegre': 'alerta' }, k }); E.seta(ctx, [800, 300], m.centro('Alto Alegre'));
+const t = B.territorio(ctx, { rotulo: D('D09'), kLimite: k });
+const aula = B.salaDeAula(ctx, { aluno: { quem: 'calouro', eyes: 'wide' }, hora: 7 });
+E.texto(ctx, D('D01'), aula.lousa.x + aula.lousa.w / 2, aula.lousa.y + 120, { papel: 'mao', size: 50, align: 'center', cor: 'papel' }); // o texto da lousa é da peça
 ```
 
-## Objetos (35)
+## Objetos (61)
 
 | nome | ponto | parâmetros | devolve |
 |---|---|---|---|
@@ -101,6 +108,32 @@ const m = B.mapaRR(ctx, { x: 90, y: 330, w: 820, h: 1000, destaques: { 'Alto Ale
 | `floco` | centro | `r: 30`, `papel: 'tinta'` | — |
 | `arvore` | pé do tronco | `h: 420`, `tipo: 'copa'` ou `'buriti'`, `copa` (a cor) | `topo` |
 | `casa` | chão, no meio | `w: 360`, `h: 420`, `parede`, `telhado`, `numero`, `porta` (0 a 1) | `porta`, `parede`, `topo` |
+| `flebotomineo` (v2) | centro do corpo | `t` (as asas tremem); de lado, olhando para a direita: o mosquito-palha, birigui (leishmaniose) | `centro`, `tromba` |
+| `ferida` (v2) | centro | `r: 40`; `fase` (0: a manchinha plana; 1: a ferida redonda, de borda alta); `pele: true` ou `{ w, h }` (o pedaço de pele por baixo). Desenho de símbolo, nunca cópia de foto | `centro` |
+| `copo` (v2) | chão | `nivel: 0.6` (a água); `colher: true` (a colher de açúcar: a regra dos 15) | `boca` |
+| `pomada` (v2) | centro | deitada, a tampa à direita (`rot: -0.2`); sem nome de remédio | `tampa` |
+| `janelaTela` (v2) | centro | a grade fina contra o mosquito | `centro` |
+| `mosquiteiro` (v2) | chão | a cama com a rede em cone por cima | `topo` |
+| `roupaComprida` (v2) | centro | camisa de manga longa e calça | `centro` |
+| `vassoura` (v2) | centro | inclinada (`rot: 0.35`): o quintal limpo | `centro` |
+| `cachorro` (v2) | chão (as patas) | sentado, de lado, olhando para a direita (`espelho`: para a esquerda); `coleira: false` | `cabeca`, `focinho` |
+| `gato` (v2) | chão (as patas) | sentado, de frente | `cabeca` |
+| `morcego` (v2) | centro | de asas abertas | `centro` |
+| `torneira` (v2) | centro | a água caindo; `sabao: false` tira o sabão com espuma (lavar as mãos, lavar o ferimento) | `bica` |
+| `garrafa` (v2) | chão | `nivel: 0.7` | `boca` |
+| `lata` (v2) | chão | `papel: 'alerta'` (a cor da lata; o rótulo sai sem nome) | `topo` |
+| `pulmoes` (v2) | centro | `papel: 'apoio'` (`'alerta'`: o pulmão doente); com a traqueia | `centro`, `traqueia` |
+| `ondasDeCalor` (v2) | pé da do meio | `h: 160`, `n: 3`, `gap: 46`, `t` (ondulam), `papel: 'alerta'` | `topo` |
+| `monitorFrasco` (v2) | centro | `r: 80`; `estagio` 0 (pode usar), 1 (já mudando), 2 e 3 (descarte): o quadrado do meio escurece | `centro` |
+| `lousa` (v2) | centro | `w: 460`, `h: 250`; vazia | `area` (o retângulo para o texto) |
+| `folhaProva` (v2) | centro | `w: 600`, `h: 760`, `linhas: 6`, `rot`; vazia | `titulo`, `questao` (os pontos dos textos) |
+| `tremor` (v2) | centro da coisa que treme | `larg: 230`, `alto: 220`, `papel: 'tinta'` | — |
+| `balaoFala` (v2) | centro, em pontos da tela (sem `s` e sem `rot`) | `w: 520`, `h: 200`; `como: 'fala'`, `'pensa'` ou `'grito'`; `alvo: [x, y]` (a boca de quem fala: `B.cabeca(...).topo`); vazio | `area` (o retângulo para o texto) |
+| `narrador` (v2) | centro, em pontos da tela | `w: 520`, `h: 120`: a caixa do narrador do quadrinho ("8h, saindo para a visita"), vazia | `area` |
+| `raios` (v2) | o foco | `raio` (o padrão cobre o quadro), `n: 22`, `papel: 'destaque'`: a virada, atrás da cena | — |
+| `tesoura` (v2) | centro | deitada, as lâminas à direita (o cartão para print) | `ponta` |
+| `errado` (v2) | centro | `k`, `papel: 'alerta'`: o X do mito e do que não se faz (o par do `visto`) | `centro` |
+| `altoFalante` (v2) | centro | `k`: a pronúncia, o aviso | `centro` |
 
 Exemplos:
 
@@ -111,7 +144,15 @@ B.aparelhoPressao(ctx, { x: 872, y: m.topo - 48, s: 0.9, leitura: D('D10'), aler
 B.celular(ctx, { x: 700, y: 900, numero: D('D02'), k: U.ease.outBack(entra) });
 B.lupa(ctx, { x: 540, y: 800, dentro: (c) => B.mosquito(c, { x: 540, y: 810, s: 1.4, t }) });
 B.cobra(ctx, { x: 500, y: 1300, s: 0.8, t });
+const agente = { quem: 'agente', x: 300, y: 1400, pose: 'stand' };
+B.pessoa(ctx, agente);
+const bal = B.balaoFala(ctx, { x: 660, y: 640, w: 520, h: 200, alvo: B.cabeca(agente).topo }); // o texto da fala vai em bal.area
+B.cachorro(ctx, { x: 780, y: 1400 });
+B.torneira(ctx, { x: 540, y: 900, s: 1.2 });
+B.monitorFrasco(ctx, { x: 540, y: 700, estagio: 2 });
 ```
+
+Os desenhos da versão 2 que ficam num cartão (lâmina com o cartão claro por baixo) aceitam `sobre: 'superficie'`: escolhem as cores que não somem no cartão (`janelaTela`, `mosquiteiro`, `roupaComprida`, `vassoura`, `pomada`, `pulmoes`, `folhaProva`, `balaoFala`, `narrador`, `copo`, `garrafa`, `lata`, `torneira` e, no chapado, `cachorro`). Sem `sobre`, saem com as cores de sempre.
 
 Também dá para chamar pelo nome, como texto: `B.desenha(ctx, 'cadeira', { x: 600 })`. As listas estão em `B.LUGARES`, `B.OBJETOS` e `B.GENTE`.
 
@@ -138,6 +179,7 @@ Também dá para chamar pelo nome, como texto: `B.desenha(ctx, 'cadeira', { x: 6
 - **O resto vai direto para o Ch.person**: `pose` (`'stand'`, `'sit'`, `'walk'`), `gesture`, `eyes`, `mouth`, `look`, `handR`, `walk`, `s`...
 - **Em pé, passe `pose: 'stand'`**: aí o x, y é o pé. Sem a pose, o Ch.person usa `'sit'` (de frente, parece em pé, com as pernas para baixo), e o x, y vira o quadril: o pé fica umas 150 × s unidades abaixo do y (medido em 16/11, frente U4).
 - No chapado, roupa da cor do fundo (Sálvia) vira branca. Sem contorno, ela sumiria.
+- **`B.cabeca(o)`** (v2) não desenha: recebe o mesmo objeto do `B.pessoa` e devolve `centro` e `topo` da cabeça, para o balão, a seta, a lupa ou o tremor. Como no Ch.person, sem `pose` ele conta a pessoa sentada; criança já sai menor.
 
 ```js
 const c = B.cadeira(ctx, { x: 600, y: 1400 });
@@ -148,13 +190,14 @@ B.pessoa(ctx, { quem: 'calouro', roupa: 'jaleco', x: 700, y: 1400, pose: 'walk',
 
 ## A folha de catálogo
 
-`bash motor/estilos/catalogo.sh saida.png lapis,chapado` monta uma peça de catálogo numa pasta temporária (fora do repositório). Ela desenha as 5 páginas (lugares, objetos 1 a 3, gente) em cada estilo e junta tudo numa imagem só, com o nome de chamar de cada desenho. As fotos paradas levam segundos e rodam sem a fila; com `RENDER_LOCK=/home/claude/trabalho/render.lock`, entram na fila.
+`bash motor/estilos/catalogo.sh saida.png lapis,chapado` monta uma peça de catálogo numa pasta temporária (fora do repositório). Ela desenha as 8 páginas (lugares, objetos 1 a 3, gente e, da versão 2, objetos 4 e 5 e lugares 2) em cada estilo e junta tudo numa imagem só, com o nome de chamar de cada desenho. As fotos paradas levam segundos e rodam sem a fila; com `RENDER_LOCK=/home/claude/trabalho/render.lock`, entram na fila.
 
-Conferido nos seis estilos: nenhuma casinha vazia, nenhum erro.
+Conferido nos seis estilos (versão 2, 16/11): nenhuma casinha vazia, nenhum erro, nada sumindo no chapado; as 5 páginas da versão 1 saem iguais pixel a pixel.
 
 ## O que ficou de fora
 
 - Pessoa deitada (na maca, na rede): o Ch.person não tem essa pose.
-- Gente com doença à mostra (manchas, feridas): depende do fato de cada peça.
+- Gente com doença à mostra no corpo: depende do fato de cada peça. A ferida de símbolo, num pedaço de pele, entrou (`B.ferida`).
+- Da versão 2 ficaram de fora: a toalha no varal (não deve se repetir); as esferas de governo, o conselho e as duas listas do macete (são texto da peça, não desenho); o verbete da a-palavra (é o molde daquele tipo); o texto que se quebra sozinho em linhas (é do kit ou do motor, não da biblioteca de desenhos); e o flebotomíneo de frente do caso-arraste (ficou o de lado, do dado-que-se-move, que já anda).
 - Os veículos (caminhão, avião, barco) da peça da rede de frio: são de uma série só.
 - A cor madeira: não é da paleta. A mesa é Folha.

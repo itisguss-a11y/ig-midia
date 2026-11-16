@@ -11,7 +11,8 @@
 //   B.varanda(ctx);                                   // o lugar: desenha o quadro inteiro (fundo, paredes e chão)
 //   const c = B.cadeira(ctx, { x: 600, y: 1400 });   // um objeto; devolve pontos úteis (c.assento)
 //   B.pessoa(ctx, { quem: 'idosa', x: c.assento[0], y: c.assento[1], pose: 'sit' });
-// A lista de tudo, com os parâmetros, está no README.md da biblioteca: leia o README, não este arquivo.
+// A lista de tudo, com os parâmetros, está no BIBLIOTECA.md (motor/estilos): leia o guia, não este arquivo.
+// Versão 2 (16/11/2026): mais 26 objetos, 2 lugares e o B.cabeca, tirados dos tipos da madrugada (seção VERSÃO 2).
 // Nenhum desenho escreve palavra sozinho: todo texto (número da casa, leitura do visor, nome do mês) entra por
 // parâmetro e vem do textos.txt (D('Dnn')), como manda o molde.
 (function () {
@@ -955,21 +956,531 @@
     return E.personagem(ctx, sai);
   }
 
+  // ======================================================================================================
+  // VERSÃO 2 (16/11/2026, madrugada): desenhos que os tipos de reel e de carrossel feitos na noite de 15 para 16/11
+  // escreveram à mão e que vão se repetir. Cada um diz de que tipo veio; o desenho é o mesmo de lá, só passado para as
+  // regras daqui (x, y pelo pé ou pelo centro, s, rot, espelho, seed; só cores da paleta e de gente; nenhuma palavra
+  // sai daqui sozinha). s 1 = o tamanho numa cena com uma pessoa em s 1 (uns 520 px da cabeça ao pé).
+  // sobre: a cor que está por baixo, quando não é o fundo (o desenho num cartão: sobre: 'superficie'); o desenho escolhe
+  // cores que não somem nela.
+  // ======================================================================================================
+  const corEm = (o, ...ps) => (o.sobre ? ps.find((p) => E.cor(p) !== E.cor(o.sobre)) || ps[ps.length - 1] : naoSome(...ps));
+  const sem = { sombra: false, hachura: false };
+  // a cor clara de um desenho: a mesma de sempre; com sobre, a que não some no cartão
+  const clara = (o, p = 'superficie') => (o.sobre ? corEm(o, p, 'apoio', 'branco', 'papel') : p);
+
+  // o flebotomíneo (mosquito-palha, birigui: leishmaniose): x, y é o meio do corpo; de lado, olhando para a direita;
+  // t: o tempo (as asas tremem). Miudinho, corcunda, asas em V para cima, pernas compridas. Do reel dado-que-se-move
+  function flebotomineo(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 900, t: 0, seed: 1500 }, o);
+    const seed = o.seed, tremor = Math.sin(o.t * 46) * 0.07;
+    const asa = naoSome('apoio', 'superficie'), corpo = naoSome('apoioEscuro', 'tinta');
+    em(ctx, o, () => {
+      const pernas = [[[10, 8], [36, 44], [50, 104]], [[2, 10], [8, 56], [14, 112]], [[-8, 10], [-32, 52], [-48, 106]]];
+      pernas.forEach((p, i) => {
+        E.linha(ctx, p, { papel: corpo, lw: 2.6, seed: seed + 10 + i });
+        E.linha(ctx, p.map(([x, y]) => [x + 7, y + 2]), { papel: corpo, lw: 2.6, seed: seed + 20 + i });
+      });
+      ctx.save(); ctx.translate(-30, 14); ctx.rotate(0.38);
+      E.circulo(ctx, 0, 0, 32, Object.assign({ ry: 10, papel: corpo, lw: 3, seed: seed + 1 }, sem));
+      ctx.restore();
+      for (const sd of [-1, 1]) {
+        ctx.save(); ctx.rotate(sd * (0.36 + tremor) - 0.12);
+        E.poligono(ctx, [[0, -4], [-15, -48], [-7, -96], [7, -100], [17, -50], [6, -2]], Object.assign({ papel: asa, lw: 2.5, alpha: 0.75, seed: seed + 3 + sd }, sem));
+        for (let k = 0; k < 6; k++) {
+          const y = -24 - k * 13, x = 15 - Math.abs(k - 3) * 2;
+          E.linha(ctx, [[x, y], [x + 7, y - 3]], { papel: corpo, lw: 1.8, seed: seed + 30 + k });
+          E.linha(ctx, [[-x + 2, y], [-x - 5, y - 3]], { papel: corpo, lw: 1.8, seed: seed + 40 + k });
+        }
+        ctx.restore();
+      }
+      E.circulo(ctx, 0, 2, 17, Object.assign({ papel: corpo, lw: 3, seed: seed + 5 }, sem));
+      E.circulo(ctx, 21, 15, 8, Object.assign({ papel: corpo, lw: 3, seed: seed + 6 }, sem));
+      E.linha(ctx, [[25, 10], [42, -6], [56, -4]], { papel: corpo, lw: 2.2, seed: seed + 7 });
+      E.linha(ctx, [[26, 13], [46, 2], [60, 8]], { papel: corpo, lw: 2.2, seed: seed + 8 });
+      E.linha(ctx, [[27, 19], [36, 30], [33, 40]], { papel: corpo, lw: 2.4, seed: seed + 9 });
+    });
+    return { centro: [o.x, o.y], tromba: tela(o, 33, 40) };
+  }
+
+  // a ferida na pele, desenho de símbolo (nunca cópia de foto de paciente): x, y é o centro; r o tamanho; fase 0: a
+  // manchinha vermelha plana; 1: a ferida redonda, de borda alta. pele: true (ou { w, h }) desenha o pedaço de pele
+  // por baixo (o braço de perto). Do carrossel caso-arraste (leishmaniose)
+  function ferida(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, r: 40, fase: 1, pele: false, seed: 410 }, o);
+    const { r, seed } = o;
+    em(ctx, o, () => {
+      if (o.pele) { const w = o.pele.w || r * 6, h = o.pele.h || r * 3; E.ret(ctx, -w / 2, -h / 2, w, h, { papel: 'pele', r: h / 2, seed: seed - 10, hachura: false }); }
+      if (o.fase < 1) { E.circulo(ctx, 0, 0, r * 0.42, { ry: r * 0.34, papel: 'coral', seed, hachura: false, contorno: false }); return; }
+      E.circulo(ctx, 0, 0, r, { ry: r * 0.8, papel: 'coral', seed, hachura: false });
+      E.circulo(ctx, 0, 0, r * 0.62, { ry: r * 0.48, papel: 'papel', seed: seed + 1, hachura: false });
+      for (let i = 0; i < 7; i++) {
+        const a = i * 0.9 + 0.3, d = r * (0.12 + 0.05 * (i % 3));
+        E.circulo(ctx, Math.cos(a) * d * 2, Math.sin(a) * d * 1.4, Math.max(2.5, r * 0.06), { papel: 'coral', seed: seed + 2 + i, hachura: false, contorno: false });
+      }
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // o copo de água: x, y é o pé; nivel (0 a 1): a água; colher: a colher de açúcar dentro (a regra dos 15).
+  // Do carrossel meme-em-imagem (hipoglicemia); o do caso-arraste é o mesmo copo
+  function copo(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), nivel: 0.6, colher: false, seed: 770 }, o);
+    const seed = o.seed, larg = (y) => 50 + 12 * (-y / 200);
+    em(ctx, o, () => {
+      if (o.colher) { // o cabo com contorno: a tinta por baixo e a cor por cima (no papel claro, a colher branca sumiria)
+        const cor = clara(o);
+        E.linha(ctx, [[30, -250], [-6, -80]], { papel: 'tinta', lw: 17, seed: seed + 5 });
+        E.linha(ctx, [[30, -250], [-6, -80]], { papel: cor, lw: 9, seed: seed + 3 });
+        E.circulo(ctx, 34, -262, 22, Object.assign({ papel: cor, seed: seed + 4, ry: 14 }, sem));
+      }
+      E.poligono(ctx, [[-62, -200], [62, -200], [50, 0], [-50, 0]], Object.assign({ papel: clara(o), seed }, sem));
+      const nv = clamp(o.nivel), topo = -4 - 192 * nv;
+      if (nv > 0.02) E.poligono(ctx, [[-larg(topo) + 1.2, topo], [larg(topo) - 1.2, topo], [50, -4], [-50, -4]], Object.assign({ papel: 'apoio', contorno: false, seed: seed + 1 }, sem));
+      E.linha(ctx, [[-62, -200], [-50, 0], [50, 0], [62, -200]], { lw: 6, seed: seed + 2 });
+    });
+    return { boca: tela(o, 0, -200) };
+  }
+
+  // o tubo de pomada, sem nome de remédio: x, y é o meio; deitado, com a tampa à direita. Do carrossel caso-arraste
+  function pomada(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, rot: -0.2, seed: 450 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      E.poligono(ctx, [[-96, -40], [64, -48], [64, 48], [-96, 40], [-108, 26], [-96, 14], [-108, 0], [-96, -14], [-108, -26]], { papel: o.sobre ? corEm(o, 'superficie', 'apoio', 'papel') : naoSome('superficie', 'papel'), seed });
+      E.ret(ctx, 64, -26, 26, 52, { papel: corEm(o, 'apoioEscuro', 'tinta'), r: 4, seed: seed + 1 });
+      E.ret(ctx, 88, -18, 34, 36, { papel: corEm(o, 'apoioEscuro', 'tinta'), r: 6, seed: seed + 4 });
+      E.ret(ctx, -60, -22, 96, 44, { papel: corEm(o, 'apoio', 'apoioEscuro'), r: 8, seed: seed + 2, hachura: false });
+      E.linha(ctx, [[-82, -30], [-82, 30]], { lw: 3, seed: seed + 3 });
+    });
+    return { tampa: tela(o, 105, 0) };
+  }
+
+  // a janela com tela (a grade fina contra o mosquito): x, y é o centro. Do carrossel caso-arraste (prevenção)
+  function janelaTela(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, seed: 460 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      E.ret(ctx, -90, -90, 180, 180, { papel: corEm(o, 'apoio', 'apoioEscuro'), r: 8, seed });
+      for (let i = 1; i < 8; i++) {
+        const u = -80 + i * 20;
+        E.linha(ctx, [[u, -80], [u, 80]], { lw: 2, seed: seed + i });
+        E.linha(ctx, [[-80, u], [80, u]], { lw: 2, seed: seed + 20 + i });
+      }
+      E.linha(ctx, [[0, -88], [0, 88]], { lw: 6, seed: seed + 40 });
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // a cama com o mosquiteiro (a rede fina em cone por cima): x, y é o chão, no meio da cama. Do carrossel caso-arraste
+  function mosquiteiro(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), seed: 470 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      ctx.translate(0, -100);
+      E.ret(ctx, -110, 40, 220, 34, { papel: corEm(o, 'apoioEscuro', 'tinta'), r: 6, seed });
+      for (const sx of [-100, 92]) E.linha(ctx, [[sx, 74], [sx, 100]], { lw: 6, seed: seed + 1 + sx });
+      E.ret(ctx, -96, 22, 70, 22, { papel: 'superficie', r: 10, seed: seed + 3 });
+      E.poligono(ctx, [[0, -100], [124, 46], [-124, 46]], { papel: corEm(o, 'apoio', 'apoioEscuro'), seed: seed + 4, hachura: false, alpha: 0.55 });
+      for (let i = 1; i < 6; i++) E.linha(ctx, [[0, -100], [-124 + i * 41, 46]], { lw: 2, seed: seed + 10 + i });
+      for (let j = 1; j < 4; j++) { const yy = -100 + j * 36, hw = (124 * (yy + 100)) / 146; E.linha(ctx, [[-hw, yy], [hw, yy]], { lw: 2, seed: seed + 20 + j }); }
+      E.circulo(ctx, 0, -104, 8, { papel: 'tinta', seed: seed + 30, hachura: false });
+    });
+    return { topo: tela(o, 0, -204) };
+  }
+
+  // a roupa comprida (camisa de manga longa e calça: a proteção contra o inseto): x, y é o centro. Do carrossel caso-arraste
+  function roupaComprida(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, seed: 480 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      E.poligono(ctx, [[-40, -96], [40, -96], [104, -20], [84, -6], [44, -50], [44, 10], [-44, 10], [-44, -50], [-84, -6], [-104, -20]], { papel: corEm(o, 'apoio', 'apoioEscuro'), seed });
+      E.poligono(ctx, [[-40, 16], [40, 16], [44, 104], [12, 104], [0, 40], [-12, 104], [-44, 104]], { papel: corEm(o, 'apoioEscuro', 'tinta'), seed: seed + 1 });
+      E.linha(ctx, [[-16, -96], [0, -80], [16, -96]], { lw: 4, seed: seed + 2 });
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // a vassoura (o quintal limpo): x, y é o centro; inclinada (rot 0,35). Do carrossel caso-arraste
+  function vassoura(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, rot: 0.35, seed: 490 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      E.linha(ctx, [[0, -110], [0, 40]], { papel: corEm(o, 'apoioEscuro', 'tinta'), lw: 10, seed });
+      E.poligono(ctx, [[-22, 36], [22, 36], [52, 104], [-52, 104]], { papel: 'destaque', seed: seed + 1 });
+      for (let i = -3; i <= 3; i++) E.linha(ctx, [[i * 6, 40], [i * 14, 102]], { lw: 2.5, seed: seed + 5 + i });
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // o cachorro sentado, de lado, olhando para a direita (espelho: para a esquerda), de coleira: x, y é o chão (as patas).
+  // Do carrossel fluxograma (raiva); serve também à leishmaniose visceral e às zoonoses
+  const K_CAO = 0.75, K_GATO = 0.55, K_MORCEGO = 0.5, K_TORNEIRA = 0.7;
+  function cachorro(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), coleira: true, seed: 300 }, o);
+    const seed = o.seed, so2 = (p) => Object.assign({ sombra: false }, p);
+    const pelo = E.info.chapado ? corEm(o, 'papel', 'apoio', 'branco') : 'papel'; // sem contorno, o creme sumiria no creme
+    em(ctx, o, () => {
+      ctx.scale(K_CAO, K_CAO); ctx.translate(0, -172);
+      E.circulo(ctx, 0, 172, 150, so2({ ry: 12, papel: 'sombra', alpha: 0.35, contorno: false, hachura: false, seed }));
+      E.linha(ctx, [[-110, 120], [-165, 80], [-185, 20]], { papel: 'apoioEscuro', lw: 18, seed: seed + 1 });
+      E.circulo(ctx, -55, 105, 88, so2({ ry: 66, papel: pelo, seed: seed + 2 }));
+      E.circulo(ctx, 15, 40, 82, so2({ ry: 118, papel: pelo, seed: seed + 3 }));
+      E.circulo(ctx, -18, 30, 34, so2({ ry: 28, papel: 'apoioEscuro', seed: seed + 4 }));
+      for (const x of [22, 62]) E.ret(ctx, x, 70, 30, 102, so2({ papel: pelo, r: 12, seed: seed + 5 + x }));
+      E.ret(ctx, -100, 150, 70, 24, so2({ papel: pelo, r: 12, seed: seed + 6 }));
+      if (o.coleira) E.ret(ctx, 2, -42, 104, 22, so2({ papel: 'alerta', r: 10, seed: seed + 7 }));
+      E.circulo(ctx, 62, -98, 68, so2({ papel: pelo, seed: seed + 8 }));
+      E.circulo(ctx, 128, -76, 46, so2({ ry: 32, papel: pelo, seed: seed + 9 }));
+      E.poligono(ctx, [[30, -158], [-12, -130], [-2, -48], [36, -70]], so2({ papel: 'apoioEscuro', seed: seed + 10 }));
+      E.circulo(ctx, 168, -88, 13, so2({ papel: 'tinta', seed: seed + 11 }));
+      E.circulo(ctx, 92, -114, 9, so2({ papel: 'tinta', seed: seed + 12 }));
+      E.linha(ctx, [[150, -58], [128, -52], [110, -60]], { papel: 'tinta', lw: 5, seed: seed + 13 });
+    });
+    return { cabeca: tela(o, 62 * K_CAO, (-98 - 172) * K_CAO), focinho: tela(o, 168 * K_CAO, (-88 - 172) * K_CAO) };
+  }
+
+  // o gato sentado, de frente: x, y é o chão (as patas). Do carrossel fluxograma (raiva); serve à esporotricose
+  function gato(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), seed: 340 }, o);
+    const seed = o.seed, so2 = (p) => Object.assign({ sombra: false }, p);
+    em(ctx, o, () => {
+      ctx.scale(K_GATO, K_GATO); ctx.translate(0, -132);
+      E.circulo(ctx, 0, 132, 110, so2({ ry: 10, papel: 'sombra', alpha: 0.35, contorno: false, hachura: false, seed }));
+      E.linha(ctx, [[60, 120], [118, 96], [126, 40], [104, 10]], { papel: 'apoioEscuro', lw: 16, seed: seed + 1 });
+      E.circulo(ctx, 0, 60, 74, so2({ ry: 76, papel: 'apoioEscuro', seed: seed + 2 }));
+      E.circulo(ctx, 0, 72, 36, so2({ ry: 46, papel: 'papel', seed: seed + 3 }));
+      for (const s of [-1, 1]) E.poligono(ctx, [[s * 20, -112], [s * 62, -150], [s * 58, -86]], so2({ papel: 'apoioEscuro', seed: seed + 4 + s }));
+      E.circulo(ctx, 0, -66, 64, so2({ ry: 56, papel: 'apoioEscuro', seed: seed + 6 }));
+      for (const s of [-1, 1]) E.circulo(ctx, s * 24, -74, 10, so2({ papel: 'destaque', seed: seed + 7 + s }));
+      E.poligono(ctx, [[-8, -50], [8, -50], [0, -40]], so2({ papel: 'alerta', seed: seed + 9 }));
+      for (const s of [-1, 1]) for (const d of [-8, 6]) E.linha(ctx, [[s * 18, -44 + d / 2], [s * 70, -50 + d]], { papel: 'papel', lw: 3, seed: seed + 10 + d + s });
+    });
+    return { cabeca: tela(o, 0, (-66 - 132) * K_GATO) };
+  }
+
+  // o morcego de asas abertas: x, y é o centro do corpo. Do carrossel fluxograma (raiva)
+  function morcego(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, seed: 380 }, o);
+    const seed = o.seed, so2 = (p) => Object.assign({ sombra: false }, p);
+    em(ctx, o, () => {
+      ctx.scale(K_MORCEGO, K_MORCEGO);
+      for (const s of [-1, 1]) {
+        const asa = [[s * 18, -30], [s * 70, -78], [s * 150, -70], [s * 172, -30], [s * 150, 10], [s * 128, -8], [s * 104, 22], [s * 80, 0], [s * 56, 30], [s * 34, 10]];
+        E.poligono(ctx, asa, so2({ papel: 'tinta', seed: seed + 1 + s }));
+      }
+      E.circulo(ctx, 0, 0, 40, so2({ ry: 58, papel: 'tinta', seed: seed + 3 }));
+      for (const s of [-1, 1]) E.poligono(ctx, [[s * 8, -66], [s * 30, -100], [s * 32, -56]], so2({ papel: 'tinta', seed: seed + 4 + s }));
+      E.circulo(ctx, 0, -56, 32, so2({ papel: 'tinta', seed: seed + 6 }));
+      for (const s of [-1, 1]) E.circulo(ctx, s * 12, -60, 7, so2({ papel: 'destaque', contorno: false, seed: seed + 7 + s }));
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // a torneira aberta com a água caindo e o sabão com espuma (lavar as mãos, lavar o ferimento): x, y é o centro;
+  // sabao: false tira o sabão. Do carrossel fluxograma (raiva: lavar com água e sabão)
+  function torneira(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, sabao: true, seed: 420 }, o);
+    const seed = o.seed, so2 = (p) => Object.assign({ sombra: false }, p);
+    em(ctx, o, () => {
+      ctx.scale(K_TORNEIRA, K_TORNEIRA);
+      E.ret(ctx, -170, -150, 150, 34, so2({ papel: clara(o), r: 10, seed }));
+      E.ret(ctx, -40, -150, 34, 80, so2({ papel: clara(o), r: 10, seed: seed + 1 }));
+      E.ret(ctx, -110, -186, 70, 26, so2({ papel: 'apoioEscuro', r: 10, seed: seed + 2 }));
+      for (let i = 0; i < 5; i++) gota(ctx, { x: -24 + (i % 2) * 8, y: -40 + i * 42, r: 13 - i, papel: 'apoioEscuro' });
+      if (o.sabao) {
+        E.ret(ctx, 30, 70, 130, 70, so2({ papel: 'destaque', r: 20, seed: seed + 3 }));
+        for (const [x, y, r] of [[52, 56, 18], [88, 46, 24], [128, 58, 16], [150, 40, 12]]) E.circulo(ctx, x, y, r, so2({ papel: clara(o), seed: seed + 4 + x }));
+      }
+    });
+    return { bica: tela(o, -24 * K_TORNEIRA, -70 * K_TORNEIRA) };
+  }
+
+  // a garrafa de água com o nível: x, y é o pé; nivel (0 a 1). Do carrossel lista (calor: água o dia todo)
+  function garrafa(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), nivel: 0.7, seed: 900 }, o);
+    const seed = o.seed, w = 96, h = 250;
+    em(ctx, o, () => {
+      E.ret(ctx, -w / 2, -h, w, h, { papel: clara(o), r: 26, seed });
+      const hn = (h - 36) * clamp(o.nivel);
+      if (hn > 4) E.ret(ctx, -w / 2 + 9, -hn - 9, w - 18, hn, so({ papel: 'apoio', r: 18, contorno: false, seed: seed + 1 }));
+      E.ret(ctx, -w * 0.36, -h - 26, w * 0.72, 30, { papel: clara(o), r: 8, seed: seed + 2 });
+      E.ret(ctx, -w * 0.3, -h - 52, w * 0.6, 30, { papel: 'apoioEscuro', r: 8, seed: seed + 3 });
+      E.ret(ctx, -w / 2 + 2, -h * 0.6, w - 4, 46, so({ papel: 'destaque', r: 4, seed: seed + 4 }));
+    });
+    return { boca: tela(o, 0, -(h + 52)) };
+  }
+
+  // a lata de bebida (refrigerante, cerveja: o rótulo fica sem nome): x, y é o pé. Do carrossel lista (calor)
+  function lata(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: chao0(), papel: 'alerta', seed: 920 }, o);
+    const seed = o.seed, w = 110, h = 200;
+    em(ctx, o, () => {
+      E.ret(ctx, -w / 2, -h, w, h, { papel: o.papel, r: 14, seed });
+      E.ret(ctx, -w / 2 + 6, -h - 14, w - 12, 20, so({ papel: clara(o), r: 8, seed: seed + 1 }));
+      E.ret(ctx, -w / 2, -h * 0.62, w, 64, so({ papel: clara(o), r: 2, seed: seed + 2 }));
+      E.circulo(ctx, 0, -h * 0.62 + 32, 18, so({ papel: o.papel, lw: 3, seed: seed + 3 }));
+    });
+    return { topo: tela(o, 0, -h - 14) };
+  }
+
+  // os pulmões com a traqueia: x, y é o centro; papel a cor (alerta: o pulmão doente). Do carrossel lista (calor)
+  function pulmoes(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, papel: 'apoio', seed: 940 }, o);
+    const seed = o.seed, cor = corEm(o, o.papel, 'apoioEscuro', 'superficie');
+    em(ctx, o, () => {
+      E.linha(ctx, [[0, -120], [0, -40], [-34, -6]], { lw: 12, seed });
+      E.linha(ctx, [[0, -40], [34, -6]], { lw: 12, seed: seed + 1 });
+      for (const d of [-1, 1]) {
+        const lobo = [[d * 22, -84], [d * 74, -96], [d * 112, -40], [d * 120, 40], [d * 104, 92], [d * 60, 104], [d * 26, 84], [d * 20, 10]];
+        E.poligono(ctx, lobo, { papel: cor, seed: seed + 2 + (d > 0 ? 1 : 0) });
+      }
+    });
+    return { centro: [o.x, o.y], traqueia: tela(o, 0, -120) };
+  }
+
+  // as ondas de calor subindo: x, y é o pé da do meio; h a altura; n quantas; gap entre elas; t: o tempo (ondulam).
+  // Dos carrosséis lista (calor) e meme-em-imagem (o monitor do frasco ao sol)
+  function ondasDeCalor(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, h: 160, n: 3, gap: 46, t: 0, papel: 'alerta', seed: 960 }, o);
+    em(ctx, o, () => {
+      for (let j = 0; j < o.n; j++) {
+        const dx = (j - (o.n - 1) / 2) * o.gap, pts = [];
+        for (let i = 0; i <= 16; i++) { const u = i / 16; pts.push([dx + Math.sin(u * Math.PI * 3 + o.t * 4 + j) * 12, -u * o.h]); }
+        E.linha(ctx, pts, { papel: o.papel, lw: 6, seed: o.seed + j });
+      }
+    });
+    return { topo: tela(o, 0, -o.h) };
+  }
+
+  // o monitor do frasco de vacina (o selo que escurece com o calor): x, y é o centro; r o raio do círculo de fora;
+  // estagio 0: quadrado bem mais claro que o círculo (pode usar); 1: mais claro, já mudando; 2: igual ao círculo;
+  // 3: mais escuro (2 e 3: descarte). Só cores da paleta, sem degradê. Do carrossel meme-em-imagem (rede de frio)
+  const QUADRADO_MONITOR = ['papel', 'salvia', 'folha', 'noite'];
+  function monitorFrasco(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, r: 80, estagio: 0, seed: 700 }, o);
+    em(ctx, o, () => {
+      E.circulo(ctx, 0, 0, o.r, { papel: 'folha', seed: o.seed, sombra: true, hachura: false });
+      const l = o.r * 0.9;
+      E.ret(ctx, -l / 2, -l / 2, l, l, Object.assign({ papel: QUADRADO_MONITOR[Math.max(0, Math.min(3, Math.round(o.estagio)))], r: 3, seed: o.seed + 1 }, sem));
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // a lousa da sala de aula, vazia (o que se escreve nela é da peça, por cima, em area): x, y é o centro; w, h o
+  // tamanho do quadro. Do carrossel meme-em-imagem (a prova de bioquímica)
+  function lousa(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 700, w: 460, h: 250, seed: 740 }, o);
+    const { w, h, seed } = o;
+    em(ctx, o, () => {
+      E.ret(ctx, -w / 2 - 14, -h / 2 - 14, w + 28, h + 28, { papel: 'apoioEscuro', r: 6, seed, sombra: true, hachura: false });
+      E.ret(ctx, -w / 2, -h / 2, w, h, Object.assign({ papel: E.escuro() ? 'noite' : 'floresta', r: 3, seed: seed + 1 }, sem));
+      E.ret(ctx, -w / 2 + w * 0.1, h / 2 + 6, w * 0.8, 16, Object.assign({ papel: 'apoioEscuro', r: 4, seed: seed + 2 }, sem));
+    });
+    const a = tela(o, -w / 2, -h / 2), s = o.s ?? 1;
+    return { area: { x: a[0], y: a[1], w: w * s, h: h * s }, centro: [o.x, o.y] };
+  }
+
+  // a folha de prova (ou de exercício), com as linhas de resposta; o título e a questão são da peça, por cima:
+  // x, y é o centro; w, h o tamanho; linhas: quantas. Devolve titulo (o ponto do título) e area (das linhas).
+  // Do carrossel meme-em-imagem (a prova de bioquímica)
+  function folhaProva(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, w: 600, h: 760, linhas: 6, seed: 750 }, o);
+    const { w, h, seed } = o, y0 = -h / 2 + h * 0.34, passo = (h * 0.6) / o.linhas;
+    em(ctx, o, () => {
+      E.ret(ctx, -w / 2, -h / 2, w, h, { papel: corEm(o, 'superficie', 'branco', 'papel'), r: 4, seed, sombra: true, hachura: false });
+      for (let i = 0; i < o.linhas; i++) E.linha(ctx, [[-w / 2 + w * 0.08, y0 + i * passo], [w / 2 - w * 0.08, y0 + i * passo + 1]], { papel: 'apoio', lw: 3, seed: seed + i + 1 });
+    });
+    return { titulo: tela(o, 0, -h / 2 + h * 0.14), questao: tela(o, 0, -h / 2 + h * 0.25) };
+  }
+
+  // as marquinhas de tremor dos dois lados de uma coisa (a mão que treme, a pessoa com frio ou com a glicose baixa):
+  // x, y é o centro da coisa; larg e alto, o tamanho dela. Do carrossel meme-em-imagem (hipoglicemia)
+  function tremor(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, larg: 230, alto: 220, papel: 'tinta', seed: 760 }, o);
+    const { larg, alto, seed } = o;
+    for (const sd of [-1, 1]) for (let i = 0; i < 3; i++) {
+      const x = o.x + sd * (larg / 2 + 18 + i * 16), y0 = o.y - alto * 0.25 + i * 6;
+      E.linha(ctx, [[x, y0], [x + sd * 8, y0 + alto * 0.12], [x, y0 + alto * 0.24], [x + sd * 8, y0 + alto * 0.36]], { papel: o.papel, lw: 4, seed: seed + i + (sd > 0 ? 10 : 0) });
+    }
+  }
+
+  // o balão de quadrinho, vazio (o texto é da peça, por cima, em area): x, y é o centro; w, h o tamanho; como: 'fala'
+  // (o rabinho até alvo, a boca de quem fala), 'pensa' (as bolinhas até alvo) ou 'grito' (as pontas); alvo: [x, y].
+  // Tudo em pontos da tela (sem s e sem rot). Para achar a boca de uma pessoa: B.cabeca. Do carrossel meme-em-imagem
+  function balaoFala(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 500, w: 520, h: 200, como: 'fala', alvo: null, seed: 520 }, o);
+    const { w, h, seed } = o, bx = o.x - w / 2, by = o.y - h / 2, alvo = o.alvo;
+    const op = { papel: corEm(o, 'superficie', 'branco', 'papel'), seed, sombra: true, hachura: false };
+    const area = { x: bx + 28, y: by + 18, w: w - 56, h: h - 36 };
+    if (o.como === 'grito') {
+      const cx = bx + w / 2, cy = by + h / 2, n = 22, pts = [];
+      for (let i = 0; i < n; i++) {
+        const a = (i / n) * Math.PI * 2, fora = i % 2 === 0, rx = w / 2 + (fora ? 34 : 4), ry = h / 2 + (fora ? 30 : 4);
+        pts.push([cx + Math.cos(a) * rx, cy + Math.sin(a) * ry]);
+      }
+      E.poligono(ctx, pts, Object.assign({}, op, { amp: 0.6 }));
+      return { area };
+    }
+    if (o.como === 'pensa') {
+      E.ret(ctx, bx, by, w, h, Object.assign({}, op, { r: Math.min(h / 2, 64) }));
+      if (alvo) {
+        const b = [bx + w * (alvo[0] < bx + w / 2 ? 0.3 : 0.7), by + h];
+        for (const [u, rr] of [[0.28, 15], [0.62, 10]]) E.circulo(ctx, b[0] + (alvo[0] - b[0]) * u, b[1] + (alvo[1] - b[1]) * u * 0.6 + 12, rr, Object.assign({}, op, { sombra: false, seed: seed + rr }));
+      }
+      return { area };
+    }
+    if (alvo) {
+      const base = [Math.max(bx + 70, Math.min(bx + w - 70, alvo[0] < bx + w / 2 ? bx + w * 0.28 : bx + w * 0.72)), by + h];
+      const dx = alvo[0] - base[0], dy = alvo[1] - base[1], d = Math.hypot(dx, dy) || 1, comp = Math.abs(alvo[0] - base[0]) > 160 ? 150 : 66, u = Math.min(1, comp / d);
+      const tr = [[base[0] - 26, base[1] - 12], [base[0] + dx * u, base[1] + dy * u], [base[0] + 26, base[1] - 12]];
+      E.poligono(ctx, tr, Object.assign({}, op, { sombra: false, seed: seed + 3 }));
+      E.ret(ctx, bx, by, w, h, Object.assign({}, op, { r: 34 }));
+      // cobre a costura (a linha do balão que cruza a raiz do rabinho), sem contorno
+      const naAltura = (a, b2, yy, dentro) => { const t = clamp((yy - a[1]) / ((b2[1] - a[1]) || 1)); return [a[0] + (b2[0] - a[0]) * t + dentro, yy]; };
+      const y0 = by + h - 8, y1 = by + h + 9;
+      E.poligono(ctx, [naAltura(tr[0], tr[1], y0, 5), naAltura(tr[0], tr[1], y1, 5), naAltura(tr[2], tr[1], y1, -5), naAltura(tr[2], tr[1], y0, -5)], { papel: op.papel, contorno: false, hachura: false, sombra: false, amp: 0, seed: seed + 4 });
+      return { area };
+    }
+    E.ret(ctx, bx, by, w, h, Object.assign({}, op, { r: 34 }));
+    return { area };
+  }
+
+  // a caixa do narrador (a legenda do quadrinho: "8h, saindo para a visita"), vazia: x, y é o centro; w, h o tamanho.
+  // Devolve area, para o texto. Do carrossel meme-em-imagem
+  function narrador(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 300, w: 520, h: 120, seed: 500 }, o);
+    const { w, h, seed } = o, bx = o.x - w / 2, by = o.y - h / 2;
+    E.ret(ctx, bx, by, w, h, { papel: corEm(o, 'superficie', 'branco', 'papel'), r: 4, seed, sombra: true, hachura: false });
+    E.ret(ctx, bx + 4, by + 4, 12, h - 8, { papel: 'destaque', r: 2, contorno: false, hachura: false, sombra: false, seed: seed + 1 });
+    return { area: { x: bx + 30, y: by + 10, w: w - 44, h: h - 20 } };
+  }
+
+  // os raios da virada (o susto, a piada, a revelação): fatias de Marca-texto saindo do foco, atrás da cena.
+  // x, y é o foco; raio o tamanho (o padrão cobre o quadro); n quantas fatias. Do carrossel meme-em-imagem
+  function raios(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, raio: null, n: 22, papel: 'destaque', seed: 300 }, o);
+    const R0 = o.raio || Math.hypot(WD(), HT()) * 1.2;
+    for (let i = 0; i < o.n; i += 2) {
+      const a0 = (i / o.n) * Math.PI * 2 + 0.11, a1 = ((i + 1) / o.n) * Math.PI * 2 + 0.11;
+      E.poligono(ctx, [[o.x, o.y], [o.x + Math.cos(a0) * R0, o.y + Math.sin(a0) * R0], [o.x + Math.cos(a1) * R0, o.y + Math.sin(a1) * R0]], { papel: o.papel, contorno: false, hachura: false, sombra: false, amp: 0, seed: o.seed + i });
+    }
+  }
+
+  // a tesoura do recorte (o cartão para print): x, y é o meio dela; deitada, as lâminas para a direita.
+  // Do carrossel macete-para-a-prova (o cartão)
+  function tesoura(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, seed: 150 }, o);
+    const seed = o.seed;
+    em(ctx, o, () => {
+      E.circulo(ctx, -22, -15, 13, Object.assign({ papel: null, lw: 5, seed }, sem));
+      E.circulo(ctx, -22, 15, 13, Object.assign({ papel: null, lw: 5, seed: seed + 1 }, sem));
+      E.linha(ctx, [[-10, -8], [46, 12]], { lw: 5, seed: seed + 2 });
+      E.linha(ctx, [[-10, 8], [46, -12]], { lw: 5, seed: seed + 3 });
+    });
+    return { ponta: tela(o, 46, 0) };
+  }
+
+  // o errado (o X do mito, do que não se faz): x, y é o centro; k para entrar crescendo. O par do B.visto.
+  // Dos carrosséis macete-para-a-prova e caso-arraste (o X de Coral por cima do que é errado)
+  function errado(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, k: 1, papel: 'alerta', seed: 31 }, o);
+    if (o.k <= 0) return null;
+    em(ctx, Object.assign({}, o, { s: (o.s ?? 1) * o.k }), () => {
+      for (const d of [-1, 1]) E.linha(ctx, [[-20, -20 * d], [20, 20 * d]], { papel: o.papel, lw: 9, seed: o.seed + d });
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // o alto-falante pequeno (a pronúncia, o aviso, o áudio): x, y é o centro; k para entrar crescendo. Do reel a-palavra
+  function altoFalante(ctx, o = {}) {
+    o = Object.assign({ x: 540, y: 960, k: 1, seed: 560 }, o);
+    if (o.k <= 0) return null;
+    em(ctx, Object.assign({}, o, { s: (o.s ?? 1) * o.k }), () => {
+      E.poligono(ctx, [[-26, -12], [-10, -12], [10, -30], [10, 30], [-10, 12], [-26, 12]], Object.assign({ papel: 'tinta', seed: o.seed }, sem));
+      for (const [r, sd] of [[22, 1], [38, 2]]) {
+        const pts = []; for (let a = -0.8; a <= 0.8001; a += 0.2) pts.push([14 + Math.cos(a) * r, Math.sin(a) * r]);
+        E.linha(ctx, pts, { lw: 5, seed: o.seed + sd });
+      }
+    });
+    return { centro: [o.x, o.y] };
+  }
+
+  // ---------- lugares da versão 2 ----------
+  // o território da UBS: a UBS pequena à esquerda, duas casas, os moradores e a linha tracejada em volta, que se
+  // desenha sozinha (kLimite, 0 a 1); kGente faz os moradores chegarem. rotulo: o texto do limite (do textos.txt).
+  // Devolve ubs, portas (o topo de cada casa) e limite (x0, y0, x1, y1). Do reel a-palavra (adscrita)
+  function territorio(ctx, o = {}) {
+    const gy = comeco(ctx, o), seed = o.seed ?? 3000, kL = o.kLimite ?? 1, kG = o.kGente ?? 1, cl = (v) => clamp(v);
+    E.chao(ctx, gy, { seed: seed + 1 });
+    ubsIcone(ctx, { x: 235, y: gy - 58 * 2.3, s: 2.3, seed: seed + 10 });
+    const c1 = casa(ctx, { x: 600, y: gy, w: 230, h: 270, parede: 'superficie', telhado: 'apoioEscuro', seed: seed + 20 });
+    const c2 = casa(ctx, { x: 870, y: gy, w: 210, h: 240, parede: 'destaque', telhado: 'coral', seed: seed + 40 });
+    if (o.gente !== false) {
+      const gente = [['moradora', 515, 0.62], ['idoso', 715, 0.6], ['crianca', 950, 0.6]];
+      gente.forEach(([q, x, s], i) => { const a = cl(kG * 3 - i); if (a > 0) pessoa(ctx, { quem: q, x, y: gy + 16, s: s * (0.7 + 0.3 * a), look: -0.5, eyes: 'happy', seed: seed + 60 + i * 7 }); });
+    }
+    const x0 = 70, x1 = WD() - 70, y0 = gy - 540, y1 = gy + 70;
+    const lados = [[[x0, y1], [x0, y0]], [[x0, y0], [x1, y0]], [[x1, y0], [x1, y1]]];
+    lados.forEach(([de, ate], i) => tracejado(ctx, { de, ate, k: cl(kL * 3 - i), papel: 'alerta', lw: 8, n: i === 1 ? 14 : 8, seed: seed + 80 + i * 10 }));
+    if (o.rotulo && kL > 0.3) E.texto(ctx, String(o.rotulo), x0 + 30, y0 - 24, { papel: 'mao', size: 50, alpha: cl((kL - 0.3) * 3) });
+    return { chao: gy, ubs: [235, gy - 240], portas: [[600, c1.topo - 12], [870, c2.topo - 12]], limite: [x0, y0, x1, y1] };
+  }
+
+  // a sala de aula (a prova, o tutorial do PBL, a aula): a meia-parede, a lousa (vazia: o texto é da peça, em lousa),
+  // o relógio (hora: 7 = 7h; relogio: false tira) e a carteira com a folha. aluno: { quem, ... } senta o aluno na
+  // cadeira, atrás da carteira (a carteira esconde as pernas); sem aluno, a cadeira fica vazia.
+  // Devolve lousa (o retângulo de dentro), assento, mesa (o y do tampo) e cabeca (do aluno). Do carrossel meme-em-imagem
+  function salaDeAula(ctx, o = {}) {
+    const gy = comeco(ctx, o), seed = o.seed ?? 840;
+    meiaParede(ctx, gy, 380, seed);
+    // a lousa e o relógio na parede, na mesma proporção do chão (reel: chão 1400, lousa no y 455; carrossel: chão 984)
+    const lz = lousa(ctx, { x: 420, y: gy * 0.325, w: 460, h: 250, seed: seed + 2 });
+    if (o.relogio !== false) relogio(ctx, { x: 830, y: gy * 0.314, r: 78, hora: o.hora ?? 7, seed: seed + 4 });
+    E.chao(ctx, gy, { seed: seed + 20 });
+    const c = cadeira(ctx, { x: 520, y: gy, tipo: 'madeira', seed: seed + 6 });
+    let cab = null;
+    if (o.aluno) {
+      const al = Object.assign({ quem: 'calouro', look: 0.2, eyes: 'focus' }, o.aluno, { x: c.assento[0], y: c.assento[1], pose: 'sit' });
+      pessoa(ctx, al);
+      cab = cabeca(al);
+    }
+    const m = mesa(ctx, { x: 540, y: gy, w: 460, h: 250, seed: seed + 8 });
+    if (o.folha !== false) folhaProva(ctx, { x: 545, y: m.topo - 17, w: 190, h: 26, linhas: 2, seed: seed + 10 });
+    return { chao: gy, lousa: lz.area, assento: c.assento, mesa: m.topo, cabeca: cab };
+  }
+
+  // o ponto da cabeça de uma pessoa da biblioteca, sem desenhar (para o balão, a seta, a lupa): recebe o mesmo objeto
+  // do B.pessoa (x, y, s, pose, quem) e devolve centro e topo. Atenção: sem pose, o Ch.person usa 'sit' (o y é o
+  // quadril), e aqui também. Do carrossel meme-em-imagem (MEME.cabeca)
+  function cabeca(o = {}) {
+    let s = o.s ?? 1;
+    if (o.quem === 'crianca' || /^crian/.test(String(o.idade || ''))) s *= 0.66;
+    const sentado = (o.pose || 'sit') === 'sit';
+    const cy = o.y - (sentado ? 254 : 404) * s;
+    return { centro: [o.x, cy], topo: [o.x, cy - 112 * s], s };
+  }
+
   // ---------- a lista ----------
   const BIB = {
     // objetos
     mesa, cadeira, rede, relogio, celular, aparelhoPressao, manguito, tubo, glicosimetro, termometro, seringa,
     frascoVacina, caixaTermica, prancheta, cartaoVacina, mosquito, cobra, lupa, calendario, carimbo,
     xicara, estojo, gota, floco, arvore, casa, coracao, visto, tracejado, balao, prato, cigarro, tenis, ubsIcone, dor,
+    // objetos da versão 2
+    flebotomineo, ferida, copo, pomada, janelaTela, mosquiteiro, roupaComprida, vassoura, cachorro, gato, morcego,
+    torneira, garrafa, lata, pulmoes, ondasDeCalor, monitorFrasco, lousa, folhaProva, tremor, balaoFala, narrador,
+    raios, tesoura, errado, altoFalante,
     // lugares
-    varanda, rua, sala, ubsFora, ubsDentro, consultorio, salaEspera, floresta, mapaRR,
+    varanda, rua, sala, ubsFora, ubsDentro, consultorio, salaEspera, floresta, mapaRR, territorio, salaDeAula,
     // gente
-    pessoa,
+    pessoa, cabeca,
     // apoio
     naoSome, EXTRA,
   };
-  BIB.LUGARES = ['varanda', 'rua', 'sala', 'ubsFora', 'ubsDentro', 'consultorio', 'salaEspera', 'floresta', 'mapaRR'];
-  BIB.OBJETOS = ['mesa', 'cadeira', 'rede', 'relogio', 'celular', 'aparelhoPressao', 'manguito', 'tubo', 'glicosimetro', 'termometro', 'seringa', 'frascoVacina', 'caixaTermica', 'prancheta', 'cartaoVacina', 'mosquito', 'cobra', 'lupa', 'calendario', 'carimbo', 'xicara', 'estojo', 'gota', 'floco', 'arvore', 'casa', 'coracao', 'visto', 'tracejado', 'balao', 'prato', 'cigarro', 'tenis', 'ubsIcone', 'dor'];
+  BIB.LUGARES = ['varanda', 'rua', 'sala', 'ubsFora', 'ubsDentro', 'consultorio', 'salaEspera', 'floresta', 'mapaRR', 'territorio', 'salaDeAula'];
+  BIB.OBJETOS = ['mesa', 'cadeira', 'rede', 'relogio', 'celular', 'aparelhoPressao', 'manguito', 'tubo', 'glicosimetro', 'termometro', 'seringa', 'frascoVacina', 'caixaTermica', 'prancheta', 'cartaoVacina', 'mosquito', 'cobra', 'lupa', 'calendario', 'carimbo', 'xicara', 'estojo', 'gota', 'floco', 'arvore', 'casa', 'coracao', 'visto', 'tracejado', 'balao', 'prato', 'cigarro', 'tenis', 'ubsIcone', 'dor',
+    'flebotomineo', 'ferida', 'copo', 'pomada', 'janelaTela', 'mosquiteiro', 'roupaComprida', 'vassoura', 'cachorro', 'gato', 'morcego', 'torneira', 'garrafa', 'lata', 'pulmoes', 'ondasDeCalor', 'monitorFrasco', 'lousa', 'folhaProva', 'tremor', 'balaoFala', 'narrador', 'raios', 'tesoura', 'errado', 'altoFalante'];
   BIB.GENTE = DO_KIT.concat(Object.keys(QUEM));
   // por nome: BIB.desenha(ctx, 'cadeira', { x, y })
   BIB.desenha = (ctx, nome, o) => { if (!BIB[nome] || typeof BIB[nome] !== 'function') throw new Error(`[biblioteca] não tenho "${nome}"`); return BIB[nome](ctx, o); };

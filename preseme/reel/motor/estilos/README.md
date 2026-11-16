@@ -6,7 +6,7 @@ O kit faz a mesma cena sair em seis estilos de desenho, trocando um nome. Serve 
 
 Feito na noite de 15 para 16/11/2026, por cima do animation-studio (o motor de desenho), sem mexer no motor. Testado numa cena de demonstração (pasta `demo-estilos`): os seis estilos, a folha da parada 2, dois clipes em movimento e o som pelo motor do reel.
 
-Junto do kit mora a **biblioteca de desenhos** (`biblioteca.js`, guia em `BIBLIOTECA.md`): 9 lugares, 35 objetos e 9 pessoas prontos, chamados pelo nome (`B.varanda(ctx)`, `B.cadeira(ctx, { x, y })`, `B.pessoa(ctx, { quem: 'idosa', pose: 'sit' })`), que saem nos seis estilos. Peça nova já nasce com ela: o desenho que está lá não se escreve de novo.
+Junto do kit mora a **biblioteca de desenhos** (`biblioteca.js`, guia em `BIBLIOTECA.md`): 11 lugares, 61 objetos e 9 pessoas prontos, chamados pelo nome (`B.varanda(ctx)`, `B.cadeira(ctx, { x, y })`, `B.pessoa(ctx, { quem: 'idosa', pose: 'sit' })`), que saem nos seis estilos. Peça nova já nasce com ela: o desenho que está lá não se escreve de novo.
 
 ## Os seis estilos
 

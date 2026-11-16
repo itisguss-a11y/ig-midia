@@ -1,5 +1,6 @@
-// PRESEME · biblioteca · o catálogo: cada desenho da biblioteca com o nome de chamar, em 4 páginas paradas
-// (t 0 a 1: lugares; 1 a 4: objetos, em três páginas; 4 a 5: gente). O texto daqui é só rótulo do catálogo, não é peça.
+// PRESEME · biblioteca · o catálogo: cada desenho da biblioteca com o nome de chamar, em 8 páginas paradas
+// (t 0 a 1: lugares; 1 a 4: objetos, em três páginas; 4 a 5: gente; da versão 2: 5 a 7, objetos em duas páginas, e 7 a 8,
+// os lugares novos). O texto daqui é só rótulo do catálogo, não é peça.
 (function () {
   const E = globalThis.ESTILOS, B = globalThis.BIB, G = globalThis.G;
   const W = G.W, H = G.H;
@@ -117,15 +118,71 @@
     grade(ctx, 3, 3);
   }
 
+
+  // ---------- versão 2: páginas 5 e 6, os objetos novos; página 7, os lugares novos ----------
+  const OBJ4 = [
+    ['flebotomineo', (c, x, y) => B.flebotomineo(c, { x, y: y - 10, s: 1.3 })],
+    ['ferida · pele', (c, x, y) => B.ferida(c, { x, y, r: 50, pele: true })],
+    ['ferida · fase 0', (c, x, y) => B.ferida(c, { x, y, r: 60, fase: 0, pele: { w: 300, h: 150 } })],
+    ['copo · colher', (c, x, y) => B.copo(c, { x, y: y + 130, s: 0.9, colher: true })],
+    ['pomada', (c, x, y) => B.pomada(c, { x, y, s: 1.2 })],
+    ['janelaTela', (c, x, y) => B.janelaTela(c, { x, y, s: 1.4 })],
+    ['mosquiteiro', (c, x, y) => B.mosquiteiro(c, { x, y: y + 120, s: 1.1 })],
+    ['roupaComprida', (c, x, y) => B.roupaComprida(c, { x, y, s: 1.25 })],
+    ['vassoura', (c, x, y) => B.vassoura(c, { x, y, s: 1.2 })],
+    ['cachorro', (c, x, y) => B.cachorro(c, { x: x - 10, y: y + 135, s: 0.9 })],
+    ['gato', (c, x, y) => B.gato(c, { x, y: y + 125, s: 1.2 })],
+    ['morcego', (c, x, y) => B.morcego(c, { x, y, s: 1.6 })],
+    ['torneira', (c, x, y) => B.torneira(c, { x, y, s: 1.15 })],
+    ['garrafa', (c, x, y) => B.garrafa(c, { x, y: y + 140, s: 0.85 })],
+    ['lata', (c, x, y) => B.lata(c, { x, y: y + 120, s: 1.1 })],
+  ];
+  const OBJ5 = [
+    ['pulmoes', (c, x, y) => B.pulmoes(c, { x, y, s: 1.1 })],
+    ['ondasDeCalor', (c, x, y) => B.ondasDeCalor(c, { x, y: y + 110, h: 220, s: 1.1 })],
+    ['monitorFrasco · 0 a 3', (c, x, y) => { for (let i = 0; i < 4; i++) B.monitorFrasco(c, { x: x - 117 + i * 78, y, r: 32, estagio: i }); }],
+    ['lousa', (c, x, y) => B.lousa(c, { x, y, w: 290, h: 170 })],
+    ['folhaProva', (c, x, y) => B.folhaProva(c, { x, y: y + 10, w: 220, h: 270, linhas: 5, rot: -0.04 })],
+    ['tremor · cabeca', (c, x, y) => { const p = { quem: 'calouro', x, y: y + 150, s: 0.55, pose: 'stand', eyes: 'wide', mouth: 'flat' }; B.pessoa(c, p); const cb = B.cabeca(p); B.tremor(c, { x: cb.centro[0], y: cb.centro[1], larg: 110, alto: 120 }); }],
+    ['balaoFala · fala', (c, x, y) => { const p = { quem: 'agente', x: x - 100, y: y + 150, s: 0.45, pose: 'stand', mouth: 'open' }; B.pessoa(c, p); B.balaoFala(c, { x: x + 40, y: y - 70, w: 250, h: 110, alvo: B.cabeca(p).topo }); }],
+    ['balaoFala · pensa', (c, x, y) => B.balaoFala(c, { x, y: y - 30, w: 260, h: 140, como: 'pensa', alvo: [x - 80, y + 140] })],
+    ['balaoFala · grito', (c, x, y) => B.balaoFala(c, { x, y, w: 230, h: 140, como: 'grito' })],
+    ['narrador', (c, x, y) => B.narrador(c, { x, y, w: 290, h: 110 })],
+    ['raios', (c, x, y) => { B.raios(c, { x, y, raio: 320 }); B.errado(c, { x, y, s: 1.6 }); }],
+    ['tesoura', (c, x, y) => B.tesoura(c, { x, y, s: 2.4 })],
+    ['errado', (c, x, y) => B.errado(c, { x, y, s: 3 })],
+    ['altoFalante', (c, x, y) => B.altoFalante(c, { x, y, s: 2.6 })],
+  ];
+  const LUGARES2 = [
+    ['territorio', (c) => B.territorio(c, { rotulo: 'território da UBS' })],
+    ['salaDeAula · aluno', (c) => B.salaDeAula(c, { aluno: { quem: 'calouro', eyes: 'focus', mouth: 'flat' } })],
+    ['salaDeAula · vazia', (c) => B.salaDeAula(c, { hora: 10.5, folha: false })],
+  ];
+  function lugares2(ctx) {
+    E.fundo(ctx);
+    const tw = W / 2, th = H / 2;
+    LUGARES2.forEach(([nome, fn], i) => {
+      const tx = (i % 2) * tw, ty = Math.floor(i / 2) * th;
+      ctx.save(); ctx.beginPath(); ctx.rect(tx, ty, tw, th); ctx.clip();
+      ctx.translate(tx, ty); ctx.scale(1 / 2, 1 / 2); fn(ctx);
+      ctx.restore();
+      etiqueta(ctx, nome, tx + tw / 2, ty + th - 40, 420);
+    });
+    grade(ctx, 2, 2);
+  }
+
   Studio.film({
     fadeOut: 0,
     draw(ctx, t) {
-      const p = Math.min(4, Math.floor(t));
+      const p = Math.min(7, Math.floor(t));
       if (p === 0) lugares(ctx);
       else if (p === 1) objetos(ctx, OBJ1);
       else if (p === 2) objetos(ctx, OBJ2);
       else if (p === 3) objetos(ctx, OBJ3, 3);
-      else gente(ctx);
+      else if (p === 4) gente(ctx);
+      else if (p === 5) objetos(ctx, OBJ4);
+      else if (p === 6) objetos(ctx, OBJ5);
+      else lugares2(ctx);
     },
   });
 })();
