@@ -1,0 +1,19 @@
+{
+  "nome": "exemplo-leishmaniose",
+  "titulo": "Dado que se move · leishmaniose tegumentar em Roraima",
+  "tipo": "Dado que se move",
+  "estilo": "carimbo",
+  "limite": 45,
+  "capa": "@principal",
+  "cores": [
+    "#FFFDF6",
+    "#C98A62",
+    "#DBA27E",
+    "#A86E4B",
+    "#2B211E"
+  ],
+  "esperado": {
+    "frases": 8,
+    "palavras": 17
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "modo": "blocos",
+  "semente": "exemplo-resolutividade",
+  "bpm": 100,
+  "lufs": -16,
+  "blocos": [
+    {
+      "cenas": [
+        "palavra",
+        "significa"
+      ],
+      "clima": "curioso"
+    },
+    {
+      "cenas": [
+        "exemplo"
+      ],
+      "clima": "brincalhao"
+    },
+    {
+      "cenas": [
+        "pegadinha"
+      ],
+      "clima": "tenso"
+    },
+    {
+      "cenas": [
+        "fecho"
+      ],
+      "clima": "calmo"
+    }
+  ],
+  "fundos": {},
+  "coisas": [],
+  "silencios": [
+    {
+      "frase": 5,
+      "antes": 0.4
+    }
+  ],
+  "efeitos": true
+}

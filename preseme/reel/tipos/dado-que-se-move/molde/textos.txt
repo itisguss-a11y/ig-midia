@@ -1,0 +1,30 @@
+# Dado que se move · (o assunto) · textos da tela · versão 1
+# Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+# Os números do desenho são palavras D: o número grande [D02], a unidade [D03], o lugar e o ano [D04], a fonte com o ano
+# [D05] e as barras, de [D08] a [D15] (nome e valor; a primeira é a da peça e tem o número grande). Valor só com algarismos
+# e vírgula: a unidade é uma só, a [D03]. Se uma frase disser "N vezes", o motor confere com a conta das barras.
+# O vídeo vai até 45 s: a leitura manda no tempo, então frase curta.
+# Do jeito dele: vírgula, não dois-pontos, para apresentar algo; nada de aula, módulo ou cronograma; sem apelo no fim; sem o nome do perfil.
+
+[01] O que é o número, em uma frase.
+[02] O que ele quer dizer, em palavras simples.
+[03] Os outros lugares, na mesma conta.
+[04] Aqui é 5 vezes o do país.
+[05] Por que é assim, o vetor e o lugar.
+[06] O que fazer, numa frase.
+[07] O fecho, que volta ao número.
+
+# palavras de dentro do desenho
+[D01] Dado de Roraima
+[D02] 25,0
+[D03] casos por 100 mil habitantes
+[D04] Roraima, 2024
+[D05] Fonte: (órgão oficial), dados de 2024
+[D06] 100 mil moradores
+[D07] cada ponto aceso é um caso
+[D08] Roraima
+[D09] 25,0
+[D10] Região Norte
+[D11] 12,5
+[D12] Brasil
+[D13] 5,0

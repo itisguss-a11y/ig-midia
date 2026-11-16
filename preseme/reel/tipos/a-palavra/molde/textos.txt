@@ -1,0 +1,24 @@
+A PALAVRA · (o termo) · textos da tela · versão 1
+# MOLDE do tipo "a palavra": troque cada linha pelo texto da peça. Toda frase com fato leva a fonte na tabela de afirmações.
+# A palavra grande é o [D02]; as sílabas, o [D03], com a forte em maiúsculas (ads·CRI·ta); a fonte da definição, o [D04].
+# A pergunta [01] e o fecho [06] falam a palavra. O exemplo é da UBS ou da visita. Peça de 20 a 40 s: frases curtas.
+# Do jeito dele: vírgula, não dois-pontos, para apresentar algo (no fecho, os dois-pontos depois da palavra valem).
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai do vídeo.
+
+PARTE 1 · as frases
+[01] A pergunta do gancho, com a palavra?
+[02] O que a palavra quer dizer, pela fonte, em palavra simples.
+[03] Mais uma frase do que ela quer dizer, se precisar.
+[04] O exemplo da vida real, na UBS ou na visita.
+[05] A pegadinha, com o que ela se confunde.
+[06] Palavra, o que ela é, numa frase que define.
+
+PARTE 2 · palavras de dentro do desenho
+[D01] A palavra
+[D02] Palavra
+[D03] pa·LA·vra
+[D04] a fonte, curta (PNAB, Portaria 2.436/2017)
+[D05] o que confunde
+[D06] o que é
+[D07] PEGADINHA
+[D08] Na UBS

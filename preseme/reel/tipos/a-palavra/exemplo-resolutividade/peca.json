@@ -1,0 +1,8 @@
+{
+  "nome": "palavra-resolutividade",
+  "titulo": "Você sabe o que é resolutividade na atenção básica?",
+  "limite": 40,
+  "capa": "@principal",
+  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E", "#B9B2A6"],
+  "esperado": null
+}
