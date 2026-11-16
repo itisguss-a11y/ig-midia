@@ -1,0 +1,54 @@
+GUIA DE BOLSO · MOLDE · textos da tela · versão 0
+Molde do tipo guia de bolso. Troque todo texto marcado com TROQUE. A peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] TROQUE, o título com o sinal que se vê na visita e o que pode ser.
+[02] TROQUE, a promessa, do primeiro sinal ao 192.
+[03] TROQUE, o que é, com o número que separa o normal do problema.
+[04] TROQUE, o detalhe do número e quando fica grave.
+[05] TROQUE, os sinais que dá para ver na visita.
+[06] TROQUE, o passo 1, o que fazer primeiro.
+[07] TROQUE, o porquê do passo 1.
+[08] TROQUE, o que serve para o passo, em até quatro opções.
+[09] TROQUE, o passo 2, quanto tempo esperar.
+[10] TROQUE, o porquê do passo 2.
+[11] TROQUE, o erro comum.
+[12] TROQUE, por que é erro.
+[13] TROQUE, o que você faz com a equipe.
+[14] TROQUE, o que a equipe faz depois.
+[15] TROQUE, quando ligar 192.
+[16] TROQUE, o detalhe do SAMU 192.
+[17] TROQUE, a regra 1 para guardar.
+[18] TROQUE, a regra 2 para guardar.
+[19] TROQUE, a regra 3 para guardar.
+[20] TROQUE, a regra 4 para guardar.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] guia de bolso
+[D02] o número
+[D03] 00
+[D04] 00
+[D05] faixa 1
+[D06] faixa 2
+[D07] os sinais
+[D08] sinal 1
+[D09] sinal 2
+[D10] sinal 3
+[D11] sinal 4
+[D12] sinal 5
+[D13] sinal 6
+[D14] passo 1
+[D15] opções
+[D16] opção 1
+[D17] opção 2
+[D18] opção 3
+[D19] opção 4
+[D20] passo 2
+[D21] 15 min
+[D22] erro comum
+[D23] com a equipe
+[D24] urgência
+[D25] 192
+[D26] para guardar
+[D27] Fontes · TROQUE, órgão oficial, título do documento, ano

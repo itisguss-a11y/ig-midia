@@ -1,0 +1,65 @@
+MAPA E DADO · oncocercose, a cegueira dos rios · textos da tela · versão 1
+Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
+Edite só o que vem depois do número e mande de volta. Linha apagada = texto que sai da lâmina.
+
+PARTE 1 · as frases
+[01] O último foco da cegueira dos rios nas Américas fica na nossa fronteira.
+[02] Onde ela está, por que é daqui e como se previne.
+[03] Guatemala, Colômbia, Equador e México já eliminaram a doença, entre 2013 e 2016.
+[04] O último foco das Américas fica entre o Brasil e a Venezuela.
+[05] A área endêmica no Brasil é só a Terra Indígena Yanomami, na fronteira com a Venezuela.
+[06] Área endêmica é onde a doença se mantém. O tratamento é feito dos dois lados da fronteira.
+[07] Quem passa o verme é o borrachudo, o pium, que se cria em rios e córregos.
+[08] O ciclo começa quando o inseto pica uma pessoa infectada.
+[09] Na pele, coceira, manchas claras e nódulos, caroços que dá para apalpar.
+[10] Nos olhos, pode tirar parte da visão e até cegar. Daí o nome cegueira dos rios.
+[11] Não há vacina. A prevenção é tratar a área inteira.
+[12] Um remédio contra o verme vai para todos que moram ou trabalham lá, duas vezes por ano, com cobertura acima de 85%.
+[13] Nas áreas-sentinela, quem tinha o verme caiu de 20% em 2003 para 2,5% em 2016.
+[14] Área-sentinela é o lugar escolhido para medir como a doença está.
+[15] Não houve caso com sintoma registrado no Brasil de 2000 a 2018.
+[16] A fase é de pré-eliminação, quase lá. Por isso o tratamento continua.
+[17] Último foco das Américas, na fronteira com a Venezuela.
+[18] Passa pela picada do borrachudo, que se cria nos rios.
+[19] Sem vacina, a área inteira é tratada duas vezes por ano.
+[20] Pré-eliminação, o tratamento continua.
+
+PARTE 2 · palavras de dentro do desenho (só mexa se quiser)
+[D01] mapa e dado
+[D02] o número
+[D03] 4
+[D04] países já eliminaram
+[D05] 1
+[D06] foco ainda resta
+[D07] onde está
+[D08] área endêmica
+[D09] VENEZUELA
+[D10] AMAZONAS
+[D11] RORAIMA
+[D12] GUIANA
+[D13] Boa Vista
+[D14] por que é daqui
+[D15] borrachudo (pium)
+[D16] rio
+[D17] o que faz
+[D18] pele
+[D19] olhos
+[D20] prevenção
+[D21] sem vacina
+[D22] 2 vezes por ano
+[D23] acima de 85%
+[D24] a queda
+[D25] 2003
+[D26] 20%
+[D27] 2007
+[D28] 15%
+[D29] 2012
+[D30] 4%
+[D31] 2016
+[D32] 2,5%
+[D33] e agora
+[D34] pré-eliminação
+[D35] eliminação
+[D36] estamos aqui
+[D37] para guardar
+[D38] Fontes · Ministério da Saúde, Oncocercose e Situação epidemiológica · OPAS, 2018

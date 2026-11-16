@@ -1,0 +1,12 @@
+[L01] Capa com um copo de água com açúcar, um relógio com 15 minutos marcados e um aparelho de glicemia com a seta para baixo, sob o título "Suor, tremor e fome em quem tem diabetes? Pode ser glicose baixa."
+[L02] Régua da glicose em mg/dL, com a faixa abaixo de 70 marcada como hipoglicemia e a faixa abaixo de 54 como nível 2.
+[L03] Seis ícones dos sinais, suor, fome, tremor, coração acelerado, palidez e visão turva.
+[L04] Passo 1, o estudante oferece um copo de água com açúcar à moradora, sentada e acordada.
+[L05] As quatro opções que valem 15 g de açúcar rápido, uma colher de sopa de açúcar em meio copo de água, 3 balas moles, 150 ml de refrigerante comum e um copo de suco de laranja integral.
+[L06] Passo 2, a moradora sentada em repouso e um relógio com 15 minutos marcados.
+[L07] Passo 3, o copo e o aparelho de glicemia ligados por setas em volta, e uma régua com o nível ainda abaixo da linha do 70.
+[L08] Passo 4, um prato com pão integral e maçã, e um relógio em que o ponteiro andou uma hora.
+[L09] Erro comum, chocolate e bolacha recheada riscados e, ao lado, o copo de água com açúcar marcado como certo.
+[L10] O estudante conta à agente comunitária de saúde, que anota na prancheta; ao lado, uma folha e uma lupa.
+[L11] Fundo escuro com um celular que mostra 192 na tela.
+[L12] Cartão-resumo para recortar, com as quatro regras, abaixo de 70 é hipoglicemia; acordada, 15 g de açúcar rápido, 15 minutos, mede de novo; passou de 70, lanche em até 1 hora; desmaio ou convulsão, 192.

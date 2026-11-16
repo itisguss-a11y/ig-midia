@@ -1,0 +1,10 @@
+[L01] TROQUE, a capa, o que o desenho grande mostra e o título.
+[L02] TROQUE, o desenho do número que separa o normal do problema.
+[L03] TROQUE, os ícones dos sinais, um por um.
+[L04] Passo 1, o estudante oferece um copo à moradora, sentada e acordada. TROQUE se o gesto for outro.
+[L05] TROQUE, as opções do passo, uma por uma.
+[L06] Passo 2, a moradora sentada em repouso e um relógio com os minutos marcados.
+[L07] TROQUE, o erro comum riscado e o certo ao lado.
+[L08] O estudante conta à agente comunitária de saúde, que anota na prancheta; ao lado, uma folha e uma lupa.
+[L09] Fundo escuro com um celular que mostra 192 na tela.
+[L10] Cartão-resumo para recortar, com as quatro regras. TROQUE pelas regras da peça.

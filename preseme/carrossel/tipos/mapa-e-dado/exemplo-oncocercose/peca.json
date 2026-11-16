@@ -1,0 +1,12 @@
+{
+  "nome": "mapa-oncocercose",
+  "titulo": "",
+  "tipo": "carrossel",
+  "formato": "4:5",
+  "capa": "@l01",
+  "cores": [
+    "#C98A62",
+    "#A86E4B"
+  ],
+  "esperado": null
+}
