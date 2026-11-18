@@ -1,9 +1,0 @@
-{
-  "nome": "meme-oligodendrocito",
-  "titulo": "O que é um oligodendrócito?",
-  "nota": "texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos",
-  "limite": 35,
-  "capa": "@preparacao",
-  "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"],
-  "esperado": { "frases": 10, "palavras": 6 }
-}

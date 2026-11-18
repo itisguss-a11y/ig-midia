@@ -1,9 +1,0 @@
-{
-  "nome": "um-dia-molde",
-  "titulo": "TROQUE: o título da peça",
-  "tipo": "um dia, contado pela hora",
-  "limite": 179.6,
-  "capa": "@abertura",
-  "cores": ["#C98A62", "#DBA27E", "#A86E4B", "#2B211E"],
-  "esperado": { "frases": 13, "palavras": 10 }
-}

@@ -1,1 +1,0 @@
-{"nome": "TROQUE-nome-da-peca", "titulo": "TROQUE: a pergunta da frase [01]", "tipo": "tour", "nota": "molde do tipo tour; o chat 1 troca tudo o que diz TROQUE", "limite": 150, "capa": "@entrada", "estilo": "pixel", "cores": ["#FFFDF6", "#C98A62", "#DBA27E", "#A86E4B", "#2B211E"], "esperado": {"frases": 7, "palavras": 9}}

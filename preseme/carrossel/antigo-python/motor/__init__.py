@@ -1,1 +1,0 @@
-# PRESEME · motor de carrossel

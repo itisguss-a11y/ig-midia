@@ -1,8 +1,0 @@
-out/
-tmp/
-node_modules/
-*.mp4
-*.wav
-*.mov
-__pycache__/
-textos.js

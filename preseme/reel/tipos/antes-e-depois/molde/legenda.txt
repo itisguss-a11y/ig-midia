@@ -1,7 +1,0 @@
-(TROQUE) A primeira linha diz o antes e o depois em números, sem repetir a pergunta da tela.
-
-(TROQUE) Um parágrafo curto com o que a ação fez, por que funcionou e o que acontece se ela parar, em palavras simples, com o que a tela não disse.
-
-Fonte: (TROQUE) a fonte oficial de cada número, uma vez, no fim.
-
-(TROQUE) até 5 hashtags do assunto, como #vacinacao #saudepublica #SUS

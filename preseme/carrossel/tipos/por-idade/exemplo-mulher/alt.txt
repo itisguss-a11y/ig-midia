@@ -1,8 +1,0 @@
-[L01] Capa: "Rastreamento de câncer na mulher: o que muda com a idade?". Embaixo, cinco mulheres de idades diferentes em pé sobre uma régua: 25–39, 40–49, 50–64, 65–74 e 75+.
-[L02] 25 a 39 anos: teste de DNA-HPV a cada 5 anos, se der negativo; mamografia não entra na rotina. Por quê: o teste é mais preciso.
-[L03] 40 a 49 anos: teste de DNA-HPV a cada 5 anos; mamografia se ela quiser, depois de conversar com a equipe, porque a mama mais densa pode dar falso-positivo.
-[L04] 50 a 64 anos: teste de DNA-HPV a cada 5 anos e mamografia de rotina a cada 2 anos. Dos 50 aos 74 estão quase 6 em cada 10 casos de câncer de mama.
-[L05] 65 a 74 anos: a faixa do teste de DNA-HPV vai até os 64; a mamografia de rotina segue a cada 2 anos, até os 74 desde 2025.
-[L06] 75 anos ou mais: mamografia caso a caso, com a equipe, pesando as doenças e a expectativa de vida.
-[L07] Para salvar: a régua inteira, de 25 a 75 anos ou mais, com o teste de DNA-HPV e a mamografia em cada faixa. Sem sintoma, é rastreamento; com sintoma, diagnóstico precoce.
-[L08] Na visita: você pergunta a idade e os últimos exames; a equipe faz o teste de DNA-HPV e orienta a mamografia; nódulo na mama endurecido e fixo se investiga logo.

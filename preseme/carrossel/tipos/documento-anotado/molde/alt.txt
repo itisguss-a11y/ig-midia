@@ -1,6 +1,0 @@
-[L01] TROQUE, a capa: o título e o documento inteiro, com a lupa no primeiro campo.
-[L02] Campo 1, TROQUE: o nome do campo, o pedaço do documento aumentado com o campo marcado, o erro comum e o porquê.
-[L03] Campo 3, TROQUE: o nome, o exemplo escrito (se houver), o erro comum e o porquê.
-[L04] Campo 4, TROQUE.
-[L05] Campos 5 e 6, TROQUE.
-[L06] O documento inteiro de novo, com os números marcados e, ao lado, o resumo de cada um. Embaixo, a fonte.

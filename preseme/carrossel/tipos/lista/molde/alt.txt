@@ -1,5 +1,0 @@
-[L01] TROQUE, a capa: o número grande, o título, a promessa e o desenho.
-[L02] TROQUE, o item 1: o número, o nome, o desenho e o porquê.
-[L03] TROQUE, o item 2: o número, o nome, o desenho e o porquê.
-[L04] TROQUE, o resumo: os itens numa lâmina só.
-[L05] TROQUE, o que fazer: o que é de você e o que é da equipe.

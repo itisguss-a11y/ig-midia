@@ -1,6 +1,0 @@
-[L01] TROQUE, a pergunta da capa e as fichas com as letras do macete.
-[L02] TROQUE, a resposta e uma linha por letra: a letra e o nome dela.
-[L03] TROQUE, a letra 1 grande, o nome, o que significa e o desenho.
-[L04] TROQUE, a letra 2 grande, o nome, o que significa e o desenho.
-[L05] TROQUE, o selo da pegadinha, o que confunde com o quê e o desenho que compara.
-[L06] TROQUE, o cartão para print, recortado, com uma linha por letra e a regra.

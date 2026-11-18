@@ -1,6 +1,0 @@
-Texto alternativo de cada lâmina (o Instagram lê para quem não enxerga a imagem). Uma linha por lâmina, "[L01] o que a imagem mostra".
-Texto de exemplo escrito pelo Opus; a peça de verdade passa pelo chat 1 (Fable) e pela conferência dos fatos.
-[L01] Quadrinho, painel 1: numa sala com a lousa escrita "Prova de bioquímica" e o relógio marcando 7h, o calouro sentado à carteira, com a prova na frente. A legenda diz: "Prova de bioquímica, 7h. Pulei o café."
-[L02] Painel 2: a folha da prova de perto, com a primeira questão: "1. Cite os sinais da hipoglicemia."
-[L03] Painel 3: o calouro de perto, suando e tremendo, de olhos arregalados, diz: "Suor, tremor, fome, coração disparado... Sei todos. Estou sentindo todos."
-[L04] O que fica: hipoglicemia se define pelo número, glicose no sangue abaixo de 70 mg/dL. Acordado e engolindo, vale a regra dos 15: 15 g de açúcar, 15 minutos de repouso e medir de novo; por exemplo, uma colher de sopa de açúcar em meio copo de água. Embaixo, o copo com a colher, o relógio com 15 minutos e o aparelho de medir a glicose. Fonte: Sociedade Brasileira de Diabetes, 2023.

@@ -1,4 +1,0 @@
-[01] A visita, de casa em casa
-[D01] casa 7
-[D02] 3 m
-[D03] visita feita

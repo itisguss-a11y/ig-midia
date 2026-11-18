@@ -1,6 +1,0 @@
-[L01] Capa. Um frasco de vacina de tampa vermelha no sol, com o calor no ar, e um termômetro com a coluna acima da faixa de 2 °C a 8 °C, sob a pergunta "Vacina que esquentou ainda protege?".
-[L02] Dúvida 1, num balão escrito à mão. O termômetro com a faixa de 2 °C a 8 °C, um certo dentro dela e um xis acima e abaixo; ao lado, o mesmo frasco três vezes, com a barra de força menor a cada saída da faixa.
-[L03] Dúvida 2. As paradas da rede de frio, ligadas por um caminho: a central nacional, a central dos 27 estados, o município e a sala de vacinação, com o avião, o caminhão refrigerado e a caixa térmica com o registrador de temperatura.
-[L04] Dúvida 3. A câmara refrigerada da sala, com frascos nas prateleiras, o mostrador em 7 °C e o sino do alarme tocando; ao lado, a escala com a faixa de 2 °C a 8 °C e os alarmes em 3 °C e 7 °C.
-[L05] Dúvida 4. Dois frascos com o monitor aumentado na lente: à esquerda, o quadrado mais claro que o círculo, pode usar; à direita, o quadrado igual ao círculo, descarte. No meio, um relógio, a leitura da temperatura de hora em hora.
-[L06] Resumo numa ficha pautada presa com clipe, uma linha por dúvida, com a fonte no pé.
