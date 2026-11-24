@@ -1,0 +1,608 @@
+DESPERTADOR-PACOTE 1
+n=10
+v=1.0.10
+notas=Sem o botao de Bluetooth na tela do alarme (pedido dele em 24/11; volta com botao_bluetooth true na Config). Resto igual ao 1.0.9.
+---
+⟦ARQUIVO rules.js⟧
+/* Despertador - rules.js - pacote 10 (24/11/2026). Pacote 10: sem o botao de Bluetooth na tela do alarme
+   (pedido dele; volta com "botao_bluetooth": true na Config).
+   Porta das regras do APK 1.0.7 (Regras.java) com uma mudanca pedida por ele em 24/11/2026:
+   o alarme destrava quando o celular para de ver as redes de casa (lista negra) e ve outras redes,
+   sem precisar da lista branca. Config: checkpoint ("sem_casa" ou "brancas"), min_outras (3 roteadores
+   diferentes que nao sejam de casa) e saidas_seguidas (2 leituras seguidas). Pacote 9: roteador visto na
+   mesma leitura que uma rede de casa, nesta manha, tambem nao conta como outra rede (estado.vc).
+   So ES5: roda no Rhino. O Android chama tick(entradaJson), que devolve o JSON de saida em texto,
+   e selftest(), que devolve "ok". */
+
+function tem(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+function ehObj(v) { return v !== null && typeof v === 'object' && Object.prototype.toString.call(v) !== '[object Array]'; }
+function obj(o, k) { var v = o ? o[k] : null; return ehObj(v) ? v : null; }
+function lista(o, k) { var v = o ? o[k] : null; return Object.prototype.toString.call(v) === '[object Array]' ? v : null; }
+function apara(s) {
+  var a = 0, b = s.length;
+  while (a < b && s.charCodeAt(a) <= 32) a++;
+  while (b > a && s.charCodeAt(b - 1) <= 32) b--;
+  return s.substring(a, b);
+}
+function numero(o, k, d) {
+  var v = o ? o[k] : null, n;
+  if (typeof v === 'number') return v;
+  if (typeof v === 'string') {
+    v = apara(v);
+    if (v.length === 0) return d;
+    n = Number(v);
+    return isNaN(n) ? d : n;
+  }
+  return d;
+}
+function inteiro(o, k, d) {
+  var n = numero(o, k, null);
+  if (n === null) return d;
+  return n < 0 ? Math.ceil(n) : Math.floor(n);
+}
+function logico(o, k, d) {
+  var v = o ? o[k] : null, s;
+  if (v === true || v === false) return v;
+  if (typeof v === 'string') {
+    s = v.toLowerCase();
+    if (s === 'true') return true;
+    if (s === 'false') return false;
+  }
+  return d;
+}
+function texto(o, k, d) {
+  var v = o ? o[k] : null;
+  if (v === null || v === undefined) return d;
+  return String(v);
+}
+function conta(o) {
+  var n = 0, k;
+  for (k in o) { if (tem(o, k)) n++; }
+  return n;
+}
+function p2(n) { return (n < 10 ? '0' : '') + n; }
+function soDigitos(s) {
+  var i, c;
+  if (s.length === 0) return false;
+  for (i = 0; i < s.length; i++) {
+    c = s.charCodeAt(i);
+    if (c < 48 || c > 57) return false;
+  }
+  return true;
+}
+function hora(cfg, chave, def) {
+  var s = apara(texto(cfg, chave, def)), p = s.split(':'), a, b;
+  if (p.length === 2) {
+    a = apara(p[0]);
+    b = apara(p[1]);
+    if (soDigitos(a) && soDigitos(b) && parseInt(a, 10) <= 23 && parseInt(b, 10) <= 59) return s;
+  }
+  return def;
+}
+function noDia(base, hhmm) {
+  var p = hhmm.split(':'), d = new Date(base);
+  d.setHours(parseInt(apara(p[0]), 10), parseInt(apara(p[1]), 10), 0, 0);
+  return d.getTime();
+}
+function depois(inicio, hhmm) {
+  var t = noDia(inicio, hhmm), d;
+  if (t <= inicio) {
+    d = new Date(t);
+    d.setDate(d.getDate() + 1);
+    t = d.getTime();
+  }
+  return t;
+}
+function hm(t) {
+  var d = new Date(t);
+  return p2(d.getHours()) + ':' + p2(d.getMinutes());
+}
+function grupo(b) { return b.length >= 14 ? b.substring(3, 14) : b; }
+function grupos(l) {
+  var g = {}, k;
+  for (k in l) { if (tem(l, k)) g[grupo(k)] = 1; }
+  return g;
+}
+function rede(r, agora) { return { s: texto(r, 's', ''), t: agora }; }
+function quebravel(cfg, e) {
+  var q = apara(texto(cfg, 'quebrar', 'simulado')).toLowerCase();
+  if (q === 'nunca') return false;
+  return q === 'sempre' || logico(e, 'simulado', false) || logico(e, 'teste', false);
+}
+
+function tick(entradaJson) {
+  var en = JSON.parse(entradaJson);
+  var agora = numero(en, 'agora', 0);
+  var cfg = obj(en, 'cfg') || {};
+  var e = obj(en, 'estado') || {};
+  var listas = obj(en, 'listas') || {};
+  var preta = obj(listas, 'preta');
+  if (!preta) { preta = {}; listas.preta = preta; }
+  var branca = obj(listas, 'branca');
+  if (!branca) { branca = {}; listas.branca = branca; }
+  var scan = obj(en, 'scan') || {};
+  var cmd = obj(en, 'cmd');
+  var fase = texto(e, 'fase', 'ocioso');
+  var listasMudou = false, buscar = false, msg = '', motivoFim = '';
+  var minBrancas = Math.max(1, inteiro(cfg, 'min_brancas', 2));
+  var semCasa = apara(texto(cfg, 'checkpoint', 'sem_casa')).toLowerCase() !== 'brancas';
+  var minOutras = Math.max(1, inteiro(cfg, 'min_outras', 3));
+  var precisa = semCasa ? Math.max(1, inteiro(cfg, 'saidas_seguidas', 2)) : 1;
+  var t, emAlarme, armado, temPerm, locLig, simplesNovo, sim, ehPreta, i, r, b, w, tw;
+
+  if (cmd) {
+    t = texto(cmd, 't', '');
+    emAlarme = fase === 'casa' || fase === 'fora';
+    if (t === 'alarme' && emAlarme && (logico(e, 'teste', false) || logico(e, 'simulado', false))) emAlarme = false;
+    if (t === 'simular' && fase !== 'ocioso') {
+      msg = 'Já tem alarme, vigia, cadastro ou ensaio em curso. Encerre antes de simular.';
+    } else if (t === 'alarme' || t === 'teste' || t === 'simular') {
+      if (!emAlarme && (t !== 'alarme' || logico(cfg, 'ativo', true))) {
+        armado = conta(preta) >= 1 && (semCasa || conta(grupos(branca)) >= minBrancas);
+        temPerm = logico(scan, 'perm', true) && logico(scan, 'perm_bg', true);
+        locLig = logico(scan, 'loc_on', true);
+        simplesNovo = t !== 'teste' && (!armado || !temPerm || (!locLig && !logico(cfg, 'trava_sem_leitura', tem(scan, 'tela'))));
+        sim = t === 'simular';
+        e = {};
+        e.fase = 'casa';
+        e.inicio = agora;
+        e.teste = t === 'teste';
+        e.simulado = sim;
+        e.desl = sim ? agora - noDia(agora, hora(cfg, 'hora', '05:00')) : 0;
+        e.simples = simplesNovo;
+        if (simplesNovo) {
+          e.motivo_simples = !armado ? (semCasa ? 'faltam as redes de casa (⚙ › Redes › Cadastrar CASA)' : 'faltam redes cadastradas (⚙ › Redes)')
+            : !temPerm ? 'falta a permissão de localização o tempo todo (⚙ › Ajustes)'
+            : 'a localização está desligada (⚙ › Ajustes)';
+        }
+        e.fora_ms = 0;
+        e.clem_usadas = 0;
+        e.clem_ate = 0;
+        e.pretas_seguidas = 0;
+        e.saidas_seguidas = 0;
+        e.ult_tick = agora;
+        fase = 'casa';
+      }
+    } else if (t === 'clemencia') {
+      if (fase === 'casa' && !logico(e, 'simples', false) && agora >= inteiro(e, 'clem_ate', 0)
+          && inteiro(e, 'clem_usadas', 0) < inteiro(cfg, 'clemencias', 1)) {
+        e.clem_ate = agora + Math.max(1, inteiro(cfg, 'clemencia_min', 15)) * 60000;
+        e.clem_usadas = inteiro(e, 'clem_usadas', 0) + 1;
+      }
+    } else if (t === 'desligar') {
+      if (fase === 'casa' && logico(e, 'simples', false)) {
+        fase = 'fim';
+        motivoFim = 'desligado na tela';
+      }
+    } else if (t === 'quebrar') {
+      if ((emAlarme || fase === 'vigia') && quebravel(cfg, e)) {
+        motivoFim = 'QUEBRADO pelo botão (' + fase + (logico(e, 'simples', false) ? ', sem trava' : '') + ')';
+        fase = 'fim';
+      }
+    } else if (t === 'buscar') {
+      if (emAlarme || fase === 'vigia') {
+        buscar = true;
+        e.busca_em = agora;
+      }
+    } else if (t === 'cadastro') {
+      if (emAlarme || fase === 'vigia') {
+        msg = 'Espere o alarme e a vigia terminarem.';
+      } else {
+        fase = texto(cmd, 'lista', '') === 'preta' ? 'cad_casa' : 'cad_lugares';
+        e = {};
+        e.fase = fase;
+        e.cad_inicio = agora;
+        e.cad_novas = 0;
+        e.ult_tick = agora;
+      }
+    } else if (t === 'ensaio') {
+      if (emAlarme || fase === 'vigia') {
+        msg = 'Espere o alarme e a vigia terminarem.';
+      } else {
+        fase = 'ensaio';
+        e = {};
+        e.fase = fase;
+        e.cad_inicio = agora;
+        e.ult_tick = agora;
+      }
+    } else if (t === 'parar') {
+      if (fase.indexOf('cad_') === 0 || fase === 'ensaio') {
+        motivoFim = fase === 'ensaio' ? 'ensaio encerrado' : 'cadastro encerrado';
+        fase = 'fim';
+      }
+    } else if (t === 'remover' || t === 'limpar') {
+      if (emAlarme || fase === 'vigia') {
+        msg = 'Não dá para mexer nas listas agora. Espere o alarme e a vigia terminarem.';
+      } else {
+        ehPreta = texto(cmd, 'lista', '') === 'preta';
+        if (t === 'limpar') {
+          if (ehPreta) { preta = {}; listas.preta = preta; }
+          else { branca = {}; listas.branca = branca; }
+        } else {
+          delete (ehPreta ? preta : branca)[texto(cmd, 'b', '').toLowerCase()];
+        }
+        listasMudou = true;
+      }
+    }
+  }
+
+  var idadeMax = inteiro(cfg, 'rede_idade_seg', 75), rssiMin = inteiro(cfg, 'rssi_min', -92);
+  var idade = inteiro(scan, 'idade', -1);
+  var fresco = idade >= 0 && idade <= idadeMax;
+  var scanN = inteiro(scan, 'n', 0);
+  var scanNovo = fresco && scanN !== inteiro(e, 'ult_scan', -1);
+  var inicio = inteiro(e, 'inicio', agora);
+  var carencia = Math.round(numero(cfg, 'carencia_h', 0) * 3600000);
+  var redes = lista(scan, 'redes') || [];
+  var nVistas = 0, nPretas = 0;
+  var gb = {}, go = {}, gn = {}, gp = grupos(preta), vistas = [];
+  if (fresco) {
+    for (i = 0; i < redes.length; i++) {
+      r = redes[i];
+      if (!ehObj(r)) continue;
+      if (inteiro(r, 'i', 0) > idadeMax || inteiro(r, 'r', -100) < rssiMin) continue;
+      b = texto(r, 'b', '').toLowerCase();
+      if (b.length < 11) continue;
+      nVistas++;
+      vistas.push(r);
+      if (tem(preta, b)) {
+        nPretas++;
+      } else {
+        if (!tem(gp, grupo(b))) gn[grupo(b)] = 1;
+        if (tem(branca, b)) {
+          w = obj(branca, b);
+          tw = w ? inteiro(w, 't', 0) : 0;
+          if (carencia <= 0 || tw <= inicio - carencia) gb[grupo(b)] = 1;
+        }
+      }
+    }
+  }
+  var vc = {}, vcTxt = texto(e, 'vc', ''), vcN = 0, vp, k;
+  if (vcTxt.length > 0) {
+    vp = vcTxt.split(' ');
+    for (i = 0; i < vp.length; i++) {
+      if (vp[i].length > 0 && !tem(vc, vp[i])) { vc[vp[i]] = 1; vcN++; }
+    }
+  }
+  if (nPretas > 0 && (fase === 'casa' || fase === 'fora' || fase === 'vigia' || fase === 'ensaio')) {
+    for (k in gn) {
+      if (tem(gn, k) && !tem(vc, k) && vcN < 400) {
+        vc[k] = 1;
+        vcN++;
+        vcTxt += (vcTxt.length > 0 ? ' ' : '') + k;
+      }
+    }
+    e.vc = vcTxt;
+  }
+  for (k in gn) { if (tem(gn, k) && !tem(vc, k)) go[k] = 1; }
+  var con = texto(scan, 'con', '').toLowerCase();
+  var conPreta = con.length >= 11 && tem(preta, con);
+  var vePreta = nPretas > 0 || conPreta;
+  var nBrancas = conta(gb), nOutras = conta(go);
+  var emCurso = fase === 'casa' || fase === 'fora' || fase === 'vigia';
+  var conDesde = inteiro(e, 'con_preta_desde', 0);
+  if (emCurso) {
+    if (conPreta && conDesde === 0) {
+      conDesde = agora;
+      e.con_preta_desde = agora;
+    } else if (!conPreta && conDesde !== 0) {
+      conDesde = 0;
+      e.con_preta_desde = 0;
+    }
+  }
+  var conCasa = conPreta && conDesde > 0 && agora - conDesde >= 45000;
+
+  var dt = Math.max(0, Math.min(agora - inteiro(e, 'ult_tick', agora), 120000));
+  var teste = logico(e, 'teste', false), simples = logico(e, 'simples', false);
+  var testeMin = Math.max(1, inteiro(cfg, 'teste_min', 2));
+  var minFora = Math.max(0, inteiro(cfg, 'min_fora', 15));
+  var desl = inteiro(e, 'desl', 0);
+  var limite, saiu, ss, ps, fora, vig, casaDesde, lim, parado, casa, novas, j, rr, bb;
+  if (fase === 'casa' || fase === 'fora') {
+    limite = teste ? inicio + testeMin * 60000 : depois(inicio - desl, hora(cfg, 'seguranca', '11:00')) + desl;
+    if (agora >= limite) {
+      motivoFim = teste ? 'teste encerrado' : 'parou no horário de segurança';
+      fase = 'fim';
+    }
+  }
+  var chegou = false;
+  if (fase === 'casa') {
+    saiu = fresco && !vePreta && (semCasa ? nOutras >= minOutras : nBrancas >= minBrancas);
+    ss = inteiro(e, 'saidas_seguidas', 0);
+    if (scanNovo) {
+      ss = saiu ? ss + 1 : 0;
+      e.saidas_seguidas = ss;
+    }
+    if (!simples && saiu && (!semCasa || ss >= precisa)) {
+      fase = 'fora';
+      chegou = true;
+      e.checkpoint_em = agora;
+      e.fora_ms = 0;
+      e.pretas_seguidas = 0;
+    }
+  }
+  if (fase === 'fora') {
+    ps = inteiro(e, 'pretas_seguidas', 0);
+    if (scanNovo && !chegou) {
+      ps = vePreta ? ps + 1 : 0;
+      e.pretas_seguidas = ps;
+    }
+    if (ps >= 2 || conCasa) {
+      fase = 'casa';
+      e.fora_ms = 0;
+      e.pretas_seguidas = 0;
+      e.saidas_seguidas = 0;
+    } else {
+      fora = inteiro(e, 'fora_ms', 0) + (chegou ? 0 : dt);
+      e.fora_ms = fora;
+      if (fora >= minFora * 60000) {
+        vig = depois(inicio - desl, hora(cfg, 'vigia_ate', '07:00')) + desl;
+        if (!teste && agora < vig && vig - inicio <= 6 * 3600000) {
+          fase = 'vigia';
+          e.dispensado_em = agora;
+          e.pretas_seguidas = 0;
+          e.casa_desde = 0;
+          e.vigia_fim = vig;
+        } else {
+          fase = 'fim';
+          motivoFim = teste ? 'teste: destravou depois do tempo fora de casa'
+            : minFora > 0 ? 'ficou ' + minFora + ' min fora de casa' : 'chegou ao checkpoint (destrava na hora)';
+        }
+      }
+    }
+  } else if (fase === 'vigia') {
+    if (agora >= inteiro(e, 'vigia_fim', 0)) {
+      fase = 'fim';
+      motivoFim = 'vigia terminou';
+    } else {
+      ps = inteiro(e, 'pretas_seguidas', 0);
+      if (scanNovo) {
+        ps = vePreta ? Math.min(ps + 1, 1000) : 0;
+        e.pretas_seguidas = ps;
+      }
+      casaDesde = inteiro(e, 'casa_desde', 0);
+      if (ps >= 2 || conCasa) {
+        if (casaDesde === 0) {
+          casaDesde = agora;
+          e.casa_desde = agora;
+        }
+      } else if (casaDesde !== 0) {
+        casaDesde = 0;
+        e.casa_desde = 0;
+      }
+      lim = Math.max(0, inteiro(cfg, 'vigia_parado_min', 10)) * 60000;
+      parado = inteiro(en, 'parado_ms', -1);
+      if (casaDesde > 0 && agora - casaDesde >= lim && (lim === 0 || parado >= lim)) {
+        fase = 'casa';
+        e.fora_ms = 0;
+        e.pretas_seguidas = 0;
+        e.saidas_seguidas = 0;
+        e.retoques = inteiro(e, 'retoques', 0) + 1;
+      }
+    }
+  } else if (fase.indexOf('cad_') === 0) {
+    if (agora - inteiro(e, 'cad_inicio', agora) > Math.max(1, inteiro(cfg, 'cadastro_min', 30)) * 60000) {
+      fase = 'fim';
+      motivoFim = 'cadastro encerrado pelo tempo';
+    } else if (scanNovo) {
+      casa = fase === 'cad_casa';
+      novas = inteiro(e, 'cad_novas', 0);
+      for (j = 0; j < vistas.length; j++) {
+        rr = vistas[j];
+        bb = texto(rr, 'b', '').toLowerCase();
+        if (casa) {
+          if (!tem(preta, bb)) { preta[bb] = rede(rr, agora); novas++; listasMudou = true; }
+          if (tem(branca, bb)) { delete branca[bb]; listasMudou = true; }
+        } else if (!tem(preta, bb) && !tem(branca, bb)) {
+          branca[bb] = rede(rr, agora);
+          novas++;
+          listasMudou = true;
+        }
+      }
+      e.cad_novas = novas;
+    }
+  } else if (fase === 'ensaio') {
+    if (agora - inteiro(e, 'cad_inicio', agora) > Math.max(1, inteiro(cfg, 'cadastro_min', 30)) * 60000) {
+      fase = 'fim';
+      motivoFim = 'ensaio encerrado pelo tempo';
+    }
+  }
+  if (scanNovo) e.ult_scan = scanN;
+  e.ult_tick = agora;
+
+  var tela = {};
+  var tocar = false, travar = false, mostrar = false, fim = false, mov = false, sinc = false;
+  var tickSeg = 5, scanSeg = 0, notif = '';
+  var locOn = logico(scan, 'loc_on', true);
+  var diag = fresco
+    ? 'Wi-Fi: ' + nVistas + ' redes · de casa ' + nPretas + ' · outras ' + nOutras + ' · brancas ' + nBrancas + ' · lido há ' + idade + ' s'
+    : (locOn ? 'Wi-Fi: ainda sem leitura' : 'Wi-Fi: sem leitura (a localização está desligada)');
+  if (conPreta) diag += ' · conectado ao Wi-Fi de casa';
+  var pedIdade = inteiro(scan, 'ped_idade', -1);
+  if (pedIdade >= 0 && pedIdade < 40 && !logico(scan, 'ped_ok', true)) diag += ' · o Android segurou a leitura (limite de 4 a cada 2 min)';
+  if (tem(scan, 'tela') && !logico(scan, 'tela', true)) diag += ' · tela apagada';
+  var be = inteiro(e, 'busca_em', 0);
+  var buscando = be > 0 && agora - be < 6000;
+  var simulado = logico(e, 'simulado', false), podeQuebrar = quebravel(cfg, e);
+  var pre = teste ? 'TESTE · ' : simulado ? 'SIMULADO · ' : '';
+  var fimTeste = teste ? 'O teste termina sozinho às ' + hm(inicio + testeMin * 60000) + '.'
+    : simulado ? 'Simulação: vale tudo como às ' + hora(cfg, 'hora', '05:00') + '.' : '';
+  var clemAte, faltam, soNegra, v;
+
+  if (fase === 'casa') {
+    mostrar = true;
+    scanSeg = Math.max(10, inteiro(cfg, 'scan_seg', 35));
+    tickSeg = 3;
+    if (simples) {
+      tocar = true;
+      tela.titulo = pre + 'Hora de levantar';
+      tela.linha1 = 'Trava desligada: ' + texto(e, 'motivo_simples', 'faltam redes cadastradas (⚙ › Redes)') + '.';
+      tela.linha2 = fimTeste;
+      tela.desligar = !podeQuebrar;
+      tela.quebrar = podeQuebrar;
+      tela.musica = true;
+      notif = 'Alarme tocando';
+    } else {
+      travar = true;
+      clemAte = inteiro(e, 'clem_ate', 0);
+      tocar = agora >= clemAte;
+      if (tocar) {
+        tela.titulo = pre + 'Hora de levantar';
+        tela.linha1 = teste ? 'Teste do som e da trava: tente sair desta tela.' : 'Só para quando você sair de casa.';
+        tela.linha2 = !locOn ? 'A localização está desligada: sem ela o celular não vê as redes. Toque em Ligar a localização.'
+          : conPreta && nPretas === 0 ? 'Você está em casa (conectado ao Wi-Fi de casa).'
+          : !fresco ? 'O celular ainda não leu as redes.'
+          : vePreta ? 'Você está em casa (' + nPretas + ' rede(s) de casa à vista).'
+          : !semCasa ? 'Saiu das redes de casa. Falta ver ' + minBrancas + ' da lista branca (vendo ' + nBrancas + ').'
+          : nOutras >= minOutras ? 'Saiu das redes de casa. Confirmando na próxima leitura do Wi-Fi.'
+          : 'Saiu das redes de casa. Falta ver ' + minOutras + ' outras redes (vendo ' + nOutras + ').';
+        tela.clemencia = inteiro(e, 'clem_usadas', 0) < inteiro(cfg, 'clemencias', 1);
+        tela.clemencia_txt = 'Clemência: ' + Math.max(1, inteiro(cfg, 'clemencia_min', 15)) + ' min de silêncio (só 1 vez)';
+        tela.musica = true;
+        tela.bt = logico(cfg, 'botao_bluetooth', false);
+        notif = 'Alarme tocando';
+      } else {
+        tela.titulo = pre + 'Clemência';
+        tela.linha1 = 'Volta a tocar às ' + hm(clemAte) + '.';
+        tela.linha2 = 'O celular continua travado.';
+        notif = 'Clemência até ' + hm(clemAte);
+      }
+      tela.linha3 = fimTeste;
+      tela.quebrar = podeQuebrar;
+      tela.buscar = locOn;
+      tela.buscar_txt = buscando ? 'Buscando redes…' : 'Buscar Wi-Fi agora';
+      tela.loc = !locOn;
+    }
+  } else if (fase === 'fora') {
+    travar = true;
+    mostrar = true;
+    scanSeg = Math.max(10, inteiro(cfg, 'scan_seg', 35));
+    tickSeg = 5;
+    faltam = Math.max(1, Math.floor((minFora * 60000 - inteiro(e, 'fora_ms', 0) + 59999) / 60000));
+    tela.titulo = pre + 'Fora de casa';
+    tela.linha1 = 'Destrava em ' + faltam + ' min.';
+    tela.linha2 = 'Se voltar para casa, toca de novo.';
+    tela.linha3 = fimTeste;
+    tela.quebrar = podeQuebrar;
+    notif = 'Fora de casa: destrava em ' + faltam + ' min';
+  } else if (fase === 'vigia') {
+    soNegra = Math.max(0, inteiro(cfg, 'vigia_parado_min', 10)) === 0;
+    mov = !soNegra;
+    scanSeg = inteiro(e, 'pretas_seguidas', 0) >= 1 ? 30 : Math.max(30, inteiro(cfg, 'vigia_scan_seg', 120));
+    tickSeg = 20;
+    notif = 'Vigia até ' + hm(inteiro(e, 'vigia_fim', agora)) + (soNegra ? ': se voltar para casa, toca de novo' : ': se voltar para a cama, toca de novo')
+      + (podeQuebrar ? ' (para encerrar: Quebrar, no app)' : '');
+  } else if (fase.indexOf('cad_') === 0) {
+    scanSeg = 30;
+    tickSeg = 5;
+    notif = (fase === 'cad_casa' ? 'Cadastrando CASA' : 'Cadastrando SAÍDA e lugares') + ': ' + inteiro(e, 'cad_novas', 0) + ' redes novas';
+  } else if (fase === 'ensaio') {
+    scanSeg = 30;
+    tickSeg = 5;
+    v = !fresco ? 'Ainda sem leitura do Wi-Fi.'
+      : vePreta ? 'Aqui TOCARIA: ' + (nPretas > 0 ? nPretas + ' rede(s) de casa à vista.' : 'conectado ao Wi-Fi de casa.')
+      : !semCasa ? (nBrancas >= minBrancas ? 'Aqui SILENCIARIA: ' + nBrancas + ' redes brancas à vista e nenhuma de casa.'
+        : 'Aqui TOCARIA: fora das redes de casa, mas só ' + nBrancas + ' de ' + minBrancas + ' redes brancas à vista.')
+      : nOutras >= minOutras ? 'Aqui SILENCIARIA: nenhuma rede de casa e ' + nOutras + ' outras redes à vista.'
+      : 'Aqui TOCARIA: fora das redes de casa, mas só ' + nOutras + ' de ' + minOutras + ' outras redes à vista.';
+    e.veredito = v;
+    notif = 'Ensaio · ' + v;
+  }
+
+  var acesa = false, manter = false, td, claraSeg;
+  if (fase === 'casa' || fase === 'fora' || fase === 'vigia') {
+    td = inteiro(e, 'toque_desde', 0);
+    if (tocar && td === 0) {
+      td = agora;
+      e.toque_desde = agora;
+    } else if (!tocar && td !== 0) {
+      td = 0;
+      e.toque_desde = 0;
+    }
+    claraSeg = inteiro(cfg, 'tela_clara_seg', 60);
+    acesa = tocar && (claraSeg <= 0 || agora - td < claraSeg * 1000);
+    manter = tocar && travar && fase === 'casa' && logico(cfg, 'manter_tela', true);
+  }
+  var modoFone = apara(texto(cfg, 'fone', 'junto')).toLowerCase();
+  var soFone = tocar && (modoFone === 'so_fone' || (modoFone === 'fora' && fresco && !vePreta));
+
+  if (fase === 'fim') {
+    e = {
+      fase: 'ocioso',
+      ult_fim: agora,
+      ult_motivo: motivoFim,
+      ult_inicio: inteiro(e, 'inicio', 0),
+      ult_teste: teste,
+      ult_simulado: simulado,
+      ult_checkpoint: inteiro(e, 'checkpoint_em', 0),
+      ult_retoques: inteiro(e, 'retoques', 0),
+      ult_cad_novas: inteiro(e, 'cad_novas', 0)
+    };
+    fim = true;
+    sinc = true;
+  } else if (fase === 'ocioso') {
+    fim = true;
+  } else {
+    e.fase = fase;
+    e.quebravel = podeQuebrar && (fase === 'casa' || fase === 'fora' || fase === 'vigia');
+  }
+
+  tela.rodape = diag;
+  var out = {
+    estado: e,
+    listas_mudou: listasMudou,
+    tocar: tocar,
+    volume: Math.max(1, Math.min(100, inteiro(cfg, 'volume', 100))),
+    so_fone: soFone,
+    volume_fone: Math.max(1, Math.min(100, inteiro(cfg, 'volume_fone', 60))),
+    travar: travar,
+    mostrar: mostrar,
+    tela: tela,
+    notif: notif,
+    scan_seg: scanSeg,
+    scan_agora: buscar,
+    acesa: acesa,
+    manter_tela: manter,
+    movimento: mov,
+    tick_seg: tickSeg,
+    fim: fim,
+    sincronizar: sinc,
+    msg: msg,
+    diag: diag
+  };
+  if (listasMudou) out.listas = listas;
+  return JSON.stringify(out);
+}
+
+function selftest() {
+  var b1 = 'aa:11:22:33:44:01';
+  var cfg = { ativo: true, hora: '06:00', min_fora: 0, vigia_ate: '07:00', vigia_parado_min: 0, seguranca: '11:00', quebrar: 'simulado' };
+  var listas = { preta: {}, branca: {} };
+  var t0 = noDia(1795500000000, '06:00'), o, fora, rua;
+  listas.preta[b1] = { s: 'casa', t: 1 };
+  function rd(b) { return { b: b, s: 'x', r: -60, i: 1 }; }
+  function passo(estado, agora, n, redes, c) {
+    var en = { agora: agora, motivo: 'teste', parado_ms: -1, estado: estado, cfg: cfg, listas: listas, a11y: true, musicas: 1,
+      scan: { redes: redes, idade: 1, n: n, wifi_on: true, con: '', ped_ok: true, ped_idade: 1, loc_on: true, perm: true, perm_bg: true, tela: true } };
+    if (c) en.cmd = { t: c };
+    return JSON.parse(tick(JSON.stringify(en)));
+  }
+  fora = [rd('bb:00:00:00:01:01'), rd('bb:00:00:00:02:01'), rd('bb:00:00:00:03:01')];
+  o = passo({}, t0, 1, [rd(b1)], 'alarme');
+  if (!(o.tocar && o.travar && o.estado.fase === 'casa')) return 'falha 1';
+  o = passo(o.estado, t0 + 40000, 2, [rd(b1), fora[0], fora[1], fora[2]], null);
+  if (o.estado.fase !== 'casa') return 'falha 2';
+  o = passo(o.estado, t0 + 80000, 3, fora, null);
+  o = passo(o.estado, t0 + 120000, 4, fora, null);
+  if (o.estado.fase !== 'casa' || !o.travar) return 'falha 3';
+  rua = [rd('cc:10:00:00:01:01'), rd('cc:10:00:00:02:01'), rd('cc:10:00:00:03:01')];
+  o = passo(o.estado, t0 + 160000, 5, rua, null);
+  if (o.estado.fase !== 'casa') return 'falha 4';
+  o = passo(o.estado, t0 + 200000, 6, rua, null);
+  if (o.estado.fase !== 'vigia' || o.tocar || o.travar) return 'falha 5';
+  o = passo(o.estado, t0 + 240000, 7, [rd(b1)], null);
+  o = passo(o.estado, t0 + 280000, 8, [rd(b1)], null);
+  if (!(o.estado.fase === 'casa' && o.tocar && o.travar)) return 'falha 6';
+  return 'ok';
+}
+⟦FIM⟧
